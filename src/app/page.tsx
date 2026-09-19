@@ -9,7 +9,6 @@ import {
   HeartIcon,
   ShieldIcon,
   SparkIcon,
-  StarIcon,
   StarKhatimIcon,
   TruckIcon,
   WhatsappIcon,
@@ -92,7 +91,6 @@ export default function HomePage() {
         </Container>
       ) : null}
 
-      <ValueStory />
 
       {ramadan.length > 0 ? (
         <Container className="py-16 sm:py-20">
@@ -113,7 +111,6 @@ export default function HomePage() {
 
       {deals.length > 0 ? <Deals products={deals} /> : null}
 
-      <Testimonials />
       <ContactCta />
     </>
   );
@@ -416,63 +413,6 @@ function QuranFeature({ picks }: { picks: Array<{ slug: string; name: string; im
   );
 }
 
-function ValueStory() {
-  const points = [
-    {
-      Icon: SparkIcon,
-      title: "Chosen, not just stocked",
-      copy: "Every book is read and every toy tested against sound aqeedah before we shelve it.",
-    },
-    {
-      Icon: HeartIcon,
-      title: "Built around your child",
-      copy: "Age-graded shelves make it simple to buy something that will actually be used.",
-    },
-    {
-      Icon: ShieldIcon,
-      title: "Honest quality",
-      copy: "Real photos, accurate descriptions and clear prices — what you see is what arrives.",
-    },
-  ];
-
-  return (
-    <Container className="py-16 sm:py-20">
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
-          <Eyebrow>Our promise</Eyebrow>
-          <h2 className="mt-4 text-4xl leading-tight sm:text-[2.75rem]">
-            A gallery, not just a shop
-          </h2>
-          <p className="mt-5 text-[0.95rem] leading-relaxed text-ink-600">
-            We focus on turning the attention of the coming generation away from the harm of modern
-            technology, and towards using that same technology to learn the deen. Today that shelf holds{" "}
-            {catalogMeta.productCount} products across {departments.length} departments.
-          </p>
-          <ButtonLink href="/about" variant="outline" className="mt-8">
-            Read our story
-            <ArrowRightIcon className="size-4" />
-          </ButtonLink>
-        </div>
-
-        <ul className="grid gap-4 lg:col-span-7 sm:grid-cols-3 lg:gap-5">
-          {points.map(({ Icon, title, copy }) => (
-            <li
-              key={title}
-              className="rounded-lg border border-sand-200 bg-white p-6 transition duration-300 hover:border-forest-200 hover:shadow-[var(--shadow-card)]"
-            >
-              <span className="grid size-11 place-items-center rounded-full bg-forest-50 text-forest-700">
-                <Icon className="size-5" />
-              </span>
-              <h3 className="mt-5 text-lg">{title}</h3>
-              <p className="mt-2 text-[0.83rem] leading-relaxed text-ink-600">{copy}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Container>
-  );
-}
-
 function Deals({ products }: { products: CardProduct[] }) {
   return (
     <section className="bg-sand-100 py-16 sm:py-20">
@@ -491,60 +431,6 @@ function Deals({ products }: { products: CardProduct[] }) {
         <ProductRail products={products} className="mt-9" />
       </Container>
     </section>
-  );
-}
-
-function Testimonials() {
-  const reviews = [
-    {
-      quote:
-        "Jidderh's Gallery is my sanctuary! The curated collection effortlessly blends Islamic trends with timeless teaching, making every purchase a delightful discovery. What truly sets Jidderh's Gallery apart is their customer-centric approach.",
-      name: "Abubakar ATK.",
-      location: "Devoted Jidderh's Gallery fan",
-    },
-    {
-      quote:
-        "The seerah set for my 7-year-old was exactly as described. Packaging was neat and the waybill reached Jabi park on time.",
-      name: "Ummu Khadijah",
-      location: "Abuja",
-    },
-    {
-      quote:
-        "I ordered a Madinah mushaf and a prayer mat. The print quality is excellent, and they answered every question on WhatsApp.",
-      name: "Abdulrahman Y.",
-      location: "Lagos",
-    },
-  ];
-
-  return (
-    <Container className="py-16 sm:py-20">
-      <SectionHeading
-        eyebrow="From our customers"
-        title="Trusted by families nationwide"
-        align="center"
-      />
-      <div className="mt-10 grid gap-4 md:grid-cols-3 lg:gap-6">
-        {reviews.map((review) => (
-          <figure
-            key={review.name}
-            className="flex flex-col rounded-lg border border-sand-200 bg-white p-6 transition duration-300 hover:shadow-[var(--shadow-card)]"
-          >
-            <div className="flex gap-0.5 text-gold-400" aria-label="5 out of 5 stars">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <StarIcon key={index} className="size-4" />
-              ))}
-            </div>
-            <blockquote className="mt-4 flex-1 text-[0.88rem] leading-relaxed text-ink-700">
-              “{review.quote}”
-            </blockquote>
-            <figcaption className="mt-5 border-t border-sand-200 pt-4 text-[0.78rem]">
-              <span className="font-semibold text-forest-900">{review.name}</span>
-              <span className="text-ink-500"> — {review.location}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </Container>
   );
 }
 
