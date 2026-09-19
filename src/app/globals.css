@@ -184,18 +184,10 @@
 
 /* Hanging lanterns in the hero drift very slightly, like a real chain would. */
 .jg-sway {
-  animation: jg-sway 7s ease-in-out infinite alternate;
-}
-.jg-sway-2 {
-  animation-duration: 9s;
-  animation-delay: -2s;
-}
-.jg-sway-3 {
-  animation-duration: 8s;
-  animation-delay: -4s;
+  animation: jg-sway 8s ease-in-out infinite alternate;
 }
 
 @keyframes jg-sway {
-  from { transform: rotate(-1.6deg); }
-  to { transform: rotate(1.6deg); }
+  from { transform: rotate(-1.1deg); }
+  to { transform: rotate(1.1deg); }
 }

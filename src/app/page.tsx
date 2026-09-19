@@ -185,7 +185,7 @@ function Hero() {
           </div>
 
           <div className="lg:col-span-5">
-            <HeroOrnament className="mx-auto w-full max-w-[22rem] text-gold-300 lg:max-w-none" />
+            <HeroOrnament className="mx-auto w-full max-w-[17rem] text-gold-300 sm:max-w-[20rem] lg:max-w-[27rem]" />
           </div>
         </div>
       </Container>
