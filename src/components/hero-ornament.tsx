@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /**
  * The hero's centrepiece: an arched alcove of Islamic books, lit by three
  * lanterns hanging in front of it. Drawn rather than photographed, so the
@@ -57,7 +59,7 @@ function Shelf({
         const bx = x;
         x += w + 4;
         return (
-          <g key={i}>
+          <g key={i} className="jg-book">
             <rect
               x={bx}
               y={baseline - h}
@@ -99,10 +101,12 @@ function Board({ y }: { y: number }) {
 }
 
 export function HeroOrnament({ className }: { className?: string }) {
+  // anchorY is the point where each chain meets the arch's inner curve, so the
+  // lamps visibly hang from the arch instead of from off-canvas.
   const lanterns = [
-    { x: 142, drop: 168, scale: 0.82, sway: "-1.2s", pulse: "0s" },
-    { x: 232, drop: 104, scale: 0.6, sway: "-2.6s", pulse: "-0.9s" },
-    { x: 318, drop: 152, scale: 0.72, sway: "-0.4s", pulse: "-1.7s" },
+    { x: 142, anchorY: 106.5, chain: 54, scale: 0.82, sway: "-1.2s", pulse: "0s" },
+    { x: 230, anchorY: 54, chain: 74, scale: 0.6, sway: "-2.6s", pulse: "-0.9s" },
+    { x: 318, anchorY: 106.5, chain: 38, scale: 0.72, sway: "-0.4s", pulse: "-1.7s" },
   ];
 
   return (
@@ -189,34 +193,38 @@ export function HeroOrnament({ className }: { className?: string }) {
         {/* the alcove darkens towards the shelves */}
         <rect x="90" y="230" width="280" height="202" fill="url(#jg-alcove)" />
 
-        <Shelf books={SHELF_TOP} startX={112} baseline={302} />
-        <g stroke="#e7cc8d" strokeOpacity="0.5" strokeWidth="1.1" fill="#e7cc8d">
-          <rect x="248" y="293" width="74" height="9" rx="1.5" fillOpacity="0.2" />
-          <rect x="252" y="284" width="68" height="9" rx="1.5" fillOpacity="0.14" />
-          <rect x="256" y="275" width="60" height="9" rx="1.5" fillOpacity="0.24" />
-        </g>
-        <Board y={302} />
+        <Link href="/shop" className="jg-shelf">
+          <title>Browse all products</title>
 
-        <Shelf books={SHELF_MIDDLE} startX={110} baseline={366} />
-        <Board y={366} />
+          <Shelf books={SHELF_TOP} startX={112} baseline={302} />
+          <g stroke="#e7cc8d" strokeOpacity="0.5" strokeWidth="1.1" fill="#e7cc8d">
+            <rect x="248" y="293" width="74" height="9" rx="1.5" fillOpacity="0.2" />
+            <rect x="252" y="284" width="68" height="9" rx="1.5" fillOpacity="0.14" />
+            <rect x="256" y="275" width="60" height="9" rx="1.5" fillOpacity="0.24" />
+          </g>
+          <Board y={302} />
 
-        <Shelf books={SHELF_BOTTOM} startX={108} baseline={428} />
-        <g transform="rotate(-9 340 428)" clipPath="url(#jg-shelfclip)">
-          <rect
-            x="323"
-            y="378"
-            width="17"
-            height="50"
-            rx="1.5"
-            fill="#e7cc8d"
-            fillOpacity="0.18"
-            stroke="#e7cc8d"
-            strokeOpacity="0.55"
-            strokeWidth="1.1"
-          />
-          <path d="M326 387h11" stroke="#e7cc8d" strokeOpacity="0.4" strokeWidth="1" />
-        </g>
-        <path d="M100 428h256" stroke="#e7cc8d" strokeOpacity="0.6" strokeWidth="2.5" fill="none" />
+          <Shelf books={SHELF_MIDDLE} startX={110} baseline={366} />
+          <Board y={366} />
+
+          <Shelf books={SHELF_BOTTOM} startX={108} baseline={428} />
+          <g className="jg-book" transform="rotate(-9 340 428)" clipPath="url(#jg-shelfclip)">
+            <rect
+              x="323"
+              y="378"
+              width="17"
+              height="50"
+              rx="1.5"
+              fill="#e7cc8d"
+              fillOpacity="0.18"
+              stroke="#e7cc8d"
+              strokeOpacity="0.55"
+              strokeWidth="1.1"
+            />
+            <path d="M326 387h11" stroke="#e7cc8d" strokeOpacity="0.4" strokeWidth="1" />
+          </g>
+          <path d="M100 428h256" stroke="#e7cc8d" strokeOpacity="0.6" strokeWidth="2.5" fill="none" />
+        </Link>
       </g>
 
       {/* the arch, as a band between two outlines */}
@@ -254,24 +262,39 @@ export function HeroOrnament({ className }: { className?: string }) {
 
       <g stroke="#e7cc8d" strokeWidth="1.4" fill="none" strokeLinejoin="round" strokeLinecap="round">
         {lanterns.map((lamp) => (
-          <g
-            key={lamp.x}
-            className="jg-sway"
-            style={{ transformOrigin: `${lamp.x}px 0px`, animationDelay: lamp.sway }}
-          >
-            <path d={`M${lamp.x} 0v${lamp.drop}`} strokeOpacity="0.45" strokeWidth="1" />
-            <g transform={`translate(${lamp.x} ${lamp.drop}) scale(${lamp.scale})`}>
-              <ellipse
-                className="jg-pulse"
-                style={{ animationDelay: lamp.pulse }}
-                cx="0"
-                cy="52"
-                rx="38"
-                ry="46"
-                fill="url(#jg-lampglow)"
-                stroke="none"
+          <g key={lamp.x}>
+            {/* the bracket stays put on the arch; only what hangs from it sways */}
+            <path
+              d={`M${lamp.x - 7} ${lamp.anchorY}h14`}
+              strokeOpacity="0.75"
+              strokeWidth="2"
+            />
+            <circle cx={lamp.x} cy={lamp.anchorY + 4} r="2.6" strokeOpacity="0.7" />
+            <g
+              className="jg-sway"
+              style={{
+                transformOrigin: `${lamp.x}px ${lamp.anchorY}px`,
+                animationDelay: lamp.sway,
+              }}
+            >
+              <path
+                d={`M${lamp.x} ${lamp.anchorY + 6}v${lamp.chain}`}
+                strokeOpacity="0.45"
+                strokeWidth="1"
               />
-              <use href="#jg-fanoos" />
+              <g transform={`translate(${lamp.x} ${lamp.anchorY + lamp.chain}) scale(${lamp.scale})`}>
+                <ellipse
+                  className="jg-pulse"
+                  style={{ animationDelay: lamp.pulse }}
+                  cx="0"
+                  cy="52"
+                  rx="38"
+                  ry="46"
+                  fill="url(#jg-lampglow)"
+                  stroke="none"
+                />
+                <use href="#jg-fanoos" />
+              </g>
             </g>
           </g>
         ))}

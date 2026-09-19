@@ -187,6 +187,31 @@
   animation: jg-sway 3.4s ease-in-out infinite alternate;
 }
 
+/* Books lift and brighten under the pointer, so the shelf feels handled. */
+.jg-shelf {
+  cursor: pointer;
+}
+.jg-book {
+  transition: transform 0.25s var(--ease-out-soft);
+}
+.jg-book rect,
+.jg-book path {
+  transition: fill-opacity 0.25s, stroke-opacity 0.25s;
+}
+.jg-book:hover {
+  transform: translateY(-9px);
+}
+.jg-book:hover rect {
+  fill-opacity: 0.44;
+  stroke-opacity: 0.95;
+}
+.jg-book:hover path {
+  stroke-opacity: 0.75;
+}
+.jg-shelf:focus-visible .jg-book {
+  transform: translateY(-4px);
+}
+
 /* The lamps breathe — a visible flicker rather than a steady glow. */
 .jg-pulse {
   transform-box: fill-box;
