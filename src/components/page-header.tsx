@@ -30,7 +30,7 @@ export function PageHeader({
         aria-hidden
       />
       <Container className="relative py-10 sm:py-14">
-        {trail ? <Breadcrumbs trail={trail} /> : null}
+        {trail ? <Breadcrumbs trail={trail} tone={dark ? "light" : "dark"} /> : null}
         <div className={cx(trail && "mt-5")}>
           {eyebrow ? <Eyebrow className={dark ? "text-gold-300" : undefined}>{eyebrow}</Eyebrow> : null}
           <h1

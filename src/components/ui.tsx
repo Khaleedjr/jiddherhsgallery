@@ -156,20 +156,38 @@ export function Divider({ className }: { className?: string }) {
   );
 }
 
-export function Breadcrumbs({ trail }: { trail: Array<{ label: string; href?: string }> }) {
+export function Breadcrumbs({
+  trail,
+  tone = "dark",
+}: {
+  trail: Array<{ label: string; href?: string }>;
+  /** "light" for breadcrumbs sitting on a dark header. */
+  tone?: "dark" | "light";
+}) {
+  const light = tone === "light";
   return (
-    <nav aria-label="Breadcrumb" className="text-[0.8rem] text-ink-500">
+    <nav
+      aria-label="Breadcrumb"
+      className={cx("text-[0.8rem]", light ? "text-sand-300/75" : "text-ink-500")}
+    >
       <ol className="flex flex-wrap items-center gap-1.5">
         {trail.map((crumb, index) => (
           <li key={`${crumb.label}-${index}`} className="flex items-center gap-1.5">
             {crumb.href ? (
-              <Link href={crumb.href} className="transition hover:text-forest-700">
+              <Link
+                href={crumb.href}
+                className={cx("transition", light ? "hover:text-gold-300" : "hover:text-forest-700")}
+              >
                 {crumb.label}
               </Link>
             ) : (
-              <span className="text-ink-700">{crumb.label}</span>
+              <span className={light ? "text-sand-100" : "text-ink-700"}>{crumb.label}</span>
             )}
-            {index < trail.length - 1 ? <span aria-hidden className="text-sand-400">/</span> : null}
+            {index < trail.length - 1 ? (
+              <span aria-hidden className={light ? "text-sand-300/40" : "text-sand-400"}>
+                /
+              </span>
+            ) : null}
           </li>
         ))}
       </ol>
