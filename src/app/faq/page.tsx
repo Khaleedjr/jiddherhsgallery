@@ -3,6 +3,7 @@ import { Accordion } from "@/components/accordion";
 import { PageHeader } from "@/components/page-header";
 import { WhatsappIcon } from "@/components/icons";
 import { Container, buttonClass, cx } from "@/components/ui";
+import { formatPrice } from "@/lib/format";
 import { site, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ const FAQS = [
   {
     question: "Why does checkout go to WhatsApp instead of taking my card?",
     answer:
-      "Because delivery fees in Nigeria depend on weight and destination, and because we would rather confirm that everything in your bag is genuinely in stock before taking your money. It also means you can ask questions while you order.",
+      "Because delivery fees in Nigeria depend on weight and destination, and because we would rather confirm everything in your bag is genuinely in stock before taking your money. It also means you can ask questions while you order.",
   },
   {
     question: "How do I pay?",
@@ -28,24 +29,34 @@ const FAQS = [
       "By bank transfer once we have confirmed your order and the total including delivery. We send the account details on WhatsApp and dispatch as soon as payment reflects.",
   },
   {
-    question: "How long does delivery take?",
+    question: "How much is delivery?",
     answer:
-      `Orders within ${site.address.city} usually arrive the same or next working day. Elsewhere in Nigeria, courier delivery typically takes two to five working days depending on your state.`,
+      `Within Kaduna metropolis and Zaria it is ${formatPrice(site.delivery.kadunaFee)} for small-sized items; larger Zaria packages may attract an extra park fee. Interstate orders go through the parks and need a waybill fee added at checkout. Orders from ${formatPrice(site.freeDeliveryThreshold)} ship free anywhere in Nigeria.`,
   },
   {
-    question: "Do you deliver outside my state?",
+    question: "How quickly do you dispatch?",
     answer:
-      "Yes — we dispatch to all 36 states and the FCT. Orders above ₦50,000 ship free anywhere in Nigeria.",
+      `Kaduna orders are dispatched within ${site.delivery.dispatchHours} hours of payment. Interstate park dispatches run on ${site.delivery.interstateDays}. If dispatch happens on any other day, we let you know.`,
+  },
+  {
+    question: "Which states do you deliver to?",
+    answer:
+      "All of them. We dispatch through interstate parks with a listed bus stop for each state — Abuja, Adamawa, Bauchi, Borno, Gombe, Jigawa, Kano, Katsina, Kebbi, Kwara, Lagos, Nasarawa, Niger, Oyo, Plateau, Rivers, Sokoto, Taraba and Zamfara. The full list is on our delivery page.",
   },
   {
     question: "Can I collect my order instead?",
     answer:
-      `Of course. Choose ‘Pick up in store’ at checkout and we will set your order aside at our ${site.address.city} store.`,
+      `Yes. Pickups run at weekends only — ${site.pickup.days}, ${site.pickup.time}. The full address is shared privately once your order is confirmed. Kindly call at least an hour before coming and have your order reference ready.`,
   },
   {
-    question: "Something arrived damaged or wrong. What now?",
+    question: "Can I return something?",
     answer:
-      "Send us photographs on WhatsApp within 48 hours of delivery and we will replace the item or refund you. We would rather fix it than argue about it.",
+      "Items delivered in perfect and acceptable condition are final sales — this keeps every product new and untampered for the next family. If the wrong item arrives, or something is damaged in transit, message us within 48 hours with photographs and we will replace it or refund you in full.",
+  },
+  {
+    question: "What if my parcel sits at the park?",
+    answer:
+      "Parks typically charge ₦300 to ₦1,000 storage if an item is not collected directly from the driver, and it rises the longer it stays. Those charges are not ours. Please collect park deliveries within 3 days of dispatch.",
   },
   {
     question: "Are the books suitable for my child's age?",
@@ -56,11 +67,6 @@ const FAQS = [
     question: "Do you supply schools and madaaris?",
     answer:
       `Yes. Email ${site.email} or message us on WhatsApp with your list and we will quote bulk pricing.`,
-  },
-  {
-    question: "How do you choose what to stock?",
-    answer:
-      "Every book is read and checked against sound aqeedah before it reaches the shelf, and toys are tested for durability. If we would not give it to our own children, it does not go in the gallery.",
   },
 ];
 
@@ -82,7 +88,7 @@ export default function FaqPage() {
       <PageHeader
         eyebrow="Help centre"
         title="Frequently asked questions"
-        description="Ordering, payment, delivery and returns — answered plainly."
+        description="Ordering, payment, delivery, pickup and returns — answered plainly."
         trail={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
       />
 

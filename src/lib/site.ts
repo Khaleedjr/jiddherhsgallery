@@ -1,47 +1,57 @@
 /**
  * Single source of truth for everything store-specific.
- *
- * NOTE: the WooCommerce export carried no contact details, so the phone number,
- * e-mail, address and social handles below are placeholders. Replace them here
- * and they update across the header, footer, contact page, WhatsApp checkout
- * and structured data.
+ * Details taken from the store's own site: jiddersgallery.com.ng
  */
 export const site = {
   name: "Jidderh's Gallery",
   shortName: "Jidderh's",
-  tagline: "Islamic books, toys & ibadah essentials",
+  tagline: "Nurturing towards Jannah",
+  welcome: "Ahlan Wa Sahlan",
   description:
-    "Jidderh's Gallery is a Nigerian Islamic store for children's books, learning toys, prayer essentials and modest wear — carefully chosen to nurture iman at every age.",
+    "Jidderh's Gallery is an online Islamic store for books, toys and accessories across all ages — a reliable spot to nurture every home towards Jannah with Islamic resources chosen with purpose.",
   url: "https://jiddersgallery.com.ng",
   locale: "en_NG",
   currency: "NGN",
   country: "Nigeria",
 
-  // --- Replace with the real details -------------------------------------
-  whatsapp: "2348000000000", // international format, digits only
-  phoneDisplay: "+234 800 000 0000",
-  email: "hello@jiddersgallery.com.ng",
+  whatsapp: "2347039783709",
+  phoneDisplay: "+234 703 978 3709",
+  phoneLocal: "07039783709",
+  email: "support@jiddersgallery.com.ng",
   address: {
-    street: "Store address line 1",
-    city: "Ilorin",
-    state: "Kwara State",
+    city: "Kaduna",
+    state: "Kaduna State",
     country: "Nigeria",
+    note: "Full pickup address is shared privately once your order is confirmed.",
   },
   socials: {
-    instagram: "https://instagram.com/jiddershgallery",
-    facebook: "https://facebook.com/jiddershgallery",
-    tiktok: "https://tiktok.com/@jiddershgallery",
+    instagram: "https://www.instagram.com/jidderhs_gallery",
+    instagramHandle: "@jidderhs_gallery",
   },
-  // -----------------------------------------------------------------------
 
-  hours: [
-    { days: "Monday - Friday", time: "9:00am - 6:00pm" },
-    { days: "Saturday", time: "10:00am - 5:00pm" },
-    { days: "Friday prayer", time: "Closed 12:30pm - 2:00pm" },
-    { days: "Sunday", time: "Closed" },
+  mission: "To provide Islamic products that will promote the establishment of Islamically oriented homes.",
+  vision: "To be the biggest source of unique and affordable Islamic products in Nigeria and beyond.",
+
+  team: [
+    { name: "Hauwa'u A Bello (Jidderh)", role: "Creative Head" },
+    { name: "Abubakar Tukur", role: "Technical & Support Head" },
   ],
 
-  freeDeliveryThreshold: 50000,
+  /** Pickups run at weekends only. */
+  pickup: {
+    days: "Saturday & Sunday only",
+    time: "9:00am - 6:00pm",
+    note: "Kindly call at least 1 hour before coming, with your order reference ready.",
+  },
+
+  delivery: {
+    kadunaFee: 1000,
+    kadunaNote: "Kaduna metropolis and Zaria, for small-sized items. Larger Zaria packages may attract an extra park fee.",
+    dispatchHours: 24,
+    interstateDays: "Sundays, Wednesdays and Fridays",
+  },
+
+  freeDeliveryThreshold: 100000,
 } as const;
 
 export const whatsappLink = (message: string) =>

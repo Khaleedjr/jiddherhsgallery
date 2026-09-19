@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { HeroOrnament } from "@/components/hero-ornament";
 import { ProductRail } from "@/components/product-rail";
 import {
   ArrowRightIcon,
@@ -25,6 +26,7 @@ import {
   productsInCollection,
   toCards,
 } from "@/lib/catalog";
+import { formatPrice } from "@/lib/format";
 import { site, whatsappLink } from "@/lib/site";
 import type { CardProduct } from "@/lib/types";
 
@@ -46,11 +48,10 @@ export default function HomePage() {
       .filter((p) => p.inStock && p.images.length)
       .slice(0, 4),
   );
-  const heroImages = sellers.slice(0, 3).map((p) => ({ src: p.image ?? undefined, name: p.name, slug: p.slug }));
 
   return (
     <>
-      <Hero images={heroImages} />
+      <Hero />
       <TrustStrip />
       <ShopByAge />
       <Departments />
@@ -118,7 +119,7 @@ export default function HomePage() {
   );
 }
 
-function Hero({ images }: { images: Array<{ src: string | undefined; name: string; slug: string }> }) {
+function Hero() {
   return (
     <section className="relative overflow-hidden bg-forest-950 text-sand-100">
       <div className="pattern-girih-light absolute inset-0 opacity-[0.28]" aria-hidden />
@@ -127,26 +128,30 @@ function Hero({ images }: { images: Array<{ src: string | undefined; name: strin
         aria-hidden
       />
 
-      <Container className="relative py-16 sm:py-20 lg:py-28">
+      <Container className="relative py-16 sm:py-20 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-7">
             <p className="font-arabic text-xl text-gold-300">
-              <span dir="rtl" lang="ar">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
+              <span dir="rtl" lang="ar">أهلاً وسهلاً</span>
             </p>
 
-            <h1 className="mt-5 font-display text-[2.6rem] leading-[1.05] font-semibold text-sand-50 sm:text-6xl lg:text-[4.1rem]">
-              Nurture iman,
-              <span className="block text-gold-300">one shelf at a time.</span>
+            <p className="mt-4 text-[0.72rem] font-semibold tracking-[0.28em] text-sand-300/80 uppercase">
+              {site.welcome} — welcome to {site.name}
+            </p>
+
+            <h1 className="mt-4 font-display text-[2.7rem] leading-[1.04] font-semibold text-sand-50 sm:text-6xl lg:text-[4.2rem]">
+              Nurturing
+              <span className="block text-gold-300">towards Jannah.</span>
             </h1>
 
-            <p className="mt-6 max-w-lg text-[0.98rem] leading-relaxed text-sand-200/90 sm:text-lg">
-              Islamic books, learning toys, prayer essentials and modest wear — hand-picked for Nigerian
-              homes and delivered to your door.
+            <p className="mt-6 max-w-xl text-[0.98rem] leading-relaxed text-sand-200/90 sm:text-lg">
+              A reliable spot to nurture every home towards Jannah — Islamic books, toys and
+              accessories for all ages, chosen with purpose and delivered nationwide.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
-              <ButtonLink href="/shop" variant="gold" size="lg">
-                Shop the collection
+              <ButtonLink href="/collections/best-seller" variant="gold" size="lg">
+                Explore our best sellers
                 <ArrowRightIcon className="size-4" />
               </ButtonLink>
               <a
@@ -163,7 +168,7 @@ function Hero({ images }: { images: Array<{ src: string | undefined; name: strin
               </a>
             </div>
 
-            <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-sand-100/15 pt-7">
+            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-sand-100/15 pt-7">
               {[
                 { value: `${catalogMeta.productCount}+`, label: "Products in store" },
                 { value: `${departments.length}`, label: "Curated departments" },
@@ -179,50 +184,8 @@ function Hero({ images }: { images: Array<{ src: string | undefined; name: strin
             </dl>
           </div>
 
-          <div className="lg:col-span-6">
-            <div className="relative mx-auto grid max-w-lg grid-cols-2 gap-3 sm:gap-4">
-              {images[0]?.src ? (
-                <Link
-                  href={`/products/${images[0].slug}`}
-                  className="group relative col-span-2 aspect-[16/11] overflow-hidden rounded-xl border border-sand-100/15"
-                >
-                  <Image
-                    src={images[0].src}
-                    alt={images[0].name}
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 32rem, 92vw"
-                    className="object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                  />
-                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-950/85 to-transparent p-4 text-[0.8rem] font-medium text-sand-50">
-                    {images[0].name}
-                  </span>
-                </Link>
-              ) : null}
-
-              {images.slice(1, 3).map((image) =>
-                image.src ? (
-                  <Link
-                    key={image.slug}
-                    href={`/products/${image.slug}`}
-                    className="group relative aspect-square overflow-hidden rounded-xl border border-sand-100/15"
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.name}
-                      fill
-                      sizes="(min-width: 1024px) 15rem, 45vw"
-                      className="object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                    />
-                  </Link>
-                ) : null,
-              )}
-
-              <span className="absolute -top-4 -left-4 hidden size-20 rounded-full border border-gold-400/30 lg:block" aria-hidden />
-              <span className="absolute -right-5 -bottom-5 hidden lg:block" aria-hidden>
-                <StarKhatimIcon className="size-16 text-gold-400/25" />
-              </span>
-            </div>
+          <div className="lg:col-span-5">
+            <HeroOrnament className="mx-auto w-full max-w-[22rem] text-gold-300 lg:max-w-none" />
           </div>
         </div>
       </Container>
@@ -232,10 +195,26 @@ function Hero({ images }: { images: Array<{ src: string | undefined; name: strin
 
 function TrustStrip() {
   const items = [
-    { Icon: TruckIcon, title: "Nationwide delivery", copy: "Dispatched across all 36 states + FCT" },
-    { Icon: ShieldIcon, title: "Carefully vetted", copy: "Every title reviewed before it reaches our shelf" },
-    { Icon: WhatsappIcon, title: "Order on WhatsApp", copy: "Real people, quick replies, easy payment" },
-    { Icon: HeartIcon, title: "Made for families", copy: "From first words to adult study" },
+    {
+      Icon: ShieldIcon,
+      title: "Secure payments",
+      copy: "Shop with confidence knowing that your transactions are safeguarded.",
+    },
+    {
+      Icon: TruckIcon,
+      title: "Prompt delivery",
+      copy: "All orders are shipped timely to every location within the nation.",
+    },
+    {
+      Icon: SparkIcon,
+      title: "Free delivery",
+      copy: `On all orders from ${formatPrice(site.freeDeliveryThreshold)} to anywhere in Nigeria.`,
+    },
+    {
+      Icon: HeartIcon,
+      title: "Chosen with purpose",
+      copy: "Islamic books, toys and accessories for every age in the home.",
+    },
   ];
 
   return (
@@ -465,9 +444,9 @@ function ValueStory() {
             A gallery, not just a shop
           </h2>
           <p className="mt-5 text-[0.95rem] leading-relaxed text-ink-600">
-            Jidderh&apos;s Gallery began with a simple wish: that Nigerian families would have somewhere to
-            find beautiful, beneficial Islamic resources without second-guessing the content. Today that
-            wish fills {catalogMeta.productCount} products across {departments.length} departments.
+            We focus on turning the attention of the coming generation away from the harm of modern
+            technology, and towards using that same technology to learn the deen. Today that shelf holds{" "}
+            {catalogMeta.productCount} products across {departments.length} departments.
           </p>
           <ButtonLink href="/about" variant="outline" className="mt-8">
             Read our story
@@ -519,7 +498,13 @@ function Testimonials() {
   const reviews = [
     {
       quote:
-        "The seerah set for my 7-year-old was exactly as described. Packaging was neat and delivery to Abuja took two days.",
+        "Jidderh's Gallery is my sanctuary! The curated collection effortlessly blends Islamic trends with timeless teaching, making every purchase a delightful discovery. What truly sets Jidderh's Gallery apart is their customer-centric approach.",
+      name: "Abubakar ATK.",
+      location: "Devoted Jidderh's Gallery fan",
+    },
+    {
+      quote:
+        "The seerah set for my 7-year-old was exactly as described. Packaging was neat and the waybill reached Jabi park on time.",
       name: "Ummu Khadijah",
       location: "Abuja",
     },
@@ -528,12 +513,6 @@ function Testimonials() {
         "I ordered a Madinah mushaf and a prayer mat. The print quality is excellent, and they answered every question on WhatsApp.",
       name: "Abdulrahman Y.",
       location: "Lagos",
-    },
-    {
-      quote:
-        "My children now ask for their Islamic flash cards before bedtime. Barakallahu feekum for the care you put into this.",
-      name: "Aisha B.",
-      location: "Ilorin",
     },
   ];
 
@@ -581,7 +560,7 @@ function ContactCta() {
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-[0.93rem] leading-relaxed text-sand-200/90">
             Tell us the age, the budget and the occasion — we will put together a gift bundle and send you
-            photos before you pay.
+            photos before you pay. Elevate your knowledge, embrace timeless content.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a

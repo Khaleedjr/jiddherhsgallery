@@ -93,8 +93,6 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
 
   return (
     <>
-      <AnnouncementBar />
-
       <header
         className={cx(
           "sticky top-0 z-40 border-b bg-sand-50/95 backdrop-blur transition-shadow duration-300",
@@ -304,34 +302,6 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
         />
       ) : null}
     </>
-  );
-}
-
-function AnnouncementBar() {
-  const messages = [
-    "Free delivery on orders over ₦50,000",
-    "Nationwide delivery across Nigeria",
-    "Hand-picked Islamic books, toys & ibadah essentials",
-    "Order on WhatsApp — we reply fast",
-  ];
-  return (
-    <div className="overflow-hidden bg-forest-900 text-sand-100">
-      <div className="flex w-max animate-marquee">
-        {[0, 1].map((pass) => (
-          <div key={pass} className="flex shrink-0 items-center" aria-hidden={pass === 1}>
-            {messages.map((message) => (
-              <span
-                key={`${pass}-${message}`}
-                className="flex items-center gap-3 px-6 py-2 text-[0.72rem] font-medium tracking-wide whitespace-nowrap"
-              >
-                <StarKhatimIcon className="size-2.5 text-gold-400" />
-                {message}
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
 

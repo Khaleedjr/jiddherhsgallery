@@ -2,21 +2,20 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import {
   ClockIcon,
-  FacebookIcon,
   InstagramIcon,
   MailIcon,
   PhoneIcon,
   PinIcon,
-  TiktokIcon,
   TruckIcon,
   WhatsappIcon,
 } from "@/components/icons";
 import { Container, buttonClass, cx } from "@/components/ui";
+import { formatPrice } from "@/lib/format";
 import { site, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact & delivery",
-  description: `Reach ${site.name} on WhatsApp, phone or email. Nationwide delivery across Nigeria with in-store pickup available.`,
+  description: `Reach ${site.name} on WhatsApp, phone or email. Based in ${site.address.state}, delivering nationwide across Nigeria with weekend pickup available.`,
   alternates: { canonical: "/contact" },
 };
 
@@ -26,16 +25,16 @@ export default function ContactPage() {
       Icon: WhatsappIcon,
       label: "WhatsApp",
       value: site.phoneDisplay,
-      hint: "Fastest way to reach us — orders, questions, bundles",
+      hint: "Fastest way to reach us — orders, questions and bundles",
       href: whatsappLink(`As-salamu alaykum ${site.name}, I have a question.`),
       external: true,
     },
     {
       Icon: PhoneIcon,
       label: "Phone",
-      value: site.phoneDisplay,
-      hint: "During store hours",
-      href: `tel:${site.phoneDisplay.replace(/\s/g, "")}`,
+      value: site.phoneLocal,
+      hint: "9:00am - 6:00pm",
+      href: `tel:+${site.whatsapp}`,
       external: false,
     },
     {
@@ -51,9 +50,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="We would love to hear from you"
+        eyebrow={site.welcome}
         title="Contact & delivery"
-        description="Questions about a title, an age recommendation, a bulk order for your school or madrasah — send a message and a real person will reply."
+        description="To the number one home of Islamic items of your choice that will nurture you towards Jannah, in shaa Allah. Send a message and a real person will reply."
         trail={[{ label: "Home", href: "/" }, { label: "Contact" }]}
         tone="forest"
       />
@@ -82,71 +81,66 @@ export default function ContactPage() {
           <div className="rounded-xl border border-sand-200 bg-white p-7">
             <h2 className="flex items-center gap-2.5 text-xl">
               <PinIcon className="size-5 text-forest-600" />
-              Visit the store
+              Where we are
             </h2>
             <address className="mt-4 text-[0.9rem] leading-relaxed text-ink-700 not-italic">
-              {site.address.street}
-              <br />
-              {site.address.city}, {site.address.state}
+              {site.address.state}
               <br />
               {site.address.country}
             </address>
+            <p className="mt-3 text-[0.82rem] leading-relaxed text-ink-500">{site.address.note}</p>
 
             <h3 className="mt-8 flex items-center gap-2.5 text-[0.9rem] font-semibold text-forest-900">
               <ClockIcon className="size-4 text-forest-600" />
-              Opening hours
+              Pickup
             </h3>
             <dl className="mt-3 space-y-2 text-[0.84rem]">
-              {site.hours.map((entry) => (
-                <div key={entry.days} className="flex justify-between gap-4 border-b border-sand-200 pb-2 last:border-0">
-                  <dt className="text-ink-600">{entry.days}</dt>
-                  <dd className="text-right font-medium text-ink-800">{entry.time}</dd>
-                </div>
-              ))}
+              <div className="flex justify-between gap-4 border-b border-sand-200 pb-2">
+                <dt className="text-ink-600">Days</dt>
+                <dd className="text-right font-medium text-ink-800">{site.pickup.days}</dd>
+              </div>
+              <div className="flex justify-between gap-4 border-b border-sand-200 pb-2">
+                <dt className="text-ink-600">Time</dt>
+                <dd className="text-right font-medium text-ink-800">{site.pickup.time}</dd>
+              </div>
             </dl>
+            <p className="mt-3 text-[0.82rem] leading-relaxed text-ink-500">{site.pickup.note}</p>
 
-            <div className="mt-8 flex items-center gap-2">
-              {[
-                { href: site.socials.instagram, label: "Instagram", Icon: InstagramIcon },
-                { href: site.socials.facebook, label: "Facebook", Icon: FacebookIcon },
-                { href: site.socials.tiktok, label: "TikTok", Icon: TiktokIcon },
-              ].map(({ href, label, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={label}
-                  className="grid size-10 place-items-center rounded-full border border-sand-300 text-ink-600 transition hover:border-forest-500 hover:text-forest-800"
-                >
-                  <Icon className="size-4" />
-                </a>
-              ))}
+            <div className="mt-8 flex items-center gap-3">
+              <a
+                href={site.socials.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2.5 rounded-full border border-sand-300 px-4 py-2 text-[0.82rem] font-medium text-ink-700 transition hover:border-forest-500 hover:text-forest-800"
+              >
+                <InstagramIcon className="size-4" />
+                {site.socials.instagramHandle}
+              </a>
             </div>
           </div>
 
           <div className="rounded-xl border border-sand-200 bg-sand-100 p-7">
             <h2 className="flex items-center gap-2.5 text-xl">
               <TruckIcon className="size-5 text-forest-600" />
-              Delivery across Nigeria
+              Delivery at a glance
             </h2>
             <ul className="mt-5 space-y-4 text-[0.86rem] leading-relaxed text-ink-700">
               {[
                 {
-                  title: "Nationwide courier",
-                  copy: "We dispatch to all 36 states and the FCT. Fees depend on weight and destination, and we confirm the exact amount before you pay.",
+                  title: "Within Kaduna",
+                  copy: `${formatPrice(site.delivery.kadunaFee)} flat for website orders. ${site.delivery.kadunaNote}`,
                 },
                 {
-                  title: "Same-city delivery",
-                  copy: `Orders within ${site.address.city} usually arrive the same or next working day.`,
+                  title: "Dispatch time",
+                  copy: `We dispatch within ${site.delivery.dispatchHours} hours of payment. If it will take longer, we tell you.`,
+                },
+                {
+                  title: "Interstate parks",
+                  copy: `Regular dispatch days are ${site.delivery.interstateDays}. Waybill fees must be added at checkout.`,
                 },
                 {
                   title: "Free delivery",
-                  copy: "Orders above ₦50,000 ship free anywhere in Nigeria.",
-                },
-                {
-                  title: "Store pickup",
-                  copy: "Prefer to collect? Choose pickup at checkout and we will set your order aside.",
+                  copy: `On all orders from ${formatPrice(site.freeDeliveryThreshold)} to anywhere in Nigeria.`,
                 },
               ].map((item) => (
                 <li key={item.title} className="border-b border-sand-300/70 pb-4 last:border-0 last:pb-0">

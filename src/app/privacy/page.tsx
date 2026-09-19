@@ -45,7 +45,7 @@ export default function PrivacyPage() {
           bullets: [
             "We do not sell, rent or trade your details to anybody.",
             "We do not send marketing messages to people who have not asked for them.",
-            "We do not collect card or bank details on this website — payment is arranged directly with you by transfer.",
+            "We do not collect card or bank details on this website — payment is arranged directly with you by bank transfer.",
           ],
         },
         {

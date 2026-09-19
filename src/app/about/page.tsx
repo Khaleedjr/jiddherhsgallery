@@ -18,21 +18,21 @@ export default function AboutPage() {
   const values = [
     {
       Icon: ShieldIcon,
-      title: "Sound before stylish",
+      title: "Best quality",
       copy:
-        "Every book is read and checked against sound aqeedah before it earns a place on the shelf. A beautiful cover is never enough.",
+        "Each product is meticulously selected to ensure durability, functionality and a seamless experience for the family using it.",
     },
     {
       Icon: HeartIcon,
-      title: "Built around the child",
+      title: "Thoughtfully curated",
       copy:
-        "Our shelves are graded by age so a parent can walk in knowing nothing, and walk out with something their child will actually use.",
+        "A selection of Islamic products across every age — cartoons, lectures, books, toys, puzzles, prayer accessories and modest wear.",
     },
     {
       Icon: SparkIcon,
-      title: "Honest, always",
+      title: "Nationwide shipping",
       copy:
-        "Real photographs, accurate descriptions and clear prices. If something is out of stock we say so rather than keep you waiting.",
+        "We deliver to all states of the nation. Shipping is priced by location, and confirmed with you before you pay.",
     },
   ];
 
@@ -40,8 +40,8 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="Our story"
-        title="A gallery built on beneficial knowledge"
-        description="Jidderh's Gallery began with a simple frustration — how hard it was to find beautiful, trustworthy Islamic resources for children in Nigeria without second-guessing what was inside."
+        title="Nurturing towards Jannah"
+        description="We are your favourite Islamic online store — a thoughtfully curated selection of Islamic products for every age, from Kaduna to every state in Nigeria."
         trail={[{ label: "Home", href: "/" }, { label: "Our story" }]}
         tone="forest"
       />
@@ -51,15 +51,15 @@ export default function AboutPage() {
           <div className="lg:col-span-7">
             <div className="prose-store text-[0.95rem]">
               <p>
-                What started as a small shelf of carefully chosen books has grown into a full gallery of{" "}
-                <strong>{catalogMeta.productCount} products</strong> across {departments.length} departments —
-                from cloth books for babies to tafsir for the whole family, from prayer mats and tasbeeh to
-                flash cards, puzzles and modest wear.
+                Jidderh&apos;s Gallery is an online store that sells Islamic books, toys and other accessories
+                across all ages. We focus on turning the attention of the coming generation away from the
+                harm of modern technology, and towards using that same technology to learn the deen of Islam
+                and worship Allah ﷻ according to His teachings from His Messenger ﷺ.
               </p>
               <p>
-                We are not a warehouse. Everything here is chosen the way we would choose it for our own
-                children: read first, checked for quality of print and binding, and priced so that a family
-                can build a library over time rather than all at once.
+                Today that shelf holds <strong>{catalogMeta.productCount} products</strong> across{" "}
+                {departments.length} departments — from cloth books for babies to tafsir for the whole
+                family, from prayer mats and tasbeeh to flash cards, puzzles and modest wear.
               </p>
               <p>
                 Most of our customers reach us on WhatsApp, and we like it that way. It means every order is
@@ -69,9 +69,23 @@ export default function AboutPage() {
               </p>
               <p>
                 <strong>
-                  May Allah make what leaves our shelves a means of benefit for every home it reaches.
+                  Jazakumullahu bi khair. May Allah put barakah in every item you purchase from us.
                 </strong>
               </p>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              {[
+                { label: "Our mission", copy: site.mission },
+                { label: "Our vision", copy: site.vision },
+              ].map((item) => (
+                <div key={item.label} className="rounded-lg border border-sand-200 bg-white p-6">
+                  <p className="text-[0.68rem] font-semibold tracking-[0.2em] text-gold-600 uppercase">
+                    {item.label}
+                  </p>
+                  <p className="mt-3 text-[0.9rem] leading-relaxed text-ink-700">{item.copy}</p>
+                </div>
+              ))}
             </div>
 
             <Divider className="mt-10 max-w-sm" />
@@ -120,7 +134,7 @@ export default function AboutPage() {
 
       <section className="bg-sand-100 py-16 sm:py-20">
         <Container>
-          <SectionHeading eyebrow="What guides us" title="Three things we will not compromise" align="center" />
+          <SectionHeading eyebrow="What sets us apart" title="What you can count on" align="center" />
           <div className="mt-10 grid gap-4 md:grid-cols-3 lg:gap-6">
             {values.map(({ Icon, title, copy }) => (
               <div key={title} className="rounded-lg border border-sand-200 bg-white p-6">
@@ -136,19 +150,34 @@ export default function AboutPage() {
       </section>
 
       <Container className="py-16 sm:py-20">
+        <SectionHeading eyebrow="The people behind it" title="Meet the team" align="center" />
+        <div className="mx-auto mt-10 grid max-w-2xl gap-4 sm:grid-cols-2">
+          {site.team.map((person) => (
+            <div key={person.name} className="rounded-lg border border-sand-200 bg-white p-6 text-center">
+              <span className="mx-auto grid size-12 place-items-center rounded-full bg-forest-50 text-forest-700">
+                <StarKhatimIcon className="size-5" />
+              </span>
+              <p className="mt-4 font-display text-xl font-semibold text-forest-900">{person.name}</p>
+              <p className="mt-1 text-[0.8rem] tracking-wide text-gold-600 uppercase">{person.role}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+
+      <Container className="pb-16 sm:pb-20">
         <div className="relative overflow-hidden rounded-xl bg-forest-900 px-6 py-14 text-center sm:px-12">
           <div className="pattern-girih-light absolute inset-0 opacity-25" aria-hidden />
           <div className="relative mx-auto max-w-xl">
             <StarKhatimIcon className="mx-auto size-7 text-gold-300" />
             <Eyebrow className="mt-5 justify-center text-gold-300">Come and see</Eyebrow>
             <h2 className="mt-3 font-display text-3xl font-semibold text-sand-50 sm:text-4xl">
-              Visit us in {site.address.city}
+              Come and shop with us
             </h2>
             <p className="mt-4 text-[0.92rem] leading-relaxed text-sand-200/90">
-              Our doors are open six days a week, and our WhatsApp is open even longer.
+              Pickups run at weekends in Kaduna, and our WhatsApp is open for orders every day.
             </p>
             <ButtonLink href="/contact" variant="gold" size="lg" className="mt-8">
-              Get directions & contact
+              Contact & delivery
               <ArrowRightIcon className="size-4" />
             </ButtonLink>
           </div>

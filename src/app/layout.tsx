@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     "prayer mats",
     "modest wear",
     "Jidderh's Gallery",
+    "Kaduna Islamic store",
   ],
   openGraph: {
     type: "website",
@@ -77,14 +78,14 @@ const organisationJsonLd = {
   telephone: site.phoneDisplay,
   email: site.email,
   currenciesAccepted: site.currency,
+  slogan: site.tagline,
   address: {
     "@type": "PostalAddress",
-    streetAddress: site.address.street,
     addressLocality: site.address.city,
     addressRegion: site.address.state,
     addressCountry: "NG",
   },
-  sameAs: [site.socials.instagram, site.socials.facebook, site.socials.tiktok],
+  sameAs: [site.socials.instagram],
   potentialAction: {
     "@type": "SearchAction",
     target: `${site.url}/search?q={search_term_string}`,

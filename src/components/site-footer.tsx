@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  FacebookIcon,
   InstagramIcon,
   MailIcon,
   PhoneIcon,
   PinIcon,
   StarKhatimIcon,
-  TiktokIcon,
   WhatsappIcon,
 } from "@/components/icons";
 import { Container } from "@/components/ui";
@@ -40,9 +38,13 @@ export function SiteFooter({
               </span>
             </Link>
 
-            <p className="mt-5 max-w-sm text-[0.85rem] leading-relaxed text-sand-300/85">
-              A Nigerian Islamic store for children&apos;s books, learning toys, ibadah essentials and modest
-              wear — chosen to help every home grow in knowledge and iman.
+            <p className="mt-4 text-[0.72rem] font-semibold tracking-[0.24em] text-gold-300 uppercase">
+              {site.tagline}
+            </p>
+
+            <p className="mt-4 max-w-sm text-[0.85rem] leading-relaxed text-sand-300/85">
+              An online Islamic store for books, toys and accessories across all ages — helping every home
+              use today&apos;s tools to learn the deen.
             </p>
 
             <p className="mt-6 font-arabic text-lg text-gold-300">
@@ -52,8 +54,6 @@ export function SiteFooter({
             <div className="mt-6 flex items-center gap-2">
               {[
                 { href: site.socials.instagram, label: "Instagram", Icon: InstagramIcon },
-                { href: site.socials.facebook, label: "Facebook", Icon: FacebookIcon },
-                { href: site.socials.tiktok, label: "TikTok", Icon: TiktokIcon },
                 { href: whatsappLink(`As-salamu alaykum ${site.name}.`), label: "WhatsApp", Icon: WhatsappIcon },
               ].map(({ href, label, Icon }) => (
                 <a
@@ -100,12 +100,17 @@ export function SiteFooter({
         </div>
 
         <div className="mt-12 grid gap-4 border-t border-sand-200/12 pt-8 sm:grid-cols-3">
-          <FooterDetail Icon={PhoneIcon} label="Call or WhatsApp" value={site.phoneDisplay} href={`tel:${site.phoneDisplay.replace(/\s/g, "")}`} />
+          <FooterDetail
+            Icon={PhoneIcon}
+            label="Call or WhatsApp"
+            value={site.phoneDisplay}
+            href={`tel:+${site.whatsapp}`}
+          />
           <FooterDetail Icon={MailIcon} label="Email" value={site.email} href={`mailto:${site.email}`} />
           <FooterDetail
             Icon={PinIcon}
-            label="Visit us"
-            value={`${site.address.city}, ${site.address.state}`}
+            label="Based in"
+            value={`${site.address.state}, ${site.address.country}`}
           />
         </div>
       </Container>
@@ -117,7 +122,7 @@ export function SiteFooter({
           </p>
           <p className="flex items-center gap-2">
             <StarKhatimIcon className="size-3 text-gold-400/70" />
-            Built with care for the Ummah
+            {site.tagline}
           </p>
         </Container>
       </div>

@@ -84,7 +84,7 @@ export function CheckoutForm() {
       `Phone: ${fields.phone.trim() || "—"}`,
       ...(fields.email.trim() ? [`Email: ${fields.email.trim()}`] : []),
       fields.fulfilment === "pickup"
-        ? "Fulfilment: Pick up from the store"
+        ? "Fulfilment: Pick up in Kaduna (weekend)"
         : `Deliver to: ${fields.address.trim()}, ${fields.city.trim()}, ${fields.state}`,
       ...(fields.notes.trim() ? ["", `*Note:* ${fields.notes.trim()}`] : []),
       "",
@@ -171,7 +171,11 @@ export function CheckoutForm() {
             {(
               [
                 { value: "delivery", title: "Deliver to me", copy: "Nationwide courier — fee confirmed on WhatsApp" },
-                { value: "pickup", title: "Pick up in store", copy: `Collect from our ${site.address.city} store` },
+                {
+                  value: "pickup",
+                  title: "Pick up in Kaduna",
+                  copy: `${site.pickup.days}, ${site.pickup.time}`,
+                },
               ] as const
             ).map((option) => (
               <label
@@ -257,8 +261,8 @@ export function CheckoutForm() {
           <ol className="mt-3 space-y-2 text-[0.82rem] leading-relaxed text-ink-600">
             {[
               "Send us your order — it opens in WhatsApp, already filled in.",
-              "We confirm stock and tell you the exact delivery fee.",
-              "You pay by transfer, and we dispatch the same or next working day.",
+              "We confirm stock and tell you the exact delivery and waybill fee.",
+              "You pay by transfer, and we dispatch within 24 hours.",
             ].map((step, index) => (
               <li key={step} className="flex gap-2.5">
                 <span className="grid size-5 shrink-0 place-items-center rounded-full bg-forest-800 text-[0.65rem] font-bold text-sand-50">
