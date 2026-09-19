@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
@@ -111,9 +112,14 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
           </button>
 
           <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label={`${site.name} home`}>
-            <span className="grid size-9 place-items-center rounded-full bg-forest-800 text-gold-300 sm:size-10">
-              <StarKhatimIcon className="size-5" />
-            </span>
+            <Image
+              src="/logo.png"
+              alt=""
+              width={44}
+              height={44}
+              priority
+              className="size-9 rounded-full sm:size-11"
+            />
             <span className="leading-none">
               <span className="block font-display text-[1.15rem] leading-none font-semibold text-forest-900 sm:text-[1.3rem]">
                 Jidderh&apos;s

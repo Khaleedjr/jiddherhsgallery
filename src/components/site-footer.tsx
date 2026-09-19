@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   FacebookIcon,
@@ -30,9 +31,7 @@ export function SiteFooter({
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Link href="/" className="flex items-center gap-2.5">
-              <span className="grid size-10 place-items-center rounded-full bg-gold-400 text-forest-950">
-                <StarKhatimIcon className="size-5" />
-              </span>
+              <Image src="/logo.png" alt="" width={48} height={48} className="size-12 rounded-full" />
               <span className="leading-none">
                 <span className="block font-display text-xl font-semibold text-sand-50">Jidderh&apos;s</span>
                 <span className="mt-0.5 block text-[0.58rem] font-semibold tracking-[0.3em] text-gold-300 uppercase">

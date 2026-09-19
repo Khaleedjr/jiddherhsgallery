@@ -14,7 +14,13 @@ import {
   WhatsappIcon,
 } from "@/components/icons";
 import { Badge, Button, buttonClass, cx } from "@/components/ui";
-import { discountPercent, formatPrice, formatPriceRange } from "@/lib/format";
+import {
+  discountPercent,
+  formatPrice,
+  formatPriceRange,
+  isLowStock,
+  lowStockLabel,
+} from "@/lib/format";
 import { site, whatsappLink } from "@/lib/site";
 import type { Product } from "@/lib/types";
 
@@ -40,6 +46,8 @@ export function ProductDetail({ product }: { product: Product }) {
   const showCompare = compareAt !== null && compareAt > price;
   const discount = discountPercent(price, compareAt);
   const purchasable = hasVariants ? Boolean(variant?.inStock) : product.inStock;
+  const stock = variant ? variant.stock : product.stock;
+  const lowStock = isLowStock(stock, purchasable);
   const optionName = product.variants[0]?.optionName ?? "Option";
 
   const selectVariant = (id: string) => {
@@ -145,14 +153,21 @@ export function ProductDetail({ product }: { product: Product }) {
         <p
           className={cx(
             "mt-3 inline-flex items-center gap-1.5 text-[0.8rem] font-medium",
-            purchasable ? "text-forest-700" : "text-berry-600",
+            purchasable ? (lowStock ? "text-berry-500" : "text-forest-700") : "text-berry-600",
           )}
         >
           <span
-            className={cx("size-1.5 rounded-full", purchasable ? "bg-forest-600" : "bg-berry-500")}
+            className={cx(
+              "size-1.5 rounded-full",
+              purchasable ? (lowStock ? "bg-berry-500" : "bg-forest-600") : "bg-berry-500",
+            )}
             aria-hidden
           />
-          {purchasable ? "In stock — ready to dispatch" : "Currently out of stock"}
+          {purchasable
+            ? lowStock
+              ? `${lowStockLabel(stock as number)} — order soon`
+              : "In stock — ready to dispatch"
+            : "Currently out of stock"}
         </p>
 
         {hasVariants ? (

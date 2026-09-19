@@ -12,6 +12,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095025-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_095035-scaled.jpg",
@@ -58,6 +59,7 @@
   "compareAtPrice": 2500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233707_7168.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233708_8250.jpg",
@@ -100,6 +102,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/1088399852-1128930957.jpg"
   ],
@@ -132,7 +135,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "8559",
@@ -145,7 +149,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "8560",
@@ -158,7 +163,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "8561",
@@ -171,7 +177,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "8562",
@@ -184,7 +191,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "15286",
@@ -197,7 +205,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 1
@@ -215,6 +224,7 @@
   "compareAtPrice": 27000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240520_163700-scaled-e1747502843689.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20240520_163709-scaled.jpg",
@@ -261,6 +271,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251102_172521-scaled-e1762636280654.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818360914610.jpg",
@@ -290,7 +301,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353858726.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14656",
@@ -303,7 +315,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818360914610.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14657",
@@ -316,7 +329,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353851125.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14658",
@@ -329,7 +343,8 @@
     "regularPrice": 11000,
     "salePrice": 10500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353858726.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14659",
@@ -342,7 +357,8 @@
     "regularPrice": 11000,
     "salePrice": 10500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818360914610.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14660",
@@ -355,7 +371,8 @@
     "regularPrice": 11000,
     "salePrice": 10500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353851125.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14661",
@@ -368,7 +385,8 @@
     "regularPrice": 16000,
     "salePrice": 15500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353858726.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14662",
@@ -381,7 +399,8 @@
     "regularPrice": 16000,
     "salePrice": 15500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818360914610.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "14663",
@@ -394,7 +413,8 @@
     "regularPrice": 16000,
     "salePrice": 15500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353851125.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 4
@@ -412,6 +432,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/306229719434419703-1.jpg"
   ],
@@ -446,7 +467,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "11387",
@@ -459,7 +481,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "11388",
@@ -472,7 +495,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 7
@@ -490,6 +514,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100427-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_100432-scaled.jpg",
@@ -538,6 +563,7 @@
   "compareAtPrice": 20000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1089742392-1390662596.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1089742392-1390662596.jpg",
@@ -579,7 +605,8 @@
     "regularPrice": 20000,
     "salePrice": 19000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1089742392-1390662596.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "14520",
@@ -592,7 +619,8 @@
     "regularPrice": 20000,
     "salePrice": 19000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1089699094-961654389.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    }
   ],
   "position": 9
@@ -610,6 +638,7 @@
   "compareAtPrice": 1500,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_100623-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_100630-scaled.jpg",
@@ -655,6 +684,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20240908_152807-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240908_153159-scaled.jpg",
@@ -701,7 +731,8 @@
     "regularPrice": 6000,
     "salePrice": 5000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240908_153207-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "7909",
@@ -714,7 +745,8 @@
     "regularPrice": 11000,
     "salePrice": 10000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240908_153257-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "7910",
@@ -727,7 +759,8 @@
     "regularPrice": 16000,
     "salePrice": 15000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240908_153302-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    }
   ],
   "position": 11
@@ -745,6 +778,7 @@
   "compareAtPrice": 60000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20241115_171948-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20241115_172104-scaled.jpg",
@@ -792,7 +826,8 @@
     "regularPrice": 65000,
     "salePrice": 64000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223810_0178.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14864",
@@ -805,7 +840,8 @@
     "regularPrice": 65000,
     "salePrice": 64000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14865",
@@ -818,7 +854,8 @@
     "regularPrice": 60000,
     "salePrice": 59000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223810_0586.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "14866",
@@ -831,7 +868,8 @@
     "regularPrice": 65000,
     "salePrice": 64000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14867",
@@ -844,7 +882,8 @@
     "regularPrice": 65000,
     "salePrice": 64000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223810_0978.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 11
@@ -862,6 +901,7 @@
   "compareAtPrice": 1500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095147-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_095158-scaled.jpg",
@@ -908,6 +948,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 13,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240130_193019_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240908_145333-scaled.jpg",
@@ -951,6 +992,7 @@
   "compareAtPrice": 25000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/Compress_20260806_151214_4253.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/Compress_20260806_151213_3550.jpg",
@@ -1000,6 +1042,7 @@
   "compareAtPrice": 13000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/PhotoRoom-20231122_235634_6.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/PhotoRoom-20231122_235634_5.png",
@@ -1043,6 +1086,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/Compress_20260430_224055_5736.jpg"
   ],
@@ -1078,6 +1122,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/26874895-1588830309-2.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/Compress_20260806_151245_5711.jpg"
@@ -1127,6 +1172,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_172334_copy_1080x1080.jpg"
   ],
@@ -1165,6 +1211,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_225955-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_230008-scaled.jpg",
@@ -1203,6 +1250,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_173844-scaled-e1762027482174.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223744_4267.jpg",
@@ -1240,7 +1288,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223743_3337.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14424",
@@ -1253,7 +1302,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14738",
@@ -1266,7 +1316,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223743_3559.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 8
    }
   ],
   "position": 20
@@ -1284,6 +1335,7 @@
   "compareAtPrice": 22000,
   "onSale": true,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_173415-scaled-e1757293624190.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_151603-scaled.jpg",
@@ -1332,6 +1384,7 @@
   "compareAtPrice": 14500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20240520_164328-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20240520_164339-scaled.jpg",
@@ -1376,6 +1429,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/Photoroom-20250503_151924_3.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20250503_151608-scaled.jpg"
@@ -1414,6 +1468,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095555-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_095603-scaled.jpg",
@@ -1462,6 +1517,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/Photoroom-20250503_151924_1.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_151603-scaled.jpg"
@@ -1502,6 +1558,7 @@
   "compareAtPrice": 34000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-08-at-02.33.51_40a409a3.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-08-at-02.33.52_644eeac6.jpg",
@@ -1545,6 +1602,7 @@
   "compareAtPrice": 48000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20250422_155254-scaled-e1764462492228.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20250422_155459-scaled-e1764462609607.jpg",
@@ -1582,6 +1640,7 @@
   "compareAtPrice": 23000,
   "onSale": true,
   "inStock": true,
+  "stock": 7,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/5461440361357225673.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/4267897241851757677.jpg",
@@ -1623,7 +1682,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "8550",
@@ -1636,7 +1696,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "8551",
@@ -1649,7 +1710,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "8552",
@@ -1662,7 +1724,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "8595",
@@ -1675,7 +1738,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "8599",
@@ -1688,7 +1752,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "8601",
@@ -1701,7 +1766,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "8602",
@@ -1714,7 +1780,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "9110",
@@ -1727,7 +1794,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "9113",
@@ -1740,7 +1808,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "9117",
@@ -1753,7 +1822,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "12934",
@@ -1766,7 +1836,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "12940",
@@ -1779,7 +1850,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "12941",
@@ -1792,7 +1864,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15137",
@@ -1805,7 +1878,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "15138",
@@ -1818,7 +1892,8 @@
     "regularPrice": 23000,
     "salePrice": 20000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 27
@@ -1836,6 +1911,7 @@
   "compareAtPrice": 25000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20240114_172918_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_222248_001-1-scaled.jpg",
@@ -1873,6 +1949,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144137-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144143-scaled.jpg",
@@ -1913,6 +1990,7 @@
   "compareAtPrice": 35000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151216_6660.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151216_6853.jpg",
@@ -1957,6 +2035,7 @@
   "compareAtPrice": 1500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100022-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_100030-scaled.jpg",
@@ -2003,6 +2082,7 @@
   "compareAtPrice": 5000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_230110-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_230118-scaled.jpg",
@@ -2038,6 +2118,7 @@
   "compareAtPrice": 13000,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_150907-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250813_154907-scaled.jpg",
@@ -2074,7 +2155,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_150850-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "12520",
@@ -2087,7 +2169,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_150832-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "12521",
@@ -2100,7 +2183,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250813_154937-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "12522",
@@ -2113,7 +2197,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250813_154948-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "13429",
@@ -2126,7 +2211,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_150907-1-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "13436",
@@ -2139,7 +2225,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 33
@@ -2157,6 +2244,7 @@
   "compareAtPrice": 12000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511282059505392.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511282059505392.jpeg",
@@ -2201,6 +2289,7 @@
   "compareAtPrice": 13000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_154253-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_154253-scaled.jpg",
@@ -2242,7 +2331,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_154217-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "13911",
@@ -2255,7 +2345,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_154253-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "13912",
@@ -2268,7 +2359,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_154244-1-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "13913",
@@ -2281,7 +2373,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_154225-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "13914",
@@ -2294,7 +2387,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_154232-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14198",
@@ -2307,7 +2401,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "15535",
@@ -2320,7 +2415,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260507_011110_0550.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 34
@@ -2338,6 +2434,7 @@
   "compareAtPrice": 15000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/12/20251211_142437.jpeg"
   ],
@@ -2370,6 +2467,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095928-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_095938-scaled.jpg",
@@ -2417,6 +2515,7 @@
   "compareAtPrice": 8000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595560948.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595552047.jpeg"
@@ -2451,6 +2550,7 @@
   "compareAtPrice": 8000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595570149.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595578250.jpeg"
@@ -2486,6 +2586,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/03/20260211_170031_003-scaled-e1774820112823.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223751_1754.jpg",
@@ -2542,6 +2643,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818324011823.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323944317.jpeg",
@@ -2584,7 +2686,8 @@
     "regularPrice": 2000,
     "salePrice": 1800,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323976021.jpeg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "14574",
@@ -2597,7 +2700,8 @@
     "regularPrice": 2000,
     "salePrice": 1800,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323951918.jpeg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14575",
@@ -2610,7 +2714,8 @@
     "regularPrice": 2000,
     "salePrice": 1800,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323944317.jpeg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14576",
@@ -2623,7 +2728,8 @@
     "regularPrice": 2000,
     "salePrice": 1800,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323967920.jpeg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14577",
@@ -2636,7 +2742,8 @@
     "regularPrice": 2000,
     "salePrice": 1800,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323985322.jpeg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14578",
@@ -2649,7 +2756,8 @@
     "regularPrice": 2000,
     "salePrice": 1800,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323959519.jpeg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    }
   ],
   "position": 40
@@ -2667,6 +2775,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154149_copy_1080x1080-1.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154157_copy_1080x1080-1.jpg",
@@ -2703,6 +2812,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 23,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20250119_154410-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/PhotoRoom-20231123_000445_2.png",
@@ -2743,7 +2853,8 @@
     "regularPrice": 8500,
     "salePrice": 8000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232011_1654.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 10
    },
    {
     "id": "14666",
@@ -2756,7 +2867,8 @@
     "regularPrice": 8500,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20240916_163440-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14667",
@@ -2769,7 +2881,8 @@
     "regularPrice": 8500,
     "salePrice": 8000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232011_1913.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 10
    },
    {
     "id": "14668",
@@ -2782,7 +2895,8 @@
     "regularPrice": 7000,
     "salePrice": 6500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20240916_163440-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14669",
@@ -2795,7 +2909,8 @@
     "regularPrice": 8500,
     "salePrice": 8000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20240916_163130-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "14670",
@@ -2808,7 +2923,8 @@
     "regularPrice": 7000,
     "salePrice": 6500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20240916_163628-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14671",
@@ -2821,7 +2937,8 @@
     "regularPrice": 7000,
     "salePrice": 6500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20240916_163802-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 41
@@ -2839,6 +2956,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/3_20250227_011805_0002.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/3_20250227_011805_0002.png"
@@ -2882,6 +3000,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/4_20250227_011806_0003.png"
   ],
@@ -2924,6 +3043,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511081835370566.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511081835371247.jpg",
@@ -2949,7 +3069,8 @@
     "regularPrice": 2000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14479",
@@ -2962,7 +3083,8 @@
     "regularPrice": 4000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14480",
@@ -2975,7 +3097,8 @@
     "regularPrice": 6000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14481",
@@ -2988,7 +3111,8 @@
     "regularPrice": 6000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14482",
@@ -3001,7 +3125,8 @@
     "regularPrice": 7500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14483",
@@ -3014,7 +3139,8 @@
     "regularPrice": 9000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14484",
@@ -3027,7 +3153,8 @@
     "regularPrice": 10500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14485",
@@ -3040,7 +3167,8 @@
     "regularPrice": 12000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14486",
@@ -3053,7 +3181,8 @@
     "regularPrice": 13500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14487",
@@ -3066,7 +3195,8 @@
     "regularPrice": 15000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 43
@@ -3084,6 +3214,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240130_194051_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240130_194105_copy_1080x1080.jpg",
@@ -3127,6 +3258,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511081835372889.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511081835369094.jpg",
@@ -3161,7 +3293,8 @@
     "regularPrice": 3000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14498",
@@ -3174,7 +3307,8 @@
     "regularPrice": 4000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14499",
@@ -3187,7 +3321,8 @@
     "regularPrice": 5000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14500",
@@ -3200,7 +3335,8 @@
     "regularPrice": 6000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14501",
@@ -3213,7 +3349,8 @@
     "regularPrice": 7000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14502",
@@ -3226,7 +3363,8 @@
     "regularPrice": 8000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14503",
@@ -3239,7 +3377,8 @@
     "regularPrice": 9000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14504",
@@ -3252,7 +3391,8 @@
     "regularPrice": 10000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14505",
@@ -3265,7 +3405,8 @@
     "regularPrice": 11000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14506",
@@ -3278,7 +3419,8 @@
     "regularPrice": 12000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 44
@@ -3296,6 +3438,7 @@
   "compareAtPrice": 16000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20250125_124914-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20231118_135018-scaled.jpg",
@@ -3333,6 +3476,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151305_5872.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151308_8329.jpg",
@@ -3371,7 +3515,8 @@
     "regularPrice": 1500,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151307_7132.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "15698",
@@ -3384,7 +3529,8 @@
     "regularPrice": 1500,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151306_6544.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "15699",
@@ -3397,7 +3543,8 @@
     "regularPrice": 1500,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151305_5568.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "15700",
@@ -3410,7 +3557,8 @@
     "regularPrice": 4500,
     "salePrice": 3500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151308_8329.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 45
@@ -3428,6 +3576,7 @@
   "compareAtPrice": 8000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250125_130703-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250125_130713-scaled.jpg"
@@ -3471,6 +3620,7 @@
   "compareAtPrice": 5000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/407225611588708250.jpg"
   ],
@@ -3504,7 +3654,8 @@
     "regularPrice": 5000,
     "salePrice": 4500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "7395",
@@ -3517,7 +3668,8 @@
     "regularPrice": 5000,
     "salePrice": 4500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "7397",
@@ -3530,7 +3682,8 @@
     "regularPrice": 5000,
     "salePrice": 4500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "7398",
@@ -3543,7 +3696,8 @@
     "regularPrice": 5000,
     "salePrice": 4500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "7401",
@@ -3556,7 +3710,8 @@
     "regularPrice": 5000,
     "salePrice": 4500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    }
   ],
   "position": 47
@@ -3574,6 +3729,7 @@
   "compareAtPrice": 60000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20241115_170507-scaled.jpg"
   ],
@@ -3607,6 +3763,7 @@
   "compareAtPrice": 1000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240308_145915_copy_1080x1080-1.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240308_150036_copy_1080x1080-1.jpg",
@@ -3650,7 +3807,8 @@
     "regularPrice": 1000,
     "salePrice": 900,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "7948",
@@ -3663,7 +3821,8 @@
     "regularPrice": 1000,
     "salePrice": 900,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "7949",
@@ -3676,7 +3835,8 @@
     "regularPrice": 1000,
     "salePrice": 900,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "7950",
@@ -3689,7 +3849,8 @@
     "regularPrice": 1000,
     "salePrice": 900,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "7951",
@@ -3702,7 +3863,8 @@
     "regularPrice": 1000,
     "salePrice": 900,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "7952",
@@ -3715,7 +3877,8 @@
     "regularPrice": 1000,
     "salePrice": 900,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "7953",
@@ -3728,7 +3891,8 @@
     "regularPrice": 1000,
     "salePrice": 900,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "7954",
@@ -3741,7 +3905,8 @@
     "regularPrice": 1000,
     "salePrice": 900,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    }
   ],
   "position": 48
@@ -3759,6 +3924,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20231124_153644-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20231124_153536-scaled.jpg",
@@ -3796,7 +3962,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "7912",
@@ -3809,7 +3976,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "7913",
@@ -3822,7 +3990,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "7914",
@@ -3835,7 +4004,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "7915",
@@ -3848,7 +4018,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "8938",
@@ -3861,7 +4032,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 5
    }
   ],
   "position": 48
@@ -3879,6 +4051,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-08-at-02.00.07_f8248229.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-08-at-02.00.07_3958559b.jpg",
@@ -3916,7 +4089,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223743_3750.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 5
    },
    {
     "id": "14152",
@@ -3929,7 +4103,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223743_3937.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 4
    }
   ],
   "position": 49
@@ -3947,6 +4122,7 @@
   "compareAtPrice": 3300,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240125_092051-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240125_092054-1-scaled.jpg",
@@ -3981,6 +4157,7 @@
   "compareAtPrice": 38000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223759_9321.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223759_9548.jpg",
@@ -4019,6 +4196,7 @@
   "compareAtPrice": 30000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/666921947441694343-1.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223758_8421.jpg",
@@ -4059,6 +4237,7 @@
   "compareAtPrice": 500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154451_copy_1080x1080.jpg"
   ],
@@ -4096,6 +4275,7 @@
   "compareAtPrice": 2300,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154749_copy_1080x1080.jpg"
   ],
@@ -4132,6 +4312,7 @@
   "compareAtPrice": 30000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20250125_151946-scaled.jpg"
   ],
@@ -4168,6 +4349,7 @@
   "compareAtPrice": 3800,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_222903-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_222920-scaled.jpg",
@@ -4207,6 +4389,7 @@
   "compareAtPrice": 4500,
   "onSale": true,
   "inStock": true,
+  "stock": 12,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110237-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110237-scaled.jpg",
@@ -4246,7 +4429,8 @@
     "regularPrice": 4500,
     "salePrice": 4000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/Compress_20260806_151218_8589.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "11232",
@@ -4259,7 +4443,8 @@
     "regularPrice": 4500,
     "salePrice": 4000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/Compress_20260806_151219_9733.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "11233",
@@ -4272,7 +4457,8 @@
     "regularPrice": 4500,
     "salePrice": 4000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/Compress_20260806_151219_9426.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "11234",
@@ -4285,7 +4471,8 @@
     "regularPrice": 4500,
     "salePrice": 4000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/Compress_20260806_151219_9973.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "11235",
@@ -4298,7 +4485,8 @@
     "regularPrice": 4500,
     "salePrice": 4000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/Compress_20260806_151220_0866.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 5
    }
   ],
   "position": 61
@@ -4316,6 +4504,7 @@
   "compareAtPrice": 9500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145606-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145611-scaled.jpg",
@@ -4358,6 +4547,7 @@
   "compareAtPrice": 3800,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511081832385564.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511081832388589.jpeg",
@@ -4405,6 +4595,7 @@
   "compareAtPrice": 1200,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240129_175535-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240129_175550-scaled.jpg",
@@ -4439,6 +4630,7 @@
   "compareAtPrice": 3500,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20250201_165740-scaled.jpg"
   ],
@@ -4477,7 +4669,8 @@
     "regularPrice": 3500,
     "salePrice": 3000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "9254",
@@ -4490,7 +4683,8 @@
     "regularPrice": 3500,
     "salePrice": 3000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    },
    {
     "id": "9255",
@@ -4503,7 +4697,8 @@
     "regularPrice": 3500,
     "salePrice": 3000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "9256",
@@ -4516,7 +4711,8 @@
     "regularPrice": 3500,
     "salePrice": 3000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "11099",
@@ -4529,7 +4725,8 @@
     "regularPrice": 3500,
     "salePrice": 3000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "11100",
@@ -4542,7 +4739,8 @@
     "regularPrice": 3500,
     "salePrice": 3000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 63
@@ -4560,6 +4758,7 @@
   "compareAtPrice": 3500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/file_0000000014fc723098c8c8d653854767.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_011314_4866.jpg",
@@ -4598,7 +4797,8 @@
     "regularPrice": 3500,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_011314_4866.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "15573",
@@ -4611,7 +4811,8 @@
     "regularPrice": 3500,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_011314_4554.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "15574",
@@ -4624,7 +4825,8 @@
     "regularPrice": 3500,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_011314_4291.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "15575",
@@ -4637,7 +4839,8 @@
     "regularPrice": 3500,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_011314_4006.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "15576",
@@ -4650,7 +4853,8 @@
     "regularPrice": 3500,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_011315_5127.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 64
@@ -4668,6 +4872,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151229-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151238-scaled.jpg",
@@ -4710,6 +4915,7 @@
   "compareAtPrice": 4500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145811-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_141106-scaled.jpg",
@@ -4748,6 +4954,7 @@
   "compareAtPrice": 18000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/IMG_20230319_095037_189.webp",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/IMG_20230319_095038_342.webp",
@@ -4794,7 +5001,8 @@
     "regularPrice": 18000,
     "salePrice": 17000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/IMG_20230319_095038_342-1.webp",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "7933",
@@ -4807,7 +5015,8 @@
     "regularPrice": 18000,
     "salePrice": 17000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/IMG_20230319_095037_189-1.webp",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "7934",
@@ -4820,7 +5029,8 @@
     "regularPrice": 18000,
     "salePrice": 17000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/IMG_20230319_095038_151-1.webp",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 67
@@ -4838,6 +5048,7 @@
   "compareAtPrice": 21000,
   "onSale": true,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_202510252251379225-scaled.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_202510252251377814.jpeg",
@@ -4887,7 +5098,8 @@
     "regularPrice": 21000,
     "salePrice": 20000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_202510252251376163.jpeg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "14406",
@@ -4900,7 +5112,8 @@
     "regularPrice": 21000,
     "salePrice": 20000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_202510252251377814.jpeg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15260",
@@ -4913,7 +5126,8 @@
     "regularPrice": 21000,
     "salePrice": 20000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_003345_5366.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15261",
@@ -4926,7 +5140,8 @@
     "regularPrice": 21000,
     "salePrice": 20000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_003345_5908.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15262",
@@ -4939,7 +5154,8 @@
     "regularPrice": 21000,
     "salePrice": 20000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_003346_6120.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "15551",
@@ -4952,7 +5168,8 @@
     "regularPrice": 21000,
     "salePrice": 20000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_003345_5692.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15639",
@@ -4965,7 +5182,8 @@
     "regularPrice": 21000,
     "salePrice": 20000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 69
@@ -4983,6 +5201,7 @@
   "compareAtPrice": 8000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_225639-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_225653-scaled.jpg",
@@ -5021,6 +5240,7 @@
   "compareAtPrice": 2500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152453-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152500-scaled.jpg",
@@ -5065,6 +5285,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095257-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_095301-scaled.jpg",
@@ -5111,6 +5332,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/26.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/17.png"
@@ -5153,6 +5375,7 @@
   "compareAtPrice": 36000,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_173524-scaled-e1762027188918.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_173043-scaled-e1762027738371.jpg",
@@ -5187,7 +5410,8 @@
     "regularPrice": 36000,
     "salePrice": 35000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14428",
@@ -5200,7 +5424,8 @@
     "regularPrice": 36000,
     "salePrice": 35000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "15609",
@@ -5213,7 +5438,8 @@
     "regularPrice": 36000,
     "salePrice": 35000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    }
   ],
   "position": 76
@@ -5231,6 +5457,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145830-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_141246-scaled.jpg",
@@ -5268,6 +5495,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 7,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_132029-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240922_151200-scaled.jpg",
@@ -5307,7 +5535,8 @@
     "regularPrice": 6500,
     "salePrice": 6200,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240922_151653-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "7389",
@@ -5320,7 +5549,8 @@
     "regularPrice": 4000,
     "salePrice": 3500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240922_151501-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "7390",
@@ -5333,7 +5563,8 @@
     "regularPrice": 4000,
     "salePrice": 3500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240922_151304-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    }
   ],
   "position": 78
@@ -5351,6 +5582,7 @@
   "compareAtPrice": 19000,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_00000000d0b88243bde796964121960c.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232007_7260.jpg",
@@ -5386,7 +5618,8 @@
     "regularPrice": 21500,
     "salePrice": 20000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 4
    },
    {
     "id": "15845",
@@ -5399,7 +5632,8 @@
     "regularPrice": 19000,
     "salePrice": 18000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232006_6773.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "15846",
@@ -5412,7 +5646,8 @@
     "regularPrice": 19000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232007_7260.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    }
   ],
   "position": 78
@@ -5430,6 +5665,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_000000002c6082109772de923075a939.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232006_6276.jpg",
@@ -5465,7 +5701,8 @@
     "regularPrice": 12500,
     "salePrice": 12000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232006_6276.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 4
    },
    {
     "id": "15840",
@@ -5478,7 +5715,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232006_6773.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "15841",
@@ -5491,7 +5729,8 @@
     "regularPrice": 10000,
     "salePrice": 8500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232006_6531.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    }
   ],
   "position": 78
@@ -5509,6 +5748,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095352-scaled.jpg"
   ],
@@ -5547,6 +5787,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144400-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144404-scaled.jpg",
@@ -5588,6 +5829,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260429_192705_5654.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260429_192706_6187.jpg",
@@ -5632,7 +5874,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223745_5388.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15525",
@@ -5645,7 +5888,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223744_4982-e1777923076318.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "15526",
@@ -5658,7 +5902,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223745_5209-e1777922903830.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "15527",
@@ -5671,7 +5916,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240922_150016-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "15532",
@@ -5684,7 +5930,8 @@
     "regularPrice": 7500,
     "salePrice": 7200,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223744_4813.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 80
@@ -5702,6 +5949,7 @@
   "compareAtPrice": 12000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110331-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110446-scaled.jpg",
@@ -5750,6 +5998,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144729-scaled.jpg"
   ],
@@ -5789,6 +6038,7 @@
   "compareAtPrice": 4500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20250125_153037-scaled.jpg"
   ],
@@ -5821,6 +6071,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250416_122324-scaled.jpg"
   ],
@@ -5860,6 +6111,7 @@
   "compareAtPrice": 11500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/1734076491275029735.jpg"
   ],
@@ -5900,6 +6152,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250512_153232-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/1177494873-778985183.jpg",
@@ -5948,7 +6201,8 @@
     "regularPrice": 26000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 5
    },
    {
     "id": "12277",
@@ -5961,7 +6215,8 @@
     "regularPrice": 30000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 4
    }
   ],
   "position": 87
@@ -5979,6 +6234,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145038-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145041-scaled.jpg",
@@ -6022,6 +6278,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_2025102522102450223.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_2025102522102456724.jpeg",
@@ -6065,6 +6322,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20241115_174459-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20241115_174459-scaled.jpg"
@@ -6109,6 +6367,7 @@
   "compareAtPrice": 12000,
   "onSale": true,
   "inStock": true,
+  "stock": 12,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_152554-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_151621-scaled.jpg",
@@ -6151,7 +6410,8 @@
     "regularPrice": 12000,
     "salePrice": 11500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 6
    },
    {
     "id": "7405",
@@ -6164,7 +6424,8 @@
     "regularPrice": 12000,
     "salePrice": 11500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 6
    }
   ],
   "position": 89
@@ -6182,6 +6443,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100207-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_100216-scaled.jpg",
@@ -6229,6 +6491,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_094438-scaled.jpg"
   ],
@@ -6271,6 +6534,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/41.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/2.png"
@@ -6313,6 +6577,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144533-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144538-scaled.jpg",
@@ -6357,6 +6622,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095457-scaled.jpg"
   ],
@@ -6399,6 +6665,7 @@
   "compareAtPrice": 1200,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_153859_copy_1080x1080-1.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_153927_copy_1080x1080-1.jpg",
@@ -6439,6 +6706,7 @@
   "compareAtPrice": 1200,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154024_copy_1080x1080-2.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154036_copy_1080x1080-2.jpg"
@@ -6477,6 +6745,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/10/IMG_20230215_142708_829-scaled.jpg"
   ],
@@ -6504,6 +6773,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_00000000b45c821087ade3814a54a3aa.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_0000000024fc8246af1e6b5617efbb5b.png",
@@ -6531,7 +6801,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233705_5948.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15879",
@@ -6544,7 +6815,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233705_5666.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "15880",
@@ -6557,7 +6829,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233705_5666.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15881",
@@ -6570,7 +6843,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233705_5948.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 100
@@ -6588,6 +6862,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_00000000411c81f481d256e06b0ca45a.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_0000000024fc8246af1e6b5617efbb5b.png",
@@ -6615,7 +6890,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233706_6561.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "15874",
@@ -6628,7 +6904,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233706_6262.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "15875",
@@ -6641,7 +6918,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233706_6561.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15876",
@@ -6654,7 +6932,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233706_6561.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 100
@@ -6672,6 +6951,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_000000008b1c82108ab0740a4ee3b529.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_00000000b45c821087ade3814a54a3aa.png",
@@ -6700,7 +6980,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233704_4515.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "15859",
@@ -6713,7 +6994,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233704_4231.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "15860",
@@ -6726,7 +7008,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233704_4515.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15861",
@@ -6739,7 +7022,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233704_4231.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 100
@@ -6757,6 +7041,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/file_000000004e34821099c2a957572a789e.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233706_6880.jpg",
@@ -6786,7 +7071,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233704_4805.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "15869",
@@ -6799,7 +7085,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233704_4231.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "15870",
@@ -6812,7 +7099,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233704_4805.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15871",
@@ -6825,7 +7113,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233705_5085.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 100
@@ -6843,6 +7132,7 @@
   "compareAtPrice": 5000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240707_002141-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240707_002154-scaled.jpg",
@@ -6882,6 +7172,7 @@
   "compareAtPrice": 550,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-08-at-02.40.21_0d19b889.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-08-at-02.40.21_fd5c75db.jpg",
@@ -6927,6 +7218,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": 14,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250813_173618-scaled-e1756055181342.jpg"
   ],
@@ -6971,6 +7263,7 @@
   "compareAtPrice": 5000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145822-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_141154-scaled.jpg",
@@ -7012,6 +7305,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/35.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/8.png"
@@ -7054,6 +7348,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 14,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/IMG_COM_2025110818324026825.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/fing4.jpg",
@@ -7091,7 +7386,8 @@
     "regularPrice": 6000,
     "salePrice": 5700,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "14189",
@@ -7104,7 +7400,8 @@
     "regularPrice": 6000,
     "salePrice": 5700,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14190",
@@ -7117,7 +7414,8 @@
     "regularPrice": 6000,
     "salePrice": 5700,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14191",
@@ -7130,7 +7428,8 @@
     "regularPrice": 6000,
     "salePrice": 5700,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14192",
@@ -7143,7 +7442,8 @@
     "regularPrice": 6000,
     "salePrice": 5700,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14197",
@@ -7156,7 +7456,8 @@
     "regularPrice": 6000,
     "salePrice": 5700,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    }
   ],
   "position": 111
@@ -7174,6 +7475,7 @@
   "compareAtPrice": 500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250510_141410-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250510_141617-scaled.jpg",
@@ -7211,6 +7513,7 @@
   "compareAtPrice": 2200,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250512_150215-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250512_150159-scaled.jpg",
@@ -7248,6 +7551,7 @@
   "compareAtPrice": 20000,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151227_7233.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151226_6647.jpg",
@@ -7297,6 +7601,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323892910.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323900911.jpeg",
@@ -7335,6 +7640,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818324140737.jpeg"
   ],
@@ -7373,6 +7679,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110733-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110533-scaled.jpg",
@@ -7411,7 +7718,8 @@
     "regularPrice": 5000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110541-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "11196",
@@ -7424,7 +7732,8 @@
     "regularPrice": 5000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110807-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "11197",
@@ -7437,7 +7746,8 @@
     "regularPrice": 5000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110753-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "11198",
@@ -7450,7 +7760,8 @@
     "regularPrice": 5000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/20250206_110747-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 126
@@ -7468,6 +7779,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511282059506954.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511282059507575.jpeg"
@@ -7511,6 +7823,7 @@
   "compareAtPrice": 8000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251104_175711-scaled-e1762632622164.jpg"
   ],
@@ -7543,6 +7856,7 @@
   "compareAtPrice": 12000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/2_20250227_011805_0001.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/2_20250227_011805_0001.png"
@@ -7587,6 +7901,7 @@
   "compareAtPrice": 2500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145744-scaled.jpg"
   ],
@@ -7618,6 +7933,7 @@
   "compareAtPrice": 16500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250813_163049-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_171116-scaled.jpg",
@@ -7670,6 +7986,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250125_151131-scaled.jpg"
   ],
@@ -7706,6 +8023,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": 7,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353763114.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353784417.jpg",
@@ -7737,7 +8055,8 @@
     "regularPrice": 1500,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353769615.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14610",
@@ -7750,7 +8069,8 @@
     "regularPrice": 1500,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353776516.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "14611",
@@ -7763,7 +8083,8 @@
     "regularPrice": null,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353784417.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 4
    }
   ],
   "position": 135
@@ -7781,6 +8102,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [],
   "categories": [
    "ibadah-essentials",
@@ -7811,6 +8133,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250811_161507-scaled-e1757290865426.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250811_160632-scaled-e1757295103505.jpg",
@@ -7848,7 +8171,8 @@
     "regularPrice": 6000,
     "salePrice": 5800,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_172722-scaled-e1757291385783.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 5
    },
    {
     "id": "14140",
@@ -7861,7 +8185,8 @@
     "regularPrice": 7000,
     "salePrice": 6800,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_172722-scaled-e1757291385783.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 136
@@ -7879,6 +8204,7 @@
   "compareAtPrice": 9000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250422_121724-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250422_121806-scaled.jpg",
@@ -7917,6 +8243,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_174059-scaled.jpg"
   ],
@@ -7960,6 +8287,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/31.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/12.png"
@@ -8002,6 +8330,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818324163440.jpeg"
   ],
@@ -8038,6 +8367,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151239_9598.jpg"
   ],
@@ -8075,6 +8405,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151238_8433.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151237_7684.jpg",
@@ -8114,6 +8445,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151239_9821.jpg"
   ],
@@ -8153,6 +8485,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240707_002427-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240707_002444-1-scaled.jpg"
@@ -8191,6 +8524,7 @@
   "compareAtPrice": 1300,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240129_175653-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240129_175659-scaled.jpg"
@@ -8224,6 +8558,7 @@
   "compareAtPrice": 700,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_155007_copy_1080x1080.jpg"
   ],
@@ -8261,6 +8596,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240127_114941-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240127_114949-1-scaled.jpg",
@@ -8293,7 +8629,8 @@
     "regularPrice": 950,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240908_153556-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "7426",
@@ -8306,7 +8643,8 @@
     "regularPrice": 600,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240908_153540-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "7427",
@@ -8319,7 +8657,8 @@
     "regularPrice": 400,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240908_153544-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 153
@@ -8337,6 +8676,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/28.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/15.png"
@@ -8379,6 +8719,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20231012_205954-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20231124_161330-scaled.jpg",
@@ -8419,6 +8760,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/1274756179-492320697.jpg"
   ],
@@ -8450,6 +8792,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/33706279111278864.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/87972466-1442013264.jpg",
@@ -8489,6 +8832,7 @@
   "compareAtPrice": 21500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250416_125604-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_143717-scaled.jpg",
@@ -8532,6 +8876,7 @@
   "compareAtPrice": 20000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511081832383211.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511081832383972.jpeg",
@@ -8574,6 +8919,7 @@
   "compareAtPrice": 1800,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154324_copy_1080x1080.jpg"
   ],
@@ -8610,6 +8956,7 @@
   "compareAtPrice": 2500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511012236443600.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511012236447565.jpeg",
@@ -8656,6 +9003,7 @@
   "compareAtPrice": 1700,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_2025102522102411116.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_2025102522102418417.jpeg",
@@ -8698,6 +9046,7 @@
   "compareAtPrice": 2500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511012236449888.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110122364511910.jpeg",
@@ -8742,6 +9091,7 @@
   "compareAtPrice": 1000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145644-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145651-scaled.jpg",
@@ -8782,6 +9132,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131441-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131451-scaled.jpg"
@@ -8814,7 +9165,8 @@
     "regularPrice": 700,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "7513",
@@ -8827,7 +9179,8 @@
     "regularPrice": 2500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 181
@@ -8845,6 +9198,7 @@
   "compareAtPrice": 3500,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232012_2703-1.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232013_3202-1.jpg",
@@ -8882,7 +9236,8 @@
     "regularPrice": 3500,
     "salePrice": 3200,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232013_3202-1.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "15809",
@@ -8895,7 +9250,8 @@
     "regularPrice": 3500,
     "salePrice": 3200,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232012_2946.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    }
   ],
   "position": 184
@@ -8913,6 +9269,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323937316.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323915313.jpeg"
@@ -8951,7 +9308,8 @@
     "regularPrice": 1500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14585",
@@ -8964,7 +9322,8 @@
     "regularPrice": 1500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14586",
@@ -8977,7 +9336,8 @@
     "regularPrice": 1500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 188
@@ -8995,6 +9355,7 @@
   "compareAtPrice": 1000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154639_copy_1080x1080.jpg"
   ],
@@ -9034,6 +9395,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": 26,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131121-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/10/20250503_140140-scaled.jpg",
@@ -9073,7 +9435,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/10/20250503_140140-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "10580",
@@ -9086,7 +9449,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131244-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "10581",
@@ -9099,7 +9463,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131229-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "10582",
@@ -9112,7 +9477,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131258-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 5
    },
    {
     "id": "10583",
@@ -9125,7 +9491,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/10/20250503_140244-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "10584",
@@ -9138,7 +9505,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131239-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "10585",
@@ -9151,7 +9519,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131225-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "10586",
@@ -9164,7 +9533,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131248-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "10587",
@@ -9177,7 +9547,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/10/20250503_140135-1-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "10588",
@@ -9190,7 +9561,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131252-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "10589",
@@ -9203,7 +9575,8 @@
     "regularPrice": 1000,
     "salePrice": null,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": null
    }
   ],
   "position": 193
@@ -9221,6 +9594,7 @@
   "compareAtPrice": 5000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131121-scaled.jpg"
   ],
@@ -9254,6 +9628,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144601-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144606-scaled.jpg",
@@ -9294,6 +9669,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 11,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240916_161803-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/20240916_161740-scaled.jpg",
@@ -9327,7 +9703,8 @@
     "regularPrice": 12500,
     "salePrice": 12000,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14200",
@@ -9340,7 +9717,8 @@
     "regularPrice": 12500,
     "salePrice": 12000,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14201",
@@ -9353,7 +9731,8 @@
     "regularPrice": 15000,
     "salePrice": 14500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14202",
@@ -9366,7 +9745,8 @@
     "regularPrice": 15000,
     "salePrice": 14500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14207",
@@ -9379,7 +9759,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "14208",
@@ -9392,7 +9773,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "14209",
@@ -9405,7 +9787,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 4
    }
   ],
   "position": 201
@@ -9423,6 +9806,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_224105-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_224122-scaled.jpg",
@@ -9454,7 +9838,8 @@
     "regularPrice": 800,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "9056",
@@ -9467,7 +9852,8 @@
     "regularPrice": 800,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "9057",
@@ -9480,7 +9866,8 @@
     "regularPrice": 800,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 202
@@ -9498,6 +9885,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_224417_001-scaled.jpg"
   ],
@@ -9526,7 +9914,8 @@
     "regularPrice": 800,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "7385",
@@ -9539,7 +9928,8 @@
     "regularPrice": 800,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "7386",
@@ -9552,7 +9942,8 @@
     "regularPrice": 800,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 203
@@ -9570,6 +9961,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240318_2318171-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/PhotoRoom-20231122_233009_4.png",
@@ -9603,7 +9995,8 @@
     "regularPrice": 22500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "7517",
@@ -9616,7 +10009,8 @@
     "regularPrice": 26000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 4
    }
   ],
   "position": 206
@@ -9634,6 +10028,7 @@
   "compareAtPrice": 16500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250125_150128-scaled.jpg"
   ],
@@ -9666,6 +10061,7 @@
   "compareAtPrice": 29500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_202510252210233725-scaled.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_202510252210224530.jpeg",
@@ -9712,6 +10108,7 @@
   "compareAtPrice": 22000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/10/IMG_COM_202510252210230721.jpeg"
   ],
@@ -9751,6 +10148,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_174153-scaled.jpg"
   ],
@@ -9794,6 +10192,7 @@
   "compareAtPrice": 15000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240908_154912-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240908_155119-scaled.jpg",
@@ -9829,7 +10228,8 @@
     "regularPrice": 15000,
     "salePrice": 14500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240908_154912-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "9252",
@@ -9842,7 +10242,8 @@
     "regularPrice": 15000,
     "salePrice": 14500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240908_155119-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 212
@@ -9860,6 +10261,7 @@
   "compareAtPrice": 25000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240127_115638-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240127_115650-scaled.jpg",
@@ -9898,6 +10300,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818324176642.jpeg"
   ],
@@ -9934,6 +10337,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818324155139.jpeg"
   ],
@@ -9972,6 +10376,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818324148438.jpeg"
   ],
@@ -10008,6 +10413,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 40,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/08/IMG-20240812-WA0003.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/08/IMG-20240812-WA0004.jpg",
@@ -10045,7 +10451,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "10809",
@@ -10058,7 +10465,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 10
    },
    {
     "id": "10810",
@@ -10071,7 +10479,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "10811",
@@ -10084,7 +10493,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "10812",
@@ -10097,7 +10507,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/10/IMG-20241011-WA0165.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "10813",
@@ -10110,7 +10521,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "10814",
@@ -10123,7 +10535,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "10815",
@@ -10136,7 +10549,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "10816",
@@ -10149,7 +10563,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "10817",
@@ -10162,7 +10577,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "10818",
@@ -10175,7 +10591,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "10820",
@@ -10188,7 +10605,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "13430",
@@ -10201,7 +10619,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 5
    },
    {
     "id": "13431",
@@ -10214,7 +10633,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "13432",
@@ -10227,7 +10647,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "13433",
@@ -10240,7 +10661,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "13434",
@@ -10253,7 +10675,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "13435",
@@ -10266,7 +10689,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    }
   ],
   "position": 221
@@ -10284,6 +10708,7 @@
   "compareAtPrice": 12000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/1_20250227_011805_0000.png"
   ],
@@ -10327,6 +10752,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112923222788214.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112923222781413.jpeg",
@@ -10366,6 +10792,7 @@
   "compareAtPrice": 11000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250416_130431-scaled-e1747516616454.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250416_130436-scaled.jpg",
@@ -10416,6 +10843,7 @@
   "compareAtPrice": 21500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250408_112002.png"
   ],
@@ -10458,6 +10886,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240130_194536_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_224813-scaled.jpg",
@@ -10506,6 +10935,7 @@
   "compareAtPrice": 8500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151845-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151849-scaled.jpg",
@@ -10554,6 +10984,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/2_20250715_015141_0001.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/03/067a064daa9e4cbd34b394cf723207d2.jpg",
@@ -10600,7 +11031,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/3_20250715_010905_0002.png",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "13393",
@@ -10613,7 +11045,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/5_20250715_010905_0004.png",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "13394",
@@ -10626,7 +11059,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/6_20250715_010905_0005.png",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "13395",
@@ -10639,7 +11073,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/2_20250715_010905_0001.png",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "13396",
@@ -10652,7 +11087,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/1_20250715_010905_0000.png",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "13397",
@@ -10665,7 +11101,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/4_20250715_010905_0003.png",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "13398",
@@ -10678,7 +11115,8 @@
     "regularPrice": 3000,
     "salePrice": 2500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/7_20250715_010905_0006.png",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 242
@@ -10696,6 +11134,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/25.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/18.png"
@@ -10738,6 +11177,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240908_151355-scaled.jpg"
   ],
@@ -10776,6 +11216,7 @@
   "compareAtPrice": 3500,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151936-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151954-scaled.jpg",
@@ -10817,6 +11258,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1089658279884633918.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1088354655-904835410.jpg",
@@ -10849,7 +11291,8 @@
     "regularPrice": 500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14549",
@@ -10862,7 +11305,8 @@
     "regularPrice": 500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14550",
@@ -10875,7 +11319,8 @@
     "regularPrice": 500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14551",
@@ -10888,7 +11333,8 @@
     "regularPrice": 500,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 256
@@ -10906,6 +11352,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1089658279884633918.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1088354655-904835410.jpg",
@@ -10942,6 +11389,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250125_151108-scaled.jpg"
   ],
@@ -10980,6 +11428,7 @@
   "compareAtPrice": 8500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511082319110640.jpg"
   ],
@@ -11018,6 +11467,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511082319117105.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511082319115924.jpg",
@@ -11056,7 +11506,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511082319112141.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "14688",
@@ -11069,7 +11520,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511082319113312.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "14689",
@@ -11082,7 +11534,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511082319114823.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    },
    {
     "id": "14690",
@@ -11095,7 +11548,8 @@
     "regularPrice": 7500,
     "salePrice": 7000,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511082319115924.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 3
    }
   ],
   "position": 263
@@ -11113,6 +11567,7 @@
   "compareAtPrice": 23000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260430_223803_3670.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151242_2251.jpg"
@@ -11150,6 +11605,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260806_151217_7254.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/08/Compress_20260430_223802_2906.jpg",
@@ -11195,6 +11651,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232011_1146.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232010_0861.jpg",
@@ -11241,7 +11698,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232009_9071.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15833",
@@ -11254,7 +11712,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232008_8538.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "15834",
@@ -11267,7 +11726,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232007_7756.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "15835",
@@ -11280,7 +11740,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232008_8277.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15836",
@@ -11293,7 +11754,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232008_8030.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    },
    {
     "id": "15837",
@@ -11306,7 +11768,8 @@
     "regularPrice": 6000,
     "salePrice": 5500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_232008_8810.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 273
@@ -11324,6 +11787,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/file_00000000a10071fd894ae1f4038fa620.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260523_005926_6853.jpg"
@@ -11368,6 +11832,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_164620-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/07/20250729_164703-scaled.jpg",
@@ -11409,6 +11874,7 @@
   "compareAtPrice": 4500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152242-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152246-scaled.jpg",
@@ -11452,6 +11918,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_173654-scaled.jpg"
   ],
@@ -11495,6 +11962,7 @@
   "compareAtPrice": 500,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_170923-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_170939-scaled.jpg",
@@ -11537,6 +12005,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/32.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/11.png"
@@ -11579,6 +12048,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240310_165528-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240310_165533-scaled.jpg"
@@ -11615,6 +12085,7 @@
   "compareAtPrice": 12500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_170602-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_170645-scaled.jpg",
@@ -11664,6 +12135,7 @@
   "compareAtPrice": 2500,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20250224_143949-scaled-e1764465275533.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20250315_161006-scaled-e1764465351465.jpg",
@@ -11701,6 +12173,7 @@
   "compareAtPrice": 24000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511292322275189-1.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20250214_175218-scaled-e1764464543987.jpg",
@@ -11742,6 +12215,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 7,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/13_20250227_011807_0012.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/14_20250227_011807_0013.png"
@@ -11788,6 +12262,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20250214_175332-1-scaled-e1764464488138.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20250309_095712-scaled.jpg",
@@ -11824,6 +12299,7 @@
   "compareAtPrice": 2300,
   "onSale": true,
   "inStock": true,
+  "stock": 12,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250512_150039-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250512_150046-scaled.jpg",
@@ -11866,6 +12342,7 @@
   "compareAtPrice": 25000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/10/20240922_160722-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/10/20240922_160722-scaled.jpg",
@@ -11901,6 +12378,7 @@
   "compareAtPrice": 3500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145801-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_140619-scaled.jpg",
@@ -11945,6 +12423,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/1306A.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/1310C.png",
@@ -11981,6 +12460,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240125_092014-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240125_092025-1-scaled.jpg",
@@ -12017,6 +12497,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112923222774712.jpeg"
   ],
@@ -12054,6 +12535,7 @@
   "compareAtPrice": 1500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240129_175617-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240129_175638-scaled.jpg",
@@ -12087,6 +12569,7 @@
   "compareAtPrice": 12500,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/Photoroom-20250503_150123_2.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_231030-scaled.jpg",
@@ -12125,6 +12608,7 @@
   "compareAtPrice": 2500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152400-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152353-scaled.jpg",
@@ -12169,6 +12653,7 @@
   "compareAtPrice": 18000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240114_172110_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240130_192648-scaled.jpg",
@@ -12209,6 +12694,7 @@
   "compareAtPrice": 18000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240114_172045_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240130_192207-scaled.jpg",
@@ -12253,6 +12739,7 @@
   "compareAtPrice": 18000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240114_172026_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240130_192552-scaled.jpg",
@@ -12294,6 +12781,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/37.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/6.png"
@@ -12336,6 +12824,7 @@
   "compareAtPrice": 5500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151611-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151623-scaled.jpg",
@@ -12377,6 +12866,7 @@
   "compareAtPrice": 5000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_220709_001_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_220846_copy_1080x1080.jpg",
@@ -12414,6 +12904,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_150610-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_150619-1-scaled.jpg",
@@ -12452,6 +12943,7 @@
   "compareAtPrice": 5000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240707_002054-2-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240707_002059.jpg"
@@ -12493,6 +12985,7 @@
   "compareAtPrice": 4500,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152211-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152219-scaled.jpg",
@@ -12537,6 +13030,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240707_002011-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_220944_001-scaled.jpg",
@@ -12573,6 +13067,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_153944-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_153948-scaled.jpg",
@@ -12620,7 +13115,8 @@
     "regularPrice": 850,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_153906-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 4
    },
    {
     "id": "10193",
@@ -12633,7 +13129,8 @@
     "regularPrice": 1200,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_153944-2-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 1
    }
   ],
   "position": 358
@@ -12651,6 +13148,7 @@
   "compareAtPrice": 19500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250422_123016-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250416_132558-scaled.jpg",
@@ -12693,6 +13191,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144618-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144621-scaled.jpg",
@@ -12736,6 +13235,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145224-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240518_160710-scaled.jpg",
@@ -12778,6 +13278,7 @@
   "compareAtPrice": 17500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250408_112028.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/IMG_COM_2025112820595121610.jpeg",
@@ -12828,6 +13329,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_150407-1-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_150418-1-scaled.jpg",
@@ -12869,6 +13371,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_150836-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_150841-scaled.jpg",
@@ -12910,6 +13413,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_150032-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_150036-scaled.jpg",
@@ -12954,6 +13458,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145559-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145604-scaled.jpg",
@@ -12998,6 +13503,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250125_131411-scaled.jpg"
   ],
@@ -13037,6 +13543,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_095738-2-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_095824-scaled.jpg",
@@ -13084,6 +13591,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151100-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151108-scaled.jpg",
@@ -13124,6 +13632,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145251-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145255-scaled.jpg",
@@ -13167,6 +13676,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/20240908_150505-scaled.jpg"
   ],
@@ -13203,6 +13713,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100116-scaled.jpg"
   ],
@@ -13245,6 +13756,7 @@
   "compareAtPrice": 9000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_135926-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_135936-scaled.jpg",
@@ -13286,6 +13798,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 9,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144837-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144844-scaled.jpg",
@@ -13328,6 +13841,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154252_copy_1080x1080-1.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154256_copy_1080x1080.jpg",
@@ -13369,6 +13883,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 10,
   "images": [],
   "categories": [
    "books",
@@ -13405,6 +13920,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100922-scaled.jpg"
   ],
@@ -13447,6 +13963,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250813_162626-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_171808-scaled.jpg",
@@ -13499,6 +14016,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100837-scaled.jpg"
   ],
@@ -13541,6 +14059,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240716_095835-scaled.jpg"
   ],
@@ -13583,6 +14102,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_094705-scaled.jpg"
   ],
@@ -13625,6 +14145,7 @@
   "compareAtPrice": 16500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250813_162839_001-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_170909-scaled.jpg",
@@ -13680,6 +14201,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100756-scaled.jpg"
   ],
@@ -13722,6 +14244,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100319-scaled.jpg"
   ],
@@ -13764,6 +14287,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250813_162607-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_172054-scaled.jpg",
@@ -13814,6 +14338,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144333-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144338-scaled.jpg",
@@ -13857,6 +14382,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144309-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144312-scaled.jpg",
@@ -13899,6 +14425,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 5,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145406-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145408-scaled.jpg",
@@ -13942,6 +14469,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250813_162641-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_171629-scaled.jpg",
@@ -13991,6 +14519,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100520-scaled.jpg"
   ],
@@ -14033,6 +14562,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_100700-scaled.jpg"
   ],
@@ -14075,6 +14605,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250813_162634-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_171720-scaled.jpg",
@@ -14125,6 +14656,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250813_162615-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20250813_171945-scaled.jpg",
@@ -14177,6 +14709,7 @@
   "compareAtPrice": 11500,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_230345-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240104_230400-scaled.jpg",
@@ -14213,6 +14746,7 @@
   "compareAtPrice": 4500,
   "onSale": true,
   "inStock": true,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152030-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152052-scaled.jpg",
@@ -14255,6 +14789,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 11,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144958-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_145003-scaled.jpg",
@@ -14298,6 +14833,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 12,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144405-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144409-scaled.jpg",
@@ -14341,6 +14877,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 7,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20250125_131343-scaled.jpg"
   ],
@@ -14379,6 +14916,7 @@
   "compareAtPrice": 27000,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_154411-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_154418-scaled.jpg",
@@ -14425,6 +14963,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240127_120442-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240127_120457-scaled.jpg",
@@ -14462,6 +15001,7 @@
   "compareAtPrice": 1500,
   "onSale": true,
   "inStock": true,
+  "stock": 12,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595475740.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595544046.jpeg",
@@ -14503,6 +15043,7 @@
   "compareAtPrice": 40000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223800_0548.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2026/05/Compress_20260430_223801_1602.jpg",
@@ -14552,6 +15093,7 @@
   "compareAtPrice": 1300,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145737-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_140302-scaled.jpg",
@@ -14592,6 +15134,7 @@
   "compareAtPrice": 5000,
   "onSale": true,
   "inStock": true,
+  "stock": 8,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152107-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_152113-scaled.jpg",
@@ -14634,6 +15177,7 @@
   "compareAtPrice": 700,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_154723_copy_1080x1080.jpg"
   ],
@@ -14670,6 +15214,7 @@
   "compareAtPrice": 9000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250729_173448-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250729_173452-scaled.jpg",
@@ -14709,6 +15254,7 @@
   "compareAtPrice": 7500,
   "onSale": true,
   "inStock": true,
+  "stock": 1,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818324169841.jpeg"
   ],
@@ -14745,6 +15291,7 @@
   "compareAtPrice": 1100,
   "onSale": true,
   "inStock": true,
+  "stock": 3,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250510_141545-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250510_141604-scaled.jpg",
@@ -14783,6 +15330,7 @@
   "compareAtPrice": 4000,
   "onSale": true,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/03/Copy-of-Copy-of-Website-adverts_20250619_125705_0000.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/03/PhotoCollage_20250616_003137201.jpg",
@@ -14824,6 +15372,7 @@
   "compareAtPrice": 6500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144229-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_144235-scaled.jpg",
@@ -14867,6 +15416,7 @@
   "compareAtPrice": 2000,
   "onSale": true,
   "inStock": true,
+  "stock": 6,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/02/20240130_210403_copy_1080x1080-e1746306790289.jpg"
   ],
@@ -14905,6 +15455,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595347629.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595358630.jpeg",
@@ -14942,6 +15493,7 @@
   "compareAtPrice": 13500,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/Photoroom-20250503_150123_3.png"
   ],
@@ -14975,6 +15527,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": true,
+  "stock": 2,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_173411-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_173322-scaled.jpg",
@@ -15006,7 +15559,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_173411-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "11069",
@@ -15019,7 +15573,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_173344-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    },
    {
     "id": "11070",
@@ -15032,7 +15587,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_173332-scaled.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "11071",
@@ -15045,7 +15601,8 @@
     "regularPrice": 10000,
     "salePrice": 9500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/12/20241115_173322-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 456
@@ -15063,6 +15620,7 @@
   "compareAtPrice": null,
   "onSale": false,
   "inStock": true,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_175405-scaled-e1762030620229.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_175405-scaled-e1762030620229.jpg",
@@ -15096,7 +15654,8 @@
     "regularPrice": 650,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_174941-scaled-e1762030564770.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14440",
@@ -15109,7 +15668,8 @@
     "regularPrice": 3000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_174941-scaled-e1762030564770.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14441",
@@ -15122,7 +15682,8 @@
     "regularPrice": 650,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_175405-scaled-e1762030620229.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14442",
@@ -15135,7 +15696,8 @@
     "regularPrice": 3000,
     "salePrice": null,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251101_175405-scaled-e1762030620229.jpg",
-    "inStock": true
+    "inStock": true,
+    "stock": null
    },
    {
     "id": "14443",
@@ -15148,7 +15710,8 @@
     "regularPrice": 3000,
     "salePrice": null,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": null
    }
   ],
   "position": 457
@@ -15166,6 +15729,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": false,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353822522.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353834623.jpg",
@@ -15207,6 +15771,7 @@
   "compareAtPrice": 13000,
   "onSale": true,
   "inStock": false,
+  "stock": 4,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250408_112148.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250810_183450-scaled.jpg"
@@ -15242,7 +15807,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "11532",
@@ -15255,7 +15821,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": null,
-    "inStock": true
+    "inStock": true,
+    "stock": 2
    },
    {
     "id": "13783",
@@ -15268,7 +15835,8 @@
     "regularPrice": 13000,
     "salePrice": 12500,
     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250810_183450-scaled.jpg",
-    "inStock": false
+    "inStock": false,
+    "stock": 0
    }
   ],
   "position": 50
@@ -15286,6 +15854,7 @@
   "compareAtPrice": 7000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_143935-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_143942-scaled.jpg",
@@ -15327,6 +15896,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/42.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/1.png"
@@ -15369,6 +15939,7 @@
   "compareAtPrice": 6000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144218-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20250512_144223-scaled.jpg",
@@ -15410,6 +15981,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/23.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/20.png"
@@ -15452,6 +16024,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250512_150229-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250512_150234-scaled.jpg",
@@ -15490,6 +16063,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/34.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/9.png"
@@ -15532,6 +16106,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/38.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/5.png"
@@ -15574,6 +16149,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/39.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/4.png"
@@ -15616,6 +16192,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/27.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/16.png"
@@ -15658,6 +16235,7 @@
   "compareAtPrice": 38000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_165049_copy_1080x1080.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_165049_copy_1080x1080.jpg",
@@ -15702,6 +16280,7 @@
   "compareAtPrice": 350,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145109-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145117-scaled.jpg",
@@ -15743,6 +16322,7 @@
   "compareAtPrice": 3500,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145208-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240127_120408-scaled.jpg",
@@ -15780,6 +16360,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/29.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/14.png"
@@ -15822,6 +16403,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/40.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/3.png"
@@ -15864,6 +16446,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/33.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/10.png"
@@ -15906,6 +16489,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/22.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/21.png"
@@ -15948,6 +16532,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/30.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/13.png"
@@ -15990,6 +16575,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/24.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/19.png"
@@ -16032,6 +16618,7 @@
   "compareAtPrice": 20000,
   "onSale": true,
   "inStock": false,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250512_145537-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250510_140039-scaled.jpg",
@@ -16068,6 +16655,7 @@
   "compareAtPrice": 10000,
   "onSale": true,
   "inStock": false,
+  "stock": null,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251116_124805-scaled-e1763295253946.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20251116_124828-scaled.jpg",
@@ -16117,6 +16705,7 @@
   "compareAtPrice": 35000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511292319577770.jpeg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_202511292319581143.jpeg",
@@ -16151,6 +16740,7 @@
   "compareAtPrice": 1400,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250510_141816-scaled.jpg",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/05/20250510_141617-scaled.jpg",
@@ -16188,6 +16778,7 @@
   "compareAtPrice": 3000,
   "onSale": true,
   "inStock": false,
+  "stock": 0,
   "images": [
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/36.png",
    "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/7.png"

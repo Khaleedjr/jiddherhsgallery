@@ -18,14 +18,14 @@
   --color-forest-900: #0a2b21;
   --color-forest-950: #051a14;
 
-  /* Antique gold — reserved for accents, never large fills. */
-  --color-gold-100: #f7efd9;
-  --color-gold-200: #eedfb6;
-  --color-gold-300: #e0c98a;
-  --color-gold-400: #cfae5b;
-  --color-gold-500: #b8902f;
-  --color-gold-600: #9a7522;
-  --color-gold-700: #765a1c;
+  /* Brand gold, sampled from the logo (#cd9a32), used for accents. */
+  --color-gold-100: #faf1de;
+  --color-gold-200: #f3e1b9;
+  --color-gold-300: #e7cc8d;
+  --color-gold-400: #dcb45f;
+  --color-gold-500: #cd9a32;
+  --color-gold-600: #a87d27;
+  --color-gold-700: #82601e;
 
   /* Warm paper tones for page and card surfaces. */
   --color-sand-50: #fdfbf7;
@@ -101,13 +101,13 @@
   }
 
   .pattern-girih-light {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23e0c98a' stroke-width='1' stroke-opacity='0.30'%3E%3Cpath d='M40 4 48 20 64 12 56 28 76 40 56 52 64 68 48 60 40 76 32 60 16 68 24 52 4 40 24 28 16 12 32 20Z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Cpath d='M0 0h80v80H0z'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23e7cc8d' stroke-width='1' stroke-opacity='0.30'%3E%3Cpath d='M40 4 48 20 64 12 56 28 76 40 56 52 64 68 48 60 40 76 32 60 16 68 24 52 4 40 24 28 16 12 32 20Z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Cpath d='M0 0h80v80H0z'/%3E%3C/g%3E%3C/svg%3E");
     background-size: 80px 80px;
   }
 
   /* Repeating arch colonnade used as a section divider. */
   .pattern-arches {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='56' viewBox='0 0 48 56'%3E%3Cpath d='M24 4c9 0 16 7 16 16v36H8V20C8 11 15 4 24 4z' fill='none' stroke='%23cfae5b' stroke-opacity='0.35' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='56' viewBox='0 0 48 56'%3E%3Cpath d='M24 4c9 0 16 7 16 16v36H8V20C8 11 15 4 24 4z' fill='none' stroke='%23dcb45f' stroke-opacity='0.35' stroke-width='1.2'/%3E%3C/svg%3E");
     background-size: 48px 56px;
   }
 

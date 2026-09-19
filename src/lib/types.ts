@@ -10,6 +10,7 @@ export type Variant = {
   salePrice: number | null;
   image: string | null;
   inStock: boolean;
+  stock: number | null;
 };
 
 export type Product = {
@@ -25,6 +26,7 @@ export type Product = {
   compareAtPrice: number | null;
   onSale: boolean;
   inStock: boolean;
+  stock: number | null;
   images: string[];
   categories: string[];
   ages: string[];
@@ -70,6 +72,7 @@ export type CardProduct = {
   priceMax: number | null;
   compareAtPrice: number | null;
   inStock: boolean;
+  stock: number | null;
   image: string | null;
   collections: string[];
   hasOptions: boolean;

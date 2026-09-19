@@ -6,7 +6,13 @@ import { useCart } from "@/components/cart-provider";
 import { ProductImage } from "@/components/product-image";
 import { BagIcon, CheckIcon, ChevronRightIcon } from "@/components/icons";
 import { Badge, cx } from "@/components/ui";
-import { discountPercent, formatPrice, formatPriceRange } from "@/lib/format";
+import {
+  discountPercent,
+  formatPrice,
+  formatPriceRange,
+  isLowStock,
+  lowStockLabel,
+} from "@/lib/format";
 import type { CardProduct } from "@/lib/types";
 
 export function ProductCard({
@@ -106,14 +112,21 @@ export function ProductCard({
         {product.summary ? (
           <p className="line-clamp-2 text-[0.78rem] leading-relaxed text-ink-500">{product.summary}</p>
         ) : null}
-        <div className="mt-auto flex flex-wrap items-baseline gap-x-2 gap-y-0.5 pt-1">
-          <span className="text-[0.95rem] font-semibold text-forest-800">
-            {formatPriceRange(product.price, product.priceMax)}
-          </span>
-          {product.compareAtPrice && !product.priceMax ? (
-            <span className="text-[0.78rem] text-ink-400 line-through">
-              {formatPrice(product.compareAtPrice)}
+        <div className="mt-auto pt-1">
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <span className="text-[0.95rem] font-semibold text-forest-800">
+              {formatPriceRange(product.price, product.priceMax)}
             </span>
+            {product.compareAtPrice && !product.priceMax ? (
+              <span className="text-[0.78rem] text-ink-400 line-through">
+                {formatPrice(product.compareAtPrice)}
+              </span>
+            ) : null}
+          </div>
+          {isLowStock(product.stock, product.inStock) ? (
+            <p className="mt-1 text-[0.72rem] font-medium text-berry-500">
+              {lowStockLabel(product.stock as number)}
+            </p>
           ) : null}
         </div>
       </div>

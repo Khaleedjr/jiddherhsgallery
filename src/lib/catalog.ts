@@ -166,6 +166,7 @@ export const toCard = (product: Product): CardProduct => ({
   priceMax: product.priceMax,
   compareAtPrice: product.compareAtPrice,
   inStock: product.inStock,
+  stock: product.stock,
   image: product.images[0] ?? null,
   collections: product.collections,
   hasOptions: product.variants.length > 0,

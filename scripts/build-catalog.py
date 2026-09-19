@@ -95,6 +95,17 @@ def money(value):
         return None
 
 
+def stock_level(value):
+    """Units on hand, or None when the store isn't tracking stock for this item."""
+    value = (value or "").strip()
+    if not value:
+        return None
+    try:
+        return max(0, int(float(value)))
+    except ValueError:
+        return None
+
+
 def clean_html(raw):
     """Strip the Woo export's literal \\n markers and reduce HTML to a safe subset."""
     if not raw:
@@ -199,6 +210,7 @@ def main():
                 "salePrice": sale if sale and regular and sale < regular else None,
                 "image": var_images[0] if var_images else None,
                 "inStock": var["In stock?"] != "0",
+                "stock": stock_level(var["Stock"]),
             })
 
         regular = money(row["Regular price"])
@@ -290,6 +302,11 @@ def main():
             "compareAtPrice": compare_at if on_sale else None,
             "onSale": on_sale,
             "inStock": row["In stock?"] != "0",
+            "stock": (
+                sum(v["stock"] for v in variants if v["stock"] is not None)
+                if variants and any(v["stock"] is not None for v in variants)
+                else stock_level(row["Stock"])
+            ),
             "images": images,
             "categories": categories,
             "ages": ages,
