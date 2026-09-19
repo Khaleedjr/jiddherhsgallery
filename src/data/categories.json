@@ -1,0 +1,228 @@
+{
+ "departments": [
+  {
+   "slug": "books",
+   "name": "Books",
+   "count": 171,
+   "image": "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20250125_124914-scaled.jpg",
+   "children": [
+    {
+     "slug": "books/ages-3-6",
+     "name": "Ages 3-6",
+     "count": 94,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/33706279111278864.jpg"
+    },
+    {
+     "slug": "books/ages-6-12",
+     "name": "Ages 6-12",
+     "count": 92,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/33706279111278864.jpg"
+    },
+    {
+     "slug": "books/ages-12-18",
+     "name": "Ages 12-18",
+     "count": 89,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20250125_124914-scaled.jpg"
+    },
+    {
+     "slug": "books/for-adults",
+     "name": "For Adults",
+     "count": 80,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20250125_124914-scaled.jpg"
+    },
+    {
+     "slug": "books/activity-books",
+     "name": "Activity Books",
+     "count": 30,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240114_165049_copy_1080x1080.jpg"
+    },
+    {
+     "slug": "books/the-holy-quran",
+     "name": "The Holy Qur'an",
+     "count": 29,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20250125_124914-scaled.jpg"
+    },
+    {
+     "slug": "books/ages-0-3",
+     "name": "Ages 0-3",
+     "count": 10,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/33706279111278864.jpg"
+    }
+   ]
+  },
+  {
+   "slug": "toys-learning",
+   "name": "Toys & Learning",
+   "count": 85,
+   "image": "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20231124_153644-scaled.jpg",
+   "children": [
+    {
+     "slug": "toys-learning/creative-toys",
+     "name": "Creative Toys",
+     "count": 46,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20231124_153644-scaled.jpg"
+    },
+    {
+     "slug": "toys-learning/games-puzzles",
+     "name": "Games & Puzzles",
+     "count": 24,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20241115_174459-scaled.jpg"
+    },
+    {
+     "slug": "toys-learning/educational-posters",
+     "name": "Educational Posters",
+     "count": 21,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/41.png"
+    },
+    {
+     "slug": "toys-learning/stationery",
+     "name": "Stationery",
+     "count": 18,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/306229719434419703-1.jpg"
+    },
+    {
+     "slug": "toys-learning/flash-cards",
+     "name": "Flash Cards",
+     "count": 10,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/33706279111278864.jpg"
+    }
+   ]
+  },
+  {
+   "slug": "ibadah-essentials",
+   "name": "Ibadah Essentials",
+   "count": 47,
+   "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/407225611588708250.jpg",
+   "children": [
+    {
+     "slug": "ibadah-essentials/prayer-mats",
+     "name": "Prayer Mats",
+     "count": 11,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/03/IMG_20230319_095037_189.webp"
+    },
+    {
+     "slug": "ibadah-essentials/quran-speakers",
+     "name": "Qur'an Speakers",
+     "count": 9,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/666921947441694343-1.jpg"
+    },
+    {
+     "slug": "ibadah-essentials/our-own-production",
+     "name": "Our Own Production",
+     "count": 8,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/3_20250227_011805_0002.png"
+    },
+    {
+     "slug": "ibadah-essentials/adhkar-flexes-stickers",
+     "name": "Adhkar Flexes & Stickers",
+     "count": 7,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/3_20250227_011805_0002.png"
+    },
+    {
+     "slug": "ibadah-essentials/ibadah-trackers",
+     "name": "Ibadah Trackers",
+     "count": 7,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/03/Copy-of-Copy-of-Website-adverts_20250619_125705_0000.png"
+    },
+    {
+     "slug": "ibadah-essentials/tasbeeh-counters",
+     "name": "Tasbeeh & Counters",
+     "count": 6,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/05/407225611588708250.jpg"
+    },
+    {
+     "slug": "ibadah-essentials/adhan-tools",
+     "name": "Adhan Tools",
+     "count": 5,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/666921947441694343-1.jpg"
+    },
+    {
+     "slug": "ibadah-essentials/quran-stands",
+     "name": "Qur'an Stands",
+     "count": 2,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240916_161803-scaled.jpg"
+    }
+   ]
+  },
+  {
+   "slug": "modest-wear",
+   "name": "Modest Wear",
+   "count": 14,
+   "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131121-scaled.jpg",
+   "children": [
+    {
+     "slug": "modest-wear/kids",
+     "name": "Kids",
+     "count": 14,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131121-scaled.jpg"
+    },
+    {
+     "slug": "modest-wear/men",
+     "name": "Men",
+     "count": 5,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250503_131121-scaled.jpg"
+    },
+    {
+     "slug": "modest-wear/women",
+     "name": "Women",
+     "count": 2,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353763114.jpg"
+    }
+   ]
+  }
+ ],
+ "ageGroups": [
+  {
+   "slug": "0-3-years",
+   "name": "0 - 3 years",
+   "blurb": "Cloth books, soft toys and first words",
+   "value": "0-3 years",
+   "count": 64
+  },
+  {
+   "slug": "3-6-years",
+   "name": "3 - 6 years",
+   "blurb": "Stories, activity books and play sets",
+   "value": "3-6 years",
+   "count": 189
+  },
+  {
+   "slug": "6-12-years",
+   "name": "6 - 12 years",
+   "blurb": "Seerah, sahaba tales and puzzles",
+   "value": "6-12 years",
+   "count": 197
+  },
+  {
+   "slug": "12-18-years",
+   "name": "12 - 18 years",
+   "blurb": "Fiqh, tafsir and study companions",
+   "value": "12-18 years",
+   "count": 181
+  },
+  {
+   "slug": "18-years",
+   "name": "18+ years",
+   "blurb": "Qur'an, scholarship and ibadah essentials",
+   "value": "18+ years",
+   "count": 147
+  }
+ ],
+ "collections": [
+  {
+   "slug": "best-seller",
+   "name": "Best Seller",
+   "count": 28
+  },
+  {
+   "slug": "new-arrivals",
+   "name": "New Arrivals",
+   "count": 8
+  },
+  {
+   "slug": "ramadan-collection",
+   "name": "Ramadan Collection",
+   "count": 14
+  }
+ ]
+}

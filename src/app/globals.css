@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-arabic: var(--font-amiri), ui-serif, serif;
+
+  /* Deep pine green — the house colour, used for chrome and emphasis. */
+  --color-forest-50: #eef6f2;
+  --color-forest-100: #d6e9e0;
+  --color-forest-200: #aed3c2;
+  --color-forest-300: #7cb6a0;
+  --color-forest-400: #4b9479;
+  --color-forest-500: #2a7a5e;
+  --color-forest-600: #1c6049;
+  --color-forest-700: #154b3a;
+  --color-forest-800: #0f3b2d;
+  --color-forest-900: #0a2b21;
+  --color-forest-950: #051a14;
+
+  /* Antique gold — reserved for accents, never large fills. */
+  --color-gold-100: #f7efd9;
+  --color-gold-200: #eedfb6;
+  --color-gold-300: #e0c98a;
+  --color-gold-400: #cfae5b;
+  --color-gold-500: #b8902f;
+  --color-gold-600: #9a7522;
+  --color-gold-700: #765a1c;
+
+  /* Warm paper tones for page and card surfaces. */
+  --color-sand-50: #fdfbf7;
+  --color-sand-100: #f9f5ec;
+  --color-sand-200: #f1ead9;
+  --color-sand-300: #e5dac2;
+  --color-sand-400: #d2c3a3;
+
+  --color-ink-900: #16130f;
+  --color-ink-800: #2a2520;
+  --color-ink-700: #423b33;
+  --color-ink-600: #5c5349;
+  --color-ink-500: #7a7064;
+  --color-ink-400: #9c9285;
+
+  --color-berry-500: #a3323f;
+  --color-berry-600: #8a2734;
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  --shadow-card: 0 1px 2px rgb(22 19 15 / 0.04), 0 8px 24px -12px rgb(22 19 15 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(22 19 15 / 0.05), 0 18px 40px -18px rgb(22 19 15 / 0.22);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-sand-300);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-sand-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-forest-800);
+    color: var(--color-sand-50);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-forest-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-forest-950);
+  }
+}
+
+@layer components {
+  /* Girih-style eight-point star lattice, drawn once and tiled. */
+  .pattern-girih {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%230f3b2d' stroke-width='1' stroke-opacity='0.16'%3E%3Cpath d='M40 4 48 20 64 12 56 28 76 40 56 52 64 68 48 60 40 76 32 60 16 68 24 52 4 40 24 28 16 12 32 20Z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Cpath d='M0 0h80v80H0z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
+  }
+
+  .pattern-girih-light {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23e0c98a' stroke-width='1' stroke-opacity='0.30'%3E%3Cpath d='M40 4 48 20 64 12 56 28 76 40 56 52 64 68 48 60 40 76 32 60 16 68 24 52 4 40 24 28 16 12 32 20Z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Cpath d='M0 0h80v80H0z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
+  }
+
+  /* Repeating arch colonnade used as a section divider. */
+  .pattern-arches {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='56' viewBox='0 0 48 56'%3E%3Cpath d='M24 4c9 0 16 7 16 16v36H8V20C8 11 15 4 24 4z' fill='none' stroke='%23cfae5b' stroke-opacity='0.35' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-size: 48px 56px;
+  }
+
+  .prose-store {
+    color: var(--color-ink-700);
+    line-height: 1.75;
+  }
+  .prose-store p { margin-block: 0.85em; }
+  .prose-store p:first-child { margin-block-start: 0; }
+  .prose-store strong { color: var(--color-ink-900); font-weight: 600; }
+  .prose-store ul, .prose-store ol { margin-block: 0.85em; padding-inline-start: 1.15rem; }
+  .prose-store ul { list-style: none; }
+  .prose-store ul > li { position: relative; padding-inline-start: 1rem; margin-block: 0.4em; }
+  .prose-store ul > li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.62em;
+    width: 6px;
+    height: 6px;
+    rotate: 45deg;
+    background-color: var(--color-gold-400);
+  }
+  .prose-store ol { list-style: decimal; }
+  .prose-store ol > li { margin-block: 0.4em; padding-inline-start: 0.25rem; }
+  .prose-store h3, .prose-store h4 { margin-block: 1.2em 0.5em; font-size: 1.1rem; }
+  .prose-store blockquote {
+    margin-block: 1em;
+    padding-inline-start: 1rem;
+    border-inline-start: 3px solid var(--color-gold-300);
+    color: var(--color-ink-600);
+    font-style: italic;
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+@layer utilities {
+  .animate-rise {
+    animation: rise 0.5s var(--ease-out-soft) both;
+  }
+  .animate-fade {
+    animation: fade 0.35s var(--ease-out-soft) both;
+  }
+  .animate-slide-in {
+    animation: slide-in 0.32s var(--ease-out-soft) both;
+  }
+  .animate-marquee {
+    animation: marquee 34s linear infinite;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
