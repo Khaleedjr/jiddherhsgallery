@@ -1,30 +1,44 @@
 /**
- * The hero's centrepiece: an arched alcove holding two shelves of books, under
- * a crescent, with lanterns hanging in front. Drawn rather than photographed,
- * so the opening belongs to the store rather than to one product.
+ * The hero's centrepiece: an arched alcove of Islamic books, lit by three
+ * lanterns hanging in front of it. Drawn rather than photographed, so the
+ * opening belongs to the store rather than to one product.
  *
- * The viewBox is deliberately squat (460×500) so it stays compact on a phone.
+ * The viewBox stays squat (460×500) so the artwork can run nearly full width
+ * on a phone without pushing the rest of the hero off screen.
  */
 
 /** [width, height, fill opacity] for each standing spine. */
-const TOP_SHELF: Array<[number, number, number]> = [
+const SHELF_TOP: Array<[number, number, number]> = [
   [18, 54, 0.22],
   [13, 44, 0.12],
-  [20, 60, 0.28],
+  [20, 56, 0.28],
   [15, 48, 0.16],
-  [22, 56, 0.2],
+  [22, 52, 0.2],
   [14, 46, 0.1],
 ];
 
-const BOTTOM_SHELF: Array<[number, number, number]> = [
+const SHELF_MIDDLE: Array<[number, number, number]> = [
   [16, 50, 0.16],
-  [22, 62, 0.26],
-  [12, 44, 0.1],
-  [18, 56, 0.2],
-  [26, 66, 0.3],
-  [14, 48, 0.12],
-  [20, 58, 0.22],
-  [16, 52, 0.14],
+  [22, 56, 0.26],
+  [12, 42, 0.1],
+  [18, 54, 0.2],
+  [26, 58, 0.3],
+  [14, 46, 0.12],
+  [20, 52, 0.22],
+  [16, 48, 0.14],
+  [24, 56, 0.24],
+];
+
+const SHELF_BOTTOM: Array<[number, number, number]> = [
+  [18, 54, 0.2],
+  [24, 60, 0.28],
+  [13, 46, 0.1],
+  [20, 56, 0.22],
+  [16, 50, 0.14],
+  [26, 58, 0.3],
+  [14, 44, 0.12],
+  [22, 54, 0.24],
+  [17, 48, 0.16],
 ];
 
 function Shelf({
@@ -57,13 +71,13 @@ function Shelf({
               strokeWidth="1.1"
             />
             <path
-              d={`M${bx + 3} ${baseline - h + 9}h${w - 6}`}
+              d={`M${bx + 3} ${baseline - h + 8}h${w - 6}`}
               stroke="#e7cc8d"
               strokeOpacity="0.4"
               strokeWidth="1"
             />
             <path
-              d={`M${bx + 3} ${baseline - h + 14}h${w - 6}`}
+              d={`M${bx + 3} ${baseline - h + 13}h${w - 6}`}
               stroke="#e7cc8d"
               strokeOpacity="0.22"
               strokeWidth="1"
@@ -75,10 +89,20 @@ function Shelf({
   );
 }
 
+function Board({ y }: { y: number }) {
+  return (
+    <>
+      <path d={`M100 ${y}h256`} stroke="#e7cc8d" strokeOpacity="0.6" strokeWidth="2.5" fill="none" />
+      <path d={`M100 ${y + 4}h256`} stroke="#e7cc8d" strokeOpacity="0.18" strokeWidth="1" fill="none" />
+    </>
+  );
+}
+
 export function HeroOrnament({ className }: { className?: string }) {
   const lanterns = [
-    { x: 134, drop: 178, scale: 0.86, delay: "0s", duration: "8s" },
-    { x: 196, drop: 112, scale: 0.6, delay: "-3.2s", duration: "9.4s" },
+    { x: 142, drop: 168, scale: 0.82, sway: "-1.2s", pulse: "0s" },
+    { x: 232, drop: 104, scale: 0.6, sway: "-2.6s", pulse: "-0.9s" },
+    { x: 318, drop: 152, scale: 0.72, sway: "-0.4s", pulse: "-1.7s" },
   ];
 
   return (
@@ -86,7 +110,7 @@ export function HeroOrnament({ className }: { className?: string }) {
       viewBox="0 0 460 500"
       className={className}
       role="img"
-      aria-label="An arched alcove of Islamic books beneath a crescent moon, with lanterns hanging in front"
+      aria-label="An arched alcove holding three shelves of Islamic books, lit by hanging lanterns"
     >
       <defs>
         <linearGradient id="jg-sky" x1="0" y1="0" x2="0" y2="1">
@@ -101,27 +125,20 @@ export function HeroOrnament({ className }: { className?: string }) {
           <stop offset="100%" stopColor="#cd9a32" stopOpacity="0.08" />
         </linearGradient>
 
-        <radialGradient id="jg-moonglow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#e7cc8d" stopOpacity="0.32" />
-          <stop offset="42%" stopColor="#e7cc8d" stopOpacity="0.11" />
-          <stop offset="74%" stopColor="#e7cc8d" stopOpacity="0.03" />
-          <stop offset="100%" stopColor="#e7cc8d" stopOpacity="0" />
-        </radialGradient>
-
         <radialGradient id="jg-lampglow" cx="50%" cy="46%" r="52%">
-          <stop offset="0%" stopColor="#f3dfae" stopOpacity="0.46" />
-          <stop offset="55%" stopColor="#cd9a32" stopOpacity="0.14" />
+          <stop offset="0%" stopColor="#f6e6bd" stopOpacity="0.72" />
+          <stop offset="45%" stopColor="#e7cc8d" stopOpacity="0.26" />
           <stop offset="100%" stopColor="#cd9a32" stopOpacity="0" />
         </radialGradient>
 
         <linearGradient id="jg-glass" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f3dfae" stopOpacity="0.42" />
-          <stop offset="100%" stopColor="#cd9a32" stopOpacity="0.12" />
+          <stop offset="0%" stopColor="#f6e6bd" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#cd9a32" stopOpacity="0.16" />
         </linearGradient>
 
         <linearGradient id="jg-alcove" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#041b14" stopOpacity="0" />
-          <stop offset="100%" stopColor="#041b14" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#041b14" stopOpacity="0.5" />
         </linearGradient>
 
         <path id="jg-opening" d="M96 430V234c0-78 62-156 134-180 72 24 134 102 134 180v196Z" />
@@ -130,7 +147,7 @@ export function HeroOrnament({ className }: { className?: string }) {
         </clipPath>
         {/* keeps the leaning volume sitting on the board, not through it */}
         <clipPath id="jg-shelfclip">
-          <rect x="90" y="250" width="280" height="176" />
+          <rect x="90" y="250" width="280" height="178" />
         </clipPath>
 
         {/* One fanoos, hung from its own origin so a sway carries the chain too. */}
@@ -151,12 +168,14 @@ export function HeroOrnament({ className }: { className?: string }) {
       <g clipPath="url(#jg-clip)">
         <g fill="#e7cc8d">
           {[
-            [132, 120, 4.4, 0.62],
-            [168, 86, 2.8, 0.45],
-            [112, 186, 2.4, 0.34],
-            [316, 196, 3, 0.42],
-            [338, 136, 2.2, 0.3],
-            [268, 78, 2.2, 0.28],
+            [126, 112, 4.2, 0.55],
+            [174, 74, 2.8, 0.4],
+            [108, 178, 2.4, 0.3],
+            [286, 88, 3.2, 0.45],
+            [344, 146, 2.6, 0.34],
+            [268, 196, 2.2, 0.26],
+            [196, 208, 2.4, 0.24],
+            [356, 210, 2.2, 0.22],
           ].map(([cx, cy, r, o], i) => (
             <path
               key={i}
@@ -167,34 +186,27 @@ export function HeroOrnament({ className }: { className?: string }) {
           ))}
         </g>
 
-        <g transform="translate(288 132)">
-          <circle r="70" fill="url(#jg-moonglow)" />
-          <path d="M14-40a44 44 0 1 0 0 80 35 35 0 1 1 0-80Z" fill="#e7cc8d" fillOpacity="0.95" />
-        </g>
-
         {/* the alcove darkens towards the shelves */}
-        <rect x="90" y="250" width="280" height="182" fill="url(#jg-alcove)" />
+        <rect x="90" y="230" width="280" height="202" fill="url(#jg-alcove)" />
 
-        {/* upper shelf */}
-        <Shelf books={TOP_SHELF} startX={112} baseline={352} />
-        {/* a few volumes laid flat beside them */}
+        <Shelf books={SHELF_TOP} startX={112} baseline={302} />
         <g stroke="#e7cc8d" strokeOpacity="0.5" strokeWidth="1.1" fill="#e7cc8d">
-          <rect x="248" y="343" width="74" height="9" rx="1.5" fillOpacity="0.2" />
-          <rect x="252" y="334" width="68" height="9" rx="1.5" fillOpacity="0.14" />
-          <rect x="256" y="325" width="60" height="9" rx="1.5" fillOpacity="0.24" />
+          <rect x="248" y="293" width="74" height="9" rx="1.5" fillOpacity="0.2" />
+          <rect x="252" y="284" width="68" height="9" rx="1.5" fillOpacity="0.14" />
+          <rect x="256" y="275" width="60" height="9" rx="1.5" fillOpacity="0.24" />
         </g>
-        <path d="M100 352h256" stroke="#e7cc8d" strokeOpacity="0.6" strokeWidth="2.5" fill="none" />
-        <path d="M100 356h256" stroke="#e7cc8d" strokeOpacity="0.2" strokeWidth="1" fill="none" />
+        <Board y={302} />
 
-        {/* lower shelf */}
-        <Shelf books={BOTTOM_SHELF} startX={108} baseline={426} />
-        {/* one volume leaning against the row */}
-        <g transform="rotate(-9 313 426)" clipPath="url(#jg-shelfclip)">
+        <Shelf books={SHELF_MIDDLE} startX={110} baseline={366} />
+        <Board y={366} />
+
+        <Shelf books={SHELF_BOTTOM} startX={108} baseline={428} />
+        <g transform="rotate(-9 340 428)" clipPath="url(#jg-shelfclip)">
           <rect
-            x="296"
-            y="374"
+            x="323"
+            y="378"
             width="17"
-            height="52"
+            height="50"
             rx="1.5"
             fill="#e7cc8d"
             fillOpacity="0.18"
@@ -202,9 +214,9 @@ export function HeroOrnament({ className }: { className?: string }) {
             strokeOpacity="0.55"
             strokeWidth="1.1"
           />
-          <path d="M299 383h11" stroke="#e7cc8d" strokeOpacity="0.4" strokeWidth="1" />
+          <path d="M326 387h11" stroke="#e7cc8d" strokeOpacity="0.4" strokeWidth="1" />
         </g>
-        <path d="M100 426h256" stroke="#e7cc8d" strokeOpacity="0.6" strokeWidth="2.5" fill="none" />
+        <path d="M100 428h256" stroke="#e7cc8d" strokeOpacity="0.6" strokeWidth="2.5" fill="none" />
       </g>
 
       {/* the arch, as a band between two outlines */}
@@ -245,15 +257,20 @@ export function HeroOrnament({ className }: { className?: string }) {
           <g
             key={lamp.x}
             className="jg-sway"
-            style={{
-              transformOrigin: `${lamp.x}px 0px`,
-              animationDuration: lamp.duration,
-              animationDelay: lamp.delay,
-            }}
+            style={{ transformOrigin: `${lamp.x}px 0px`, animationDelay: lamp.sway }}
           >
             <path d={`M${lamp.x} 0v${lamp.drop}`} strokeOpacity="0.45" strokeWidth="1" />
             <g transform={`translate(${lamp.x} ${lamp.drop}) scale(${lamp.scale})`}>
-              <ellipse cx="0" cy="52" rx="34" ry="42" fill="url(#jg-lampglow)" stroke="none" />
+              <ellipse
+                className="jg-pulse"
+                style={{ animationDelay: lamp.pulse }}
+                cx="0"
+                cy="52"
+                rx="38"
+                ry="46"
+                fill="url(#jg-lampglow)"
+                stroke="none"
+              />
               <use href="#jg-fanoos" />
             </g>
           </g>

@@ -184,10 +184,22 @@
 
 /* Hanging lanterns in the hero drift very slightly, like a real chain would. */
 .jg-sway {
-  animation: jg-sway 8s ease-in-out infinite alternate;
+  animation: jg-sway 3.4s ease-in-out infinite alternate;
+}
+
+/* The lamps breathe — a visible flicker rather than a steady glow. */
+.jg-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: jg-pulse 1.9s ease-in-out infinite alternate;
 }
 
 @keyframes jg-sway {
-  from { transform: rotate(-1.1deg); }
-  to { transform: rotate(1.1deg); }
+  from { transform: rotate(-1.8deg); }
+  to { transform: rotate(1.8deg); }
+}
+
+@keyframes jg-pulse {
+  from { opacity: 0.45; transform: scale(0.86); }
+  to { opacity: 1; transform: scale(1.06); }
 }
