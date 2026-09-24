@@ -35,6 +35,8 @@ export function ProductCard({
 
   const handleAdd = () => {
     add({
+      productId: product.id,
+      variantId: null,
       slug: product.slug,
       name: product.name,
       variantLabel: null,

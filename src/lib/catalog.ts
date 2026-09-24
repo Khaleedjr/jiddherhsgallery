@@ -1,6 +1,6 @@
-import productsJson from "@/data/products.json";
+import { cache } from "react";
 import categoriesJson from "@/data/categories.json";
-import metaJson from "@/data/meta.json";
+import { listProducts } from "@/lib/store/products";
 import type {
   AgeGroup,
   CardProduct,
@@ -10,80 +10,185 @@ import type {
   ShopProduct,
 } from "@/lib/types";
 
-export const products = productsJson as Product[];
-export const departments = categoriesJson.departments as Department[];
-export const ageGroups = categoriesJson.ageGroups as AgeGroup[];
-export const collections = categoriesJson.collections as Collection[];
-export const catalogMeta = metaJson as {
-  productCount: number;
-  inStockCount: number;
-  categoryCount: number;
+/**
+ * The shape of the catalogue — department names, slugs and artwork. It changes
+ * rarely, so navigation reads it directly. Product counts here are from the
+ * original import; live counts come from getCatalog().
+ */
+export const taxonomy = {
+  departments: categoriesJson.departments as Department[],
+  ageGroups: categoriesJson.ageGroups as AgeGroup[],
+  collections: categoriesJson.collections as Collection[],
 };
-
-const bySlug = new Map(products.map((product) => [product.slug, product]));
-
-export const getProduct = (slug: string) => bySlug.get(slug);
-
-export const allCategorySlugs = departments.flatMap((dept) => [
-  dept.slug,
-  ...dept.children.map((child) => child.slug),
-]);
-
-export const findCategory = (slug: string) => {
-  for (const dept of departments) {
-    if (dept.slug === slug) return { node: dept, department: dept, isDepartment: true as const };
-    const child = dept.children.find((c) => c.slug === slug);
-    if (child) return { node: child, department: dept, isDepartment: false as const };
-  }
-  return null;
-};
-
-export const findAgeGroup = (slug: string) => ageGroups.find((age) => age.slug === slug);
-export const findCollection = (slug: string) => collections.find((c) => c.slug === slug);
 
 export const inCategory = (product: Product, slug: string) =>
   product.categories.some((c) => c === slug || c.startsWith(`${slug}/`));
 
-export const productsInCategory = (slug: string) => products.filter((p) => inCategory(p, slug));
-export const productsInAge = (value: string) => products.filter((p) => p.ages.includes(value));
-export const productsInCollection = (slug: string) =>
-  products.filter((p) => p.collections.includes(slug));
-
-/** Price bounds across the whole catalogue, used to seed the shop's price filter. */
-export const priceBounds = products.reduce(
-  (acc, product) => ({
-    min: Math.min(acc.min, product.price),
-    max: Math.max(acc.max, product.priceMax ?? product.price),
-  }),
-  { min: Infinity, max: 0 },
+/**
+ * Everything the storefront knows about the catalogue, built from the store's
+ * published products. Cached per request; admin edits revalidate the pages.
+ */
+export const getCatalog = cache(async () =>
+  buildCatalog((await listProducts()).filter((product) => product.status === "published")),
 );
 
-/**
- * Related products: same sub-category first, then shared tags, then same age
- * bracket — enough signal to keep the rail relevant without a search index.
- */
-export const relatedProducts = (product: Product, limit = 8) => {
-  const scored = products
-    .filter((candidate) => candidate.slug !== product.slug)
-    .map((candidate) => {
-      let score = 0;
-      for (const category of product.categories) {
-        if (candidate.categories.includes(category)) score += category.includes("/") ? 4 : 1;
-      }
-      for (const tag of product.tags) {
-        if (candidate.tags.includes(tag)) score += 2;
-      }
-      for (const age of product.ages) {
-        if (candidate.ages.includes(age)) score += 0.5;
-      }
-      if (candidate.inStock) score += 0.25;
-      return { candidate, score };
-    })
-    .filter((entry) => entry.score > 0)
-    .sort((a, b) => b.score - a.score);
+export type Catalog = ReturnType<typeof buildCatalog>;
 
-  return scored.slice(0, limit).map((entry) => entry.candidate);
-};
+function buildCatalog(products: Product[]) {
+  const bySlug = new Map(products.map((product) => [product.slug, product]));
+  const count = (test: (p: Product) => boolean) => products.reduce((n, p) => n + (test(p) ? 1 : 0), 0);
+
+  const departments: Department[] = taxonomy.departments.map((dept) => ({
+    ...dept,
+    count: count((p) => inCategory(p, dept.slug)),
+    children: dept.children.map((child) => ({ ...child, count: count((p) => inCategory(p, child.slug)) })),
+  }));
+  const ageGroups: AgeGroup[] = taxonomy.ageGroups.map((age) => ({
+    ...age,
+    count: count((p) => p.ages.includes(age.value)),
+  }));
+  const collections: Collection[] = taxonomy.collections.map((collection) => ({
+    ...collection,
+    count: count((p) => p.collections.includes(collection.slug)),
+  }));
+
+  const allCategorySlugs = departments.flatMap((dept) => [dept.slug, ...dept.children.map((child) => child.slug)]);
+
+  const catalogMeta = {
+    productCount: products.length,
+    inStockCount: count((p) => p.inStock),
+    categoryCount: allCategorySlugs.length,
+  };
+
+  const getProduct = (slug: string) => bySlug.get(slug);
+
+  const findCategory = (slug: string) => {
+    for (const dept of departments) {
+      if (dept.slug === slug) return { node: dept, department: dept, isDepartment: true as const };
+      const child = dept.children.find((c) => c.slug === slug);
+      if (child) return { node: child, department: dept, isDepartment: false as const };
+    }
+    return null;
+  };
+
+  const findAgeGroup = (slug: string) => ageGroups.find((age) => age.slug === slug);
+  const findCollection = (slug: string) => collections.find((c) => c.slug === slug);
+
+  const productsInCategory = (slug: string) => products.filter((p) => inCategory(p, slug));
+  const productsInAge = (value: string) => products.filter((p) => p.ages.includes(value));
+  const productsInCollection = (slug: string) => products.filter((p) => p.collections.includes(slug));
+
+  /** Price bounds across the whole catalogue, used to seed the shop's price filter. */
+  const priceBounds = products.reduce(
+    (acc, product) => ({
+      min: Math.min(acc.min, product.price),
+      max: Math.max(acc.max, product.priceMax ?? product.price),
+    }),
+    { min: Infinity, max: 0 },
+  );
+
+  /**
+   * Related products: same sub-category first, then shared tags, then same age
+   * bracket — enough signal to keep the rail relevant without a search index.
+   */
+  const relatedProducts = (product: Product, limit = 8) =>
+    products
+      .filter((candidate) => candidate.slug !== product.slug)
+      .map((candidate) => {
+        let score = 0;
+        for (const category of product.categories) {
+          if (candidate.categories.includes(category)) score += category.includes("/") ? 4 : 1;
+        }
+        for (const tag of product.tags) {
+          if (candidate.tags.includes(tag)) score += 2;
+        }
+        for (const age of product.ages) {
+          if (candidate.ages.includes(age)) score += 0.5;
+        }
+        if (candidate.inStock) score += 0.25;
+        return { candidate, score };
+      })
+      .filter((entry) => entry.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit)
+      .map((entry) => entry.candidate);
+
+  const searchDocs = products.map((product) => ({
+    product,
+    name: normalise(product.name),
+    haystack: normalise(
+      [product.name, product.summary, product.descriptionText, product.tags.join(" "), product.categories.join(" ")].join(" "),
+    ),
+  }));
+
+  const searchProducts = (query: string, limit = 60) => {
+    const terms = normalise(query).split(" ").filter(Boolean);
+    if (!terms.length) return [];
+    return searchDocs
+      .map((doc) => {
+        let score = 0;
+        for (const term of terms) {
+          if (doc.name.startsWith(term)) score += 12;
+          else if (doc.name.includes(term)) score += 8;
+          else if (doc.haystack.includes(term)) score += 3;
+          else return null;
+        }
+        if (doc.product.inStock) score += 1;
+        return { product: doc.product, score };
+      })
+      .filter((entry): entry is { product: Product; score: number } => entry !== null)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit)
+      .map((entry) => entry.product);
+  };
+
+  /** Curated home-page rails, each falling back to catalogue order when a Woo collection is thin. */
+  const pick = (pool: Product[], limit: number) => pool.filter((p) => p.images.length > 0).slice(0, limit);
+
+  const bestSellers = (limit = 8) => {
+    const tagged = productsInCollection("best-seller").filter((p) => p.inStock);
+    return pick(tagged.length >= limit ? tagged : [...tagged, ...products.filter((p) => p.inStock)], limit);
+  };
+
+  const newArrivals = (limit = 8) => {
+    const tagged = productsInCollection("new-arrivals").filter((p) => p.inStock);
+    const rest = [...products].filter((p) => p.inStock).sort((a, b) => Number(b.id) - Number(a.id));
+    return pick(uniqueProducts([...tagged, ...rest]), limit);
+  };
+
+  const onSaleProducts = (limit = 8, minDiscount = 15) =>
+    pick(
+      products.filter(
+        (p) =>
+          p.inStock &&
+          p.compareAtPrice !== null &&
+          (p.compareAtPrice - p.price) / p.compareAtPrice >= minDiscount / 100,
+      ),
+      limit,
+    );
+
+  return {
+    products,
+    departments,
+    ageGroups,
+    collections,
+    catalogMeta,
+    allCategorySlugs,
+    priceBounds,
+    getProduct,
+    findCategory,
+    findAgeGroup,
+    findCollection,
+    productsInCategory,
+    productsInAge,
+    productsInCollection,
+    relatedProducts,
+    searchProducts,
+    bestSellers,
+    newArrivals,
+    onSaleProducts,
+  };
+}
 
 const normalise = (value: string) =>
   value
@@ -92,69 +197,10 @@ const normalise = (value: string) =>
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 
-type SearchDoc = { product: Product; haystack: string; name: string };
-
-const searchDocs: SearchDoc[] = products.map((product) => ({
-  product,
-  name: normalise(product.name),
-  haystack: normalise(
-    [product.name, product.summary, product.descriptionText, product.tags.join(" "), product.categories.join(" ")].join(" "),
-  ),
-}));
-
-export const searchProducts = (query: string, limit = 60) => {
-  const terms = normalise(query).split(" ").filter(Boolean);
-  if (!terms.length) return [];
-
-  return searchDocs
-    .map((doc) => {
-      let score = 0;
-      for (const term of terms) {
-        if (doc.name.startsWith(term)) score += 12;
-        else if (doc.name.includes(term)) score += 8;
-        else if (doc.haystack.includes(term)) score += 3;
-        else return null;
-      }
-      if (doc.product.inStock) score += 1;
-      return { product: doc.product, score };
-    })
-    .filter((entry): entry is { product: Product; score: number } => entry !== null)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
-    .map((entry) => entry.product);
-};
-
-/** Curated home-page rails, each falling back to catalogue order when a Woo collection is thin. */
-const pick = (pool: Product[], limit: number) => pool.filter((p) => p.images.length > 0).slice(0, limit);
-
-export const bestSellers = (limit = 8) => {
-  const tagged = productsInCollection("best-seller").filter((p) => p.inStock);
-  return pick(tagged.length >= limit ? tagged : [...tagged, ...products.filter((p) => p.inStock)], limit);
-};
-
-export const newArrivals = (limit = 8) => {
-  const tagged = productsInCollection("new-arrivals").filter((p) => p.inStock);
-  const rest = [...products].filter((p) => p.inStock).sort((a, b) => Number(b.id) - Number(a.id));
-  return pick([...tagged, ...rest], limit);
-};
-
-export const onSaleProducts = (limit = 8, minDiscount = 15) =>
-  pick(
-    products.filter(
-      (p) =>
-        p.inStock &&
-        p.compareAtPrice !== null &&
-        (p.compareAtPrice - p.price) / p.compareAtPrice >= minDiscount / 100,
-    ),
-    limit,
-  );
-
-const dedupe = (list: Product[]) => {
+export const uniqueProducts = (list: Product[]) => {
   const seen = new Set<string>();
   return list.filter((p) => (seen.has(p.slug) ? false : (seen.add(p.slug), true)));
 };
-
-export const uniqueProducts = dedupe;
 
 /** Trim a product down to what a card needs, keeping client payloads small. */
 export const toCard = (product: Product): CardProduct => ({

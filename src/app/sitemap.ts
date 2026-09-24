@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
-import { ageGroups, collections, departments, products } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog";
 import { site } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { ageGroups, collections, departments, products } = await getCatalog();
   const now = new Date();
   const url = (path: string) => `${site.url}${path}`;
 

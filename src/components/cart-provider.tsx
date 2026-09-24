@@ -13,6 +13,9 @@ import {
 
 export type CartItem = {
   key: string;
+  /** Catalogue ids let the server re-price the order; carts saved before they existed fall back to slug. */
+  productId?: string;
+  variantId?: string | null;
   slug: string;
   name: string;
   variantLabel: string | null;

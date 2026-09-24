@@ -3,19 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { CircleCheckIcon } from "@/components/admin/icons";
 import { useCart } from "@/components/cart-provider";
 import { ArrowRightIcon, CheckIcon, ShieldIcon, WhatsappIcon } from "@/components/icons";
 import { ButtonLink, EmptyState, buttonClass, cx } from "@/components/ui";
 import { formatPrice } from "@/lib/format";
+import { NIGERIAN_STATES } from "@/lib/nigeria";
 import { site, whatsappLink } from "@/lib/site";
-
-const NIGERIAN_STATES = [
-  "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
-  "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "FCT - Abuja", "Gombe",
-  "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos",
-  "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto",
-  "Taraba", "Yobe", "Zamfara",
-];
 
 type Fields = {
   name: string;
@@ -39,11 +33,16 @@ const EMPTY: Fields = {
   notes: "",
 };
 
+type Line = { name: string; variantLabel: string | null; price: number; quantity: number };
+
 export function CheckoutForm() {
-  const { items, subtotal, count } = useCart();
+  const { items, subtotal, count, clear } = useCart();
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [touched, setTouched] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [placed, setPlaced] = useState<{ ref: string | null; message: string } | null>(null);
 
   const set = <K extends keyof Fields>(key: K, value: Fields[K]) =>
     setFields((current) => ({ ...current, [key]: value }));
@@ -65,19 +64,21 @@ export function CheckoutForm() {
 
   const isValid = Object.keys(errors).length === 0 && items.length > 0;
 
-  const message = useMemo(() => {
-    const lines = [
+  const buildMessage = (ref: string | null, lines: Line[], total: number) => {
+    const units = lines.reduce((n, line) => n + line.quantity, 0);
+    const lineText = [
       `As-salamu alaykum ${site.name}, I would like to place an order.`,
+      ...(ref ? ["", `*Order ref:* ${ref}`] : []),
       "",
       "*ORDER*",
-      ...items.map(
-        (item) =>
-          `• ${item.name}${item.variantLabel ? ` (${item.variantLabel})` : ""} × ${item.quantity} — ${formatPrice(
-            item.price * item.quantity,
+      ...lines.map(
+        (line) =>
+          `• ${line.name}${line.variantLabel ? ` (${line.variantLabel})` : ""} × ${line.quantity} — ${formatPrice(
+            line.price * line.quantity,
           )}`,
       ),
       "",
-      `*Subtotal:* ${formatPrice(subtotal)} (${count} ${count === 1 ? "item" : "items"})`,
+      `*Subtotal:* ${formatPrice(total)} (${units} ${units === 1 ? "item" : "items"})`,
       "",
       "*MY DETAILS*",
       `Name: ${fields.name.trim() || "—"}`,
@@ -90,18 +91,118 @@ export function CheckoutForm() {
       "",
       "Please confirm availability and the delivery fee. Jazakum Allahu khayran.",
     ];
-    return lines.join("\n");
-  }, [items, subtotal, count, fields]);
+    return lineText.join("\n");
+  };
+
+  const cartLines: Line[] = items.map(({ name, variantLabel, price, quantity }) => ({ name, variantLabel, price, quantity }));
+  const message = buildMessage(placed?.ref ?? null, cartLines, subtotal);
+
+  const placeOrder = async () => {
+    setTouched(true);
+    setServerError(null);
+    if (!isValid || submitting) return;
+    setSubmitting(true);
+    // Open the tab while we still have the click: browsers block pop-ups opened after an await.
+    const tab = window.open("", "_blank");
+
+    let ref: string | null = null;
+    let lines = cartLines;
+    let total = subtotal;
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: { name: fields.name, phone: fields.phone, email: fields.email },
+          fulfilment: fields.fulfilment,
+          shipping: { state: fields.state, city: fields.city, address: fields.address },
+          note: fields.notes,
+          items: items.map(({ productId, variantId, slug, variantLabel, quantity }) => ({
+            productId,
+            variantId,
+            slug,
+            variantLabel,
+            quantity,
+          })),
+        }),
+      });
+      const data = (await response.json().catch(() => ({}))) as {
+        ref?: string;
+        subtotal?: number;
+        items?: Line[];
+        error?: string;
+      };
+      if (response.ok && data.ref) {
+        ref = data.ref;
+        lines = data.items ?? lines;
+        total = data.subtotal ?? total;
+      } else if (response.status === 400 || response.status === 409) {
+        tab?.close();
+        setServerError(data.error ?? "Please check your bag and try again.");
+        setSubmitting(false);
+        return;
+      }
+    } catch {
+      // Offline or the server is down: still send the order by WhatsApp rather than lose it.
+    }
+
+    const text = buildMessage(ref, lines, total);
+    const link = whatsappLink(text);
+    if (tab) {
+      tab.opener = null;
+      tab.location.href = link;
+    } else {
+      window.location.href = link;
+    }
+    setPlaced({ ref, message: text });
+    clear();
+    setSubmitting(false);
+  };
 
   const copyOrder = async () => {
     try {
-      await navigator.clipboard.writeText(message);
+      await navigator.clipboard.writeText(placed?.message ?? message);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2200);
     } catch {
       setCopied(false);
     }
   };
+
+  if (placed) {
+    return (
+      <div className="mx-auto max-w-xl rounded-2xl border border-sand-200 bg-white p-7 text-center shadow-card sm:p-10">
+        <CircleCheckIcon className="mx-auto size-12 text-forest-600" />
+        <h2 className="mt-4 text-3xl">{placed.ref ? `Order ${placed.ref} is ready` : "Your order is ready"}</h2>
+        <p className="mx-auto mt-3 max-w-md text-[0.9rem] leading-relaxed text-ink-600">
+          We have opened WhatsApp with your order filled in. <strong>Press send</strong> so it reaches us — we will confirm
+          stock and the delivery fee, in shaa Allah.
+        </p>
+        {placed.ref ? (
+          <p className="mt-3 text-[0.8rem] text-ink-500">
+            Keep your reference <strong className="text-ink-800">{placed.ref}</strong> for pickup or any questions.
+          </p>
+        ) : null}
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <a
+            href={whatsappLink(placed.message)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClass({ variant: "whatsapp", size: "lg" })}
+          >
+            <WhatsappIcon className="size-4" />
+            Open WhatsApp again
+          </a>
+          <button type="button" onClick={copyOrder} className={buttonClass({ variant: "outline", size: "lg" })}>
+            {copied ? "Copied" : "Copy order details"}
+          </button>
+        </div>
+        <Link href="/shop" className="mt-6 inline-block text-[0.8rem] font-medium text-forest-700 hover:text-forest-900">
+          Continue shopping →
+        </Link>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -124,8 +225,7 @@ export function CheckoutForm() {
         className="space-y-8"
         onSubmit={(event) => {
           event.preventDefault();
-          setTouched(true);
-          if (isValid) window.open(whatsappLink(message), "_blank", "noopener");
+          void placeOrder();
         }}
       >
         <section>
@@ -275,9 +375,13 @@ export function CheckoutForm() {
         </section>
 
         <div className="space-y-3">
-          <button type="submit" className={cx(buttonClass({ variant: "whatsapp", size: "lg" }), "w-full")}>
+          <button
+            type="submit"
+            disabled={submitting}
+            className={cx(buttonClass({ variant: "whatsapp", size: "lg" }), "w-full")}
+          >
             <WhatsappIcon className="size-4" />
-            Send my order on WhatsApp
+            {submitting ? "Preparing your order…" : "Send my order on WhatsApp"}
           </button>
           <button
             type="button"
@@ -292,6 +396,11 @@ export function CheckoutForm() {
               "Copy order details instead"
             )}
           </button>
+          {serverError ? (
+            <p role="alert" className="rounded-md bg-berry-500/8 px-3 py-2 text-center text-[0.8rem] font-medium text-berry-600">
+              {serverError}
+            </p>
+          ) : null}
           {touched && !isValid ? (
             <p className="text-center text-[0.78rem] text-berry-600">
               Please complete the highlighted fields above.

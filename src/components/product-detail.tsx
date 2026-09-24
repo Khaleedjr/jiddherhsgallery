@@ -62,6 +62,8 @@ export function ProductDetail({ product }: { product: Product }) {
   const handleAdd = () => {
     add(
       {
+        productId: product.id,
+        variantId: variant?.id ?? null,
         slug: product.slug,
         name: product.name,
         variantLabel: variant?.label ?? null,

@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { ArrowRightIcon, StarKhatimIcon } from "@/components/icons";
 import { ButtonLink, Container } from "@/components/ui";
-import { departments } from "@/lib/catalog";
+import { StoreShell } from "@/components/store-shell";
+import { taxonomy } from "@/lib/catalog";
 
 export default function NotFound() {
+  const { departments } = taxonomy;
   return (
+    <StoreShell>
     <section className="relative overflow-hidden bg-forest-950 text-sand-100">
       <div className="pattern-girih-light absolute inset-0 opacity-25" aria-hidden />
       <Container className="relative flex min-h-[70vh] flex-col items-center justify-center py-20 text-center">
@@ -40,5 +43,6 @@ export default function NotFound() {
         </div>
       </Container>
     </section>
+    </StoreShell>
   );
 }
