@@ -113,14 +113,14 @@ export function StatTile({
   const body = (
     <>
       <p className="text-[0.75rem] font-medium text-ink-500">{label}</p>
-      <p className="mt-1.5 font-sans text-[1.6rem] leading-none font-semibold tracking-tight text-ink-900 tabular-nums">{value}</p>
+      <p className="mt-1.5 font-sans text-[1.3rem] leading-none font-semibold tracking-tight text-ink-900 tabular-nums sm:text-[1.6rem]">{value}</p>
       <div className="mt-2.5 flex min-h-5 flex-wrap items-center gap-x-2 gap-y-1 text-[0.74rem]">
         {change !== undefined ? <Delta change={change} invert={invert} /> : null}
         {hint ? <span className="text-ink-500">{hint}</span> : null}
       </div>
     </>
   );
-  const className = "block rounded-xl border border-sand-200 bg-white p-4 shadow-[0_1px_2px_rgb(22_19_15/0.04)] sm:p-5";
+  const className = "block min-w-0 rounded-xl border border-sand-200 bg-white p-4 shadow-[0_1px_2px_rgb(22_19_15/0.04)] sm:p-5";
   return href ? (
     <Link href={href} className={cx(className, "transition hover:border-sand-400")}>
       {body}

@@ -422,7 +422,7 @@ export function ProductEditor({
           {children}
         </div>
 
-        <div className="space-y-6 lg:sticky lg:top-6">
+        <div className="min-w-0 space-y-6 lg:sticky lg:top-6">
           <Panel title="Publish">
             <div className="space-y-4">
               <fieldset className="grid grid-cols-2 gap-2">

@@ -275,7 +275,7 @@ export function ManualOrderForm({ products, customers }: { products: PickerProdu
         </Block>
       </div>
 
-      <div className="space-y-6 lg:sticky lg:top-6">
+      <div className="min-w-0 space-y-6 lg:sticky lg:top-6">
         <Block title="Order">
           <div className="space-y-4">
             <Field label="Came in through" htmlFor="mo-channel">

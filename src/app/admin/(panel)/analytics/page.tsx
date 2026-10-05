@@ -114,7 +114,7 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
             format={(v) => `${formatNumber(v)}`}
           />
         </Card>
-        <div className="space-y-6 lg:col-span-2 xl:col-span-1">
+        <div className="min-w-0 space-y-6 lg:col-span-2 xl:col-span-1">
           <Card title="How orders arrive">
             <RankedBars rows={a.channels.map((row) => ({ key: row.key, label: row.label, value: row.count }))} format={(v) => formatNumber(v)} />
           </Card>

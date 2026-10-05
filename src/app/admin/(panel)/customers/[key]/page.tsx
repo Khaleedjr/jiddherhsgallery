@@ -109,7 +109,7 @@ export default async function CustomerPage({ params }: { params: Promise<Params>
           </div>
         </Card>
 
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-6">
           <Card title="Contact">
             <ul className="space-y-2.5 text-[0.82rem]">
               <li className="flex items-center gap-2.5">
