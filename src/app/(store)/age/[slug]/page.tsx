@@ -53,7 +53,7 @@ export default async function AgePage({ params }: { params: Promise<Params> }) {
               className={cx(
                 "flex min-h-10 items-center gap-1.5 rounded-full border-[1.5px] px-4 py-1.5 text-[0.82rem] font-semibold whitespace-nowrap transition active:scale-[0.97]",
                 group.slug === age.slug
-                  ? "border-coal-900 bg-coal-900 text-gold-500"
+                  ? "tone-ink border-coal-900 bg-coal-900 text-gold-500"
                   : "border-coal-900/35 text-ink-900 hover:border-coal-900 hover:bg-coal-900/10",
               )}
             >

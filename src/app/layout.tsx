@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Amiri, Bricolage_Grotesque, Instrument_Sans, Sacramento } from "next/font/google";
 import "./globals.css";
+import { ThemeScript } from "@/components/theme-script";
 import { site } from "@/lib/site";
 
 const instrument = Instrument_Sans({
@@ -72,7 +73,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-NG" className={`${instrument.variable} ${bricolage.variable} ${sacramento.variable} ${amiri.variable}`}>
+    // The boot script may set data-theme before React hydrates, hence suppressHydrationWarning.
+    <html
+      lang="en-NG"
+      className={`${instrument.variable} ${bricolage.variable} ${sacramento.variable} ${amiri.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <ThemeScript />
+      </head>
       <body className="flex min-h-dvh flex-col">{children}</body>
     </html>
   );

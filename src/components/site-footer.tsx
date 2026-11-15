@@ -16,7 +16,7 @@ export function SiteFooter({
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-coal-900 text-coal-300">
+    <footer className="tone-band bg-coal-900 text-coal-300">
       <Container className="py-14 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">

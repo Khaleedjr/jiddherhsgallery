@@ -138,10 +138,14 @@
 }
 
 @layer components {
-  /* Eight-point star lattice in black line, laid faintly over gold or paper. */
-  .lattice {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%2314110a' stroke-width='1'%3E%3Cpath d='M48 6 58 24 78 18 72 38 90 48 72 58 78 78 58 72 48 90 38 72 18 78 24 58 6 48 24 38 18 18 38 24Z'/%3E%3Ccircle cx='48' cy='48' r='11'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 96px 96px;
+  /* The rosette pattern from the old jiddersgallery.com.ng hero: one seamless
+     477×276 tile of black line at full strength, drawn at a third of its size
+     (exactly 159×92, so the tiles meet without seams) to sit back as a quiet
+     texture. Set its strength with opacity. A rosette sits at the centre. */
+  .rosette {
+    background-image: url("/pattern-rosette.webp");
+    background-size: 159px 92px;
+    background-position: center;
   }
 
   /* Mihrab arch: a round top over a straight-sided frame. */
@@ -437,4 +441,117 @@
 }
 .dz-index-photo {
   transition: opacity 300ms ease;
+}
+
+/* ------------------------------------------------------------------------
+   Light mode
+   The store's normal look is gold, black and white. Light mode (the sun
+   button in the header sets <html data-theme="light">) swaps the black for
+   white. Each coloured area of the storefront names its role with a tone
+   class, and light mode re-points the colour tokens inside it, so every
+   bg-, text-, border- and fill- class beneath follows without being edited:
+     .tone-gold   a gold band. Black text, lines and shapes on it turn white.
+     .tone-ink    a black surface (card, button, arch, drawer, badge). It turns
+                  white, and the light text and drawings on it turn dark and
+                  deep gold, so they stay readable.
+     .tone-band   a full-width black band (promises, footer, dark page headers).
+                  As tone-ink, but cream, so it still reads as a band.
+     .tone-paper  a white panel inside a gold band (menus, search): normal colours.
+   In the normal look these classes do nothing. The admin uses none of them.
+   The hero arches (.arch-tone) are the one swap: white in the normal look
+   and black in light mode, so they always stand apart from the black or
+   white buttons and text around them.
+   ------------------------------------------------------------------------ */
+
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+@layer base {
+  [data-theme="light"] .tone-gold {
+    --color-coal-950: #ffffff;
+    --color-coal-900: #ffffff;
+    --color-coal-800: #fffaf0;
+    --color-coal-700: #fdf3df;
+    --color-ink-900: #ffffff;
+    --color-ink-800: #fffaf0;
+    --color-ink-700: #fdf3df;
+    --color-ink-600: #fbeed3;
+    --color-ink-500: #f8e8c6;
+    --color-ink-400: #f3dfb4;
+    --color-black: #fbf4e4;
+  }
+
+  [data-theme="light"] :is(.tone-ink, .tone-band),
+  :root:not([data-theme="light"]) .arch-tone {
+    --color-coal-950: #ffffff;
+    --color-coal-900: #ffffff;
+    --color-coal-800: #faf5ea;
+    --color-coal-700: #f2e9d5;
+    --color-coal-600: #e3d8bf;
+    --color-coal-500: #8a7f69;
+    --color-coal-400: #6f6450;
+    --color-coal-300: #5d5341;
+    --color-coal-200: #3d3423;
+    --color-coal-100: #2b2418;
+    --color-coal-50: #14110a;
+    --color-sand-50: #14110a;
+    --color-sand-100: #2a2418;
+    --color-sand-200: #403829;
+    --color-sand-300: #5d5341;
+    --color-sand-400: #6f6450;
+    --color-ink-900: #14110a;
+    --color-ink-800: #2a2418;
+    --color-ink-700: #403829;
+    --color-ink-600: #5d5341;
+    --color-ink-500: #6f6450;
+    --color-ink-400: #978b74;
+    /* Brand gold is too pale for text on white: use the deeper golds. */
+    --color-gold-200: #a87d27;
+    --color-gold-300: #a87d27;
+    --color-gold-400: #a87d27;
+    --color-gold-500: #a87d27;
+    --color-gold-600: #82601e;
+    --color-gold-700: #6a4d16;
+    --color-white: #14110a;
+    --color-black: #f2e9d5;
+  }
+
+  /* On the white arches the drawings keep their own colours: the black
+     accents (the falling block, the letters, the Qur'an's lines, the tassel)
+     stay black, and what was white becomes pale gold so it shows on white. */
+  :root:not([data-theme="light"]) .arch-tone .art {
+    --color-sand-50: #e6c983;
+    --color-sand-200: #d8b061;
+    --color-coal-900: #14110a;
+  }
+
+  [data-theme="light"] .tone-band {
+    --color-coal-950: #f1e7cf;
+    --color-coal-900: #f1e7cf;
+    --color-coal-800: #e9dcbf;
+  }
+
+  [data-theme="light"] :is(.tone-paper, .arch-tone) {
+    --color-coal-950: #0b0905;
+    --color-coal-900: #14110a;
+    --color-coal-800: #1d1810;
+    --color-coal-700: #2b2418;
+    --color-ink-900: #14110a;
+    --color-ink-800: #2a2418;
+    --color-ink-700: #403829;
+    --color-ink-600: #5d5341;
+    --color-ink-500: #6f6450;
+    --color-ink-400: #978b74;
+    --color-white: #ffffff;
+    --color-black: #000000;
+  }
+
+  /* Text that only inherits its colour (no text- class of its own) starts
+     again from the area's re-pointed default. :where keeps this weaker than
+     any text- class, so those still win. */
+  :where([data-theme="light"]) :where(.tone-gold, .tone-paper) {
+    color: var(--color-ink-900);
+  }
+  :where([data-theme="light"]) :where(.tone-ink, .tone-band) {
+    color: var(--color-sand-50);
+  }
 }

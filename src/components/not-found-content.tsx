@@ -11,7 +11,7 @@ import { taxonomy } from "@/lib/catalog";
 export function NotFoundContent() {
   const { departments } = taxonomy;
   return (
-    <section className="relative overflow-hidden bg-coal-950 text-sand-100">
+    <section className="tone-band relative overflow-hidden bg-coal-950 text-sand-100">
       <div className="pattern-girih-light absolute inset-0 opacity-25" aria-hidden />
       <Container className="relative flex min-h-[70vh] flex-col items-center justify-center py-20 text-center">
         <StarKhatimIcon className="size-10 text-gold-300" />

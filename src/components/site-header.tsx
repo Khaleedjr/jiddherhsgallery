@@ -15,6 +15,7 @@ import {
   StarKhatimIcon,
   WhatsappIcon,
 } from "@/components/icons";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { cx } from "@/components/ui";
 import { site, whatsappLink } from "@/lib/site";
 import type { AgeGroup, Department } from "@/lib/types";
@@ -146,7 +147,7 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
 
   return (
     <>
-      <header className={cx("sticky top-0 z-40 bg-gold-500 text-ink-900 transition-shadow duration-300", scrolled && "shadow-[0_12px_28px_-20px_rgba(20,17,10,0.75)]")}>
+      <header className={cx("tone-gold sticky top-0 z-40 bg-gold-500 text-ink-900 transition-shadow duration-300", scrolled && "shadow-[0_12px_28px_-20px_rgba(20,17,10,0.75)]")}>
         <div className="mx-auto grid h-16 w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 sm:h-20 sm:px-6 lg:gap-6 lg:px-8">
           <div className="flex items-center">
             <button
@@ -157,6 +158,7 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
             >
               <MenuIcon className="size-5" />
             </button>
+            <ThemeToggle className="lg:hidden" />
             <nav className="hidden items-center gap-5 lg:flex xl:gap-8" aria-label="Departments">
               {left.map((dept) => department(dept, "left"))}
             </nav>
@@ -200,6 +202,8 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
               </Link>
             </nav>
 
+            <ThemeToggle className="max-lg:hidden" />
+
             <button
               type="button"
               onClick={() => setSearchOpen((open) => !open)}
@@ -218,7 +222,7 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
             >
               <BagIcon className="size-5" />
               {count > 0 ? (
-                <span className="absolute top-0.5 right-0.5 grid min-w-[1.2rem] place-items-center rounded-full bg-coal-900 px-1 text-[0.65rem] font-bold text-gold-500 tabular-nums ring-2 ring-gold-500">
+                <span className="tone-ink absolute top-0.5 right-0.5 grid min-w-[1.2rem] place-items-center rounded-full bg-coal-900 px-1 text-[0.65rem] font-bold text-gold-500 tabular-nums ring-2 ring-gold-500">
                   {count > 99 ? "99+" : count}
                 </span>
               ) : null}
@@ -234,7 +238,7 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
         </div>
 
         {searchOpen ? (
-          <div className="animate-fade border-t border-coal-900/15 bg-sand-50">
+          <div className="tone-paper animate-fade border-t border-coal-900/15 bg-sand-50">
             <form onSubmit={submitSearch} className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3.5 sm:px-6 lg:px-8">
               <SearchIcon className="size-5 shrink-0 text-ink-500" />
               <input
@@ -283,7 +287,7 @@ function Dropdown({ align, wide = false, children }: { align: "left" | "right"; 
     <div className={cx("animate-fade absolute top-full pt-3", align === "left" ? "-left-3" : "-right-3")}>
       <div
         className={cx(
-          "overflow-hidden rounded-[1.25rem] bg-sand-50 p-2 shadow-[0_24px_48px_-24px_rgba(20,17,10,0.55)] ring-1 ring-coal-900/10",
+          "tone-paper overflow-hidden rounded-[1.25rem] bg-sand-50 p-2 shadow-[0_24px_48px_-24px_rgba(20,17,10,0.55)] ring-1 ring-coal-900/10",
           wide ? "w-80" : "w-72",
         )}
       >
@@ -308,7 +312,7 @@ function MobileNav({
   return (
     <div className="fixed inset-0 z-50 lg:hidden">
       <button type="button" onClick={onClose} className="absolute inset-0 bg-coal-950/55 backdrop-blur-[2px]" aria-label="Close menu" />
-      <div className="animate-slide-in absolute inset-y-0 left-0 flex w-[min(21rem,88vw)] flex-col bg-coal-900 text-sand-50 shadow-2xl" role="dialog" aria-label="Menu">
+      <div className="tone-ink animate-slide-in absolute inset-y-0 left-0 flex w-[min(21rem,88vw)] flex-col bg-coal-900 text-sand-50 shadow-2xl" role="dialog" aria-label="Menu">
         <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/10 px-5">
           <Image src="/logo.png" alt={site.name} width={40} height={40} className="size-10 rounded-full" />
           <button type="button" onClick={onClose} className="grid size-11 place-items-center rounded-full transition hover:bg-white/10" aria-label="Close menu">

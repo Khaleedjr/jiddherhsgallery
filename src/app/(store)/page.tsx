@@ -1,9 +1,10 @@
+import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { PlayScene, ReadScene, WorshipScene } from "@/components/home/hero-art";
-import { ArrowRightIcon, ClockIcon, ShieldIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
+import { ArrowRightIcon, ClockIcon, SearchIcon, ShieldIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
 import { Container, cx } from "@/components/ui";
 import { formatPrice } from "@/lib/format";
 import { ageFigure, getHomeData, type HomeData } from "@/lib/home";
@@ -38,7 +39,7 @@ export default async function HomePage() {
 
 const caps = "text-[0.72rem] font-semibold tracking-[0.2em] uppercase";
 const btnInk =
-  "inline-flex h-13 items-center justify-center gap-2 rounded-full bg-coal-900 px-8 text-[0.95rem] font-semibold text-gold-500 transition duration-200 hover:bg-black active:scale-[0.97]";
+  "tone-ink inline-flex h-13 items-center justify-center gap-2 rounded-full bg-coal-900 px-8 text-[0.95rem] font-semibold text-gold-500 transition duration-200 hover:bg-black active:scale-[0.97]";
 const btnLine =
   "inline-flex h-13 items-center justify-center gap-2 rounded-full border-[1.5px] border-coal-900 px-8 text-[0.95rem] font-semibold text-coal-900 transition duration-200 hover:bg-coal-900 hover:text-gold-500 active:scale-[0.97]";
 
@@ -54,7 +55,7 @@ function Hero({ data }: { data: HomeData }) {
   const arch = (dept: HomeData["departments"][number] | undefined, word: string, scene: ReactNode, className: string) =>
     dept ? (
       <Link href={`/collections/${dept.slug}`} className="group block" aria-label={`${word}: shop ${dept.name}`}>
-        <span className={cx("arch block bg-coal-900 p-2 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5", className)}>
+        <span className={cx("arch-tone arch block bg-coal-900 p-2 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5", className)}>
           <span className="arch relative block h-full border border-sand-50/35">{scene}</span>
         </span>
         <span className={cx(caps, "mt-4 block pb-1 text-center")}>{word}</span>
@@ -65,29 +66,23 @@ function Hero({ data }: { data: HomeData }) {
   /* Phones and tablets stack everything on the centre line. From laptops up the
      words and the arches sit side by side, so the whole hero fits in the first screen. */
   return (
-    <section className="relative overflow-hidden bg-gold-500">
-      <div className="lattice absolute inset-0 opacity-[0.07]" aria-hidden />
-      <div
-        className="absolute inset-0 bg-[radial-gradient(70%_55%_at_50%_32%,var(--color-gold-500)_35%,transparent)] lg:bg-[radial-gradient(45%_70%_at_27%_50%,var(--color-gold-500)_40%,transparent)]"
-        aria-hidden
-      />
+    <section className="tone-gold relative overflow-hidden bg-gold-500">
+      <div className="rosette absolute inset-0 opacity-[0.07]" aria-hidden />
       <Container className="relative grid items-center pt-6 pb-12 text-center sm:pt-12 sm:pb-20 lg:grid-cols-2 lg:gap-12 lg:py-16 lg:text-left xl:gap-20">
         <div>
           <p className="font-arabic text-3xl" dir="rtl" lang="ar">
             أهلاً وسهلاً
           </p>
-          <h1 className="mx-auto mt-4 max-w-4xl text-[clamp(2.7rem,6.200vw,5.250rem)] leading-[0.98] font-[750] tracking-[-0.035em] text-balance lg:mx-0 lg:text-[clamp(3rem,4.600vw,4.600rem)]">
+          <h1 className="mx-auto mt-4 max-w-4xl text-[clamp(2.7rem,6.200vw,5.250rem)] leading-[0.98] font-[750] tracking-[-0.035em] text-balance lg:mx-0 lg:text-[clamp(3rem,4.600vw,4.600rem)] text-white">
             Nurturing towards Jannah
           </h1>
           <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-ink-900/85 lg:mx-0 lg:max-w-md">
-            Islamic books, toys and ibadah essentials for every age, chosen with purpose and delivered nationwide.
+            <span className="block">Welcome to {site.name}.</span>{" "}
+            A reliable spot to nurture every home towards Jannah with Islamic resources chosen with purpose.
           </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
-            <Link href="/collections/best-seller" className={cx(btnInk, "max-sm:w-full")}>
-              Explore best sellers
-              <ArrowRightIcon className="size-4" />
-            </Link>
-            <Link href="/shop" className={cx(btnLine, "max-sm:w-full")}>
+          <div className="mt-9 flex flex-col gap-3 sm:mx-auto sm:max-w-xl sm:flex-row lg:mx-0 lg:max-w-none">
+            <HeroSearch />
+            <Link href="/shop" className={cx(btnLine, "shrink-0")}>
               Shop all products
             </Link>
           </div>
@@ -101,6 +96,42 @@ function Hero({ data }: { data: HomeData }) {
         </div>
       </Container>
     </section>
+  );
+}
+
+/**
+ * The hero's search: a black pill like the buttons, with the field inside it.
+ * A plain GET form to /search (next/form adds client-side navigation), so it
+ * works before any JavaScript has loaded.
+ */
+function HeroSearch() {
+  return (
+    <Form
+      action="/search"
+      role="search"
+      className="tone-ink flex h-13 min-w-0 items-center gap-2 rounded-full bg-coal-900 py-1.5 pr-1.5 pl-5 text-sand-50 transition-shadow focus-within:ring-2 focus-within:ring-sand-50/70 sm:flex-1"
+    >
+      <SearchIcon className="size-5 shrink-0 text-gold-500" />
+      <label htmlFor="hero-search" className="sr-only">
+        Search the store
+      </label>
+      <input
+        id="hero-search"
+        name="q"
+        type="search"
+        required
+        enterKeyHint="search"
+        autoComplete="off"
+        placeholder="Search Qur'an, books, toys…"
+        className="h-full min-w-0 flex-1 bg-transparent text-[0.95rem] text-sand-50 outline-none placeholder:text-sand-50/55 focus-visible:shadow-none focus-visible:outline-none"
+      />
+      <button
+        type="submit"
+        className="h-full shrink-0 rounded-full bg-gold-500 px-5 text-sm font-semibold text-coal-900 transition hover:bg-gold-400 active:scale-[0.97]"
+      >
+        Search
+      </button>
+    </Form>
   );
 }
 
@@ -138,36 +169,40 @@ function Ages({ data }: { data: HomeData }) {
   );
 }
 
-/** Black cards with a round photo, two by two on a phone so all four fit on one screen. */
+/**
+ * Black cards with a round photo, two by two on a phone so all four fit on one
+ * screen. On laptops the grid is held narrower than the page, so the cards stay
+ * compact instead of stretching into wide, near-empty slabs.
+ */
 function Departments({ data }: { data: HomeData }) {
   return (
-    <section className="bg-gold-500 py-12 sm:py-24">
+    <section className="tone-gold bg-gold-500 py-12 sm:py-24 lg:py-20">
       <Container>
         <h2 className="text-center text-3xl sm:text-5xl">Shop by department</h2>
-        <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:gap-6">
+        <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:mx-auto lg:mt-10 lg:max-w-5xl lg:gap-5">
           {data.departments.map((dept) => (
             <li key={dept.slug}>
               <Link
                 href={`/collections/${dept.slug}`}
-                className="group flex h-full flex-col-reverse justify-end gap-4 rounded-[1.5rem] bg-coal-900 p-4 text-sand-50 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 active:scale-[0.98] sm:p-6 lg:flex-row lg:items-center lg:justify-start lg:gap-8 lg:rounded-[2rem] lg:p-8"
+                className="tone-ink group flex h-full flex-col-reverse justify-end gap-4 rounded-[1.5rem] bg-coal-900 p-4 text-sand-50 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 active:scale-[0.98] sm:p-6 lg:flex-row lg:items-center lg:justify-start lg:gap-6 lg:rounded-[1.75rem] lg:p-6 xl:p-7"
               >
                 <span className="min-w-0 flex-1">
-                  <span className="block font-display text-xl leading-tight font-[750] tracking-tight text-gold-500 sm:text-3xl lg:text-4xl lg:leading-none">
+                  <span className="block font-display text-xl leading-tight font-[750] tracking-tight text-gold-500 sm:text-3xl lg:text-[1.75rem] lg:leading-none">
                     {dept.name}
                   </span>
-                  <span className="mt-1 block text-sm text-coal-300 tabular-nums lg:mt-3">{dept.count} products</span>
+                  <span className="mt-1 block text-sm text-coal-300 tabular-nums lg:mt-2">{dept.count} products</span>
                   <span className="mt-2 line-clamp-2 text-sm leading-relaxed text-coal-300 max-lg:hidden">
                     {dept.children.slice(0, 4).map((child) => child.name).join(", ")}
                   </span>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold max-lg:hidden">
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold max-lg:hidden">
                     Shop {dept.name.toLowerCase()}
                     <ArrowRightIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 </span>
-                <span className="relative size-16 shrink-0 overflow-hidden rounded-full sm:size-24 lg:size-40">
+                <span className="relative size-16 shrink-0 overflow-hidden rounded-full sm:size-24 lg:size-28">
                   <Photo
                     src={dept.image}
-                    sizes="(min-width: 1024px) 10rem, 6rem"
+                    sizes="(min-width: 1024px) 7rem, 6rem"
                     className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                   />
                 </span>
@@ -190,8 +225,8 @@ function Quran({ products }: { products: CardProduct[] }) {
   return (
     <section aria-label="The Qur'an shelf" className="bg-sand-50 py-10 sm:py-20">
       <Container>
-        <div className="flex flex-col items-center gap-6 rounded-[1.5rem] bg-sand-200 p-6 sm:gap-8 sm:p-10 lg:rounded-[2rem] lg:p-14">
-          <ul className="flex w-full max-w-lg items-center justify-center lg:max-w-3xl">
+        <div className="flex flex-col items-center gap-6 rounded-[1.5rem] bg-sand-200 p-6 sm:gap-8 sm:p-10 lg:mx-auto lg:max-w-5xl lg:rounded-[1.75rem]">
+          <ul className="flex w-full max-w-lg items-center justify-center lg:max-w-xl">
             {products.map((pick, index) => (
               <li
                 key={pick.slug}
@@ -202,7 +237,7 @@ function Quran({ products }: { products: CardProduct[] }) {
                   aria-label={pick.name}
                   className="relative block aspect-square overflow-hidden rounded-full border-[6px] border-sand-200 bg-gold-500 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 sm:border-[8px]"
                 >
-                  <Photo src={pick.image} sizes="(min-width: 1024px) 14rem, (min-width: 640px) 12rem, 36vw" />
+                  <Photo src={pick.image} sizes="(min-width: 640px) 12rem, 36vw" />
                 </Link>
               </li>
             ))}
@@ -225,14 +260,14 @@ function Promises() {
     { Icon: ShieldIcon, title: "Secure payments", copy: "Your transactions are safeguarded at checkout." },
   ];
   return (
-    <section className="bg-coal-900 text-sand-50">
+    <section className="tone-band bg-coal-900 text-sand-50">
       <Container>
         <ul className="grid divide-y divide-white/10 py-3 md:grid-cols-3 md:divide-x md:divide-y-0 md:py-0">
           {items.map(({ Icon, title, copy }) => (
-            <li key={title} className="flex gap-4 py-5 md:block md:px-8 md:py-12 md:first:pl-0 md:last:pr-0">
-              <Icon className="mt-0.5 size-6 shrink-0 text-gold-500" />
+            <li key={title} className="flex gap-4 py-5 md:block md:px-8 md:py-10 md:first:pl-0 md:last:pr-0">
+              <Icon className="mt-0.5 size-6 shrink-0 text-gold-500 md:size-5" />
               <div>
-                <p className="font-display text-lg leading-tight font-[750] tracking-tight text-gold-500 md:mt-4 md:text-2xl">{title}</p>
+                <p className="font-display text-lg leading-tight font-[750] tracking-tight text-gold-500 md:mt-3 md:text-xl">{title}</p>
                 <p className="mt-1 text-sm text-coal-300 md:mt-2">{copy}</p>
               </div>
             </li>
@@ -246,7 +281,7 @@ function Promises() {
 /** A line of the logo's white script, the question, and two ways to reach the store. */
 function Help() {
   return (
-    <section className="bg-gold-500 py-14 text-center sm:py-28">
+    <section className="tone-gold bg-gold-500 py-14 text-center sm:py-28">
       <Container className="max-w-3xl">
         <p className="font-script text-5xl leading-none text-white sm:text-6xl" aria-hidden>
           Gifts, made easy

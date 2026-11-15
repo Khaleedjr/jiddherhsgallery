@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 
 /**
  * The band at the top of every inner page, in design 4's colours: gold with
- * the faint star lattice (the homepage hero's wall), or black for the
- * quieter story and contact pages.
+ * the old site's faint rosette pattern (as on the homepage hero), or black
+ * for the quieter story and contact pages.
  */
 export function PageHeader({
   eyebrow,
@@ -24,8 +24,8 @@ export function PageHeader({
   const dark = tone === "ink";
 
   return (
-    <section className={cx("relative overflow-hidden", dark ? "bg-coal-900 text-sand-50" : "bg-gold-500 text-ink-900")}>
-      <div className={cx("absolute inset-0", dark ? "pattern-girih-light opacity-20" : "lattice opacity-[0.07]")} aria-hidden />
+    <section className={cx("relative overflow-hidden", dark ? "tone-band bg-coal-900 text-sand-50" : "tone-gold bg-gold-500 text-ink-900")}>
+      <div className={cx("absolute inset-0", dark ? "pattern-girih-light opacity-20" : "rosette opacity-[0.07]")} aria-hidden />
       <Container className="relative py-10 sm:py-16">
         {trail ? <Breadcrumbs trail={trail} tone={dark ? "light" : "dark"} /> : null}
         <div className={cx(trail && "mt-5 sm:mt-6")}>

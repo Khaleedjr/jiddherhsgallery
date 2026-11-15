@@ -166,7 +166,7 @@ export default async function AboutPage() {
       </Container>
 
       <Container className="pb-16 sm:pb-20">
-        <div className="relative overflow-hidden rounded-[1.5rem] bg-coal-900 px-6 py-14 text-center sm:px-12 lg:rounded-[2rem]">
+        <div className="tone-ink relative overflow-hidden rounded-[1.5rem] bg-coal-900 px-6 py-14 text-center sm:px-12 lg:rounded-[2rem]">
           <div className="pattern-girih-light absolute inset-0 opacity-25" aria-hidden />
           <div className="relative mx-auto max-w-xl">
             <StarKhatimIcon className="mx-auto size-7 text-gold-500" />
