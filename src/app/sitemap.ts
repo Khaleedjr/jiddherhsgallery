@@ -20,8 +20,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const categoryPages: MetadataRoute.Sitemap = departments.flatMap((dept) => [
     { url: url(`/collections/${dept.slug}`), lastModified: now, changeFrequency: "weekly" as const, priority: 0.8 },
-    ...dept.children.map((child) => ({
-      url: url(`/collections/${child.slug}`),
+    ...dept.children.flatMap((child) => [child, ...(child.children ?? [])]).map((node) => ({
+      url: url(`/collections/${node.slug}`),
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.7,

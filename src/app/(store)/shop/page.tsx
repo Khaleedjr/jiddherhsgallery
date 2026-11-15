@@ -6,7 +6,6 @@ import { PageHeader } from "@/components/page-header";
 import { ShopBrowser } from "@/components/shop-browser";
 import { Container } from "@/components/ui";
 import { getCatalog, toShopItem } from "@/lib/catalog";
-import type { Department } from "@/lib/types";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { catalogMeta } = await getCatalog();
@@ -18,7 +17,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ShopPage() {
-  const { ageGroups, catalogMeta, departments, products } = await getCatalog();
+  const { ageGroups, catalogMeta, collections, departments, products } = await getCatalog();
+  /* The four departments, then the two shelves people come looking for by name. */
+  const shelves: Shelf[] = [
+    ...departments.map(({ slug, name, image, count }) => ({ slug, name, image, count })),
+    ...["ramadan-collection", "our-production"].flatMap((slug) => {
+      const collection = collections.find((c) => c.slug === slug);
+      return collection && collection.count ? [{ slug, name: collection.name, image: collection.image ?? null, count: collection.count }] : [];
+    }),
+  ];
   const items = products.map(toShopItem);
 
   return (
@@ -29,7 +36,7 @@ export default async function ShopPage() {
         description={`Every title, toy and essential in the gallery — ${catalogMeta.productCount} products in total. Pick a department, or use the filters below to narrow by age, topic or price.`}
         trail={[{ label: "Home", href: "/" }, { label: "Shop" }]}
       >
-        <DepartmentTiles departments={departments} />
+        <ShelfTiles shelves={shelves} />
       </PageHeader>
 
       <Container className="py-10 sm:py-12">
@@ -41,17 +48,19 @@ export default async function ShopPage() {
   );
 }
 
+type Shelf = { slug: string; name: string; image: string | null; count: number };
+
 /**
- * The four departments, in sight before any product: outlined pills with a
- * round photo, drawn like the category buttons on the department pages so the
- * two read as one family. Two by two on a phone, one row of four from tablets
- * up. Each opens its department page, which lists that department's own categories.
+ * The departments plus the Ramadan Collection and Our Production, in sight
+ * before any product: outlined pills with a round photo, drawn like the
+ * category buttons on the department pages so the two read as one family.
+ * Two by two on a phone, three across on tablets, one row on wide screens.
  */
-function DepartmentTiles({ departments }: { departments: Department[] }) {
+function ShelfTiles({ shelves }: { shelves: Shelf[] }) {
   return (
-    <nav aria-label="Departments" className="mt-7 sm:mt-9">
-      <ul className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4">
-        {departments.map((dept) => (
+    <nav aria-label="Departments and collections" className="mt-7 sm:mt-9">
+      <ul className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 xl:grid-cols-6">
+        {shelves.map((dept) => (
           <li key={dept.slug}>
             <Link
               href={`/collections/${dept.slug}`}

@@ -9,7 +9,7 @@ import {
   TruckIcon,
   WhatsappIcon,
 } from "@/components/icons";
-import { Container, buttonClass, cx } from "@/components/ui";
+import { Container } from "@/components/ui";
 import { formatPrice } from "@/lib/format";
 import { site, whatsappLink } from "@/lib/site";
 
@@ -149,16 +149,6 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
-
-            <a
-              href={whatsappLink(`As-salamu alaykum ${site.name}, I would like to ask about delivery.`)}
-              target="_blank"
-              rel="noreferrer"
-              className={cx(buttonClass({ variant: "whatsapp", size: "lg" }), "mt-7 w-full")}
-            >
-              <WhatsappIcon className="size-4" />
-              Ask about delivery
-            </a>
           </div>
         </div>
       </Container>

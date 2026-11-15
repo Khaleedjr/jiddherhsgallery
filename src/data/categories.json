@@ -28,7 +28,53 @@
      "slug": "books/for-adults",
      "name": "For Adults",
      "count": 91,
-     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20250125_124914-1024x1024.jpg"
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2023/12/20250125_124914-1024x1024.jpg",
+     "children": [
+      {
+       "slug": "books/for-adults/arabic",
+       "name": "Arabic",
+       "count": 36,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818353822522-768x1024.jpg"
+      },
+      {
+       "slug": "books/for-adults/english",
+       "name": "English",
+       "count": 52,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20240520_163700-scaled-e1747502843689-992x1024.jpg"
+      }
+     ]
+    },
+    {
+     "slug": "books/special-categories",
+     "name": "Special Categories",
+     "count": 50,
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095025-1024x1024.jpg",
+     "children": [
+      {
+       "slug": "books/special-categories/collection-1",
+       "name": "Collection 1",
+       "count": 15,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/07/20240130_193019_copy_1080x1080.jpg"
+      },
+      {
+       "slug": "books/special-categories/collection-2",
+       "name": "Collection 2",
+       "count": 24,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/04/20240716_095025-1024x1024.jpg"
+      },
+      {
+       "slug": "books/special-categories/collection-3",
+       "name": "Collection 3",
+       "count": 3,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/20250125_131411-1024x1024.jpg"
+      },
+      {
+       "slug": "books/special-categories/collection-4",
+       "name": "Collection 4",
+       "count": 8,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/09/20240908_151229-1024x1024.jpg"
+      }
+     ]
     },
     {
      "slug": "books/ages-0-3",
@@ -78,7 +124,57 @@
      "slug": "toys-learning/stationery",
      "name": "Stationery",
      "count": 18,
-     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/306229719434419703-1.jpg"
+     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/306229719434419703-1.jpg",
+     "children": [
+      {
+       "slug": "toys-learning/stationery/colours",
+       "name": "Colours",
+       "count": 7,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2024/01/306229719434419703-1.jpg"
+      },
+      {
+       "slug": "toys-learning/stationery/counters-tweezer",
+       "name": "Counters/Tweezer",
+       "count": 2,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818323892910-1024x1024.jpeg"
+      },
+      {
+       "slug": "toys-learning/stationery/crafting-sheets",
+       "name": "Crafting sheets",
+       "count": 3,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/20250422_155254-scaled-e1764462492228-768x1024.jpg"
+      },
+      {
+       "slug": "toys-learning/stationery/eraser-and-cleaner",
+       "name": "Eraser and Cleaner",
+       "count": 1,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025112820595475740-1024x1024.jpeg"
+      },
+      {
+       "slug": "toys-learning/stationery/marker-and-duster",
+       "name": "Marker and duster",
+       "count": 1,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-08-at-02.40.21_0d19b889-1024x1024.jpg"
+      },
+      {
+       "slug": "toys-learning/stationery/pen-and-pencil",
+       "name": "Pen and Pencil",
+       "count": 2,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/1089658279884633918.jpg"
+      },
+      {
+       "slug": "toys-learning/stationery/pointers",
+       "name": "Pointers",
+       "count": 1,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/09/IMG_COM_2025110818324026825-1024x1024.jpeg"
+      },
+      {
+       "slug": "toys-learning/stationery/scissors",
+       "name": "Scissors",
+       "count": 1,
+       "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/11/IMG_COM_2025110818324011823-1024x1024.jpeg"
+      }
+     ]
     },
     {
      "slug": "toys-learning/flash-cards",
@@ -109,12 +205,6 @@
     {
      "slug": "ibadah-essentials/adhkar-flexes-stickers",
      "name": "Adhkar Flexes & Stickers",
-     "count": 8,
-     "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/3_20250227_011805_0002-768x768.png"
-    },
-    {
-     "slug": "ibadah-essentials/our-own-production",
-     "name": "Our Own Production",
      "count": 8,
      "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/02/3_20250227_011805_0002-768x768.png"
     },
@@ -212,17 +302,26 @@
   {
    "slug": "best-seller",
    "name": "Best Seller",
-   "count": 38
+   "count": 38,
+   "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260925_092618_8461-768x960.png"
   },
   {
    "slug": "new-arrivals",
    "name": "New Arrivals",
-   "count": 15
+   "count": 15,
+   "image": "https://jiddersgallery.com.ng/wp-content/uploads/2025/08/20250729_165253-1024x1024.jpg"
   },
   {
    "slug": "ramadan-collection",
    "name": "Ramadan Collection",
-   "count": 16
+   "count": 16,
+   "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/09/Compress_20260901_233707_7168-768x1024.jpg"
+  },
+  {
+   "slug": "our-production",
+   "name": "Our Production",
+   "count": 11,
+   "image": "https://jiddersgallery.com.ng/wp-content/uploads/2026/11/Compress_20261109_140458_8652-768x1024.jpg"
   }
  ]
 }

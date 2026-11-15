@@ -12,8 +12,10 @@ const COLLECTION = "products";
  *   1: the first WooCommerce export (304 products).
  *   2: synced from the live store, 15 Nov 2026 (351 products; photos linked at
  *      WordPress's 1024px copies, 768px for PNGs).
+ *   3: Books > Special Categories (Collection 1-4), the Our Production collection,
+ *      and third-level sections such as For Adults > Arabic.
  */
-const SEED_VERSION = 2;
+const SEED_VERSION = 3;
 
 let seeding: Promise<void> | null = null;
 

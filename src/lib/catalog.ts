@@ -41,7 +41,13 @@ function buildCatalog(products: Product[]) {
   const departments: Department[] = taxonomy.departments.map((dept) => ({
     ...dept,
     count: count((p) => inCategory(p, dept.slug)),
-    children: dept.children.map((child) => ({ ...child, count: count((p) => inCategory(p, child.slug)) })),
+    children: dept.children.map((child) => ({
+      ...child,
+      count: count((p) => inCategory(p, child.slug)),
+      ...(child.children
+        ? { children: child.children.map((leaf) => ({ ...leaf, count: count((p) => inCategory(p, leaf.slug)) })) }
+        : {}),
+    })),
   }));
   const ageGroups: AgeGroup[] = taxonomy.ageGroups.map((age) => ({
     ...age,
@@ -52,7 +58,10 @@ function buildCatalog(products: Product[]) {
     count: count((p) => p.collections.includes(collection.slug)),
   }));
 
-  const allCategorySlugs = departments.flatMap((dept) => [dept.slug, ...dept.children.map((child) => child.slug)]);
+  const allCategorySlugs = departments.flatMap((dept) => [
+    dept.slug,
+    ...dept.children.flatMap((child) => [child.slug, ...(child.children ?? []).map((leaf) => leaf.slug)]),
+  ]);
 
   const catalogMeta = {
     productCount: products.length,
@@ -62,11 +71,15 @@ function buildCatalog(products: Product[]) {
 
   const getProduct = (slug: string) => bySlug.get(slug);
 
+  /** A department, a sub-category, or a sub-category's own section (with `parent` set). */
   const findCategory = (slug: string) => {
     for (const dept of departments) {
-      if (dept.slug === slug) return { node: dept, department: dept, isDepartment: true as const };
-      const child = dept.children.find((c) => c.slug === slug);
-      if (child) return { node: child, department: dept, isDepartment: false as const };
+      if (dept.slug === slug) return { node: dept, department: dept, parent: null, isDepartment: true as const };
+      for (const child of dept.children) {
+        if (child.slug === slug) return { node: child, department: dept, parent: null, isDepartment: false as const };
+        const leaf = child.children?.find((l) => l.slug === slug);
+        if (leaf) return { node: leaf, department: dept, parent: child, isDepartment: false as const };
+      }
     }
     return null;
   };

@@ -42,6 +42,8 @@ export type CategoryNode = {
   name: string;
   count: number;
   image: string | null;
+  /** A third level, e.g. Special Categories > Collection 1. */
+  children?: CategoryNode[];
 };
 
 export type Department = CategoryNode & {
@@ -60,6 +62,7 @@ export type Collection = {
   slug: string;
   name: string;
   count: number;
+  image?: string | null;
 };
 
 /** The trimmed product shape sent to client components that only render cards. */

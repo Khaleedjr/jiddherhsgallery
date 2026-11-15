@@ -25,7 +25,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -157,7 +159,8 @@
    "3-6 years"
   ],
   "collections": [
-   "best-seller"
+   "best-seller",
+   "our-production"
   ],
   "language": null,
   "tags": [
@@ -200,6 +203,7 @@
   ],
   "collections": [
    "best-seller",
+   "our-production",
    "ramadan-collection"
   ],
   "language": null,
@@ -442,7 +446,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -576,7 +582,8 @@
    "18+ years"
   ],
   "collections": [
-   "best-seller"
+   "best-seller",
+   "our-production"
   ],
   "language": null,
   "tags": [],
@@ -608,7 +615,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -748,7 +757,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -796,7 +807,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -1613,7 +1626,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -2109,7 +2124,9 @@
    "books/ages-12-18",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -2239,8 +2256,7 @@
    "books/for-adults",
    "books/for-adults/arabic",
    "books/the-holy-quran",
-   "ibadah-essentials",
-   "ibadah-essentials/our-own-production"
+   "ibadah-essentials"
   ],
   "ages": [
    "6-12 years",
@@ -2248,7 +2264,8 @@
    "18+ years"
   ],
   "collections": [
-   "best-seller"
+   "best-seller",
+   "our-production"
   ],
   "language": "Arabic",
   "tags": [
@@ -2658,8 +2675,7 @@
   ],
   "categories": [
    "ibadah-essentials",
-   "ibadah-essentials/adhkar-flexes-stickers",
-   "ibadah-essentials/our-own-production"
+   "ibadah-essentials/adhkar-flexes-stickers"
   ],
   "ages": [
    "3-6 years",
@@ -2668,6 +2684,7 @@
    "18+ years"
   ],
   "collections": [
+   "our-production",
    "ramadan-collection"
   ],
   "language": null,
@@ -2701,8 +2718,7 @@
   ],
   "categories": [
    "ibadah-essentials",
-   "ibadah-essentials/adhkar-flexes-stickers",
-   "ibadah-essentials/our-own-production"
+   "ibadah-essentials/adhkar-flexes-stickers"
   ],
   "ages": [
    "3-6 years",
@@ -2711,6 +2727,7 @@
    "18+ years"
   ],
   "collections": [
+   "our-production",
    "ramadan-collection"
   ],
   "language": null,
@@ -4662,7 +4679,9 @@
   ],
   "categories": [
    "books",
-   "books/ages-3-6"
+   "books/ages-3-6",
+   "books/special-categories",
+   "books/special-categories/collection-4"
   ],
   "ages": [
    "3-6 years"
@@ -5118,7 +5137,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -5582,7 +5603,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [],
   "collections": [],
@@ -5988,7 +6011,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -6190,7 +6215,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -6282,7 +6309,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -6321,7 +6350,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -7553,8 +7584,7 @@
   ],
   "categories": [
    "ibadah-essentials",
-   "ibadah-essentials/adhkar-flexes-stickers",
-   "ibadah-essentials/our-own-production"
+   "ibadah-essentials/adhkar-flexes-stickers"
   ],
   "ages": [
    "3-6 years",
@@ -7563,6 +7593,7 @@
    "18+ years"
   ],
   "collections": [
+   "our-production",
    "ramadan-collection"
   ],
   "language": null,
@@ -10627,8 +10658,7 @@
   ],
   "categories": [
    "ibadah-essentials",
-   "ibadah-essentials/adhkar-flexes-stickers",
-   "ibadah-essentials/our-own-production"
+   "ibadah-essentials/adhkar-flexes-stickers"
   ],
   "ages": [
    "3-6 years",
@@ -10637,6 +10667,7 @@
    "18+ years"
   ],
   "collections": [
+   "our-production",
    "ramadan-collection"
   ],
   "language": null,
@@ -10933,8 +10964,7 @@
   ],
   "categories": [
    "ibadah-essentials",
-   "ibadah-essentials/ibadah-trackers",
-   "ibadah-essentials/our-own-production"
+   "ibadah-essentials/ibadah-trackers"
   ],
   "ages": [
    "6-12 years",
@@ -10942,6 +10972,7 @@
    "18+ years"
   ],
   "collections": [
+   "our-production",
    "ramadan-collection"
   ],
   "language": null,
@@ -12022,8 +12053,7 @@
    "books/for-adults",
    "books/for-adults/english",
    "ibadah-essentials",
-   "ibadah-essentials/ibadah-trackers",
-   "ibadah-essentials/our-own-production"
+   "ibadah-essentials/ibadah-trackers"
   ],
   "ages": [
    "6-12 years",
@@ -12031,6 +12061,7 @@
    "18+ years"
   ],
   "collections": [
+   "our-production",
    "ramadan-collection"
   ],
   "language": "English",
@@ -12662,7 +12693,9 @@
   ],
   "categories": [
    "books",
-   "books/ages-3-6"
+   "books/ages-3-6",
+   "books/special-categories",
+   "books/special-categories/collection-4"
   ],
   "ages": [
    "3-6 years"
@@ -12857,7 +12890,9 @@
   ],
   "categories": [
    "books",
-   "books/ages-3-6"
+   "books/ages-3-6",
+   "books/special-categories",
+   "books/special-categories/collection-4"
   ],
   "ages": [
    "3-6 years"
@@ -13106,7 +13141,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -13242,7 +13279,9 @@
   ],
   "categories": [
    "books",
-   "books/ages-3-6"
+   "books/ages-3-6",
+   "books/special-categories",
+   "books/special-categories/collection-4"
   ],
   "ages": [
    "3-6 years"
@@ -13284,7 +13323,9 @@
   ],
   "categories": [
    "books",
-   "books/ages-3-6"
+   "books/ages-3-6",
+   "books/special-categories",
+   "books/special-categories/collection-4"
   ],
   "ages": [
    "3-6 years"
@@ -13329,7 +13370,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -13374,7 +13417,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -13413,7 +13458,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-3"
   ],
   "ages": [
    "3-6 years",
@@ -13455,7 +13502,9 @@
   ],
   "categories": [
    "books",
-   "books/ages-3-6"
+   "books/ages-3-6",
+   "books/special-categories",
+   "books/special-categories/collection-4"
   ],
   "ages": [
    "3-6 years"
@@ -13499,7 +13548,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -13536,7 +13587,9 @@
   ],
   "categories": [
    "books",
-   "books/ages-3-6"
+   "books/ages-3-6",
+   "books/special-categories",
+   "books/special-categories/collection-4"
   ],
   "ages": [
    "3-6 years"
@@ -13724,7 +13777,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -13777,7 +13832,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -13823,7 +13880,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -13912,7 +13971,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -14043,7 +14104,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -14133,7 +14196,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -14227,7 +14292,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -14326,7 +14393,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -14369,7 +14438,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -14506,7 +14577,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -14549,7 +14622,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -14593,7 +14668,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -14632,7 +14709,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -14675,7 +14754,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -14845,7 +14926,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -14927,7 +15010,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -14965,7 +15050,9 @@
   "categories": [
    "books",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-3"
   ],
   "ages": [
    "3-6 years",
@@ -15418,8 +15505,7 @@
   ],
   "categories": [
    "ibadah-essentials",
-   "ibadah-essentials/ibadah-trackers",
-   "ibadah-essentials/our-own-production"
+   "ibadah-essentials/ibadah-trackers"
   ],
   "ages": [
    "6-12 years",
@@ -15427,6 +15513,7 @@
    "18+ years"
   ],
   "collections": [
+   "our-production",
    "ramadan-collection"
   ],
   "language": null,
@@ -15465,7 +15552,9 @@
    "books",
    "books/ages-3-6",
    "books/ages-6-12",
-   "books/activity-books"
+   "books/activity-books",
+   "books/special-categories",
+   "books/special-categories/collection-1"
   ],
   "ages": [
    "3-6 years",
@@ -15503,7 +15592,9 @@
   "categories": [
    "books",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-3"
   ],
   "ages": [
    "3-6 years",
@@ -16360,7 +16451,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -16748,7 +16841,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -17555,7 +17650,9 @@
   ],
   "categories": [
    "books",
-   "books/ages-3-6"
+   "books/ages-3-6",
+   "books/special-categories",
+   "books/special-categories/collection-4"
   ],
   "ages": [
    "3-6 years"
@@ -18017,7 +18114,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -18314,7 +18413,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",
@@ -18410,7 +18511,9 @@
    "books",
    "books/ages-12-18",
    "books/ages-3-6",
-   "books/ages-6-12"
+   "books/ages-6-12",
+   "books/special-categories",
+   "books/special-categories/collection-2"
   ],
   "ages": [
    "3-6 years",

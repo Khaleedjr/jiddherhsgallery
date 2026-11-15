@@ -17,7 +17,7 @@ export const site = {
   whatsapp: "2347039783709",
   phoneDisplay: "+234 703 978 3709",
   phoneLocal: "07039783709",
-  email: "support@jiddersgallery.com.ng",
+  email: "jidderhsgallery@gmail.com",
   address: {
     city: "Kaduna",
     state: "Kaduna State",

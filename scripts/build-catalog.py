@@ -20,10 +20,25 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "src", "data")
 
 # Woo taxonomy roots that are bookkeeping rather than something a shopper browses.
-SKIP_ROOTS = {"ALL PRODUCTS", "SHOP BY ITEM GROUPING", "JIDDERH'S GALLERY PRODUCTS"}
+SKIP_ROOTS = {"ALL PRODUCTS"}
 # Woo taxonomy roots surfaced as merchandising collections instead of categories.
 COLLECTION_ROOTS = {"BEST SELLER", "NEW ARRIVALS", "RAMADAN COLLECTION"}
 AGE_ROOT = "SHOP BY AGE"
+
+# What the store makes itself. WooCommerce files it under a "Jidderh's Gallery
+# Products" root and an "Our Production" sub-category of Ibadat Accessories;
+# here it is one collection, "Our Production".
+OUR_PRODUCTION = "our-production"
+OUR_PRODUCTION_ROOTS = {"JIDDERH'S GALLERY PRODUCTS"}
+# Made by the store but filed under neither in WooCommerce (named by the owner, 15 Nov 2026).
+OUR_PRODUCTION_EXTRA_IDS = {"16231"}  # Qur'an for Kids
+
+# "Shop by item grouping > Collection 1-4" are book series; the old store's menu
+# shows them under Books as "Special Categories".
+ITEM_GROUPING_ROOT = "SHOP BY ITEM GROUPING"
+SPECIAL_CATEGORIES = "Special Categories"
+
+COLLECTION_ORDER = [("BEST SELLER", "Best Seller"), ("NEW ARRIVALS", "New Arrivals"), ("RAMADAN COLLECTION", "Ramadan Collection"), ("OUR PRODUCTION", "Our Production")]
 
 # Presentation names for the department roots, in navigation order.
 DEPARTMENTS = OrderedDict([
@@ -56,7 +71,6 @@ SUB_RENAME = {
     "Qur'an Stand": "Qur'an Stands",
     "Adhan tools": "Adhan Tools",
     "Prayer Hijab": "Prayer Hijabs",
-    "Our Production": "Our Own Production",
 }
 
 AGE_ORDER = ["0-3 years", "3-6 years", "6-12 years", "12-18 years", "18+ years"]
@@ -288,8 +302,18 @@ def main():
                 continue
             if root in COLLECTION_ROOTS:
                 collections.append(slugify(parts[0]))
-                collection_counts[slugify(parts[0])] += 1
                 continue
+            if root in OUR_PRODUCTION_ROOTS:
+                collections.append(OUR_PRODUCTION)
+                continue
+            if root == "IBADAT ACCESSORIES" and len(parts) > 1 and parts[1].strip().lower() == "our production":
+                # Into the Our Production collection; the product stays in Ibadah Essentials itself.
+                collections.append(OUR_PRODUCTION)
+                parts = parts[:1]
+            if root == ITEM_GROUPING_ROOT:
+                if len(parts) < 2:
+                    continue
+                parts, root = ["BOOKS", SPECIAL_CATEGORIES, parts[1]], "BOOKS"
             if root == AGE_ROOT:
                 if len(parts) > 1:
                     ages.append(parts[1])
@@ -320,13 +344,26 @@ def main():
                 })
                 categories.append(sub_slug)
                 if len(parts) > 2:
+                    # A third level (Adults > Arabic, Special Categories > Collection 1) is kept
+                    # as its parent's own sub-sections.
                     leaf_raw = parts[2]
                     leaf_name = SUB_RENAME.get(leaf_raw, leaf_raw)
-                    categories.append("%s/%s" % (sub_slug, slugify(leaf_name)))
+                    leaf_slug = "%s/%s" % (sub_slug, slugify(leaf_name))
+                    child.setdefault("children", OrderedDict()).setdefault(leaf_slug, {
+                        "slug": leaf_slug,
+                        "name": leaf_name,
+                        "count": 0,
+                        "image": None,
+                    })
+                    categories.append(leaf_slug)
 
         categories = list(OrderedDict.fromkeys(categories))
         ages = sorted(set(ages), key=lambda age: AGE_ORDER.index(age) if age in AGE_ORDER else 99)
+        if row["ID"] in OUR_PRODUCTION_EXTRA_IDS:
+            collections.append(OUR_PRODUCTION)
         collections = list(OrderedDict.fromkeys(collections))
+        for collection in collections:
+            collection_counts[collection] += 1
 
         language = None
         if "books/for-adults/arabic" in categories:
@@ -368,6 +405,8 @@ def main():
         by_slug[dept["slug"]] = dept
         for child in dept["children"].values():
             by_slug[child["slug"]] = child
+            for leaf in child.get("children", {}).values():
+                by_slug[leaf["slug"]] = leaf
 
     for product in products:
         hero = product["images"][0] if product["images"] else None
@@ -387,7 +426,15 @@ def main():
         dept = dept_tree.get(root)
         if not dept or not dept["count"]:
             continue
-        children = [{k: v for k, v in c.items() if k != "keep"} for c in dept["children"].values() if c["count"]]
+        children = []
+        for c in dept["children"].values():
+            if not c["count"]:
+                continue
+            node = {k: v for k, v in c.items() if k not in ("keep", "children")}
+            leaves = [{k: v for k, v in leaf.items() if k != "keep"} for leaf in c.get("children", {}).values() if leaf["count"]]
+            if leaves:
+                node["children"] = sorted(leaves, key=lambda leaf: leaf["name"])
+            children.append(node)
         children.sort(key=lambda c: -c["count"])
         departments.append({
             "slug": dept["slug"],
@@ -405,13 +452,20 @@ def main():
         "count": age_counts[age],
     } for age in AGE_ORDER if age_counts.get(age)]
 
-    collections = [{
-        "slug": slugify(name),
-        "name": name.title(),
-        "count": collection_counts[slugify(name)],
-    } for name in ["BEST SELLER", "NEW ARRIVALS", "RAMADAN COLLECTION"] if collection_counts.get(slugify(name))]
-
     products.sort(key=lambda p: (not p["inStock"], p["position"], p["name"]))
+
+    def collection_image(slug):
+        for product in products:
+            if slug in product["collections"] and product["inStock"] and product["images"]:
+                return product["images"][0]
+        return None
+
+    collections = [{
+        "slug": slugify(raw),
+        "name": name,
+        "count": collection_counts[slugify(raw)],
+        "image": collection_image(slugify(raw)),
+    } for raw, name in COLLECTION_ORDER if collection_counts.get(slugify(raw))]
 
     os.makedirs(OUT_DIR, exist_ok=True)
     write(os.path.join(OUT_DIR, "products.json"), products)

@@ -22,13 +22,16 @@ const BLURBS: Record<string, string> = {
   "new-arrivals": "The newest additions to the gallery, fresh off the shelf.",
   "ramadan-collection":
     "Calendars, lanterns, trackers and gifts to make the blessed month memorable for every age.",
+  "our-production":
+    "Made by Jidderh's Gallery: our own Qur'an for Kids and Juz Amma Traceable Qur'an, adhkar flexes and stickers, and ibadah trackers.",
+  "books/special-categories": "Our story-book series, gathered into collections you can read straight through.",
 };
 
 export async function generateStaticParams(): Promise<Params[]> {
   const { collections, departments } = await getCatalog();
   const categoryParams = departments.flatMap((dept) => [
     { slug: [dept.slug] },
-    ...dept.children.map((child) => ({ slug: child.slug.split("/") })),
+    ...dept.children.flatMap((child) => [child, ...(child.children ?? [])]).map((node) => ({ slug: node.slug.split("/") })),
   ]);
   const collectionParams = collections.map((collection) => ({ slug: [collection.slug] }));
   return [...categoryParams, ...collectionParams];
@@ -46,6 +49,9 @@ const resolve = (
       slug,
       title: category.node.name,
       department: category.department,
+      /** Set when this is a sub-category's own section, e.g. Special Categories > Collection 1. */
+      parent: category.parent,
+      node: category.node,
       isDepartment: category.isDepartment,
       products: productsInCategory(slug),
     };
@@ -59,6 +65,8 @@ const resolve = (
         slug,
         title: collection.name,
         department: null,
+        parent: null,
+        node: null,
         isDepartment: false,
         products: productsInCollection(collection.slug),
       };
@@ -109,15 +117,19 @@ export default async function CollectionPage({ params }: { params: Promise<Param
     ...(department && !resolved.isDepartment
       ? [{ label: department.name, href: `/collections/${department.slug}` }]
       : []),
+    ...(resolved.parent ? [{ label: resolved.parent.name, href: `/collections/${resolved.parent.slug}` }] : []),
     { label: resolved.title },
   ];
 
-  const siblings =
-    department && !resolved.isDepartment
+  /* Which buttons the banner shows: a sub-category with its own sections (Special Categories)
+     shows those sections; a section shows its neighbours; anything else shows the department's sub-categories. */
+  const ownSections = resolved.node && "children" in resolved.node ? (resolved.node.children ?? []) : [];
+  const sectionParent = resolved.parent ?? (ownSections.length ? resolved.node : null);
+  const siblings = sectionParent
+    ? (sectionParent.children ?? [])
+    : department
       ? department.children
-      : resolved.isDepartment && department
-        ? department.children
-        : [];
+      : [];
 
   return (
     <>
@@ -133,7 +145,13 @@ export default async function CollectionPage({ params }: { params: Promise<Param
         {siblings.length > 0 ? (
           /* Chips wrap onto a second line rather than scroll sideways: every option is on screen at once. */
           <div className="mt-7 flex flex-wrap gap-2">
-            {department && !resolved.isDepartment ? (
+            {sectionParent ? (
+              <CategoryChip
+                href={`/collections/${sectionParent.slug}`}
+                label={`All ${sectionParent.name}`}
+                active={sectionParent.slug === resolved.slug}
+              />
+            ) : department && !resolved.isDepartment ? (
               <CategoryChip href={`/collections/${department.slug}`} label={`All ${department.name}`} />
             ) : null}
             {siblings.map((child) => (
