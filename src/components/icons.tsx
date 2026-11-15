@@ -166,6 +166,15 @@ export const SparkIcon = (props: IconProps) => (
   </svg>
 );
 
+/** Padlock, for secure payment. */
+export const LockIcon = (props: IconProps) => (
+  <svg {...base} {...props}>
+    <rect x="5" y="10.5" width="14" height="10" rx="2" />
+    <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
+    <path d="M12 14.5v2.5" />
+  </svg>
+);
+
 /** Eight-point star used as the brand's ornamental divider. */
 export const StarKhatimIcon = (props: IconProps) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>

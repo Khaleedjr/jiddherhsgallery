@@ -51,7 +51,7 @@ export default function PrivacyPage() {
         {
           heading: "Who else sees your details",
           paragraphs: [
-            "Only the courier handling your parcel, and only the details needed to deliver it. Orders sent through WhatsApp are also subject to WhatsApp's own privacy terms.",
+            "Paystack, which processes your payment and emails your receipt, and the courier handling your parcel, each only with the details they need. Paystack handles your card or bank details under its own privacy policy; they never reach us. Messages you send us on WhatsApp are also subject to WhatsApp's own privacy terms.",
           ],
         },
         {

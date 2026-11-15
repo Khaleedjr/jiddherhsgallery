@@ -154,7 +154,7 @@ export function CartDrawer() {
                 </span>
               </div>
               <p className="mt-1 text-[0.72rem] text-ink-500">
-                Delivery is calculated when we confirm your order.
+                Delivery is added at checkout once you choose your state.
               </p>
               <Link
                 href="/checkout"

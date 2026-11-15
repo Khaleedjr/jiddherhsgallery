@@ -189,12 +189,14 @@ const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 export type Analytics = ReturnType<typeof buildAnalytics>;
 
 export function buildAnalytics(
-  orders: Order[],
+  allOrders: Order[],
   products: StoredProduct[],
   departments: Array<{ slug: string; name: string }>,
   rangeKey: RangeKey,
   now = new Date(),
 ) {
+  // Website orders sent to Paystack but never paid aren't sales, or even real orders yet.
+  const orders = allOrders.filter((order) => order.payment?.status !== "awaiting");
   const range = resolveRange(rangeKey, orders, now);
   const firstOrderAt = new Map<string, string>();
   for (const order of [...orders].sort((a, b) => a.createdAt.localeCompare(b.createdAt))) {

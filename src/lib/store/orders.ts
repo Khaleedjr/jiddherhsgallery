@@ -6,6 +6,7 @@ import type {
   OrderChannel,
   OrderEvent,
   OrderItem,
+  OrderPayment,
   OrderStatus,
   PaymentMethod,
   StoredProduct,
@@ -32,12 +33,13 @@ export type NewOrder = {
   channel: OrderChannel;
   customer: { name: string; phone: string; email?: string | null };
   fulfilment: "delivery" | "pickup";
-  shipping?: { state?: string | null; city?: string | null; address?: string | null };
+  shipping?: { state?: string | null; city?: string | null; address?: string | null; method?: string | null };
   items: LineInput[];
   customerNote?: string | null;
   deliveryFee?: number;
   discount?: number;
   paymentMethod?: PaymentMethod | null;
+  payment?: OrderPayment;
   status?: OrderStatus;
   createdAt?: string;
   by?: OrderEvent["by"];
@@ -138,11 +140,12 @@ export async function createOrder(input: NewOrder): Promise<Order> {
     fulfilment: input.fulfilment,
     shipping:
       input.fulfilment === "pickup"
-        ? { state: null, city: null, address: null }
+        ? { state: null, city: null, address: null, method: input.shipping?.method?.trim() || null }
         : {
             state: input.shipping?.state?.trim() || null,
             city: input.shipping?.city?.trim() || null,
             address: input.shipping?.address?.trim() || null,
+            method: input.shipping?.method?.trim() || null,
           },
     items,
     ...totals(items, deliveryFee, discount),
@@ -150,12 +153,18 @@ export async function createOrder(input: NewOrder): Promise<Order> {
     discount,
     paymentMethod: input.paymentMethod ?? null,
     paidAt: PAID_STATUSES.includes(status) ? now : null,
+    ...(input.payment ? { payment: input.payment } : {}),
     customerNote: input.customerNote?.trim() || null,
     history: [
       {
         at: now,
         status,
-        note: input.channel === "website" ? "Order placed on the website" : `Order recorded from ${input.channel}`,
+        note:
+          input.channel !== "website"
+            ? `Order recorded from ${input.channel}`
+            : input.payment
+              ? "Order placed on the website; customer sent to Paystack to pay"
+              : "Order placed on the website",
         by: placedBy,
       },
     ],
@@ -184,6 +193,89 @@ export async function setOrderStatus(ref: string, status: OrderStatus, note?: st
   );
   return writeOrder(order);
 }
+
+/** A new payment attempt for an unpaid website order (Paystack needs a fresh reference each time). */
+export async function setPaymentReference(ref: string, reference: string) {
+  const current = await getOrder(ref);
+  if (!current?.payment) throw new OrderError("Order not found.");
+  if (current.payment.status === "paid") return current;
+  return writeOrder({ ...current, payment: { ...current.payment, reference }, updatedAt: new Date().toISOString() });
+}
+
+export type PaymentResult = { order: Order; outcome: "paid" | "already-paid" | "amount-mismatch" };
+
+/**
+ * Records a successful Paystack payment. Called from both the page the
+ * customer returns to and the webhook, in either order, so it is idempotent.
+ * A pending order becomes confirmed, which takes its items out of stock; an
+ * order whose status was already changed by hand keeps that status. A payment
+ * for a different amount than the order's total is noted but not accepted.
+ */
+export async function markOrderPaid(
+  ref: string,
+  payment: { reference: string; amountKobo: number; currency: string; channel?: string | null; paidAt?: string | null },
+): Promise<PaymentResult> {
+  const current = await getOrder(ref);
+  if (!current) throw new OrderError("Order not found.");
+  if (current.payment?.status === "paid") return { order: current, outcome: "already-paid" };
+
+  const now = new Date().toISOString();
+  const naira = payment.amountKobo / 100;
+  if (payment.currency !== "NGN" || payment.amountKobo !== Math.round(current.total * 100)) {
+    const already = current.history.some((event) => event.note.includes(payment.reference));
+    const order = already
+      ? current
+      : await writeOrder({
+          ...current,
+          updatedAt: now,
+          history: [
+            ...current.history,
+            {
+              at: now,
+              status: null,
+              note: `Paystack payment ${payment.reference} was ${payment.currency} ${naira.toLocaleString("en-NG")}, not the order total. Not accepted; check it on Paystack.`,
+              by: "system",
+            },
+          ],
+        });
+    return { order, outcome: "amount-mismatch" };
+  }
+
+  const paidAt = payment.paidAt ?? now;
+  const status: OrderStatus = current.status === "pending" ? "confirmed" : current.status;
+  let order: Order = {
+    ...current,
+    status,
+    paymentMethod: "paystack",
+    paidAt,
+    payment: {
+      provider: "paystack",
+      status: "paid",
+      reference: payment.reference,
+      amount: naira,
+      channel: payment.channel ?? null,
+      paidAt,
+    },
+    updatedAt: now,
+    history: [
+      ...current.history,
+      {
+        at: now,
+        status: status !== current.status ? status : null,
+        note:
+          current.status === "cancelled"
+            ? `Paid online with Paystack (${payment.reference}) after the order was cancelled. Refund or reinstate it.`
+            : `Paid online with Paystack${payment.channel ? ` by ${payment.channel.replace(/_/g, " ")}` : ""} (${payment.reference})`,
+        by: "system",
+      },
+    ],
+  };
+  order = await syncStock(order, `Order ${order.ref} paid online`);
+  return { order: await writeOrder(order), outcome: "paid" };
+}
+
+/** Orders sent to Paystack that haven't been paid: not real orders yet, so the dashboard keeps them out of its to-do counts. */
+export const isAwaitingPayment = (order: Order) => order.payment?.status === "awaiting";
 
 export type OrderPatch = {
   customer?: Order["customer"];

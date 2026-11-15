@@ -58,6 +58,7 @@ export const CHANNEL_LABEL: Record<OrderChannel, string> = {
 };
 
 export const PAYMENT_LABEL: Record<PaymentMethod, string> = {
+  paystack: "Paystack (online)",
   transfer: "Bank transfer",
   cash: "Cash",
   pos: "POS",

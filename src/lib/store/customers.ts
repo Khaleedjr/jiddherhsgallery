@@ -13,6 +13,8 @@ export function buildCustomers(orders: Order[]): Customer[] {
   const byKey = new Map<string, Customer>();
   const chronological = [...orders].sort((a, b) => a.createdAt.localeCompare(b.createdAt));
   for (const order of chronological) {
+    // An unpaid Paystack attempt doesn't make someone a customer.
+    if (order.payment?.status === "awaiting") continue;
     const key = phoneKey(order.customer.phone);
     const counted = PAID_STATUSES.includes(order.status) ? order.total : 0;
     const existing = byKey.get(key);

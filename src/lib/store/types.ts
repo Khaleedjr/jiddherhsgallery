@@ -15,8 +15,21 @@ export type OrderStatus = (typeof ORDER_STATUSES)[number];
 export const ORDER_CHANNELS = ["website", "whatsapp", "instagram", "walk-in", "other"] as const;
 export type OrderChannel = (typeof ORDER_CHANNELS)[number];
 
-export const PAYMENT_METHODS = ["transfer", "cash", "pos", "other"] as const;
+export const PAYMENT_METHODS = ["paystack", "transfer", "cash", "pos", "other"] as const;
 export type PaymentMethod = (typeof PAYMENT_METHODS)[number];
+
+/** An online payment for a website order. "awaiting": sent to Paystack, not paid (yet). */
+export type OrderPayment = {
+  provider: "paystack";
+  status: "awaiting" | "paid";
+  /** Reference of the latest payment attempt. */
+  reference: string;
+  /** Naira actually received. */
+  amount: number | null;
+  /** card, bank_transfer, ussd… as Paystack reports it. */
+  channel: string | null;
+  paidAt: string | null;
+};
 
 export type OrderItem = {
   productId: string;
@@ -46,7 +59,8 @@ export type Order = {
   channel: OrderChannel;
   customer: { name: string; phone: string; email: string | null };
   fulfilment: "delivery" | "pickup";
-  shipping: { state: string | null; city: string | null; address: string | null };
+  /** `method`: the shipping option chosen at checkout, e.g. "Iddo Park" (website orders since Paystack). */
+  shipping: { state: string | null; city: string | null; address: string | null; method?: string | null };
   items: OrderItem[];
   subtotal: number;
   deliveryFee: number;
@@ -54,6 +68,8 @@ export type Order = {
   total: number;
   paymentMethod: PaymentMethod | null;
   paidAt: string | null;
+  /** Online payment, for website orders paid through Paystack. */
+  payment?: OrderPayment;
   customerNote: string | null;
   history: OrderEvent[];
   /** True once the order's units have been taken out of stock, so a cancel knows to put them back. */

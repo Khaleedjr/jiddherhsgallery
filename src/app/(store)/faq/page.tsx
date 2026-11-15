@@ -16,22 +16,17 @@ const FAQS = [
   {
     question: "How do I place an order?",
     answer:
-      "Add what you want to your bag and go to checkout. Fill in your details and tap ‘Send my order on WhatsApp’ — the message arrives with us already filled in. We confirm stock and the delivery fee, you pay by transfer, and we dispatch.",
-  },
-  {
-    question: "Why does checkout go to WhatsApp instead of taking my card?",
-    answer:
-      "Because delivery fees in Nigeria depend on weight and destination, and because we would rather confirm everything in your bag is genuinely in stock before taking your money. It also means you can ask questions while you order.",
+      "Add what you want to your bag and go to checkout. Fill in your details, choose how you want it delivered (or pick it up in Kaduna), and pay with Paystack. Your order is confirmed the moment payment goes through, and a receipt is emailed to you.",
   },
   {
     question: "How do I pay?",
     answer:
-      "By bank transfer once we have confirmed your order and the total including delivery. We send the account details on WhatsApp and dispatch as soon as payment reflects.",
+      "Securely with Paystack at checkout: by card, bank transfer or USSD. You pay on Paystack's own page, so we never see or store your card details. If a payment fails, nothing is taken and your bag stays saved so you can try again.",
   },
   {
     question: "How much is delivery?",
     answer:
-      `Within Kaduna metropolis and Zaria it is ${formatPrice(site.delivery.kadunaFee)} for small-sized items; larger Zaria packages may attract an extra park fee. Interstate orders go through the parks and need a waybill fee added at checkout. Orders from ${formatPrice(site.freeDeliveryThreshold)} ship free anywhere in Nigeria.`,
+      `Within Kaduna metropolis and Zaria it is ${formatPrice(site.delivery.kadunaFee)} to your door. Other states are sent by bus to a park in your state for a waybill fee shown at checkout as soon as you choose your state (from ${formatPrice(1500)}). Orders from ${formatPrice(site.freeDeliveryThreshold)} ship free, and pickup in Kaduna is always free.`,
   },
   {
     question: "How quickly do you dispatch?",

@@ -9,7 +9,7 @@ Next.js (App Router), TypeScript and Tailwind CSS v4.
 | Area | Detail |
 | --- | --- |
 | Storefront | Home, shop, category, age, product, cart, checkout, search, about, contact, FAQ, policies |
-| Checkout | Bag → order form → order recorded with a reference (e.g. `JG-1043`) → pre-filled WhatsApp message |
+| Checkout | Bag → details and shipping option (the old store's zones and prices) → pay on Paystack → order confirmed (e.g. `JG-1043`), stock taken, receipt emailed |
 | Dashboard | `/admin` — overview, orders, products, inventory & stock log, customers, analytics, CSV exports |
 | Rendering | Storefront pages are static and rebuilt automatically after any dashboard change |
 | SEO | Per-page metadata, Open Graph, `Product`/`Store`/`FAQPage` JSON-LD, sitemap, robots |
@@ -31,6 +31,7 @@ never has a default: the dashboard stays locked until `ADMIN_PASSWORD` is set.
 | Variable | Needed | What it does |
 | --- | --- | --- |
 | `ADMIN_PASSWORD` | **Yes, in production** | The dashboard password. Changing it signs everyone out. |
+| `PAYSTACK_SECRET_KEY` | **Yes, to take orders** | Paystack secret key: `sk_test_…` while testing, `sk_live_…` to take real money. Without it checkout is switched off and the dashboard shows a red bar. |
 | `KV_REST_API_URL` + `KV_REST_API_TOKEN` | **Yes, on Vercel** | Upstash Redis, where orders, product edits, stock and uploaded photos are kept. `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` also work. |
 | `ADMIN_SESSION_SECRET` | Optional | Signs sign-in cookies. Defaults to a key derived from the password. |
 | `JG_DATA_DIR` | Optional | Folder for the file store on a server with a real disk. Defaults to `./.data`. |
@@ -44,6 +45,30 @@ bar until storage is connected. To connect it: Vercel project → **Storage** �
 
 On any other Node host with a disk (`npm run build && npm run start`), the JSON file store in
 `./.data` is persistent and Redis is not needed.
+
+## Payments (Paystack)
+
+Checkout charges the bag plus the chosen shipping option through Paystack, the same provider
+the old WooCommerce store used. The customer pays on Paystack's own page (card, bank transfer or
+USSD); the site never sees card details.
+
+1. In the Paystack dashboard, open **Settings → API Keys & Webhooks** and copy the **secret key**
+   into `PAYSTACK_SECRET_KEY` (in Vercel: Project → Settings → Environment Variables). Use the test
+   key first: Paystack's test cards let you try a whole order without real money.
+2. On the same Paystack page set the **Webhook URL** to `https://<your domain>/api/paystack/webhook`.
+   The webhook confirms an order even if the customer closes the tab before returning to the store.
+3. Redeploy so the new variable is picked up.
+
+How an order moves: placing it records it as **Awaiting payment** (its own tab under Orders, kept
+out of the to-do counts, analytics and customers). When Paystack confirms the payment, from the
+customer's return page or the webhook, whichever comes first, the order becomes **Confirmed**, its
+items come out of stock, and the payment reference and method are shown on the order. A payment for
+the wrong amount is noted on the order and not accepted. Unpaid attempts can be cancelled or deleted.
+
+Shipping zones and prices live in `src/lib/shipping.ts`, copied from the old store's checkout:
+₦1,000 within Kaduna, named parks in Kano, Abuja and Lagos, a waybill fee per state from ₦1,500 to
+₦6,000, free delivery from ₦100,000, and free pickup in Kaduna. Abia, Akwa Ibom, Anambra, Ebonyi and
+Ekiti had no zone on the old store, so they can only choose pickup until one is added there.
 
 ## The dashboard
 

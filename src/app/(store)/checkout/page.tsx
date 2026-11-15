@@ -5,7 +5,7 @@ import { Container } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Checkout",
-  description: "Send your order to Jidderh's Gallery on WhatsApp and we will confirm it right away.",
+  description: "Choose delivery and pay securely with Paystack: card, bank transfer or USSD.",
   robots: { index: false, follow: true },
 };
 
@@ -15,7 +15,7 @@ export default function CheckoutPage() {
       <PageHeader
         eyebrow="Final step"
         title="Checkout"
-        description="Fill in your details and send the order straight to our WhatsApp — we confirm stock and delivery before you pay a naira."
+        description="Your details, a delivery option, then pay securely with Paystack by card, bank transfer or USSD."
         trail={[{ label: "Home", href: "/" }, { label: "Bag", href: "/cart" }, { label: "Checkout" }]}
       />
       <Container className="py-10 sm:py-12">

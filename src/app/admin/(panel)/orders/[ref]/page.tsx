@@ -175,6 +175,12 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
                       {[order.shipping.city, order.shipping.state].filter(Boolean).join(", ")}
                     </p>
                   )}
+                  {order.shipping.method ? (
+                    <p className="mt-1 text-[0.76rem] text-ink-500">
+                      Option: <span className="font-medium text-ink-700">{order.shipping.method}</span>
+                      {order.deliveryFee ? ` · ${formatPrice(order.deliveryFee)}` : " · free"}
+                    </p>
+                  ) : null}
                 </div>
                 {order.customerNote ? (
                   <div className="rounded-lg bg-gold-100 px-3 py-2 text-[0.78rem] text-gold-700">
@@ -195,6 +201,37 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
                 <dt className="text-ink-500">Paid</dt>
                 <dd className="font-medium text-ink-800">{order.paidAt ? formatDateTime(order.paidAt) : "Not yet"}</dd>
               </div>
+              {order.payment ? (
+                <>
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-ink-500">Paystack</dt>
+                    <dd className={order.payment.status === "paid" ? "font-semibold text-gold-700" : "font-medium text-ink-600"}>
+                      {order.payment.status === "paid" ? "Paid online" : "Awaiting payment"}
+                    </dd>
+                  </div>
+                  {order.payment.status === "paid" ? (
+                    <>
+                      <div className="flex justify-between gap-3">
+                        <dt className="text-ink-500">Received</dt>
+                        <dd className="font-medium text-ink-800 tabular-nums">
+                          {order.payment.amount !== null ? formatPrice(order.payment.amount) : "—"}
+                          {order.payment.channel ? ` · ${order.payment.channel.replace(/_/g, " ")}` : ""}
+                        </dd>
+                      </div>
+                    </>
+                  ) : (
+                    <p className="text-[0.74rem] leading-relaxed text-ink-500">
+                      The customer was sent to Paystack but hasn&apos;t paid. It confirms itself if they do; otherwise cancel or delete it.
+                    </p>
+                  )}
+                  {order.payment.reference ? (
+                    <div className="flex justify-between gap-3">
+                      <dt className="text-ink-500">Reference</dt>
+                      <dd className="font-mono text-[0.74rem] break-all text-ink-700">{order.payment.reference}</dd>
+                    </div>
+                  ) : null}
+                </>
+              ) : null}
             </dl>
           </Card>
 

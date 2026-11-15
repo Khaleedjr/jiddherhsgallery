@@ -13,7 +13,7 @@ import { taxonomy } from "@/lib/catalog";
 import { formatPrice } from "@/lib/format";
 import { buildAnalytics, delta } from "@/lib/store/analytics";
 import { listMovements } from "@/lib/store/inventory";
-import { listOrders } from "@/lib/store/orders";
+import { isAwaitingPayment, listOrders } from "@/lib/store/orders";
 import { listProducts } from "@/lib/store/products";
 
 export const metadata: Metadata = { title: "Overview" };
@@ -30,7 +30,8 @@ export default async function OverviewPage({ searchParams }: { searchParams: Pro
   const month = buildAnalytics(orders, products, taxonomy.departments, "30d");
   const { current: c, previous: p } = week;
 
-  const pending = orders.filter((o) => o.status === "pending");
+  // Unpaid Paystack attempts aren't orders to confirm yet.
+  const pending = orders.filter((o) => o.status === "pending" && !isAwaitingPayment(o));
   const toShip = orders.filter((o) => o.status === "confirmed");
   const published = products.filter((pr) => pr.status === "published");
   const items = toStockItems(published, movements).map((i) => ({ ...i, state: stockState(i) }));

@@ -22,7 +22,7 @@ import {
 import { clearSampleDataAction, loadSampleDataAction } from "@/lib/admin/actions/orders";
 import { CHANNEL_LABEL, STATUS_META, formatDateTime, timeAgo } from "@/lib/admin/format";
 import { formatPrice } from "@/lib/format";
-import { listOrders } from "@/lib/store/orders";
+import { isAwaitingPayment, listOrders } from "@/lib/store/orders";
 import { ORDER_CHANNELS, ORDER_STATUSES, type Order, type OrderStatus } from "@/lib/store/types";
 
 export const metadata: Metadata = { title: "Orders" };
@@ -42,7 +42,9 @@ const SORTS: Record<string, (a: Order, b: Order) => number> = {
 
 export default async function OrdersPage({ searchParams }: { searchParams: Promise<Query> }) {
   const query = await searchParams;
-  const status = ORDER_STATUSES.includes(query.status as OrderStatus) ? (query.status as OrderStatus) : null;
+  /* "awaiting": website orders sent to Paystack but not paid. They are kept out of Pending, which is real orders to confirm. */
+  const status: OrderStatus | "awaiting" | null =
+    query.status === "awaiting" ? "awaiting" : ORDER_STATUSES.includes(query.status as OrderStatus) ? (query.status as OrderStatus) : null;
   const channel = ORDER_CHANNELS.includes(query.channel as never) ? query.channel! : "";
   const fulfilment = query.fulfilment === "pickup" || query.fulfilment === "delivery" ? query.fulfilment : "";
   const from = /^\d{4}-\d{2}-\d{2}$/.test(query.from ?? "") ? query.from! : "";
@@ -69,8 +71,11 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
         (qDigits.length >= 4 && o.customer.phone.replace(/\D/g, "").includes(qDigits)) ||
         o.items.some((i) => i.name.toLowerCase().includes(q)),
     );
-  const counts = Object.fromEntries(ORDER_STATUSES.map((s) => [s, scoped.filter((o) => o.status === s).length]));
-  const filtered = scoped.filter((o) => !status || o.status === status).sort(SORTS[sort]);
+  const counts = Object.fromEntries(ORDER_STATUSES.map((s) => [s, scoped.filter((o) => o.status === s && !isAwaitingPayment(o)).length]));
+  const awaitingCount = scoped.filter(isAwaitingPayment).length;
+  const filtered = scoped
+    .filter((o) => !status || (status === "awaiting" ? isAwaitingPayment(o) : o.status === status && !isAwaitingPayment(o)))
+    .sort(SORTS[sort]);
 
   const pages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
   const page = Math.min(pageParam(query.page), pages);
@@ -85,9 +90,10 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
   };
   const filtersOn = Boolean(q || channel || fulfilment || from || to);
 
-  const tabs: Array<{ key: OrderStatus | null; label: string; count: number }> = [
+  const tabs: Array<{ key: OrderStatus | "awaiting" | null; label: string; count: number }> = [
     { key: null, label: "All", count: scoped.length },
     ...ORDER_STATUSES.map((s) => ({ key: s, label: STATUS_META[s].label, count: counts[s] })),
+    { key: "awaiting", label: "Awaiting payment", count: awaitingCount },
   ];
 
   return (
@@ -243,10 +249,18 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
                           </p>
                         </td>
                         <td className={td}>
-                          <OrderStatusBadge status={order.status} />
+                          {isAwaitingPayment(order) ? (
+                            <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[0.7rem] font-semibold whitespace-nowrap text-ink-600 ring-1 ring-sand-300 ring-inset">
+                              Awaiting payment
+                            </span>
+                          ) : (
+                            <OrderStatusBadge status={order.status} />
+                          )}
+                          {order.payment?.status === "paid" ? <p className="mt-1 text-[0.68rem] font-semibold text-gold-700">Paid online</p> : null}
                         </td>
                         <td className={cx(td, "text-[0.78rem] text-ink-600")}>
                           {order.fulfilment === "pickup" ? "Pickup · Kaduna" : [order.shipping.city, order.shipping.state].filter(Boolean).join(", ") || "Delivery"}
+                          {order.shipping.method && order.fulfilment !== "pickup" ? <p className="text-[0.7rem] text-ink-500">{order.shipping.method}</p> : null}
                         </td>
                         <td className={cx(td, "text-right font-semibold whitespace-nowrap text-ink-900 tabular-nums")}>{formatPrice(order.total)}</td>
                       </tr>

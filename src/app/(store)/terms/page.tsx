@@ -31,13 +31,13 @@ export default function TermsPage() {
         {
           heading: "Stock and order confirmation",
           paragraphs: [
-            "Sending your bag through WhatsApp is a request to buy, not a completed sale. A sale is complete once we confirm stock and you have paid. If an item has sold out we will tell you before taking payment and offer an alternative or remove it from the order.",
+            "An order placed on this website is complete once your payment has gone through on Paystack. In the rare case that an item sells out before we can send it, we will tell you straight away and offer an alternative or a refund for that item.",
           ],
         },
         {
           heading: "Payment",
           paragraphs: [
-            "Payment is by bank transfer to the account we share when confirming your order. Orders are dispatched once payment reflects. We do not take card details on this website.",
+            "Website orders are paid at checkout through Paystack, by card, bank transfer or USSD. Payment is taken on Paystack's own page, so card details never reach this website. Orders arranged with us directly (for example on WhatsApp or in person) may be paid by transfer, cash or POS.",
           ],
         },
         {

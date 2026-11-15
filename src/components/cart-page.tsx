@@ -129,7 +129,7 @@ export function CartPageBody() {
             </div>
             <div className="flex justify-between">
               <dt className="text-ink-600">Delivery</dt>
-              <dd className="text-ink-500">Confirmed at checkout</dd>
+              <dd className="text-ink-500">Calculated at checkout</dd>
             </div>
           </dl>
 

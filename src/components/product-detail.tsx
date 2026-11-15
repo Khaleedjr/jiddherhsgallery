@@ -76,10 +76,9 @@ export function ProductDetail({ product }: { product: Product }) {
     window.setTimeout(() => setAdded(false), 1800);
   };
 
+  /* Orders go through checkout and Paystack; WhatsApp is for questions about the product. */
   const enquiry = whatsappLink(
-    `As-salamu alaykum ${site.name}, I would like to order:\n\n• ${product.name}${
-      variant ? ` (${variant.label})` : ""
-    } × ${quantity} — ${formatPrice(price * quantity)}\n\n${site.url}/products/${product.slug}`,
+    `As-salamu alaykum ${site.name}, I have a question about ${product.name}${variant ? ` (${variant.label})` : ""}:\n\n${site.url}/products/${product.slug}`,
   );
 
   return (
@@ -241,10 +240,10 @@ export function ProductDetail({ product }: { product: Product }) {
           href={enquiry}
           target="_blank"
           rel="noreferrer"
-          className={cx(buttonClass({ variant: "whatsapp", size: "lg" }), "mt-3 w-full sm:w-auto sm:min-w-64")}
+          className={cx(buttonClass({ variant: "outline", size: "lg" }), "mt-3 w-full sm:w-auto sm:min-w-64")}
         >
           <WhatsappIcon className="size-4" />
-          {purchasable ? "Order on WhatsApp" : "Ask when it is back"}
+          {purchasable ? "Ask about this on WhatsApp" : "Ask when it is back"}
         </a>
 
         <ul className="mt-8 grid gap-3 border-y border-sand-200 py-5 sm:grid-cols-2">
