@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ConfirmSubmit } from "@/components/admin/controls";
-import { ChargesForm, EditableCustomer, NoteForm, OrderStatusForm, PrintButton } from "@/components/admin/order-forms";
+import { ChargesForm, EditableCustomer, NoteForm, OrderStatusForm, PrintButton, ReceiptForm } from "@/components/admin/order-forms";
 import { AdminPage, Card, OrderStatusBadge, Pill, Thumb, adminButton, cx } from "@/components/admin/ui";
 import { WhatsappIcon } from "@/components/icons";
 import { deleteOrderAction } from "@/lib/admin/actions/orders";
@@ -232,7 +232,24 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
                   ) : null}
                 </>
               ) : null}
+              {order.paidAt ? (
+                <div className="flex justify-between gap-3 border-t border-sand-200 pt-2">
+                  <dt className="text-ink-500">Receipt</dt>
+                  <dd className="text-right font-medium text-ink-800">
+                    {!order.customer.email
+                      ? "No email on this order"
+                      : order.receiptSentAt
+                        ? `Emailed ${formatDateTime(order.receiptSentAt)}`
+                        : "Not emailed yet"}
+                  </dd>
+                </div>
+              ) : null}
             </dl>
+            {order.paidAt && order.customer.email ? (
+              <div className="mt-2 print:hidden">
+                <ReceiptForm refCode={order.ref} sent={Boolean(order.receiptSentAt)} />
+              </div>
+            ) : null}
           </Card>
 
           <form action={deleteOrderAction} className="print:hidden">

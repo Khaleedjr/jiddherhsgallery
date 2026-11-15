@@ -274,6 +274,20 @@ export async function markOrderPaid(
   return { order: await writeOrder(order), outcome: "paid" };
 }
 
+/** Notes an emailed receipt (or why it wasn't sent) on the order's timeline. */
+export async function recordReceipt(ref: string, result: { sentTo: string } | { error: string }) {
+  const current = await getOrder(ref);
+  if (!current) return null;
+  const now = new Date().toISOString();
+  const note = "sentTo" in result ? `Receipt emailed to ${result.sentTo}` : `Receipt not emailed: ${result.error}`;
+  return writeOrder({
+    ...current,
+    ...("sentTo" in result ? { receiptSentAt: now } : {}),
+    updatedAt: now,
+    history: [...current.history, { at: now, status: null, note, by: "system" }],
+  });
+}
+
 /** Orders sent to Paystack that haven't been paid: not real orders yet, so the dashboard keeps them out of its to-do counts. */
 export const isAwaitingPayment = (order: Order) => order.payment?.status === "awaiting";
 

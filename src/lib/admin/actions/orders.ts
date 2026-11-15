@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/admin/auth";
 import { refreshStorefront } from "@/lib/admin/revalidate";
+import { sendOrderReceipt } from "@/lib/receipts";
 import { clearDemoData, loadDemoOrders } from "@/lib/store/demo";
 import {
   OrderError,
@@ -51,6 +52,14 @@ export async function addNoteAction(_: ActionResult, form: FormData): Promise<Ac
   await addOrderNote(text(form, "ref", 20), note);
   revalidatePath(`/admin/orders/${text(form, "ref", 20)}`);
   return { ok: true, message: "Note added" };
+}
+
+export async function sendReceiptAction(_: ActionResult, form: FormData): Promise<ActionResult> {
+  await requireAdmin();
+  const ref = text(form, "ref", 20);
+  const result = await sendOrderReceipt(ref, { force: true });
+  revalidatePath(`/admin/orders/${ref}`);
+  return result;
 }
 
 export async function updateChargesAction(_: ActionResult, form: FormData): Promise<ActionResult> {

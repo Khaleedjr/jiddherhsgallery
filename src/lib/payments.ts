@@ -1,5 +1,7 @@
+import { after } from "next/server";
 import { refreshStorefront } from "@/lib/admin/revalidate";
 import { orderRefFromReference, verifyPayment, type PaystackTransaction } from "@/lib/paystack";
+import { sendOrderReceipt } from "@/lib/receipts";
 import { getOrder, markOrderPaid } from "@/lib/store/orders";
 
 /** What the confirmation page should tell the customer. */
@@ -19,7 +21,11 @@ export function orderRefOf(tx: Pick<PaystackTransaction, "reference" | "metadata
   return (fromMetadata?.toUpperCase() || orderRefFromReference(tx.reference)) ?? null;
 }
 
-/** Applies a successful transaction to its order, then rebuilds storefront pages whose stock changed. */
+/**
+ * Applies a successful transaction to its order, then rebuilds storefront
+ * pages whose stock changed and emails the customer their receipt. The email
+ * goes out after the response, so nobody waits on the mail server.
+ */
 export async function applySuccessfulPayment(orderRef: string, tx: PaystackTransaction): Promise<PaymentState> {
   const { outcome } = await markOrderPaid(orderRef, {
     reference: tx.reference,
@@ -28,7 +34,10 @@ export async function applySuccessfulPayment(orderRef: string, tx: PaystackTrans
     channel: tx.channel ?? null,
     paidAt: tx.paid_at ?? null,
   });
-  if (outcome === "paid") refreshStorefront();
+  if (outcome === "paid") {
+    refreshStorefront();
+    after(() => sendOrderReceipt(orderRef));
+  }
   return outcome === "amount-mismatch" ? "mismatch" : "paid";
 }
 

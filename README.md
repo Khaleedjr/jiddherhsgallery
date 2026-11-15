@@ -32,6 +32,8 @@ never has a default: the dashboard stays locked until `ADMIN_PASSWORD` is set.
 | --- | --- | --- |
 | `ADMIN_PASSWORD` | **Yes, in production** | The dashboard password. Changing it signs everyone out. |
 | `PAYSTACK_SECRET_KEY` | **Yes, to take orders** | Paystack secret key: `sk_test_…` while testing, `sk_live_…` to take real money. Without it checkout is switched off and the dashboard shows a red bar. |
+| `SMTP_USER` + `SMTP_PASS` | **Yes, to email receipts** | The Gmail address that sends order receipts and its Google **app password** (see [Order receipts](#order-receipts-email)). Without them orders still work; the order timeline notes that no receipt was sent. |
+| `SMTP_HOST`, `SMTP_PORT`, `MAIL_FROM`, `SITE_URL` | Optional | Another mail provider instead of Gmail (defaults `smtp.gmail.com`, `465`); a different sender name/address; the site address used for the logo and links in emails (Vercel's production domain by default). |
 | `KV_REST_API_URL` + `KV_REST_API_TOKEN` | **Yes, on Vercel** | Upstash Redis, where orders, product edits, stock and uploaded photos are kept. `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` also work. |
 | `ADMIN_SESSION_SECRET` | Optional | Signs sign-in cookies. Defaults to a key derived from the password. |
 | `JG_DATA_DIR` | Optional | Folder for the file store on a server with a real disk. Defaults to `./.data`. |
@@ -64,6 +66,28 @@ out of the to-do counts, analytics and customers). When Paystack confirms the pa
 customer's return page or the webhook, whichever comes first, the order becomes **Confirmed**, its
 items come out of stock, and the payment reference and method are shown on the order. A payment for
 the wrong amount is noted on the order and not accepted. Unpaid attempts can be cancelled or deleted.
+
+### Order receipts (email)
+
+As soon as a payment is confirmed the customer is emailed a receipt from the store: order number,
+items, delivery, total paid, the Paystack reference and what happens next. Replies go to
+jidderhsgallery@gmail.com. It is sent once (Paystack retrying the webhook doesn't send it twice),
+and every attempt is written on the order's timeline. On an order page, under **Payment**, the
+dashboard shows whether the receipt went out, with an **Email receipt** / **Resend receipt** button
+(this also works for orders recorded by hand once they're marked paid and have an email).
+
+To switch it on with the store's Gmail:
+
+1. Sign in to jidderhsgallery@gmail.com and turn on **2-Step Verification** (Google Account →
+   Security).
+2. Open **myaccount.google.com/apppasswords**, create an app password called "Website", and copy
+   the 16 letters.
+3. In Vercel add `SMTP_USER` = `jidderhsgallery@gmail.com` and `SMTP_PASS` = the app password, then
+   redeploy.
+
+Gmail allows about 500 emails a day, plenty for receipts. Paystack also emails its own payment
+receipt; to send only the store's, turn off customer receipts under Paystack **Settings →
+Preferences**.
 
 Shipping zones and prices live in `src/lib/shipping.ts`, copied from the old store's checkout:
 ₦1,000 within Kaduna, named parks in Kano, Abuja and Lagos, a waybill fee per state from ₦1,500 to

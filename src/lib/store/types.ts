@@ -70,6 +70,8 @@ export type Order = {
   paidAt: string | null;
   /** Online payment, for website orders paid through Paystack. */
   payment?: OrderPayment;
+  /** When the order receipt was last emailed to the customer. */
+  receiptSentAt?: string | null;
   customerNote: string | null;
   history: OrderEvent[];
   /** True once the order's units have been taken out of stock, so a cancel knows to put them back. */

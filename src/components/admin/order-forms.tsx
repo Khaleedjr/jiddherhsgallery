@@ -4,6 +4,7 @@ import { useActionState, useEffect, useRef, useState } from "react";
 import { adminButton, cx, inputClass, selectClass } from "@/components/admin/ui";
 import {
   addNoteAction,
+  sendReceiptAction,
   setStatusAction,
   updateChargesAction,
   updateCustomerAction,
@@ -102,6 +103,20 @@ export function NoteForm({ refCode }: { refCode: string }) {
           {pending ? "Adding…" : "Add note"}
         </button>
       </div>
+    </form>
+  );
+}
+
+/** Emails the order receipt to the customer (again). */
+export function ReceiptForm({ refCode, sent }: { refCode: string; sent: boolean }) {
+  const [state, action, pending] = useActionState(sendReceiptAction, initial);
+  return (
+    <form action={action} className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1.5 pt-1">
+      <input type="hidden" name="ref" value={refCode} />
+      <Result state={state} />
+      <button type="submit" disabled={pending} className={adminButton({ variant: "secondary", size: "sm" })}>
+        {pending ? "Sending…" : sent ? "Resend receipt" : "Email receipt"}
+      </button>
     </form>
   );
 }
