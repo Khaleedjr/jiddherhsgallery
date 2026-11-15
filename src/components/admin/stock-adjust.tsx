@@ -37,7 +37,7 @@ export function StockAdjustButton({ target, compact = false }: { target: AdjustT
       </button>
       <dialog
         ref={dialog}
-        className="m-auto w-[min(26rem,calc(100vw-2rem))] rounded-2xl p-0 shadow-2xl backdrop:bg-forest-950/50"
+        className="m-auto w-[min(26rem,calc(100vw-2rem))] rounded-2xl p-0 shadow-2xl backdrop:bg-coal-950/50"
         aria-labelledby={`adj-${target.productId}-${target.variantId ?? "p"}`}
       >
         {opened > 0 ? <AdjustForm key={opened} target={target} close={() => dialog.current?.close()} /> : null}
@@ -144,7 +144,7 @@ function AdjustForm({ target, close }: { target: AdjustTarget; close: () => void
           </p>
 
           {state.message ? (
-            <p role="status" className={cx("mt-3 text-[0.78rem] font-semibold", state.ok ? "text-forest-700" : "text-berry-600")}>
+            <p role="status" className={cx("mt-3 text-[0.78rem] font-semibold", state.ok ? "text-coal-700" : "text-berry-600")}>
               {state.message}
             </p>
           ) : null}

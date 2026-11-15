@@ -21,10 +21,11 @@ export type TrendPoint = {
   detail?: string;
 };
 
-const SERIES = "#1c6049"; // forest-600: the store's house green
-const SERIES_HOVER = "#2a7a5e";
-const GRID = "#ece4d2";
-const AXIS_TEXT = "#7a7064";
+/* The logo's colours: black marks that turn gold under the pointer. */
+const SERIES = "#14110a"; // coal-900
+const SERIES_HOVER = "#cd9a32"; // gold-500
+const GRID = "#ece3cf"; // coal-100
+const AXIS_TEXT = "#6f6450"; // ink-500
 
 function useWidth<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -124,7 +125,7 @@ export function TrendChart({
     <div>
       <div
         ref={wrap}
-        className="relative outline-none focus-visible:rounded-lg focus-visible:ring-2 focus-visible:ring-forest-500/40"
+        className="relative outline-none focus-visible:rounded-lg focus-visible:ring-2 focus-visible:ring-coal-500/40"
         tabIndex={0}
         role="group"
         aria-label={`${label}. Use the left and right arrow keys to read each value.`}
@@ -173,7 +174,7 @@ export function TrendChart({
               <g>
                 {kind === "area" ? (
                   <>
-                    <line x1={tipX} x2={tipX} y1={margin.top} y2={y(0)} stroke="#9c9285" strokeWidth={1} shapeRendering="crispEdges" />
+                    <line x1={tipX} x2={tipX} y1={margin.top} y2={y(0)} stroke="#978b74" strokeWidth={1} shapeRendering="crispEdges" />
                     <circle cx={tipX} cy={y(hovered.value)} r={5} fill={SERIES} stroke="#fff" strokeWidth={2} />
                   </>
                 ) : null}

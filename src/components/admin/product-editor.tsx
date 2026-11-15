@@ -322,7 +322,7 @@ export function ProductEditor({
               <label className="flex cursor-pointer items-center gap-2 text-[0.78rem] font-semibold text-ink-700">
                 <input
                   type="checkbox"
-                  className="size-4 accent-forest-700"
+                  className="size-4 accent-coal-700"
                   checked={draft.hasOptions}
                   onChange={(e) => {
                     const on = e.target.checked;
@@ -376,7 +376,7 @@ export function ProductEditor({
                     <label className="mb-1.5 flex items-center gap-2 text-[0.76rem] font-semibold text-ink-700">
                       <input
                         type="checkbox"
-                        className="size-4 accent-forest-700"
+                        className="size-4 accent-coal-700"
                         checked={draft.trackStock}
                         onChange={(e) => set("trackStock", e.target.checked)}
                       />
@@ -396,7 +396,7 @@ export function ProductEditor({
                         />
                         <p className="mt-1 text-[0.72rem] text-ink-500">
                           Changes here are logged as a stock count. Use{" "}
-                          <Link href="/admin/inventory" className="font-semibold text-forest-700 underline-offset-2 hover:underline">
+                          <Link href="/admin/inventory" className="font-semibold text-coal-700 underline-offset-2 hover:underline">
                             Inventory
                           </Link>{" "}
                           to record a restock.
@@ -437,7 +437,7 @@ export function ProductEditor({
                     key={option.value}
                     className={cx(
                       "cursor-pointer rounded-lg border px-3 py-2.5 transition",
-                      draft.status === option.value ? "border-forest-600 bg-forest-50" : "border-sand-300 hover:border-sand-400",
+                      draft.status === option.value ? "border-coal-600 bg-coal-50" : "border-sand-300 hover:border-sand-400",
                     )}
                   >
                     <input
@@ -457,7 +457,7 @@ export function ProductEditor({
                 {pending ? "Saving…" : product ? "Save changes" : "Create product"}
               </button>
               {notice ? (
-                <p role="status" className="text-center text-[0.76rem] font-semibold text-forest-700">
+                <p role="status" className="text-center text-[0.76rem] font-semibold text-coal-700">
                   ✓ {notice}
                 </p>
               ) : dirty && product ? (
@@ -584,7 +584,7 @@ function DiscountNote({ price, was }: { price: number | null; was: number | null
     return <p className="text-[0.74rem] text-gold-700">The was price must be higher than the price to show as a sale — it will be ignored.</p>;
   }
   return (
-    <p className="text-[0.74rem] font-medium text-forest-700">
+    <p className="text-[0.74rem] font-medium text-coal-700">
       Shows as {Math.round(((was - price) / was) * 100)}% off on the store.
     </p>
   );
@@ -605,7 +605,7 @@ function CheckList({
         <label key={option.value} className="flex cursor-pointer items-center gap-2.5 text-[0.8rem] text-ink-700">
           <input
             type="checkbox"
-            className="size-4 accent-forest-700"
+            className="size-4 accent-coal-700"
             checked={value.includes(option.value)}
             onChange={(e) =>
               onChange(e.target.checked ? [...value, option.value] : value.filter((v) => v !== option.value))
@@ -643,7 +643,7 @@ function CategoryPicker({
       {departments.map((dept) => (
         <div key={dept.slug}>
           <label className="flex cursor-pointer items-center gap-2.5 text-[0.82rem] font-semibold text-ink-900">
-            <input type="checkbox" className="size-4 accent-forest-700" checked={selected.has(dept.slug)} onChange={(e) => toggle(dept.slug, e.target.checked)} />
+            <input type="checkbox" className="size-4 accent-coal-700" checked={selected.has(dept.slug)} onChange={(e) => toggle(dept.slug, e.target.checked)} />
             {dept.name}
           </label>
           <div className="mt-1.5 space-y-1.5">
@@ -657,7 +657,7 @@ function CategoryPicker({
                 >
                   <input
                     type="checkbox"
-                    className="size-3.5 accent-forest-700"
+                    className="size-3.5 accent-coal-700"
                     checked={selected.has(child.slug)}
                     onChange={(e) => toggle(child.slug, e.target.checked)}
                   />
@@ -772,7 +772,7 @@ function VariantsEditor({ draft, setDraft }: { draft: Draft; setDraft: React.Dis
                       />
                       {counted ? null : (
                         <label className="flex items-center gap-1 text-[0.7rem] whitespace-nowrap text-ink-600">
-                          <input type="checkbox" className="size-3.5 accent-forest-700" checked={v.inStock} onChange={(e) => update(v.key, { inStock: e.target.checked })} />
+                          <input type="checkbox" className="size-3.5 accent-coal-700" checked={v.inStock} onChange={(e) => update(v.key, { inStock: e.target.checked })} />
                           In stock
                         </label>
                       )}
@@ -883,7 +883,7 @@ function DescriptionEditor({ value, onChange }: { value: string; onChange: (valu
           ))}
         </div>
       </div>
-      <div className="overflow-hidden rounded-lg border border-sand-300 focus-within:border-forest-500 focus-within:ring-2 focus-within:ring-forest-500/15">
+      <div className="overflow-hidden rounded-lg border border-sand-300 focus-within:border-coal-500 focus-within:ring-2 focus-within:ring-coal-500/15">
         {mode === "visual" ? (
           <>
             <div className="flex flex-wrap gap-1 border-b border-sand-200 bg-sand-50 px-2 py-1.5" role="toolbar" aria-label="Formatting">
@@ -995,7 +995,7 @@ function ImageManager({ images, onChange }: { images: string[]; onChange: (image
           <div key={`${src}-${index}`} className="group relative aspect-square overflow-hidden rounded-lg border border-sand-200 bg-sand-100">
             <Image src={src} alt="" fill sizes="160px" className="object-cover" />
             {index === 0 ? (
-              <span className="absolute top-1.5 left-1.5 rounded bg-forest-900/85 px-1.5 py-0.5 text-[0.6rem] font-bold tracking-wide text-sand-50 uppercase">
+              <span className="absolute top-1.5 left-1.5 rounded bg-coal-900/85 px-1.5 py-0.5 text-[0.6rem] font-bold tracking-wide text-sand-50 uppercase">
                 Cover
               </span>
             ) : null}
@@ -1022,7 +1022,7 @@ function ImageManager({ images, onChange }: { images: string[]; onChange: (image
         <button
           type="button"
           onClick={() => input.current?.click()}
-          className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-sand-300 text-[0.74rem] font-semibold text-ink-500 transition hover:border-forest-400 hover:bg-forest-50/50 hover:text-forest-700"
+          className="flex aspect-square flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-sand-300 text-[0.74rem] font-semibold text-ink-500 transition hover:border-coal-400 hover:bg-coal-50/50 hover:text-coal-700"
         >
           {images.length ? <UploadIcon className="size-5" /> : <ImageIcon className="size-6" />}
           Add photos

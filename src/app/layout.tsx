@@ -1,19 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Amiri, Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { Amiri, Bricolage_Grotesque, Instrument_Sans, Sacramento } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 
-const jakarta = Plus_Jakarta_Sans({
+const instrument = Instrument_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-jakarta",
+  variable: "--font-instrument",
 });
 
-const cormorant = Cormorant_Garamond({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-cormorant",
+  variable: "--font-bricolage",
+});
+
+/* The logo's "Jidderh's" is a monoline script; Sacramento echoes it. */
+const sacramento = Sacramento({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-sacramento",
 });
 
 const amiri = Amiri({
@@ -58,14 +65,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a2b21",
+  themeColor: "#cd9a32",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-NG" className={`${jakarta.variable} ${cormorant.variable} ${amiri.variable}`}>
+    <html lang="en-NG" className={`${instrument.variable} ${bricolage.variable} ${sacramento.variable} ${amiri.variable}`}>
       <body className="flex min-h-dvh flex-col">{children}</body>
     </html>
   );

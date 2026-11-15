@@ -62,7 +62,7 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
                 <li key={`${item.productId}-${item.variantId}-${index}`} className="flex items-center gap-3 px-5 py-3.5">
                   <Thumb src={item.image} alt="" size={48} />
                   <div className="min-w-0 flex-1">
-                    <Link href={`/admin/products/${item.productId}`} className="line-clamp-2 text-[0.84rem] font-semibold text-ink-900 hover:text-forest-700">
+                    <Link href={`/admin/products/${item.productId}`} className="line-clamp-2 text-[0.84rem] font-semibold text-ink-900 hover:text-coal-700">
                       {item.name}
                     </Link>
                     <p className="text-[0.74rem] text-ink-500">
@@ -84,14 +84,14 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
                 <dd className="tabular-nums">{order.deliveryFee ? formatPrice(order.deliveryFee) : order.fulfilment === "pickup" ? "Pickup" : "Not set"}</dd>
               </div>
               {order.discount ? (
-                <div className="flex justify-between text-forest-700">
+                <div className="flex justify-between text-coal-700">
                   <dt>Discount</dt>
                   <dd className="tabular-nums">−{formatPrice(order.discount)}</dd>
                 </div>
               ) : null}
               <div className="flex items-baseline justify-between border-t border-sand-200 pt-2.5">
                 <dt className="font-semibold text-ink-900">Total</dt>
-                <dd className="font-display text-2xl font-semibold text-forest-900 tabular-nums">{formatPrice(order.total)}</dd>
+                <dd className="font-display text-2xl font-semibold text-coal-900 tabular-nums">{formatPrice(order.total)}</dd>
               </div>
             </dl>
             <div className="border-t border-sand-200 px-5 py-4 print:hidden">
@@ -107,7 +107,7 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
                     aria-hidden
                     className={cx(
                       "absolute top-1 -left-[1.62rem] size-3 rounded-full border-2 border-white",
-                      event.status ? "bg-forest-600" : "bg-gold-400",
+                      event.status ? "bg-coal-600" : "bg-gold-400",
                     )}
                   />
                   <p className="text-[0.8rem] font-semibold text-ink-900">
@@ -141,7 +141,7 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
           <Card
             title="Customer"
             action={
-              <Link href={`/admin/customers/${phoneKey(order.customer.phone)}`} className="text-[0.76rem] font-semibold text-forest-700 hover:underline">
+              <Link href={`/admin/customers/${phoneKey(order.customer.phone)}`} className="text-[0.76rem] font-semibold text-coal-700 hover:underline">
                 Profile
               </Link>
             }
@@ -150,11 +150,11 @@ export default async function OrderPage({ params }: { params: Promise<Params> })
               <div className="space-y-3 text-[0.82rem]">
                 <div>
                   <p className="font-semibold text-ink-900">{order.customer.name}</p>
-                  <a href={`tel:${order.customer.phone.replace(/\s/g, "")}`} className="block text-forest-700 hover:underline">
+                  <a href={`tel:${order.customer.phone.replace(/\s/g, "")}`} className="block text-coal-700 hover:underline">
                     {order.customer.phone}
                   </a>
                   {order.customer.email ? (
-                    <a href={`mailto:${order.customer.email}`} className="block break-all text-forest-700 hover:underline">
+                    <a href={`mailto:${order.customer.email}`} className="block break-all text-coal-700 hover:underline">
                       {order.customer.email}
                     </a>
                   ) : null}

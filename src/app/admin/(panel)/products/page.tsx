@@ -117,7 +117,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       }
     >
       {query.deleted ? (
-        <p role="status" className="rounded-lg border border-forest-200 bg-forest-50 px-4 py-2.5 text-[0.8rem] font-medium text-forest-700">
+        <p role="status" className="rounded-lg border border-coal-200 bg-coal-50 px-4 py-2.5 text-[0.8rem] font-medium text-coal-700">
           Product deleted.
         </p>
       ) : null}
@@ -134,11 +134,11 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
                 aria-selected={active}
                 className={cx(
                   "-mb-px flex items-center gap-1.5 border-b-2 px-3 py-2.5 text-[0.8rem] font-semibold whitespace-nowrap transition",
-                  active ? "border-forest-700 text-forest-800" : "border-transparent text-ink-500 hover:text-ink-800",
+                  active ? "border-coal-700 text-coal-800" : "border-transparent text-ink-500 hover:text-ink-800",
                 )}
               >
                 {v.label}
-                <span className={cx("rounded-full px-1.5 text-[0.68rem] tabular-nums", active ? "bg-forest-100 text-forest-800" : "bg-sand-200 text-ink-600")}>
+                <span className={cx("rounded-full px-1.5 text-[0.68rem] tabular-nums", active ? "bg-coal-100 text-coal-800" : "bg-sand-200 text-ink-600")}>
                   {counts[v.key]}
                 </span>
               </Link>

@@ -127,7 +127,7 @@ export default function DeliveryReturnsPage() {
                   key={state}
                   className="flex items-baseline justify-between gap-4 border-b border-sand-200 pb-2.5"
                 >
-                  <dt className="text-[0.8rem] font-semibold tracking-wide text-forest-900 uppercase">
+                  <dt className="text-[0.8rem] font-semibold tracking-wide text-coal-900 uppercase">
                     {state}
                   </dt>
                   <dd className="text-right text-[0.86rem] text-ink-600">{stop}</dd>

@@ -14,7 +14,7 @@ export function RangeTabs({ active, path }: { active: RangeKey; path: string }) 
           scroll={false}
           className={cx(
             "rounded-lg px-3 py-1.5 text-[0.78rem] font-semibold whitespace-nowrap transition",
-            range.key === active ? "bg-forest-800 text-sand-50" : "text-ink-600 hover:bg-sand-100 hover:text-ink-900",
+            range.key === active ? "bg-coal-800 text-sand-50" : "text-ink-600 hover:bg-sand-100 hover:text-ink-900",
           )}
         >
           {range.label}

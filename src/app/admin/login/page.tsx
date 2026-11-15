@@ -15,11 +15,11 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   const usingDevPassword = !process.env.ADMIN_PASSWORD?.trim() && adminPassword() === DEV_PASSWORD;
 
   return (
-    <div className="relative grid min-h-dvh place-items-center overflow-hidden bg-forest-950 px-4 py-12">
+    <div className="relative grid min-h-dvh place-items-center overflow-hidden bg-coal-950 px-4 py-12">
       <div className="pattern-girih-light absolute inset-0 opacity-20" aria-hidden />
       <div className="relative w-full max-w-sm">
         <div className="mb-7 flex flex-col items-center text-center">
-          <Image src="/logo.png" alt="" width={64} height={64} className="size-16" priority />
+          <Image src="/logo.png" alt="" width={64} height={64} className="size-16" loading="eager" />
           <p className="mt-4 font-display text-2xl font-semibold text-sand-50">{site.name}</p>
           <p className="mt-1 text-[0.8rem] text-sand-300/80">Store dashboard</p>
         </div>

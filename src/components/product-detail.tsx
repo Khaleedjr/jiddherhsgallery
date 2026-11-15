@@ -84,16 +84,18 @@ export function ProductDetail({ product }: { product: Product }) {
 
   return (
     <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
-      <div className="lg:sticky lg:top-28 lg:self-start">
-        <div className="relative aspect-square overflow-hidden rounded-xl border border-sand-200 bg-sand-100">
+      <div className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
+        {/* The whole photo, never cropped: portrait shots sit on cream instead of losing their top and bottom. */}
+        <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-sand-200 lg:rounded-[2rem]">
           {images[activeImage] ? (
             <Image
               src={images[activeImage]}
               alt={`${product.name} — image ${activeImage + 1}`}
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(min-width: 1024px) 34rem, 100vw"
-              className="object-cover"
+              className="object-contain"
             />
           ) : (
             <div className="pattern-girih-light grid size-full place-items-center">
@@ -109,7 +111,8 @@ export function ProductDetail({ product }: { product: Product }) {
         </div>
 
         {images.length > 1 ? (
-          <div className="no-scrollbar mt-3 flex gap-2.5 overflow-x-auto pb-1">
+          /* A grid that wraps, not a strip that scrolls: every photo is in sight and one tap away. */
+          <div className="mt-3 grid grid-cols-6 gap-2 sm:gap-2.5">
             {images.map((image, index) => (
               <button
                 key={image}
@@ -118,11 +121,11 @@ export function ProductDetail({ product }: { product: Product }) {
                 aria-label={`View image ${index + 1}`}
                 aria-current={index === activeImage}
                 className={cx(
-                  "relative size-18 shrink-0 overflow-hidden rounded-md border-2 transition sm:size-20",
-                  index === activeImage ? "border-forest-700" : "border-transparent opacity-65 hover:opacity-100",
+                  "relative aspect-square overflow-hidden rounded-lg border-2 bg-sand-200 transition active:scale-95 sm:rounded-xl",
+                  index === activeImage ? "border-coal-900" : "border-transparent opacity-70 hover:opacity-100",
                 )}
               >
-                <Image src={image} alt="" fill sizes="80px" className="object-cover" />
+                <Image src={image} alt="" fill sizes="(min-width: 1024px) 6rem, 16vw" className="object-cover" />
               </button>
             ))}
           </div>
@@ -139,7 +142,7 @@ export function ProductDetail({ product }: { product: Product }) {
         <h1 className="mt-3 text-[2rem] leading-tight sm:text-[2.6rem]">{product.name}</h1>
 
         <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span className="font-display text-3xl font-semibold text-forest-800">
+          <span className="font-display text-3xl font-semibold text-coal-800">
             {hasVariants && !variant
               ? formatPriceRange(product.price, product.priceMax)
               : formatPrice(price)}
@@ -148,20 +151,20 @@ export function ProductDetail({ product }: { product: Product }) {
             <span className="text-[0.95rem] text-ink-400 line-through">{formatPrice(compareAt)}</span>
           ) : null}
           {discount >= 10 ? (
-            <span className="text-[0.8rem] font-semibold text-berry-500">You save {discount}%</span>
+            <span className="rounded-full bg-coal-900 px-2.5 py-1 text-[0.75rem] font-bold text-gold-500">You save {discount}%</span>
           ) : null}
         </div>
 
         <p
           className={cx(
             "mt-3 inline-flex items-center gap-1.5 text-[0.8rem] font-medium",
-            purchasable ? (lowStock ? "text-berry-500" : "text-forest-700") : "text-berry-600",
+            purchasable ? (lowStock ? "font-semibold text-gold-700" : "text-coal-700") : "text-ink-600",
           )}
         >
           <span
             className={cx(
               "size-1.5 rounded-full",
-              purchasable ? (lowStock ? "bg-berry-500" : "bg-forest-600") : "bg-berry-500",
+              purchasable ? (lowStock ? "bg-gold-600" : "bg-coal-600") : "bg-ink-400",
             )}
             aria-hidden
           />
@@ -188,8 +191,8 @@ export function ProductDetail({ product }: { product: Product }) {
                   className={cx(
                     "rounded-full border px-4 py-2 text-[0.8rem] font-medium transition",
                     entry.id === variantId
-                      ? "border-forest-800 bg-forest-800 text-sand-50"
-                      : "border-sand-300 bg-white text-ink-700 hover:border-forest-500",
+                      ? "border-coal-800 bg-coal-800 text-sand-50"
+                      : "border-sand-300 bg-white text-ink-700 hover:border-coal-500",
                     !entry.inStock && "cursor-not-allowed text-ink-400 line-through opacity-55",
                   )}
                 >
@@ -250,7 +253,7 @@ export function ProductDetail({ product }: { product: Product }) {
             { Icon: ShieldIcon, text: "Content vetted before we stock it" },
           ].map(({ Icon, text }) => (
             <li key={text} className="flex items-center gap-2.5 text-[0.8rem] text-ink-600">
-              <Icon className="size-4 shrink-0 text-forest-600" />
+              <Icon className="size-4 shrink-0 text-coal-600" />
               {text}
             </li>
           ))}

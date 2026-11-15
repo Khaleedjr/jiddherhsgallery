@@ -33,7 +33,7 @@ export function RankedBars({
             </span>
           </div>
           <div className="mt-1.5 h-2 rounded-full bg-sand-100">
-            <div className="h-2 rounded-full bg-forest-600" style={{ width: `${Math.max(1.5, (row.value / max) * 100)}%` }} />
+            <div className="h-2 rounded-full bg-coal-600" style={{ width: `${Math.max(1.5, (row.value / max) * 100)}%` }} />
           </div>
           {row.detail ? <p className="mt-1 text-[0.72rem] text-ink-500">{row.detail}</p> : null}
         </li>
@@ -46,7 +46,7 @@ const STATUS_FILL: Record<OrderStatus, string> = {
   pending: "bg-gold-400",
   confirmed: "bg-sky-500",
   dispatched: "bg-violet-500",
-  delivered: "bg-forest-600",
+  delivered: "bg-coal-600",
   cancelled: "bg-ink-400",
 };
 

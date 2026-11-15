@@ -36,7 +36,9 @@ export function ProductImage({
       alt={alt}
       fill
       sizes={sizes}
-      priority={priority}
+      /* Next 16 deprecated `priority`; above-the-fold photos load eagerly and first instead. */
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : undefined}
       className={cx("object-cover", className)}
     />
   );

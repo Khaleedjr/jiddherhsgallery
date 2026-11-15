@@ -5,26 +5,63 @@ import { getDriver } from "@/lib/store/driver";
 import type { StoredProduct } from "@/lib/store/types";
 
 const COLLECTION = "products";
-const SEED_VERSION = 1;
+/**
+ * Version of src/data/products.json the store has taken in. Bump it after
+ * re-importing the catalogue (scripts/sync-from-live.py) so stores that were
+ * seeded earlier take in the new version on their next request.
+ *   1: the first WooCommerce export (304 products).
+ *   2: synced from the live store, 15 Nov 2026 (351 products; photos linked at
+ *      WordPress's 1024px copies, 768px for PNGs).
+ */
+const SEED_VERSION = 2;
 
 let seeding: Promise<void> | null = null;
 
 /**
- * First boot copies the imported WooCommerce catalogue into the store. After
- * that the store is the source of truth and products.json is never re-read.
+ * Brings the store up to the current catalogue file. A new store takes it
+ * whole. A store seeded from an older file is refreshed product by product,
+ * and anything touched in the dashboard always wins:
+ *   - products not in the store yet are added, published;
+ *   - products never edited in the dashboard (no updatedAt; every dashboard
+ *     save, stock adjustments included, sets one) take the new data, keeping
+ *     their status;
+ *   - products edited in the dashboard are left exactly as they are;
+ *   - imported products that are no longer in the file (taken down on the old
+ *     store) and were never edited here move to Drafts: hidden, not deleted.
+ * A product deleted in the dashboard leaves no trace, so a later catalogue
+ * version that still lists it would bring it back.
  */
 export function ensureSeeded() {
   seeding ??= (async () => {
     const db = getDriver();
-    if (await db.getValue<number>("seeded")) return;
+    const version = (await db.getValue<number>("seeded")) ?? 0;
+    if (version >= SEED_VERSION) return;
+
     const source = productsJson as Product[];
+    const stored = version > 0 ? await db.all<StoredProduct>(COLLECTION) : {};
     const entries: Record<string, StoredProduct> = {};
+    const inSource = new Set<string>();
+
     for (const product of source) {
-      entries[product.id] = { ...product, status: "published", createdAt: null, updatedAt: null };
+      inSource.add(product.id);
+      const current = stored[product.id];
+      if (!current) {
+        entries[product.id] = { ...product, status: "published", createdAt: null, updatedAt: null };
+      } else if (!current.updatedAt) {
+        entries[product.id] = { ...product, status: current.status ?? "published", createdAt: current.createdAt ?? null, updatedAt: null };
+      }
     }
-    await db.put(COLLECTION, entries);
+    for (const [id, current] of Object.entries(stored)) {
+      if (!inSource.has(id) && !current.updatedAt && !current.createdAt && current.status !== "draft") {
+        entries[id] = { ...current, status: "draft" };
+      }
+    }
+    if (Object.keys(entries).length) await db.put(COLLECTION, entries);
+
+    /* New products from the dashboard must never reuse an imported product's id. */
     const maxId = Math.max(0, ...source.map((p) => Number(p.id)).filter(Number.isFinite));
-    if ((await db.getValue<number>("seq:product")) === null) await db.setValue("seq:product", maxId);
+    const seq = await db.getValue<number>("seq:product");
+    if (seq === null || Number(seq) < maxId) await db.setValue("seq:product", maxId);
     await db.setValue("seeded", SEED_VERSION);
   })().catch((error) => {
     seeding = null;

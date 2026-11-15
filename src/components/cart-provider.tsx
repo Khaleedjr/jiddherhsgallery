@@ -6,7 +6,6 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -60,7 +59,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [lastAdded, setLastAdded] = useState<CartItem | null>(null);
-  const hydrated = useRef(false);
+  /* State, not a ref: the save below must wait for the render that carries the
+     restored items. With a ref it ran in the same pass as the restore, with the
+     still-empty list, and wrote "[]" over the saved bag (which, when React runs
+     effects twice in development, then got read back as empty). */
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     try {
@@ -72,17 +75,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
     } catch {
       // A blocked or corrupt store just means we start with an empty cart.
     }
-    hydrated.current = true;
+    setHydrated(true);
   }, []);
 
   useEffect(() => {
-    if (!hydrated.current) return;
+    if (!hydrated) return;
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch {
       // Private browsing: the cart still works for this session.
     }
-  }, [items]);
+  }, [items, hydrated]);
 
   // Close the drawer on Escape from anywhere.
   useEffect(() => {

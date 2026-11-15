@@ -116,7 +116,7 @@ export default async function CustomersPage({ searchParams }: { searchParams: Pr
                     <tr key={c.key} className="relative transition hover:bg-sand-50">
                       <td className={td}>
                         <div className="flex items-center gap-3">
-                          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-forest-100 text-[0.74rem] font-bold text-forest-800">
+                          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-coal-100 text-[0.74rem] font-bold text-coal-800">
                             {c.name
                               .split(" ")
                               .map((part) => part[0])
@@ -125,7 +125,7 @@ export default async function CustomersPage({ searchParams }: { searchParams: Pr
                               .toUpperCase()}
                           </span>
                           <div className="min-w-0">
-                            <Link href={`/admin/customers/${c.key}`} className="font-semibold text-ink-900 after:absolute after:inset-0 hover:text-forest-700">
+                            <Link href={`/admin/customers/${c.key}`} className="font-semibold text-ink-900 after:absolute after:inset-0 hover:text-coal-700">
                               {c.name}
                             </Link>
                             <p className="text-[0.72rem] text-ink-500">{c.phone}</p>

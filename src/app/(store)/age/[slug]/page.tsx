@@ -43,22 +43,22 @@ export default async function AgePage({ params }: { params: Promise<Params> }) {
         title={`For ${age.name}`}
         description={`${age.blurb}. ${items.length} products chosen to suit this stage.`}
         trail={[{ label: "Home", href: "/" }, { label: "Shop by age" }, { label: age.name }]}
-        tone="forest"
       >
-        <div className="no-scrollbar mt-7 -mb-1 flex gap-2 overflow-x-auto pb-1">
+        {/* Chips wrap onto a second line rather than scroll sideways: every age is on screen at once. */}
+        <div className="mt-7 flex flex-wrap gap-2">
           {ageGroups.map((group) => (
             <Link
               key={group.slug}
               href={`/age/${group.slug}`}
               className={cx(
-                "flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[0.78rem] font-medium whitespace-nowrap transition",
+                "flex min-h-10 items-center gap-1.5 rounded-full border-[1.5px] px-4 py-1.5 text-[0.82rem] font-semibold whitespace-nowrap transition active:scale-[0.97]",
                 group.slug === age.slug
-                  ? "border-gold-400 bg-gold-400 text-forest-950"
-                  : "border-sand-100/25 text-sand-100 hover:border-gold-400/60 hover:text-gold-300",
+                  ? "border-coal-900 bg-coal-900 text-gold-500"
+                  : "border-coal-900/35 text-ink-900 hover:border-coal-900 hover:bg-coal-900/10",
               )}
             >
               {group.name}
-              <span className={cx("text-[0.68rem]", group.slug === age.slug ? "text-forest-800" : "text-sand-300/60")}>
+              <span className={cx("text-[0.72rem] font-medium tabular-nums", group.slug === age.slug ? "text-gold-300" : "text-ink-900/60")}>
                 {group.count}
               </span>
             </Link>

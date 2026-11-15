@@ -1,53 +1,38 @@
 import { Breadcrumbs, Container, Eyebrow, cx } from "@/components/ui";
 import type { ReactNode } from "react";
 
+/**
+ * The band at the top of every inner page, in design 4's colours: gold with
+ * the faint star lattice (the homepage hero's wall), or black for the
+ * quieter story and contact pages.
+ */
 export function PageHeader({
   eyebrow,
   title,
   description,
   trail,
   children,
-  tone = "sand",
+  tone = "gold",
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   trail?: Array<{ label: string; href?: string }>;
   children?: ReactNode;
-  tone?: "sand" | "forest";
+  tone?: "gold" | "ink";
 }) {
-  const dark = tone === "forest";
+  const dark = tone === "ink";
 
   return (
-    <section
-      className={cx(
-        "relative overflow-hidden border-b",
-        dark ? "border-forest-800 bg-forest-900 text-sand-100" : "border-sand-200 bg-sand-100",
-      )}
-    >
-      <div
-        className={cx("absolute inset-0", dark ? "pattern-girih-light opacity-25" : "pattern-girih opacity-[0.07]")}
-        aria-hidden
-      />
-      <Container className="relative py-10 sm:py-14">
+    <section className={cx("relative overflow-hidden", dark ? "bg-coal-900 text-sand-50" : "bg-gold-500 text-ink-900")}>
+      <div className={cx("absolute inset-0", dark ? "pattern-girih-light opacity-20" : "lattice opacity-[0.07]")} aria-hidden />
+      <Container className="relative py-10 sm:py-16">
         {trail ? <Breadcrumbs trail={trail} tone={dark ? "light" : "dark"} /> : null}
-        <div className={cx(trail && "mt-5")}>
-          {eyebrow ? <Eyebrow className={dark ? "text-gold-300" : undefined}>{eyebrow}</Eyebrow> : null}
-          <h1
-            className={cx(
-              "mt-3 text-[2.1rem] leading-tight sm:text-5xl",
-              dark && "text-sand-50",
-            )}
-          >
-            {title}
-          </h1>
+        <div className={cx(trail && "mt-5 sm:mt-6")}>
+          {eyebrow ? <Eyebrow tone={dark ? "light" : "dark"}>{eyebrow}</Eyebrow> : null}
+          <h1 className={cx("mt-3 text-[2.4rem] leading-[1.02] sm:text-6xl", dark && "text-gold-500")}>{title}</h1>
           {description ? (
-            <p
-              className={cx(
-                "mt-4 max-w-2xl text-[0.93rem] leading-relaxed",
-                dark ? "text-sand-200/90" : "text-ink-600",
-              )}
-            >
+            <p className={cx("mt-4 max-w-2xl text-base leading-relaxed sm:text-lg", dark ? "text-coal-200" : "text-ink-900/85")}>
               {description}
             </p>
           ) : null}

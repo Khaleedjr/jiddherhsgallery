@@ -1,9 +1,12 @@
+import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { PageHeader } from "@/components/page-header";
 import { ShopBrowser } from "@/components/shop-browser";
 import { Container } from "@/components/ui";
 import { getCatalog, toShopItem } from "@/lib/catalog";
+import type { Department } from "@/lib/types";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { catalogMeta } = await getCatalog();
@@ -23,9 +26,11 @@ export default async function ShopPage() {
       <PageHeader
         eyebrow="The full shelf"
         title="Shop all products"
-        description={`Every title, toy and essential in the gallery — ${catalogMeta.productCount} products in total. Use the filters to narrow by age, category, topic or price.`}
+        description={`Every title, toy and essential in the gallery — ${catalogMeta.productCount} products in total. Pick a department, or use the filters below to narrow by age, topic or price.`}
         trail={[{ label: "Home", href: "/" }, { label: "Shop" }]}
-      />
+      >
+        <DepartmentTiles departments={departments} />
+      </PageHeader>
 
       <Container className="py-10 sm:py-12">
         <Suspense fallback={<BrowserSkeleton />}>
@@ -33,6 +38,45 @@ export default async function ShopPage() {
         </Suspense>
       </Container>
     </>
+  );
+}
+
+/**
+ * The four departments, in sight before any product: outlined pills with a
+ * round photo, drawn like the category buttons on the department pages so the
+ * two read as one family. Two by two on a phone, one row of four from tablets
+ * up. Each opens its department page, which lists that department's own categories.
+ */
+function DepartmentTiles({ departments }: { departments: Department[] }) {
+  return (
+    <nav aria-label="Departments" className="mt-7 sm:mt-9">
+      <ul className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4">
+        {departments.map((dept) => (
+          <li key={dept.slug}>
+            <Link
+              href={`/collections/${dept.slug}`}
+              className="group flex h-full items-center gap-3 rounded-full border-[1.5px] border-coal-900/35 p-1.5 pr-4 text-ink-900 transition duration-200 hover:border-coal-900 hover:bg-coal-900/10 active:scale-[0.97] sm:gap-3.5 sm:p-2 sm:pr-5"
+            >
+              <span className="relative size-11 shrink-0 overflow-hidden rounded-full bg-sand-200 sm:size-12">
+                {dept.image ? (
+                  <Image
+                    src={dept.image}
+                    alt=""
+                    fill
+                    sizes="3.5rem"
+                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                  />
+                ) : null}
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[0.9rem] leading-tight font-semibold sm:text-[0.95rem]">{dept.name}</span>
+                <span className="mt-0.5 block text-xs font-medium text-ink-900/60 tabular-nums">{dept.count} products</span>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 

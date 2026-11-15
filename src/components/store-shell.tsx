@@ -39,12 +39,13 @@ export function StoreShell({ children }: { children: ReactNode }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationJsonLd) }} />
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-forest-800 focus:px-4 focus:py-2 focus:text-sm focus:text-sand-50"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-coal-900 focus:px-4 focus:py-2 focus:text-sm focus:text-gold-500"
       >
         Skip to content
       </a>
       <SiteHeader departments={departments} ageGroups={ageGroups} />
-      <main id="main" className="flex-1">
+      {/* Pages end on paper with room before the footer; the homepage ends on its own coloured band, so it opts out. */}
+      <main id="main" className="flex-1 pb-20 has-[[data-flush-footer]]:pb-0">
         {children}
       </main>
       <SiteFooter departments={departments} ageGroups={ageGroups} />

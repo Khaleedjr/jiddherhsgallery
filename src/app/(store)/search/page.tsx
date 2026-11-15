@@ -40,7 +40,7 @@ export default async function SearchPage({
             <Link
               key={suggestion}
               href={`/search?q=${encodeURIComponent(suggestion)}`}
-              className="rounded-full border border-sand-300 bg-white px-3.5 py-1.5 text-[0.78rem] text-ink-700 transition hover:border-forest-500 hover:text-forest-800"
+              className="rounded-full border border-sand-300 bg-white px-3.5 py-1.5 text-[0.78rem] text-ink-700 transition hover:border-coal-500 hover:text-coal-800"
             >
               {suggestion}
             </Link>

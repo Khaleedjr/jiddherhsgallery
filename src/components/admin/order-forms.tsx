@@ -18,7 +18,7 @@ const initial: ActionResult = { ok: false, message: null };
 function Result({ state }: { state: ActionResult }) {
   if (!state.message) return null;
   return (
-    <p role="status" className={cx("text-[0.76rem] font-semibold", state.ok ? "text-forest-700" : "text-berry-600")}>
+    <p role="status" className={cx("text-[0.76rem] font-semibold", state.ok ? "text-coal-700" : "text-berry-600")}>
       {state.ok ? "✓ " : ""}
       {state.message}
     </p>
@@ -188,7 +188,7 @@ export function EditableCustomer({ order, children }: { order: Order; children: 
       <button
         type="button"
         onClick={() => setEditing((v) => !v)}
-        className="mt-3 text-[0.76rem] font-semibold text-forest-700 hover:underline"
+        className="mt-3 text-[0.76rem] font-semibold text-coal-700 hover:underline"
       >
         {editing ? "Cancel editing" : "Edit customer & delivery"}
       </button>

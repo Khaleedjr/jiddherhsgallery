@@ -1,24 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  /* Design 4 ("Arches") type: a heavy grotesque for display, a plain sans for
+     text, and the monoline script of the logo's "Jidderh's" for one line here and there. */
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-sacramento), cursive;
   --font-arabic: var(--font-amiri), ui-serif, serif;
 
-  /* Deep pine green — the house colour, used for chrome and emphasis. */
-  --color-forest-50: #eef6f2;
-  --color-forest-100: #d6e9e0;
-  --color-forest-200: #aed3c2;
-  --color-forest-300: #7cb6a0;
-  --color-forest-400: #4b9479;
-  --color-forest-500: #2a7a5e;
-  --color-forest-600: #1c6049;
-  --color-forest-700: #154b3a;
-  --color-forest-800: #0f3b2d;
-  --color-forest-900: #0a2b21;
-  --color-forest-950: #051a14;
+  /* The logo is three colours: a gold disc, black capitals, a white script.
+     Coal is the black, used for chrome, buttons and dark bands. */
+  --color-coal-50: #f6f0e2;
+  --color-coal-100: #ece3cf;
+  --color-coal-200: #d9cfb8;
+  --color-coal-300: #b9ae97;
+  --color-coal-400: #8a7f69;
+  --color-coal-500: #5d5341;
+  --color-coal-600: #3d3423;
+  --color-coal-700: #2b2418;
+  --color-coal-800: #1d1810;
+  --color-coal-900: #14110a;
+  --color-coal-950: #0b0905;
 
-  /* Brand gold, sampled from the logo (#cd9a32), used for accents. */
+  /* Brand gold, sampled from the logo (#cd9a32): page bands, accents, and text on black. */
   --color-gold-100: #faf1de;
   --color-gold-200: #f3e1b9;
   --color-gold-300: #e7cc8d;
@@ -27,19 +31,19 @@
   --color-gold-600: #a87d27;
   --color-gold-700: #82601e;
 
-  /* Warm paper tones for page and card surfaces. */
-  --color-sand-50: #fdfbf7;
-  --color-sand-100: #f9f5ec;
-  --color-sand-200: #f1ead9;
-  --color-sand-300: #e5dac2;
-  --color-sand-400: #d2c3a3;
+  /* The logo's white, warmed: page and card surfaces. 50 is paper, 200 is the cream tint. */
+  --color-sand-50: #fffdf8;
+  --color-sand-100: #faf4e6;
+  --color-sand-200: #f1e7cf;
+  --color-sand-300: #e4d6b6;
+  --color-sand-400: #cfbd94;
 
-  --color-ink-900: #16130f;
-  --color-ink-800: #2a2520;
-  --color-ink-700: #423b33;
-  --color-ink-600: #5c5349;
-  --color-ink-500: #7a7064;
-  --color-ink-400: #9c9285;
+  --color-ink-900: #14110a;
+  --color-ink-800: #2a2418;
+  --color-ink-700: #403829;
+  --color-ink-600: #5d5341;
+  --color-ink-500: #6f6450;
+  --color-ink-400: #978b74;
 
   --color-berry-500: #a3323f;
   --color-berry-600: #8a2734;
@@ -54,6 +58,33 @@
   --shadow-lift: 0 2px 4px rgb(22 19 15 / 0.05), 0 18px 40px -18px rgb(22 19 15 / 0.22);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Homepage design exploration (/designs): palette taken straight from the logo,
+     mustard gold disc, white script, black capitals. */
+  --color-gilt-50: #fbf6ea;
+  --color-gilt-100: #f5e9cc;
+  --color-gilt-200: #ebd49e;
+  --color-gilt-300: #e0bd6e;
+  --color-gilt-400: #d6ab4c;
+  --color-gilt-500: #cd9a32;
+  --color-gilt-600: #a97c22;
+  /* Darkest golds are the only ones that pass AA as text on white. */
+  --color-gilt-700: #85601a;
+  --color-gilt-800: #5e4413;
+
+  --color-noir-50: #f6f6f4;
+  --color-noir-100: #ecebe8;
+  --color-noir-200: #d9d7d2;
+  --color-noir-300: #b9b6af;
+  --color-noir-400: #8f8b83;
+  --color-noir-500: #6b675f;
+  --color-noir-600: #4e4b45;
+  --color-noir-700: #36342f;
+  --color-noir-800: #22211e;
+  --color-noir-900: #171614;
+  --color-noir-950: #0e0d0c;
+
+  --ease-ui: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @layer base {
@@ -61,8 +92,19 @@
     border-color: var(--color-sand-300);
   }
 
+  /* Height of the sticky store header (bar plus its star rule), for anything that sticks or scrolls below it. */
+  :root {
+    --header-h: 86px;
+  }
+  @media (min-width: 640px) {
+    :root {
+      --header-h: 102px;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
     -webkit-text-size-adjust: 100%;
   }
 
@@ -75,28 +117,55 @@
   }
 
   ::selection {
-    background-color: var(--color-forest-800);
-    color: var(--color-sand-50);
+    background-color: var(--color-coal-900);
+    color: var(--color-gold-500);
   }
 
+  /* Black ring with a white halo, so focus shows on gold, white and black alike. */
   :focus-visible {
-    outline: 2px solid var(--color-forest-600);
+    outline: 2px solid var(--color-coal-900);
     outline-offset: 2px;
-    border-radius: 2px;
+    box-shadow: 0 0 0 5px var(--color-sand-50);
+    border-radius: 4px;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    color: var(--color-forest-950);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-ink-900);
   }
 }
 
 @layer components {
+  /* Eight-point star lattice in black line, laid faintly over gold or paper. */
+  .lattice {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%2314110a' stroke-width='1'%3E%3Cpath d='M48 6 58 24 78 18 72 38 90 48 72 58 78 78 58 72 48 90 38 72 18 78 24 58 6 48 24 38 18 18 38 24Z'/%3E%3Ccircle cx='48' cy='48' r='11'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 96px 96px;
+  }
+
+  /* Mihrab arch: a round top over a straight-sided frame. */
+  .arch {
+    border-radius: 999px 999px 0 0;
+  }
+
+  /* Homepage hero drawings. Every moving part rests in a finished pose, so
+     the drawings are complete with motion switched off. */
+  .art :is(.art-drop, .art-rise, .art-spin, .art-twinkle, .art-bead) {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .art-sway {
+    transform-box: view-box;
+    transform-origin: 50% 13%;
+  }
+  .art-rise {
+    opacity: 0;
+  }
+
   /* Girih-style eight-point star lattice, drawn once and tiled. */
   .pattern-girih {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%230f3b2d' stroke-width='1' stroke-opacity='0.16'%3E%3Cpath d='M40 4 48 20 64 12 56 28 76 40 56 52 64 68 48 60 40 76 32 60 16 68 24 52 4 40 24 28 16 12 32 20Z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Cpath d='M0 0h80v80H0z'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%2314110a' stroke-width='1' stroke-opacity='0.16'%3E%3Cpath d='M40 4 48 20 64 12 56 28 76 40 56 52 64 68 48 60 40 76 32 60 16 68 24 52 4 40 24 28 16 12 32 20Z'/%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Cpath d='M0 0h80v80H0z'/%3E%3C/g%3E%3C/svg%3E");
     background-size: 80px 80px;
   }
 
@@ -173,6 +242,61 @@
   to { transform: none; }
 }
 
+/* Hero drawings move only for visitors who have not asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .art-twinkle {
+    animation: art-twinkle 3.2s ease-in-out infinite alternate;
+    animation-delay: calc(var(--i, 0) * -0.7s);
+  }
+  .art-spin {
+    animation: art-spin 16s linear infinite;
+  }
+  .art-drop {
+    animation: art-drop 5.5s var(--ease-out-soft) infinite;
+  }
+  .art-rise {
+    animation: art-rise 3.6s ease-out infinite;
+    animation-delay: calc(var(--i, 0) * 1.2s);
+  }
+  .art-sway {
+    animation: art-sway 4.5s ease-in-out infinite alternate;
+  }
+  /* One bead after another lights up, the way a tasbih is counted. */
+  .art-bead {
+    animation: art-bead 5.7s linear infinite;
+    animation-delay: calc(var(--i, 0) * 0.3s);
+  }
+}
+
+@keyframes art-twinkle {
+  from { opacity: 0.2; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+@keyframes art-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes art-drop {
+  0% { transform: translateY(-90px); opacity: 0; }
+  10% { opacity: 1; }
+  26% { transform: translateY(0); }
+  33% { transform: translateY(-9px); }
+  40%, 90% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+@keyframes art-rise {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-64px) scale(1.1); opacity: 0; }
+}
+@keyframes art-sway {
+  from { transform: rotate(-2.4deg); }
+  to { transform: rotate(2.4deg); }
+}
+@keyframes art-bead {
+  0%, 14%, 100% { opacity: 0.42; }
+  5% { opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -227,4 +351,90 @@
 @keyframes jg-pulse {
   from { opacity: 0.45; transform: scale(0.86); }
   to { opacity: 1; transform: scale(1.06); }
+}
+
+/* ------------------------------------------------------------------
+   Homepage design exploration (/designs). Each design sets --dz-display
+   and --dz-body on its root; everything below is shared motion.
+------------------------------------------------------------------- */
+@layer components {
+  .dz-root {
+    font-family: var(--dz-body);
+  }
+  .dz-root :is(h1, h2, h3, h4),
+  .dz-display {
+    font-family: var(--dz-display);
+    color: inherit;
+    letter-spacing: var(--dz-tracking, -0.02em);
+  }
+
+  /* Press feedback: the interface heard you. */
+  .dz-press {
+    transition:
+      transform 160ms var(--ease-ui),
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease;
+  }
+  .dz-press:active {
+    transform: scale(0.97);
+  }
+
+  .dz-img {
+    transition: transform 700ms var(--ease-ui);
+  }
+  .dz-nudge {
+    transition: transform 200ms var(--ease-ui);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dz-card:hover .dz-img {
+    transform: scale(1.04);
+  }
+  .dz-card:hover .dz-nudge {
+    transform: translateX(3px);
+  }
+}
+
+/* Hero copy arrives in sequence; --i sets each line's place in the queue. */
+@keyframes dz-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.dz-enter {
+  animation: dz-enter 800ms var(--ease-ui) both;
+  animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+/* Sections settle in as they scroll into view, where the browser supports it. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .dz-reveal {
+      animation: dz-enter linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+/* Design 1: department index swaps the preview photo to the row under the pointer. */
+@media (hover: hover) and (pointer: fine) {
+  .dz-index:has(.dz-index-row:hover) .dz-index-row:not(:hover) .dz-index-photo {
+    opacity: 0;
+  }
+  .dz-index:has(.dz-index-row:hover) .dz-index-row:hover .dz-index-photo {
+    opacity: 1;
+  }
+}
+.dz-index-photo {
+  transition: opacity 300ms ease;
 }

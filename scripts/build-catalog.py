@@ -106,11 +106,24 @@ def stock_level(value):
         return None
 
 
+EMBED_RE = re.compile(
+    r"<!--.*?-->|<script\b.*?</script>|<style\b.*?</style>|<video\b.*?</video>|\[video\b[^\]]*\](?:\s*\[/video\])?",
+    re.S | re.I,
+)
+
+
+def strip_embeds(raw):
+    """Product videos (a [video] shortcode in exports, a rendered <video> from the
+    live store), comments and scripts: none of them belong in a description, and
+    stripping only their tags would leave a bare .mp4 link in the text."""
+    return EMBED_RE.sub(" ", raw or "").replace("&nbsp;", " ").replace(" ", " ")
+
+
 def clean_html(raw):
     """Strip the Woo export's literal \\n markers and reduce HTML to a safe subset."""
     if not raw:
         return ""
-    text = raw.replace("\\n", "")
+    text = strip_embeds(raw).replace("\\n", "")
     text = text.replace("\r\n", "\n").replace("\r", "\n")
 
     def keep(match):
@@ -136,7 +149,7 @@ def clean_html(raw):
 
 
 def plain_text(raw, limit=300):
-    text = re.sub(r"<[^>]+>", " ", (raw or "").replace("\\n", " "))
+    text = re.sub(r"<[^>]+>", " ", strip_embeds(raw).replace("\\n", " "))
     text = html.unescape(text)
     text = re.sub(r"\s+", " ", text).strip()
     return text[:limit].strip()
@@ -161,6 +174,33 @@ def main():
 
     products = []
     seen_slugs = {}
+
+    # A product keeps the web address it already has: renames, new arrivals and
+    # duplicate names must never move an existing product's URL. New products
+    # get a fresh slug that avoids every address already taken.
+    previous_slugs = {}
+    previous_hero_owner = {}
+    previous_path = os.path.join(OUT_DIR, "products.json")
+    if os.path.exists(previous_path):
+        with open(previous_path, encoding="utf-8") as handle:
+            previous = json.load(handle)
+        previous_slugs = {p["id"]: p["slug"] for p in previous}
+        previous_hero_owner = {p["images"][0]: p["id"] for p in previous if p["images"]}
+    taken = set(previous_slugs.values())
+
+    # Department and category photos stay with the product they were taken from,
+    # so a re-import (which can reorder products) doesn't swap the pictures on
+    # the homepage and shop. Only a node whose product is gone gets a new one.
+    previous_node_owner = {}
+    categories_path = os.path.join(OUT_DIR, "categories.json")
+    if os.path.exists(categories_path):
+        with open(categories_path, encoding="utf-8") as handle:
+            previous_categories = json.load(handle)
+        for dept in previous_categories.get("departments", []):
+            for node in [dept] + dept.get("children", []):
+                owner = previous_hero_owner.get(node.get("image"))
+                if owner:
+                    previous_node_owner[node["slug"]] = owner
     # name -> node, built as products are read so counts stay in sync with what ships.
     dept_tree = OrderedDict()
     age_counts = defaultdict(int)
@@ -176,14 +216,19 @@ def main():
         if not name:
             continue
 
-        slug = slugify(name)
-        if slug in seen_slugs:
-            seen_slugs[slug] += 1
-            slug = "%s-%d" % (slug, seen_slugs[slug])
+        if row["ID"] in previous_slugs:
+            slug = previous_slugs[row["ID"]]
         else:
-            seen_slugs[slug] = 1
+            base = slugify(name)
+            slug, n = base, 1
+            while slug in taken or slug in seen_slugs:
+                n += 1
+                slug = "%s-%d" % (base, n)
+        seen_slugs[slug] = 1
+        taken.add(slug)
 
-        images = [u.strip() for u in split_list(row["Images"])]
+        # WooCommerce often lists the main photo again in the gallery; show it once.
+        images = list(OrderedDict.fromkeys(u.strip() for u in split_list(row["Images"])))
         variations = variations_by_parent.get(row["ID"], [])
 
         variants = []
@@ -331,7 +376,10 @@ def main():
             if node is None:
                 continue
             node["count"] += 1
-            if node["image"] is None and hero:
+            if hero and previous_node_owner.get(slug) == product["id"]:
+                node["image"] = hero
+                node["keep"] = True
+            elif node["image"] is None and hero and not node.get("keep"):
                 node["image"] = hero
 
     departments = []
@@ -339,7 +387,7 @@ def main():
         dept = dept_tree.get(root)
         if not dept or not dept["count"]:
             continue
-        children = [c for c in dept["children"].values() if c["count"]]
+        children = [{k: v for k, v in c.items() if k != "keep"} for c in dept["children"].values() if c["count"]]
         children.sort(key=lambda c: -c["count"])
         departments.append({
             "slug": dept["slug"],

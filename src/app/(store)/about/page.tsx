@@ -44,7 +44,7 @@ export default async function AboutPage() {
         title="Nurturing towards Jannah"
         description="We are your favourite Islamic online store — a thoughtfully curated selection of Islamic products for every age, from Kaduna to every state in Nigeria."
         trail={[{ label: "Home", href: "/" }, { label: "Our story" }]}
-        tone="forest"
+        tone="ink"
       />
 
       <Container className="py-16 sm:py-20">
@@ -124,7 +124,7 @@ export default async function AboutPage() {
                 { value: "36", label: "States served" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <dt className="font-display text-2xl font-semibold text-forest-800">{stat.value}</dt>
+                  <dt className="font-display text-2xl font-semibold text-coal-800">{stat.value}</dt>
                   <dd className="mt-1 text-[0.7rem] tracking-wide text-ink-500 uppercase">{stat.label}</dd>
                 </div>
               ))}
@@ -139,7 +139,7 @@ export default async function AboutPage() {
           <div className="mt-10 grid gap-4 md:grid-cols-3 lg:gap-6">
             {values.map(({ Icon, title, copy }) => (
               <div key={title} className="rounded-lg border border-sand-200 bg-white p-6">
-                <span className="grid size-11 place-items-center rounded-full bg-forest-50 text-forest-700">
+                <span className="grid size-11 place-items-center rounded-full bg-coal-50 text-coal-700">
                   <Icon className="size-5" />
                 </span>
                 <h3 className="mt-5 text-lg">{title}</h3>
@@ -155,10 +155,10 @@ export default async function AboutPage() {
         <div className="mx-auto mt-10 grid max-w-2xl gap-4 sm:grid-cols-2">
           {site.team.map((person) => (
             <div key={person.name} className="rounded-lg border border-sand-200 bg-white p-6 text-center">
-              <span className="mx-auto grid size-12 place-items-center rounded-full bg-forest-50 text-forest-700">
+              <span className="mx-auto grid size-12 place-items-center rounded-full bg-coal-50 text-coal-700">
                 <StarKhatimIcon className="size-5" />
               </span>
-              <p className="mt-4 font-display text-xl font-semibold text-forest-900">{person.name}</p>
+              <p className="mt-4 font-display text-xl font-semibold text-coal-900">{person.name}</p>
               <p className="mt-1 text-[0.8rem] tracking-wide text-gold-600 uppercase">{person.role}</p>
             </div>
           ))}
@@ -166,12 +166,14 @@ export default async function AboutPage() {
       </Container>
 
       <Container className="pb-16 sm:pb-20">
-        <div className="relative overflow-hidden rounded-xl bg-forest-900 px-6 py-14 text-center sm:px-12">
+        <div className="relative overflow-hidden rounded-[1.5rem] bg-coal-900 px-6 py-14 text-center sm:px-12 lg:rounded-[2rem]">
           <div className="pattern-girih-light absolute inset-0 opacity-25" aria-hidden />
           <div className="relative mx-auto max-w-xl">
-            <StarKhatimIcon className="mx-auto size-7 text-gold-300" />
-            <Eyebrow className="mt-5 justify-center text-gold-300">Come and see</Eyebrow>
-            <h2 className="mt-3 font-display text-3xl font-semibold text-sand-50 sm:text-4xl">
+            <StarKhatimIcon className="mx-auto size-7 text-gold-500" />
+            <Eyebrow tone="light" className="mt-5 justify-center">
+              Come and see
+            </Eyebrow>
+            <h2 className="mt-3 font-display text-3xl font-semibold text-gold-500 sm:text-5xl">
               Come and shop with us
             </h2>
             <p className="mt-4 text-[0.92rem] leading-relaxed text-sand-200/90">

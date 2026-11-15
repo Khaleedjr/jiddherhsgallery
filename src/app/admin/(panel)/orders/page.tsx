@@ -108,7 +108,7 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
       }
     >
       {query.deleted ? (
-        <p role="status" className="rounded-lg border border-forest-200 bg-forest-50 px-4 py-2.5 text-[0.8rem] font-medium text-forest-700">
+        <p role="status" className="rounded-lg border border-coal-200 bg-coal-50 px-4 py-2.5 text-[0.8rem] font-medium text-coal-700">
           Order deleted. Any stock it had taken was put back.
         </p>
       ) : null}
@@ -138,14 +138,14 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
                 aria-selected={active}
                 className={cx(
                   "-mb-px flex items-center gap-1.5 border-b-2 px-3 py-2.5 text-[0.8rem] font-semibold whitespace-nowrap transition",
-                  active ? "border-forest-700 text-forest-800" : "border-transparent text-ink-500 hover:text-ink-800",
+                  active ? "border-coal-700 text-coal-800" : "border-transparent text-ink-500 hover:text-ink-800",
                 )}
               >
                 {tab.label}
                 <span
                   className={cx(
                     "rounded-full px-1.5 text-[0.68rem] tabular-nums",
-                    tab.key === "pending" && tab.count ? "bg-gold-400 text-forest-950" : active ? "bg-forest-100 text-forest-800" : "bg-sand-200 text-ink-600",
+                    tab.key === "pending" && tab.count ? "bg-gold-400 text-coal-950" : active ? "bg-coal-100 text-coal-800" : "bg-sand-200 text-ink-600",
                   )}
                 >
                   {tab.count}
@@ -194,7 +194,7 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
               Apply filters
             </button>
             {filtersOn ? (
-              <Link href={withQuery("/admin/orders", { status: status ?? undefined }, {})} className="text-[0.76rem] font-semibold text-forest-700 hover:underline">
+              <Link href={withQuery("/admin/orders", { status: status ?? undefined }, {})} className="text-[0.76rem] font-semibold text-coal-700 hover:underline">
                 Clear filters
               </Link>
             ) : null}
@@ -221,7 +221,7 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
                     return (
                       <tr key={order.ref} className="group relative transition hover:bg-sand-50">
                         <td className={td}>
-                          <Link href={`/admin/orders/${order.ref}`} className="font-semibold text-forest-800 after:absolute after:inset-0 hover:underline">
+                          <Link href={`/admin/orders/${order.ref}`} className="font-semibold text-coal-800 after:absolute after:inset-0 hover:underline">
                             {order.ref}
                           </Link>
                           <p className="mt-0.5 text-[0.72rem] whitespace-nowrap text-ink-500" title={formatDateTime(order.createdAt)}>

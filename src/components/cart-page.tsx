@@ -63,7 +63,7 @@ export function CartPageBody() {
                   <div className="min-w-0">
                     <Link
                       href={`/products/${item.slug}`}
-                      className="text-[0.92rem] leading-snug font-semibold text-ink-900 transition hover:text-forest-700"
+                      className="text-[0.92rem] leading-snug font-semibold text-ink-900 transition hover:text-coal-700"
                     >
                       {item.name}
                     </Link>
@@ -72,7 +72,7 @@ export function CartPageBody() {
                     ) : null}
                     <p className="mt-1.5 text-[0.85rem] text-ink-600">{formatPrice(item.price)} each</p>
                   </div>
-                  <span className="shrink-0 font-display text-lg font-semibold text-forest-800">
+                  <span className="shrink-0 font-display text-lg font-semibold text-coal-800">
                     {formatPrice(item.price * item.quantity)}
                   </span>
                 </div>
@@ -118,7 +118,7 @@ export function CartPageBody() {
         </ButtonLink>
       </div>
 
-      <aside className="lg:sticky lg:top-28 lg:self-start">
+      <aside className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
         <div className="rounded-xl border border-sand-200 bg-white p-6">
           <h2 className="text-xl">Order summary</h2>
 
@@ -135,7 +135,7 @@ export function CartPageBody() {
 
           <div className="mt-5 flex items-baseline justify-between border-t border-sand-200 pt-5">
             <span className="text-[0.85rem] font-semibold text-ink-900">Total</span>
-            <span className="font-display text-2xl font-semibold text-forest-900">
+            <span className="font-display text-2xl font-semibold text-coal-900">
               {formatPrice(subtotal)}
             </span>
           </div>
@@ -147,7 +147,7 @@ export function CartPageBody() {
           <p
             className={cx(
               "mt-4 flex items-start gap-2 rounded-md p-3 text-[0.76rem] leading-relaxed",
-              remaining > 0 ? "bg-sand-100 text-ink-600" : "bg-forest-50 text-forest-800",
+              remaining > 0 ? "bg-sand-100 text-ink-600" : "bg-coal-50 text-coal-800",
             )}
           >
             <TruckIcon className="mt-0.5 size-4 shrink-0" />

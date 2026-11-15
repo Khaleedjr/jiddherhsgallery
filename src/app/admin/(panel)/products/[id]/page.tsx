@@ -50,7 +50,7 @@ export default async function EditProductPage({
       actions={product.status === "draft" ? <Pill>Draft — hidden from the store</Pill> : <Pill tone="good">Live on the store</Pill>}
     >
       {flags.created || flags.duplicated ? (
-        <p role="status" className="rounded-lg border border-forest-200 bg-forest-50 px-4 py-2.5 text-[0.8rem] font-medium text-forest-700">
+        <p role="status" className="rounded-lg border border-coal-200 bg-coal-50 px-4 py-2.5 text-[0.8rem] font-medium text-coal-700">
           {flags.created ? "Product created." : "Copy created as a draft — edit it, then publish."}
         </p>
       ) : null}
@@ -74,7 +74,7 @@ export default async function EditProductPage({
               <ul className="mt-4 divide-y divide-sand-200/80 text-[0.8rem]">
                 {withProduct.slice(0, 5).map((order) => (
                   <li key={order.ref} className="flex items-center justify-between gap-3 py-2">
-                    <Link href={`/admin/orders/${order.ref}`} className="font-semibold text-forest-700 hover:underline">
+                    <Link href={`/admin/orders/${order.ref}`} className="font-semibold text-coal-700 hover:underline">
                       {order.ref}
                     </Link>
                     <span className="truncate text-ink-600">{order.customer.name}</span>
@@ -91,7 +91,7 @@ export default async function EditProductPage({
             title="Stock history"
             flush
             action={
-              <Link href={`/admin/inventory/log?product=${product.id}`} className="text-[0.76rem] font-semibold text-forest-700 hover:underline">
+              <Link href={`/admin/inventory/log?product=${product.id}`} className="text-[0.76rem] font-semibold text-coal-700 hover:underline">
                 Full log
               </Link>
             }
@@ -114,7 +114,7 @@ export default async function EditProductPage({
                         {REASON_LABEL[m.reason]}
                         {m.variantLabel ? <span className="text-ink-500"> · {m.variantLabel}</span> : null}
                       </td>
-                      <td className={cx(td, "text-right font-semibold tabular-nums", m.change > 0 ? "text-forest-700" : "text-berry-600")}>
+                      <td className={cx(td, "text-right font-semibold tabular-nums", m.change > 0 ? "text-coal-700" : "text-berry-600")}>
                         {m.change > 0 ? `+${m.change}` : m.change}
                       </td>
                       <td className={cx(td, "text-right tabular-nums")}>{m.after ?? "—"}</td>

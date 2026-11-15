@@ -88,7 +88,7 @@ export default async function CustomerPage({ params }: { params: Promise<Params>
                 {orders.map((order) => (
                   <tr key={order.ref} className="relative hover:bg-sand-50">
                     <td className={td}>
-                      <Link href={`/admin/orders/${order.ref}`} className="font-semibold text-forest-800 after:absolute after:inset-0 hover:underline">
+                      <Link href={`/admin/orders/${order.ref}`} className="font-semibold text-coal-800 after:absolute after:inset-0 hover:underline">
                         {order.ref}
                       </Link>
                       <p className="text-[0.72rem] text-ink-500">
@@ -114,14 +114,14 @@ export default async function CustomerPage({ params }: { params: Promise<Params>
             <ul className="space-y-2.5 text-[0.82rem]">
               <li className="flex items-center gap-2.5">
                 <PhoneIcon className="size-4 text-ink-400" />
-                <a href={`tel:${customer.phone.replace(/\s/g, "")}`} className="text-forest-700 hover:underline">
+                <a href={`tel:${customer.phone.replace(/\s/g, "")}`} className="text-coal-700 hover:underline">
                   {customer.phone}
                 </a>
               </li>
               {customer.email ? (
                 <li className="flex items-center gap-2.5">
                   <MailIcon className="size-4 shrink-0 text-ink-400" />
-                  <a href={`mailto:${customer.email}`} className="break-all text-forest-700 hover:underline">
+                  <a href={`mailto:${customer.email}`} className="break-all text-coal-700 hover:underline">
                     {customer.email}
                   </a>
                 </li>
@@ -134,7 +134,7 @@ export default async function CustomerPage({ params }: { params: Promise<Params>
                 {top.map((item) => (
                   <li key={item.productId} className="flex items-center gap-3">
                     <Thumb src={item.image} alt="" size={36} />
-                    <Link href={`/admin/products/${item.productId}`} className="line-clamp-2 flex-1 text-[0.8rem] font-medium text-ink-800 hover:text-forest-700">
+                    <Link href={`/admin/products/${item.productId}`} className="line-clamp-2 flex-1 text-[0.8rem] font-medium text-ink-800 hover:text-coal-700">
                       {item.name}
                     </Link>
                     <span className="text-[0.74rem] font-semibold text-ink-500 tabular-nums">×{item.units}</span>

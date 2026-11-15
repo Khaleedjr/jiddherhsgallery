@@ -15,11 +15,13 @@ export function Container({
   return <div className={cx("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", className)}>{children}</div>;
 }
 
-export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
+/** Small capitals over a heading. "light" is for black bands, where it turns gold. */
+export function Eyebrow({ children, className, tone = "dark" }: { children: ReactNode; className?: string; tone?: "dark" | "light" }) {
   return (
     <span
       className={cx(
-        "inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.22em] text-gold-600 uppercase",
+        "inline-flex items-center gap-2 text-[0.72rem] font-semibold tracking-[0.2em] uppercase",
+        tone === "light" ? "text-gold-400" : "text-ink-900",
         className,
       )}
     >
@@ -53,11 +55,11 @@ export function SectionHeading({
       )}
     >
       <div className={cx("max-w-2xl", centered && "mx-auto text-center")}>
-        {eyebrow ? <Eyebrow className={tone === "light" ? "text-gold-300" : undefined}>{eyebrow}</Eyebrow> : null}
+        {eyebrow ? <Eyebrow tone={tone}>{eyebrow}</Eyebrow> : null}
         <h2
           className={cx(
-            "mt-3 text-3xl leading-tight sm:text-4xl",
-            tone === "light" && "text-sand-50",
+            "mt-3 text-[2rem] leading-[1.05] sm:text-5xl",
+            tone === "light" && "text-gold-500",
           )}
         >
           {title}
@@ -73,22 +75,25 @@ export function SectionHeading({
   );
 }
 
+/* Design 4 buttons: full pills. Black with gold lettering is the main action;
+   a black outline is the second. WhatsApp keeps the black, not the app's green,
+   so every page stays in the logo's three colours. */
 const buttonBase =
-  "inline-flex items-center justify-center gap-2 rounded-full text-sm font-semibold transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-full text-sm font-semibold transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100";
 
 const buttonVariants = {
-  primary: "bg-forest-800 text-sand-50 hover:bg-forest-700 active:bg-forest-900 shadow-[0_10px_24px_-14px_rgba(10,43,33,0.9)]",
-  gold: "bg-gold-400 text-forest-950 hover:bg-gold-300 active:bg-gold-500",
-  outline: "border border-forest-800/25 text-forest-900 hover:border-forest-800/60 hover:bg-forest-50",
-  ghost: "text-forest-900 hover:bg-forest-50",
-  light: "bg-sand-50 text-forest-900 hover:bg-sand-100",
-  whatsapp: "bg-[#25D366] text-[#05321a] hover:bg-[#1fbe5a]",
+  primary: "bg-coal-900 text-gold-500 hover:bg-black",
+  gold: "bg-gold-500 text-coal-900 hover:bg-gold-400",
+  outline: "border-[1.5px] border-coal-900 text-coal-900 hover:bg-coal-900 hover:text-gold-500",
+  ghost: "text-coal-900 hover:bg-sand-200",
+  light: "bg-sand-50 text-coal-900 hover:bg-white",
+  whatsapp: "bg-coal-900 text-gold-500 hover:bg-black",
 } as const;
 
 const buttonSizes = {
-  sm: "h-9 px-4",
-  md: "h-11 px-6",
-  lg: "h-12 px-7 text-[0.95rem]",
+  sm: "h-10 px-5",
+  md: "h-12 px-6",
+  lg: "h-13 px-8 text-[0.95rem]",
 } as const;
 
 type ButtonStyleProps = {
@@ -126,12 +131,13 @@ export function Badge({
   tone?: "neutral" | "sale" | "sold-out" | "new" | "gold";
   className?: string;
 }) {
+  /* Only the logo's three colours: no red sale flash, no green "new". */
   const tones = {
     neutral: "bg-sand-200 text-ink-700",
-    sale: "bg-berry-500 text-white",
-    "sold-out": "bg-ink-800/85 text-sand-100",
-    new: "bg-forest-700 text-sand-50",
-    gold: "bg-gold-400 text-forest-950",
+    sale: "bg-coal-900 text-gold-500",
+    "sold-out": "bg-sand-50/95 text-ink-700",
+    new: "bg-sand-50 text-coal-900",
+    gold: "bg-gold-500 text-coal-900",
   } as const;
   return (
     <span
@@ -168,7 +174,7 @@ export function Breadcrumbs({
   return (
     <nav
       aria-label="Breadcrumb"
-      className={cx("text-[0.8rem]", light ? "text-sand-300/75" : "text-ink-500")}
+      className={cx("text-[0.8rem]", light ? "text-coal-300" : "text-ink-900/75")}
     >
       <ol className="flex flex-wrap items-center gap-1.5">
         {trail.map((crumb, index) => (
@@ -176,15 +182,15 @@ export function Breadcrumbs({
             {crumb.href ? (
               <Link
                 href={crumb.href}
-                className={cx("transition", light ? "hover:text-gold-300" : "hover:text-forest-700")}
+                className={cx("underline-offset-4 transition hover:underline", light ? "hover:text-gold-500" : "hover:text-ink-900")}
               >
                 {crumb.label}
               </Link>
             ) : (
-              <span className={light ? "text-sand-100" : "text-ink-700"}>{crumb.label}</span>
+              <span className={cx("font-semibold", light ? "text-sand-50" : "text-ink-900")}>{crumb.label}</span>
             )}
             {index < trail.length - 1 ? (
-              <span aria-hidden className={light ? "text-sand-300/40" : "text-sand-400"}>
+              <span aria-hidden className={light ? "text-coal-400" : "text-ink-900/40"}>
                 /
               </span>
             ) : null}
@@ -205,8 +211,8 @@ export function EmptyState({
   action?: ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-dashed border-sand-400 bg-sand-100/60 px-6 py-16 text-center">
-      <StarKhatimIcon className="mx-auto size-7 text-gold-300" />
+    <div className="rounded-[1.5rem] bg-sand-200 px-6 py-16 text-center">
+      <StarKhatimIcon className="mx-auto size-7 text-gold-600" />
       <h3 className="mt-4 text-xl">{title}</h3>
       <p className="mx-auto mt-2 max-w-md text-sm text-ink-600">{description}</p>
       {action ? <div className="mt-6 flex justify-center">{action}</div> : null}

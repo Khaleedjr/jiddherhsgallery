@@ -232,11 +232,11 @@ export function ShopBrowser({
   return (
     <div className="lg:grid lg:grid-cols-[16rem_1fr] lg:gap-10">
       <aside className="hidden lg:block">
-        <div className="sticky top-28 max-h-[calc(100dvh-8rem)] overflow-y-auto pr-2 pb-6">{panel}</div>
+        <div className="sticky top-[calc(var(--header-h)+1.5rem)] max-h-[calc(100dvh-var(--header-h)-3rem)] overflow-y-auto pr-2 pb-6">{panel}</div>
       </aside>
 
       <div>
-        <div className="sticky top-16 z-20 -mx-4 mb-6 flex items-center gap-3 border-b border-sand-200 bg-sand-50/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
+        <div className="sticky top-(--header-h) z-20 -mx-4 mb-6 flex items-center gap-3 border-b border-sand-200 bg-sand-50/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
           <button
             type="button"
             onClick={() => setFiltersOpen(true)}
@@ -245,7 +245,7 @@ export function ShopBrowser({
             <MenuIcon className="size-4" />
             Filters
             {activeCount > 0 ? (
-              <span className="grid size-5 place-items-center rounded-full bg-forest-800 text-[0.65rem] text-sand-50">
+              <span className="grid size-5 place-items-center rounded-full bg-coal-800 text-[0.65rem] text-sand-50">
                 {activeCount}
               </span>
             ) : null}
@@ -322,7 +322,7 @@ export function ShopBrowser({
           />
           <div className="animate-slide-in absolute inset-y-0 right-0 flex w-[min(22rem,92vw)] flex-col bg-sand-50 shadow-2xl">
             <div className="flex h-16 shrink-0 items-center justify-between border-b border-sand-200 px-5">
-              <span className="font-display text-lg font-semibold text-forest-900">Filters</span>
+              <span className="font-display text-lg font-semibold text-coal-900">Filters</span>
               <button
                 type="button"
                 onClick={() => setFiltersOpen(false)}
@@ -406,10 +406,10 @@ function FilterPanel({
         <button
           type="button"
           onClick={onClear}
-          className="flex w-full items-center justify-between rounded-md bg-forest-50 px-3 py-2.5 text-[0.8rem] font-semibold text-forest-800 transition hover:bg-forest-100"
+          className="flex w-full items-center justify-between rounded-md bg-coal-50 px-3 py-2.5 text-[0.8rem] font-semibold text-coal-800 transition hover:bg-coal-100"
         >
           Clear all filters
-          <span className="rounded-full bg-forest-800 px-2 py-0.5 text-[0.65rem] text-sand-50">
+          <span className="rounded-full bg-coal-800 px-2 py-0.5 text-[0.65rem] text-sand-50">
             {activeCount}
           </span>
         </button>
@@ -498,7 +498,7 @@ function FilterPanel({
                 onPrice("min", band.min);
                 onPrice("max", band.max);
               }}
-              className="rounded-full border border-sand-300 px-2.5 py-1 text-[0.7rem] text-ink-600 transition hover:border-forest-400 hover:text-forest-800"
+              className="rounded-full border border-sand-300 px-2.5 py-1 text-[0.7rem] text-ink-600 transition hover:border-coal-400 hover:text-coal-800"
             >
               {band.label}
             </button>
@@ -533,8 +533,8 @@ function FilterPanel({
                   className={cx(
                     "rounded-full border px-2.5 py-1 text-[0.72rem] capitalize transition",
                     active
-                      ? "border-forest-700 bg-forest-800 text-sand-50"
-                      : "border-sand-300 text-ink-600 hover:border-forest-400 hover:text-forest-800",
+                      ? "border-coal-700 bg-coal-800 text-sand-50"
+                      : "border-sand-300 text-ink-600 hover:border-coal-400 hover:text-coal-800",
                   )}
                 >
                   {tag}
@@ -575,7 +575,7 @@ function CheckRow({
     <label
       className={cx(
         "flex cursor-pointer items-center gap-2.5 rounded-md px-1.5 py-1.5 transition hover:bg-sand-100",
-        emphasis ? "text-[0.85rem] font-semibold text-forest-900" : "text-[0.82rem] text-ink-700",
+        emphasis ? "text-[0.85rem] font-semibold text-coal-900" : "text-[0.82rem] text-ink-700",
       )}
     >
       <input
@@ -588,7 +588,7 @@ function CheckRow({
         aria-hidden
         className={cx(
           "grid size-4 shrink-0 place-items-center rounded-[4px] border transition",
-          checked ? "border-forest-700 bg-forest-700 text-sand-50" : "border-sand-400 bg-white",
+          checked ? "border-coal-700 bg-coal-700 text-sand-50" : "border-sand-400 bg-white",
         )}
       >
         {checked ? <CheckIcon className="size-3" strokeWidth={2.6} /> : null}
@@ -632,7 +632,7 @@ function PriceInput({
           onCommit(draft);
         }
       }}
-      className="h-9 w-full min-w-0 rounded-md border border-sand-300 bg-white px-2.5 text-[0.8rem] text-ink-800 outline-none transition focus:border-forest-500"
+      className="h-9 w-full min-w-0 rounded-md border border-sand-300 bg-white px-2.5 text-[0.8rem] text-ink-800 outline-none transition focus:border-coal-500"
     />
   );
 }

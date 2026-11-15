@@ -48,7 +48,7 @@ export function ProductsTable({ rows, back }: { rows: ProductRow[]; back: string
       <div
         className={cx(
           "flex flex-wrap items-center gap-2 border-b border-sand-200 px-4 py-2.5 text-[0.78rem] transition",
-          selected.size ? "bg-forest-50" : "bg-sand-50/60",
+          selected.size ? "bg-coal-50" : "bg-sand-50/60",
         )}
       >
         <span className="font-medium text-ink-600">
@@ -89,7 +89,7 @@ export function ProductsTable({ rows, back }: { rows: ProductRow[]; back: string
               <th className={cx(th, "w-10 pr-0")}>
                 <input
                   type="checkbox"
-                  className="size-4 accent-forest-700"
+                  className="size-4 accent-coal-700"
                   checked={allOnPage}
                   onChange={() =>
                     setSelected((current) => {
@@ -117,11 +117,11 @@ export function ProductsTable({ rows, back }: { rows: ProductRow[]; back: string
           </thead>
           <tbody className="divide-y divide-sand-200/80">
             {rows.map((row) => (
-              <tr key={row.id} className={cx("transition hover:bg-sand-50", selected.has(row.id) && "bg-forest-50/50")}>
+              <tr key={row.id} className={cx("transition hover:bg-sand-50", selected.has(row.id) && "bg-coal-50/50")}>
                 <td className={cx(td, "pr-0")}>
                   <input
                     type="checkbox"
-                    className="size-4 accent-forest-700"
+                    className="size-4 accent-coal-700"
                     checked={selected.has(row.id)}
                     onChange={() => toggle(row.id)}
                     aria-label={`Select ${row.name}`}
@@ -133,7 +133,7 @@ export function ProductsTable({ rows, back }: { rows: ProductRow[]; back: string
                     <div className="min-w-0">
                       <Link
                         href={`/admin/products/${row.id}`}
-                        className="line-clamp-2 max-w-[22rem] font-semibold text-ink-900 hover:text-forest-700"
+                        className="line-clamp-2 max-w-[22rem] font-semibold text-ink-900 hover:text-coal-700"
                       >
                         {row.name}
                       </Link>

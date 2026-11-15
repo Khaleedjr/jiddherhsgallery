@@ -246,7 +246,7 @@ export function ManualOrderForm({ products, customers }: { products: PickerProdu
           </div>
           <div className="mt-5 grid grid-cols-2 gap-2">
             {(["delivery", "pickup"] as const).map((f) => (
-              <label key={f} className={cx("cursor-pointer rounded-lg border px-3 py-2.5 text-[0.8rem] font-semibold transition", fulfilment === f ? "border-forest-600 bg-forest-50 text-forest-800" : "border-sand-300 text-ink-700")}>
+              <label key={f} className={cx("cursor-pointer rounded-lg border px-3 py-2.5 text-[0.8rem] font-semibold transition", fulfilment === f ? "border-coal-600 bg-coal-50 text-coal-800" : "border-sand-300 text-ink-700")}>
                 <input type="radio" name="fulfilment" className="sr-only" checked={fulfilment === f} onChange={() => setFulfilment(f)} />
                 {f === "delivery" ? "Delivery" : "Pickup in Kaduna"}
               </label>
@@ -332,14 +332,14 @@ export function ManualOrderForm({ products, customers }: { products: PickerProdu
               <dd className="tabular-nums">{formatPrice(fee)}</dd>
             </div>
             {off ? (
-              <div className="flex justify-between text-forest-700">
+              <div className="flex justify-between text-coal-700">
                 <dt>Discount</dt>
                 <dd className="tabular-nums">−{formatPrice(off)}</dd>
               </div>
             ) : null}
             <div className="flex items-baseline justify-between pt-1.5">
               <dt className="font-semibold">Total</dt>
-              <dd className="font-display text-2xl font-semibold text-forest-900 tabular-nums">{formatPrice(total)}</dd>
+              <dd className="font-display text-2xl font-semibold text-coal-900 tabular-nums">{formatPrice(total)}</dd>
             </div>
           </dl>
 

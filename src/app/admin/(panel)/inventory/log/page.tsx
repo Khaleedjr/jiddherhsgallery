@@ -83,9 +83,9 @@ export default async function StockLogPage({ searchParams }: { searchParams: Pro
           </AutoSubmitSelect>
         </form>
         {product ? (
-          <div className="flex items-center gap-2 border-b border-sand-200 bg-forest-50/60 px-4 py-2 text-[0.78rem] text-ink-700">
+          <div className="flex items-center gap-2 border-b border-sand-200 bg-coal-50/60 px-4 py-2 text-[0.78rem] text-ink-700">
             Showing <strong className="font-semibold">{product.name}</strong>
-            <Link href={withQuery("/admin/inventory/log", current, { product: null, page: null })} className="ml-1 inline-flex items-center gap-0.5 font-semibold text-forest-700 hover:underline">
+            <Link href={withQuery("/admin/inventory/log", current, { product: null, page: null })} className="ml-1 inline-flex items-center gap-0.5 font-semibold text-coal-700 hover:underline">
               <CloseIcon className="size-3.5" /> Clear
             </Link>
           </div>
@@ -110,7 +110,7 @@ export default async function StockLogPage({ searchParams }: { searchParams: Pro
                     <tr key={m.id} className="hover:bg-sand-50">
                       <td className={cx(td, "text-[0.76rem] whitespace-nowrap text-ink-500")}>{formatDateTime(m.at)}</td>
                       <td className={td}>
-                        <Link href={`/admin/products/${m.productId}`} className="line-clamp-1 max-w-[20rem] font-semibold text-ink-900 hover:text-forest-700">
+                        <Link href={`/admin/products/${m.productId}`} className="line-clamp-1 max-w-[20rem] font-semibold text-ink-900 hover:text-coal-700">
                           {m.productName}
                         </Link>
                         {m.variantLabel ? <p className="text-[0.72rem] text-ink-500">{m.variantLabel}</p> : null}
@@ -118,7 +118,7 @@ export default async function StockLogPage({ searchParams }: { searchParams: Pro
                       <td className={td}>
                         <Pill tone={REASON_TONE[m.reason]}>{REASON_LABEL[m.reason]}</Pill>
                       </td>
-                      <td className={cx(td, "text-right text-[0.9rem] font-semibold tabular-nums", m.change > 0 ? "text-forest-700" : "text-berry-600")}>
+                      <td className={cx(td, "text-right text-[0.9rem] font-semibold tabular-nums", m.change > 0 ? "text-coal-700" : "text-berry-600")}>
                         {m.change > 0 ? `+${m.change}` : m.change}
                       </td>
                       <td className={cx(td, "text-right whitespace-nowrap text-ink-500 tabular-nums")}>
@@ -126,7 +126,7 @@ export default async function StockLogPage({ searchParams }: { searchParams: Pro
                       </td>
                       <td className={cx(td, "text-[0.76rem] text-ink-600")}>
                         {m.orderRef ? (
-                          <Link href={`/admin/orders/${m.orderRef}`} className="mr-1.5 font-semibold text-forest-700 hover:underline">
+                          <Link href={`/admin/orders/${m.orderRef}`} className="mr-1.5 font-semibold text-coal-700 hover:underline">
                             {m.orderRef}
                           </Link>
                         ) : null}

@@ -27,7 +27,7 @@ export function CartDrawer() {
 
       <div className="animate-slide-in absolute inset-y-0 right-0 flex w-[min(26rem,100vw)] flex-col bg-sand-50 shadow-2xl">
         <header className="flex h-16 shrink-0 items-center justify-between border-b border-sand-200 px-5">
-          <h2 className="flex items-center gap-2 font-display text-lg font-semibold text-forest-900">
+          <h2 className="flex items-center gap-2 font-display text-lg font-semibold text-coal-900">
             <BagIcon className="size-5" />
             Your bag
             {count > 0 ? <span className="text-sm font-normal text-ink-500">({count})</span> : null}
@@ -46,7 +46,7 @@ export function CartDrawer() {
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center">
             <StarKhatimIcon className="size-8 text-gold-300" />
             <div>
-              <p className="font-display text-xl text-forest-900">Your bag is empty</p>
+              <p className="font-display text-xl text-coal-900">Your bag is empty</p>
               <p className="mt-1.5 text-sm text-ink-500">
                 Browse the shelves and add something beneficial, in shaa Allah.
               </p>
@@ -60,21 +60,21 @@ export function CartDrawer() {
             {remaining > 0 ? (
               <div className="shrink-0 border-b border-sand-200 bg-sand-100 px-5 py-3">
                 <p className="flex items-center gap-2 text-[0.78rem] text-ink-700">
-                  <TruckIcon className="size-4 shrink-0 text-forest-600" />
+                  <TruckIcon className="size-4 shrink-0 text-coal-600" />
                   <span>
-                    Add <strong className="font-semibold text-forest-800">{formatPrice(remaining)}</strong> more
+                    Add <strong className="font-semibold text-coal-800">{formatPrice(remaining)}</strong> more
                     for free delivery
                   </span>
                 </p>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sand-300">
                   <div
-                    className="h-full rounded-full bg-forest-600 transition-[width] duration-500"
+                    className="h-full rounded-full bg-coal-600 transition-[width] duration-500"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
               </div>
             ) : (
-              <p className="flex shrink-0 items-center gap-2 border-b border-sand-200 bg-forest-50 px-5 py-3 text-[0.78rem] font-medium text-forest-800">
+              <p className="flex shrink-0 items-center gap-2 border-b border-sand-200 bg-coal-50 px-5 py-3 text-[0.78rem] font-medium text-coal-800">
                 <TruckIcon className="size-4 shrink-0" />
                 You have earned free delivery
               </p>
@@ -99,14 +99,14 @@ export function CartDrawer() {
                     <Link
                       href={`/products/${item.slug}`}
                       onClick={closeCart}
-                      className="text-[0.85rem] leading-snug font-semibold text-ink-900 hover:text-forest-700"
+                      className="text-[0.85rem] leading-snug font-semibold text-ink-900 hover:text-coal-700"
                     >
                       {item.name}
                     </Link>
                     {item.variantLabel ? (
                       <span className="mt-0.5 text-[0.72rem] text-ink-500">{item.variantLabel}</span>
                     ) : null}
-                    <span className="mt-1 text-[0.82rem] font-semibold text-forest-800">
+                    <span className="mt-1 text-[0.82rem] font-semibold text-coal-800">
                       {formatPrice(item.price)}
                     </span>
 
@@ -149,7 +149,7 @@ export function CartDrawer() {
             <footer className="shrink-0 border-t border-sand-200 bg-white px-5 py-4">
               <div className="flex items-baseline justify-between">
                 <span className="text-sm text-ink-600">Subtotal</span>
-                <span className="font-display text-2xl font-semibold text-forest-900">
+                <span className="font-display text-2xl font-semibold text-coal-900">
                   {formatPrice(subtotal)}
                 </span>
               </div>
@@ -166,7 +166,7 @@ export function CartDrawer() {
               <button
                 type="button"
                 onClick={closeCart}
-                className="mt-2 w-full py-2 text-[0.8rem] font-medium text-ink-600 transition hover:text-forest-800"
+                className="mt-2 w-full py-2 text-[0.8rem] font-medium text-ink-600 transition hover:text-coal-800"
               >
                 Continue shopping
               </button>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { useCart } from "@/components/cart-provider";
 import {
   BagIcon,
@@ -24,6 +24,17 @@ type Nav = {
   ageGroups: AgeGroup[];
 };
 
+/** Short names keep the capitals on one line beside the logo. */
+const shortName = (name: string) => (name === "Ibadah Essentials" ? "Ibadah" : name);
+
+const caps = "text-[0.72rem] font-semibold tracking-[0.18em] uppercase";
+
+/**
+ * Design 4's header: a gold band with the logo set in the middle as a
+ * medallion, links on either side of it, and a rule broken by an eight-point
+ * star underneath. It stays at the top while you scroll, so the bag and
+ * search are always one tap away.
+ */
 export function SiteHeader({ departments, ageGroups }: Nav) {
   const pathname = usePathname();
   const router = useRouter();
@@ -90,170 +101,124 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
   };
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const linkClass = (active: boolean) =>
+    cx(caps, "flex items-center gap-1 border-b-[1.5px] py-2 whitespace-nowrap transition-colors", active ? "border-coal-900" : "border-transparent hover:border-coal-900");
+
+  /* Three departments to the left of the logo; the fourth, ages and "Shop all" to the right. */
+  const left = departments.slice(0, 3);
+  const right = departments.slice(3);
+
+  const department = (dept: Department, align: "left" | "right") => (
+    <div key={dept.slug} className="relative" onMouseEnter={() => hoverOpen(dept.slug)} onMouseLeave={hoverClose}>
+      <Link
+        href={`/collections/${dept.slug}`}
+        onFocus={() => hoverOpen(dept.slug)}
+        className={linkClass(isActive(`/collections/${dept.slug}`))}
+        aria-expanded={dept.children.length > 0 ? openMenu === dept.slug : undefined}
+      >
+        {shortName(dept.name)}
+        {dept.children.length > 0 ? <ChevronDownIcon className={cx("size-3 transition", openMenu === dept.slug && "rotate-180")} /> : null}
+      </Link>
+      {dept.children.length > 0 && openMenu === dept.slug ? (
+        <Dropdown align={align}>
+          <Link
+            href={`/collections/${dept.slug}`}
+            className="flex items-center justify-between rounded-xl px-3 py-2.5 text-[0.85rem] font-semibold text-ink-900 transition hover:bg-sand-200"
+          >
+            All {dept.name.toLowerCase()}
+            <span className="text-[0.72rem] font-normal text-ink-500 tabular-nums">{dept.count}</span>
+          </Link>
+          <div className="my-1.5 h-px bg-ink-900/10" />
+          {dept.children.map((child) => (
+            <Link
+              key={child.slug}
+              href={`/collections/${child.slug}`}
+              className="flex items-center justify-between rounded-xl px-3 py-2 text-[0.85rem] text-ink-700 transition hover:bg-sand-200 hover:text-ink-900"
+            >
+              {child.name}
+              <span className="text-[0.72rem] text-ink-500 tabular-nums">{child.count}</span>
+            </Link>
+          ))}
+        </Dropdown>
+      ) : null}
+    </div>
+  );
 
   return (
     <>
-      <header
-        className={cx(
-          "sticky top-0 z-40 border-b bg-sand-50/95 backdrop-blur transition-shadow duration-300",
-          scrolled ? "border-sand-300 shadow-[0_6px_24px_-18px_rgba(22,19,15,0.5)]" : "border-transparent",
-        )}
-      >
-        <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-3 px-4 sm:h-20 sm:gap-6 sm:px-6 lg:px-8">
-          <button
-            type="button"
-            onClick={() => setMobileOpen(true)}
-            className="-ml-2 rounded-full p-2 text-forest-900 transition hover:bg-forest-50 lg:hidden"
-            aria-label="Open menu"
-          >
-            <MenuIcon className="size-5" />
-          </button>
+      <header className={cx("sticky top-0 z-40 bg-gold-500 text-ink-900 transition-shadow duration-300", scrolled && "shadow-[0_12px_28px_-20px_rgba(20,17,10,0.75)]")}>
+        <div className="mx-auto grid h-16 w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 sm:h-20 sm:px-6 lg:gap-6 lg:px-8">
+          <div className="flex items-center">
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              className="-ml-2.5 grid size-11 place-items-center rounded-full transition hover:bg-coal-900/10 lg:hidden"
+              aria-label="Open menu"
+            >
+              <MenuIcon className="size-5" />
+            </button>
+            <nav className="hidden items-center gap-5 lg:flex xl:gap-8" aria-label="Departments">
+              {left.map((dept) => department(dept, "left"))}
+            </nav>
+          </div>
 
-          <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label={`${site.name} home`}>
-            <Image
-              src="/logo.png"
-              alt=""
-              width={44}
-              height={44}
-              priority
-              className="size-9 rounded-full sm:size-11"
-            />
-            <span className="leading-none">
-              <span className="block font-display text-[1.15rem] leading-none font-semibold text-forest-900 sm:text-[1.3rem]">
-                Jidderh&apos;s
-              </span>
-              <span className="mt-0.5 block text-[0.58rem] font-semibold tracking-[0.3em] text-gold-600 uppercase">
-                Gallery
-              </span>
-            </span>
+          {/* On gold the logo's own disc disappears; a black ring turns it into a medallion. */}
+          <Link
+            href="/"
+            aria-label={`${site.name} home`}
+            className="rounded-full ring-1 ring-coal-900 ring-offset-2 ring-offset-gold-500"
+          >
+            <Image src="/logo.png" alt="" width={60} height={60} loading="eager" className="size-11 rounded-full sm:size-14 lg:size-[3.75rem]" />
           </Link>
 
-          <nav className="ml-4 hidden items-center gap-1 lg:flex" aria-label="Main">
-            {departments.map((dept) => (
-              <div
-                key={dept.slug}
-                className="relative"
-                onMouseEnter={() => hoverOpen(dept.slug)}
-                onMouseLeave={hoverClose}
-              >
-                <Link
-                  href={`/collections/${dept.slug}`}
-                  onFocus={() => hoverOpen(dept.slug)}
-                  className={cx(
-                    "flex items-center gap-1 rounded-full px-3 py-2 text-[0.82rem] font-semibold transition",
-                    isActive(`/collections/${dept.slug}`)
-                      ? "bg-forest-50 text-forest-900"
-                      : "text-ink-700 hover:bg-forest-50 hover:text-forest-900",
-                  )}
-                  aria-expanded={openMenu === dept.slug}
-                >
-                  {dept.name}
-                  {dept.children.length > 0 ? (
-                    <ChevronDownIcon
-                      className={cx("size-3.5 transition", openMenu === dept.slug && "rotate-180")}
-                    />
-                  ) : null}
-                </Link>
+          <div className="flex items-center justify-end">
+            <nav className="mr-4 hidden items-center gap-5 lg:flex xl:mr-6 xl:gap-8" aria-label="More">
+              {right.map((dept) => department(dept, "right"))}
 
-                {dept.children.length > 0 && openMenu === dept.slug ? (
-                  <div className="animate-fade absolute top-full left-0 pt-2">
-                    <div className="w-72 overflow-hidden rounded-lg border border-sand-200 bg-white p-2 shadow-[var(--shadow-lift)]">
-                      <Link
-                        href={`/collections/${dept.slug}`}
-                        className="flex items-center justify-between rounded-md px-3 py-2 text-[0.82rem] font-semibold text-forest-800 transition hover:bg-forest-50"
-                      >
-                        All {dept.name}
-                        <span className="text-[0.7rem] font-normal text-ink-400">{dept.count}</span>
-                      </Link>
-                      <div className="my-1.5 h-px bg-sand-200" />
-                      {dept.children.map((child) => (
-                        <Link
-                          key={child.slug}
-                          href={`/collections/${child.slug}`}
-                          className="flex items-center justify-between rounded-md px-3 py-2 text-[0.82rem] text-ink-700 transition hover:bg-sand-100 hover:text-forest-900"
-                        >
-                          {child.name}
-                          <span className="text-[0.7rem] text-ink-400">{child.count}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-            ))}
-
-            <div className="relative" onMouseEnter={() => hoverOpen("age")} onMouseLeave={hoverClose}>
-              <button
-                type="button"
-                onFocus={() => hoverOpen("age")}
-                className="flex items-center gap-1 rounded-full px-3 py-2 text-[0.82rem] font-semibold text-ink-700 transition hover:bg-forest-50 hover:text-forest-900"
-                aria-expanded={openMenu === "age"}
-              >
-                Shop by Age
-                <ChevronDownIcon className={cx("size-3.5 transition", openMenu === "age" && "rotate-180")} />
-              </button>
-              {openMenu === "age" ? (
-                <div className="animate-fade absolute top-full left-0 pt-2">
-                  <div className="w-80 overflow-hidden rounded-lg border border-sand-200 bg-white p-2 shadow-[var(--shadow-lift)]">
+              <div className="relative" onMouseEnter={() => hoverOpen("age")} onMouseLeave={hoverClose}>
+                <button type="button" onFocus={() => hoverOpen("age")} className={linkClass(isActive("/age"))} aria-expanded={openMenu === "age"}>
+                  By age
+                  <ChevronDownIcon className={cx("size-3 transition", openMenu === "age" && "rotate-180")} />
+                </button>
+                {openMenu === "age" ? (
+                  <Dropdown align="right" wide>
                     {ageGroups.map((age) => (
-                      <Link
-                        key={age.slug}
-                        href={`/age/${age.slug}`}
-                        className="block rounded-md px-3 py-2.5 transition hover:bg-sand-100"
-                      >
-                        <span className="flex items-center justify-between text-[0.82rem] font-semibold text-forest-900">
+                      <Link key={age.slug} href={`/age/${age.slug}`} className="block rounded-xl px-3 py-2.5 transition hover:bg-sand-200">
+                        <span className="flex items-center justify-between text-[0.85rem] font-semibold text-ink-900">
                           {age.name}
-                          <span className="text-[0.7rem] font-normal text-ink-400">{age.count}</span>
+                          <span className="text-[0.72rem] font-normal text-ink-500 tabular-nums">{age.count}</span>
                         </span>
-                        <span className="mt-0.5 block text-[0.72rem] text-ink-500">{age.blurb}</span>
+                        <span className="mt-0.5 block text-[0.75rem] text-ink-500">{age.blurb}</span>
                       </Link>
                     ))}
-                  </div>
-                </div>
-              ) : null}
-            </div>
+                  </Dropdown>
+                ) : null}
+              </div>
 
-            <Link
-              href="/shop"
-              className={cx(
-                "rounded-full px-3 py-2 text-[0.82rem] font-semibold transition",
-                isActive("/shop") ? "bg-forest-50 text-forest-900" : "text-ink-700 hover:bg-forest-50 hover:text-forest-900",
-              )}
-            >
-              All Products
-            </Link>
-          </nav>
+              <Link href="/shop" className={linkClass(isActive("/shop"))}>
+                Shop all
+              </Link>
+            </nav>
 
-          <div className="ml-auto flex items-center gap-1">
             <button
               type="button"
               onClick={() => setSearchOpen((open) => !open)}
-              className="rounded-full p-2.5 text-forest-900 transition hover:bg-forest-50"
+              className="grid size-11 place-items-center rounded-full transition hover:bg-coal-900/10"
               aria-label="Search products"
               aria-expanded={searchOpen}
             >
               <SearchIcon className="size-5" />
             </button>
 
-            <a
-              href={whatsappLink(`As-salamu alaykum ${site.name}, I have a question.`)}
-              target="_blank"
-              rel="noreferrer"
-              className="hidden rounded-full p-2.5 text-forest-900 transition hover:bg-forest-50 sm:block"
-              aria-label="Chat on WhatsApp"
-            >
-              <WhatsappIcon className="size-5" />
-            </a>
-
             <button
               type="button"
               onClick={openCart}
-              className="relative rounded-full p-2.5 text-forest-900 transition hover:bg-forest-50"
+              className="relative -mr-2.5 grid size-11 place-items-center rounded-full transition hover:bg-coal-900/10"
               aria-label={`Open bag, ${count} item${count === 1 ? "" : "s"}`}
             >
               <BagIcon className="size-5" />
               {count > 0 ? (
-                <span className="absolute top-0.5 right-0.5 grid min-w-[1.15rem] place-items-center rounded-full bg-gold-500 px-1 text-[0.65rem] font-bold text-forest-950">
+                <span className="absolute top-0.5 right-0.5 grid min-w-[1.2rem] place-items-center rounded-full bg-coal-900 px-1 text-[0.65rem] font-bold text-gold-500 tabular-nums ring-2 ring-gold-500">
                   {count > 99 ? "99+" : count}
                 </span>
               ) : null}
@@ -261,28 +226,36 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
           </div>
         </div>
 
+        {/* A rule broken by an eight-point star. */}
+        <div className="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 pb-2 sm:px-6 lg:px-8" aria-hidden>
+          <span className="h-px flex-1 bg-linear-to-r from-transparent to-coal-900" />
+          <StarKhatimIcon className="size-3.5" />
+          <span className="h-px flex-1 bg-linear-to-l from-transparent to-coal-900" />
+        </div>
+
         {searchOpen ? (
-          <div className="animate-fade border-t border-sand-200 bg-white">
-            <form onSubmit={submitSearch} className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-4 sm:px-6 lg:px-8">
-              <SearchIcon className="size-5 shrink-0 text-ink-400" />
+          <div className="animate-fade border-t border-coal-900/15 bg-sand-50">
+            <form onSubmit={submitSearch} className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3.5 sm:px-6 lg:px-8">
+              <SearchIcon className="size-5 shrink-0 text-ink-500" />
               <input
                 ref={searchInput}
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search for Qur'an, seerah books, prayer mats, toys…"
-                className="h-10 flex-1 bg-transparent text-[0.95rem] text-ink-900 outline-none placeholder:text-ink-400"
+                aria-label="Search the store"
+                className="h-11 min-w-0 flex-1 bg-transparent text-base text-ink-900 outline-none placeholder:text-ink-400"
               />
               <button
                 type="submit"
-                className="h-9 shrink-0 rounded-full bg-forest-800 px-5 text-xs font-semibold text-sand-50 transition hover:bg-forest-700"
+                className="h-10 shrink-0 rounded-full bg-coal-900 px-5 text-sm font-semibold text-gold-500 transition hover:bg-black active:scale-[0.97]"
               >
                 Search
               </button>
               <button
                 type="button"
                 onClick={() => setSearchOpen(false)}
-                className="shrink-0 rounded-full p-2 text-ink-500 transition hover:bg-sand-100"
+                className="grid size-10 shrink-0 place-items-center rounded-full text-ink-600 transition hover:bg-sand-200"
                 aria-label="Close search"
               >
                 <CloseIcon className="size-4" />
@@ -305,6 +278,22 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
   );
 }
 
+function Dropdown({ align, wide = false, children }: { align: "left" | "right"; wide?: boolean; children: ReactNode }) {
+  return (
+    <div className={cx("animate-fade absolute top-full pt-3", align === "left" ? "-left-3" : "-right-3")}>
+      <div
+        className={cx(
+          "overflow-hidden rounded-[1.25rem] bg-sand-50 p-2 shadow-[0_24px_48px_-24px_rgba(20,17,10,0.55)] ring-1 ring-coal-900/10",
+          wide ? "w-80" : "w-72",
+        )}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/** The phone menu: a black panel from the left, departments first, then ages, then help. */
 function MobileNav({
   departments,
   ageGroups,
@@ -318,46 +307,31 @@ function MobileNav({
 }) {
   return (
     <div className="fixed inset-0 z-50 lg:hidden">
-      <button
-        type="button"
-        onClick={onClose}
-        className="absolute inset-0 bg-ink-900/45 backdrop-blur-[2px]"
-        aria-label="Close menu"
-      />
-      <div className="animate-slide-in absolute inset-y-0 left-0 flex w-[min(21rem,88vw)] flex-col bg-sand-50 shadow-2xl">
-        <div className="flex h-16 shrink-0 items-center justify-between border-b border-sand-200 px-5">
-          <span className="font-display text-lg font-semibold text-forest-900">Menu</span>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-full p-2 text-ink-600 transition hover:bg-sand-200"
-            aria-label="Close menu"
-          >
+      <button type="button" onClick={onClose} className="absolute inset-0 bg-coal-950/55 backdrop-blur-[2px]" aria-label="Close menu" />
+      <div className="animate-slide-in absolute inset-y-0 left-0 flex w-[min(21rem,88vw)] flex-col bg-coal-900 text-sand-50 shadow-2xl" role="dialog" aria-label="Menu">
+        <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/10 px-5">
+          <Image src="/logo.png" alt={site.name} width={40} height={40} className="size-10 rounded-full" />
+          <button type="button" onClick={onClose} className="grid size-11 place-items-center rounded-full transition hover:bg-white/10" aria-label="Close menu">
             <CloseIcon className="size-5" />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-4">
+        <nav className="flex-1 overflow-y-auto px-3 py-3" aria-label="Menu">
           {departments.map((dept) => (
-            <div key={dept.slug} className="border-b border-sand-200/80 last:border-0">
+            <div key={dept.slug} className="border-b border-white/10 last:border-0">
               <div className="flex items-center">
-                <Link
-                  href={`/collections/${dept.slug}`}
-                  className="flex-1 px-2 py-3.5 text-[0.95rem] font-semibold text-forest-900"
-                >
+                <Link href={`/collections/${dept.slug}`} className="flex-1 px-2 py-3.5 font-display text-lg font-bold tracking-tight text-gold-500">
                   {dept.name}
                 </Link>
                 {dept.children.length > 0 ? (
                   <button
                     type="button"
                     onClick={() => onToggleSection(dept.slug)}
-                    className="rounded-full p-2 text-ink-500"
+                    className="grid size-11 place-items-center rounded-full text-coal-300 transition hover:bg-white/10"
                     aria-label={`Show ${dept.name} categories`}
                     aria-expanded={openSection === dept.slug}
                   >
-                    <ChevronDownIcon
-                      className={cx("size-4 transition", openSection === dept.slug && "rotate-180")}
-                    />
+                    <ChevronDownIcon className={cx("size-4 transition", openSection === dept.slug && "rotate-180")} />
                   </button>
                 ) : null}
               </div>
@@ -365,12 +339,9 @@ function MobileNav({
                 <ul className="animate-fade pb-3">
                   {dept.children.map((child) => (
                     <li key={child.slug}>
-                      <Link
-                        href={`/collections/${child.slug}`}
-                        className="flex items-center justify-between rounded-md px-4 py-2.5 text-[0.85rem] text-ink-700"
-                      >
+                      <Link href={`/collections/${child.slug}`} className="flex items-center justify-between rounded-xl px-4 py-2.5 text-[0.9rem] text-coal-200">
                         {child.name}
-                        <span className="text-[0.7rem] text-ink-400">{child.count}</span>
+                        <span className="text-[0.72rem] text-coal-400 tabular-nums">{child.count}</span>
                       </Link>
                     </li>
                   ))}
@@ -379,49 +350,39 @@ function MobileNav({
             </div>
           ))}
 
-          <div className="mt-4 rounded-lg bg-sand-100 p-3">
-            <p className="px-2 pb-1 text-[0.68rem] font-semibold tracking-[0.18em] text-gold-600 uppercase">
-              Shop by age
-            </p>
+          <div className="mt-4 rounded-[1.25rem] bg-white/5 p-3">
+            <p className={cx(caps, "px-2 pb-1 text-gold-500")}>Shop by age</p>
             {ageGroups.map((age) => (
-              <Link
-                key={age.slug}
-                href={`/age/${age.slug}`}
-                className="flex items-center justify-between rounded-md px-2 py-2.5 text-[0.85rem] text-ink-700"
-              >
+              <Link key={age.slug} href={`/age/${age.slug}`} className="flex items-center justify-between rounded-xl px-2 py-2.5 text-[0.9rem] text-coal-100">
                 {age.name}
-                <ChevronRightIcon className="size-3.5 text-ink-400" />
+                <ChevronRightIcon className="size-3.5 text-coal-400" />
               </Link>
             ))}
           </div>
 
           <div className="mt-4 space-y-1 px-2">
             {[
-              { href: "/shop", label: "All Products" },
-              { href: "/about", label: "Our Story" },
-              { href: "/contact", label: "Contact & Delivery" },
+              { href: "/shop", label: "All products" },
+              { href: "/about", label: "Our story" },
+              { href: "/contact", label: "Contact & delivery" },
               { href: "/faq", label: "FAQ" },
             ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block py-2.5 text-[0.9rem] font-medium text-ink-700"
-              >
+              <Link key={link.href} href={link.href} className="block py-2.5 text-[0.95rem] font-medium text-coal-100">
                 {link.label}
               </Link>
             ))}
           </div>
         </nav>
 
-        <div className="shrink-0 border-t border-sand-200 p-4">
+        <div className="shrink-0 border-t border-white/10 p-4">
           <a
             href={whatsappLink(`As-salamu alaykum ${site.name}, I have a question.`)}
             target="_blank"
             rel="noreferrer"
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] text-sm font-semibold text-[#05321a]"
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-gold-500 text-sm font-semibold text-coal-900 transition active:scale-[0.97]"
           >
             <WhatsappIcon className="size-4" />
-            Chat with us
+            Chat with us on WhatsApp
           </a>
         </div>
       </div>

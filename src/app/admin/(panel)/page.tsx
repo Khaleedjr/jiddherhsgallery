@@ -62,7 +62,7 @@ export default async function OverviewPage({ searchParams }: { searchParams: Pro
       }
     >
       {sample === "cleared" ? (
-        <p role="status" className="rounded-lg border border-forest-200 bg-forest-50 px-4 py-2.5 text-[0.8rem] font-medium text-forest-700">
+        <p role="status" className="rounded-lg border border-coal-200 bg-coal-50 px-4 py-2.5 text-[0.8rem] font-medium text-coal-700">
           Sample data removed.
         </p>
       ) : null}
@@ -130,7 +130,7 @@ export default async function OverviewPage({ searchParams }: { searchParams: Pro
         title="Revenue, last 30 days"
         description={`${formatPrice(month.current.revenue)} from ${month.current.paid} paid orders`}
         action={
-          <Link href="/admin/analytics" className="text-[0.78rem] font-semibold text-forest-700 hover:underline">
+          <Link href="/admin/analytics" className="text-[0.78rem] font-semibold text-coal-700 hover:underline">
             Full analytics →
           </Link>
         }
@@ -149,7 +149,7 @@ export default async function OverviewPage({ searchParams }: { searchParams: Pro
           title="Recent orders"
           flush
           action={
-            <Link href="/admin/orders" className="text-[0.78rem] font-semibold text-forest-700 hover:underline">
+            <Link href="/admin/orders" className="text-[0.78rem] font-semibold text-coal-700 hover:underline">
               All orders →
             </Link>
           }
@@ -169,7 +169,7 @@ export default async function OverviewPage({ searchParams }: { searchParams: Pro
                   {orders.slice(0, 8).map((order) => (
                     <tr key={order.ref} className="relative hover:bg-sand-50">
                       <td className={td}>
-                        <Link href={`/admin/orders/${order.ref}`} className="font-semibold text-forest-800 after:absolute after:inset-0 hover:underline">
+                        <Link href={`/admin/orders/${order.ref}`} className="font-semibold text-coal-800 after:absolute after:inset-0 hover:underline">
                           {order.ref}
                         </Link>
                         <p className="text-[0.72rem] text-ink-500">{timeAgo(order.createdAt)}</p>
@@ -196,7 +196,7 @@ export default async function OverviewPage({ searchParams }: { searchParams: Pro
           <Card
             title="Needs restocking"
             action={
-              <Link href="/admin/inventory" className="text-[0.78rem] font-semibold text-forest-700 hover:underline">
+              <Link href="/admin/inventory" className="text-[0.78rem] font-semibold text-coal-700 hover:underline">
                 Inventory →
               </Link>
             }
@@ -207,7 +207,7 @@ export default async function OverviewPage({ searchParams }: { searchParams: Pro
                   <li key={item.key} className="flex items-center gap-3">
                     <Thumb src={item.image} alt="" size={36} />
                     <Link href={`/admin/products/${item.productId}`} className="min-w-0 flex-1">
-                      <span className="line-clamp-1 text-[0.8rem] font-medium text-ink-800 hover:text-forest-700">{item.name}</span>
+                      <span className="line-clamp-1 text-[0.8rem] font-medium text-ink-800 hover:text-coal-700">{item.name}</span>
                       {item.variantLabel ? <span className="block text-[0.7rem] text-ink-500">{item.variantLabel}</span> : null}
                     </Link>
                     {item.state === "out" ? <Pill tone="bad">Out</Pill> : <Pill tone="warn">{item.stock} left</Pill>}

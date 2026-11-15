@@ -1,21 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { HeroOrnament } from "@/components/hero-ornament";
-import { ProductRail } from "@/components/product-rail";
-import {
-  ArrowRightIcon,
-  ChevronRightIcon,
-  HeartIcon,
-  ShieldIcon,
-  SparkIcon,
-  StarKhatimIcon,
-  TruckIcon,
-  WhatsappIcon,
-} from "@/components/icons";
-import { ButtonLink, Container, Divider, Eyebrow, SectionHeading, buttonClass, cx } from "@/components/ui";
-import { getCatalog, toCards, type Catalog } from "@/lib/catalog";
+import type { ReactNode } from "react";
+import { PlayScene, ReadScene, WorshipScene } from "@/components/home/hero-art";
+import { ArrowRightIcon, ClockIcon, ShieldIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
+import { Container, cx } from "@/components/ui";
 import { formatPrice } from "@/lib/format";
+import { ageFigure, getHomeData, type HomeData } from "@/lib/home";
 import { site, whatsappLink } from "@/lib/site";
 import type { CardProduct } from "@/lib/types";
 
@@ -25,206 +16,224 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+/**
+ * The homepage, design 4 ("Arches"). Phone first: every row fits on screen
+ * at once, with nothing to swipe. Gold, white and black bands alternate down
+ * the page: the arches, the ages, the departments, the Qur'an card, the
+ * store's promises, and the offer to help choose.
+ */
 export default async function HomePage() {
-  const catalog = await getCatalog();
-  const { bestSellers, newArrivals, onSaleProducts, productsInCategory, productsInCollection } = catalog;
-  const sellers = toCards(bestSellers(8));
-  const arrivals = toCards(newArrivals(8));
-  const deals = toCards(onSaleProducts(4, 15));
-  const quranPicks = productsInCategory("books/the-holy-quran")
-    .filter((p) => p.inStock && p.images.length)
-    .slice(0, 3);
-  const ramadan = toCards(
-    productsInCollection("ramadan-collection")
-      .filter((p) => p.inStock && p.images.length)
-      .slice(0, 4),
-  );
-
+  const data = await getHomeData();
   return (
-    <>
-      <Hero catalog={catalog} />
-      <TrustStrip />
-      <ShopByAge ageGroups={catalog.ageGroups} />
-      <Departments departments={catalog.departments} />
-
-      {sellers.length > 0 ? (
-        <Container className="py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Loved by our customers"
-            title="Best sellers this season"
-            description="The books, toys and essentials our families come back for again and again."
-            action={
-              <ButtonLink href="/collections/best-seller" variant="outline" size="sm">
-                View all
-                <ArrowRightIcon className="size-4" />
-              </ButtonLink>
-            }
-          />
-          <ProductRail products={sellers} className="mt-9" priority />
-        </Container>
-      ) : null}
-
-      <QuranFeature picks={quranPicks} />
-
-      {arrivals.length > 0 ? (
-        <Container className="py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Fresh on the shelves"
-            title="New arrivals"
-            description="Recently added to the gallery — while stock lasts."
-            action={
-              <ButtonLink href="/shop?sort=newest" variant="outline" size="sm">
-                Shop new in
-                <ArrowRightIcon className="size-4" />
-              </ButtonLink>
-            }
-          />
-          <ProductRail products={arrivals} className="mt-9" />
-        </Container>
-      ) : null}
-
-
-      {ramadan.length > 0 ? (
-        <Container className="py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Seasonal"
-            title="The Ramadan collection"
-            description="Countdown calendars, trackers, lanterns and gifts to make the blessed month special."
-            action={
-              <ButtonLink href="/collections/ramadan-collection" variant="outline" size="sm">
-                Explore
-                <ArrowRightIcon className="size-4" />
-              </ButtonLink>
-            }
-          />
-          <ProductRail products={ramadan} className="mt-9" />
-        </Container>
-      ) : null}
-
-      {deals.length > 0 ? <Deals products={deals} /> : null}
-
-      <ContactCta />
-    </>
+    <div data-flush-footer>
+      <Hero data={data} />
+      <Ages data={data} />
+      <Departments data={data} />
+      <Quran products={data.quran} />
+      <Promises />
+      <Help />
+    </div>
   );
 }
 
-function Hero({ catalog }: { catalog: Catalog }) {
-  const { catalogMeta, departments } = catalog;
+const caps = "text-[0.72rem] font-semibold tracking-[0.2em] uppercase";
+const btnInk =
+  "inline-flex h-13 items-center justify-center gap-2 rounded-full bg-coal-900 px-8 text-[0.95rem] font-semibold text-gold-500 transition duration-200 hover:bg-black active:scale-[0.97]";
+const btnLine =
+  "inline-flex h-13 items-center justify-center gap-2 rounded-full border-[1.5px] border-coal-900 px-8 text-[0.95rem] font-semibold text-coal-900 transition duration-200 hover:bg-coal-900 hover:text-gold-500 active:scale-[0.97]";
+
+/** A product or department photo that fills its (relative, sized) parent. */
+function Photo({ src, alt = "", sizes, className }: { src: string | null | undefined; alt?: string; sizes: string; className?: string }) {
+  if (!src) return <span className="absolute inset-0 bg-sand-200" aria-hidden />;
+  return <Image src={src} alt={alt} fill sizes={sizes} className={cx("object-cover", className)} />;
+}
+
+function Hero({ data }: { data: HomeData }) {
+  const [books, toys, ibadah] = data.departments;
+  /* Three black windows on the gold wall, each showing one thing the store is for. */
+  const arch = (dept: HomeData["departments"][number] | undefined, word: string, scene: ReactNode, className: string) =>
+    dept ? (
+      <Link href={`/collections/${dept.slug}`} className="group block" aria-label={`${word}: shop ${dept.name}`}>
+        <span className={cx("arch block bg-coal-900 p-2 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5", className)}>
+          <span className="arch relative block h-full border border-sand-50/35">{scene}</span>
+        </span>
+        <span className={cx(caps, "mt-4 block pb-1 text-center")}>{word}</span>
+      </Link>
+    ) : null;
+  const scene = "absolute top-[16%] left-[8%] h-[82%] w-[84%]";
+
+  /* Phones and tablets stack everything on the centre line. From laptops up the
+     words and the arches sit side by side, so the whole hero fits in the first screen. */
   return (
-    <section className="relative overflow-hidden bg-forest-950 text-sand-100">
-      <div className="pattern-girih-light absolute inset-0 opacity-[0.28]" aria-hidden />
+    <section className="relative overflow-hidden bg-gold-500">
+      <div className="lattice absolute inset-0 opacity-[0.07]" aria-hidden />
       <div
-        className="absolute inset-0 bg-[radial-gradient(120%_90%_at_15%_0%,rgba(21,75,58,0.85),transparent_60%)]"
+        className="absolute inset-0 bg-[radial-gradient(70%_55%_at_50%_32%,var(--color-gold-500)_35%,transparent)] lg:bg-[radial-gradient(45%_70%_at_27%_50%,var(--color-gold-500)_40%,transparent)]"
         aria-hidden
       />
-
-      <Container className="relative py-16 sm:py-20 lg:py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <p className="font-arabic text-xl text-gold-300">
-              <span dir="rtl" lang="ar">أهلاً وسهلاً</span>
-            </p>
-
-            <p className="mt-4 text-[0.72rem] font-semibold tracking-[0.28em] text-sand-300/80 uppercase">
-              {site.welcome} — welcome to {site.name}
-            </p>
-
-            <h1 className="mt-4 font-display text-[2.7rem] leading-[1.04] font-semibold text-sand-50 sm:text-6xl lg:text-[4.2rem]">
-              Nurturing
-              <span className="block text-gold-300">towards Jannah.</span>
-            </h1>
-
-            <p className="mt-6 max-w-xl text-[0.98rem] leading-relaxed text-sand-200/90 sm:text-lg">
-              A reliable spot to nurture every home towards Jannah — Islamic books, toys and
-              accessories for all ages, chosen with purpose and delivered nationwide.
-            </p>
-
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <ButtonLink href="/collections/best-seller" variant="gold" size="lg">
-                Explore our best sellers
-                <ArrowRightIcon className="size-4" />
-              </ButtonLink>
-              <a
-                href={whatsappLink(`As-salamu alaykum ${site.name}, I would like to place an order.`)}
-                target="_blank"
-                rel="noreferrer"
-                className={cx(
-                  buttonClass({ size: "lg" }),
-                  "border border-sand-100/25 bg-transparent text-sand-50 hover:bg-sand-50/10",
-                )}
-              >
-                <WhatsappIcon className="size-4" />
-                Order on WhatsApp
-              </a>
-            </div>
-
-            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-sand-100/15 pt-7">
-              {[
-                { value: `${catalogMeta.productCount}+`, label: "Products in store" },
-                { value: `${departments.length}`, label: "Curated departments" },
-                { value: "36", label: "States delivered" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <dt className="font-display text-3xl font-semibold text-gold-300">{stat.value}</dt>
-                  <dd className="mt-1 text-[0.72rem] leading-snug tracking-wide text-sand-300/75 uppercase">
-                    {stat.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+      <Container className="relative grid items-center pt-6 pb-12 text-center sm:pt-12 sm:pb-20 lg:grid-cols-2 lg:gap-12 lg:py-16 lg:text-left xl:gap-20">
+        <div>
+          <p className="font-arabic text-3xl" dir="rtl" lang="ar">
+            أهلاً وسهلاً
+          </p>
+          <h1 className="mx-auto mt-4 max-w-4xl text-[clamp(2.7rem,6.200vw,5.250rem)] leading-[0.98] font-[750] tracking-[-0.035em] text-balance lg:mx-0 lg:text-[clamp(3rem,4.600vw,4.600rem)]">
+            Nurturing towards Jannah
+          </h1>
+          <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-ink-900/85 lg:mx-0 lg:max-w-md">
+            Islamic books, toys and ibadah essentials for every age, chosen with purpose and delivered nationwide.
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <Link href="/collections/best-seller" className={cx(btnInk, "max-sm:w-full")}>
+              Explore best sellers
+              <ArrowRightIcon className="size-4" />
+            </Link>
+            <Link href="/shop" className={cx(btnLine, "max-sm:w-full")}>
+              Shop all products
+            </Link>
           </div>
+        </div>
 
-          <div className="lg:col-span-5">
-            <HeroOrnament className="mx-auto w-full text-gold-300 lg:max-w-[33rem]" />
-          </div>
+        {/* A triptych: the centre arch stands a step taller than its neighbours. */}
+        <div className="mx-auto mt-10 grid w-full max-w-3xl grid-cols-[1fr_1.200fr_1fr] items-end gap-3 sm:mt-14 sm:gap-7 lg:mt-0 lg:max-w-xl lg:gap-5 xl:gap-6">
+          {arch(toys, "Play", <PlayScene className={scene} />, "aspect-[3/4.300]")}
+          {arch(books, "Read", <ReadScene className={scene} />, "aspect-[3/4.700]")}
+          {arch(ibadah, "Worship", <WorshipScene className={scene} />, "aspect-[3/4.300]")}
         </div>
       </Container>
     </section>
   );
 }
 
-function TrustStrip() {
-  const items = [
-    {
-      Icon: ShieldIcon,
-      title: "Secure payments",
-      copy: "Shop with confidence knowing that your transactions are safeguarded.",
-    },
-    {
-      Icon: TruckIcon,
-      title: "Prompt delivery",
-      copy: "All orders are shipped timely to every location within the nation.",
-    },
-    {
-      Icon: SparkIcon,
-      title: "Free delivery",
-      copy: `On all orders from ${formatPrice(site.freeDeliveryThreshold)} to anywhere in Nigeria.`,
-    },
-    {
-      Icon: HeartIcon,
-      title: "Chosen with purpose",
-      copy: "Islamic books, toys and accessories for every age in the home.",
-    },
-  ];
-
+/**
+ * Ages strung on one thread, like beads on a tasbih. All five sit in one row
+ * at every width, so there is nothing to swipe: tap a bead.
+ */
+function Ages({ data }: { data: HomeData }) {
   return (
-    <section className="border-b border-sand-200 bg-sand-100">
+    <section className="bg-sand-50 py-12 sm:py-24">
+      <Container className="text-center">
+        <h2 className="text-3xl sm:text-5xl">Begin where your child is</h2>
+        <p className="mx-auto mt-3 max-w-md text-ink-600 sm:mt-4">Tap an age to see what suits it.</p>
+      </Container>
+      {/* Held to a narrower measure on wide screens so the beads stay close on their thread. */}
+      <Container className="relative mt-8 sm:mt-12 lg:max-w-5xl">
+        <span className="absolute top-7 right-[12%] left-[12%] h-px bg-coal-900 sm:top-10 lg:top-12" aria-hidden />
+        <ul className="relative grid grid-cols-5 gap-1 sm:gap-4 lg:gap-6">
+          {data.ageGroups.map((age) => (
+            <li key={age.slug}>
+              <Link href={`/age/${age.slug}`} aria-label={`${age.name}, ${age.count} items`} className="group block text-center">
+                <span className="mx-auto grid size-14 place-items-center rounded-full bg-gold-500 ring-4 ring-sand-50 transition-colors duration-300 group-hover:bg-coal-900 group-hover:text-gold-500 group-active:bg-coal-900 group-active:text-gold-500 sm:size-20 sm:ring-[6px] lg:size-24">
+                  <span className="font-display text-[1.050rem] leading-none font-[750] tracking-tight tabular-nums sm:text-2xl lg:text-[1.700rem]">
+                    {ageFigure(age.name)}
+                  </span>
+                </span>
+                <span className={cx(caps, "mt-3 block max-sm:text-[0.600rem] max-sm:tracking-[0.160em] sm:mt-5")}>years</span>
+                <span className="mt-2 block text-sm leading-relaxed text-ink-600 max-lg:hidden">{age.blurb}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
+  );
+}
+
+/** Black cards with a round photo, two by two on a phone so all four fit on one screen. */
+function Departments({ data }: { data: HomeData }) {
+  return (
+    <section className="bg-gold-500 py-12 sm:py-24">
       <Container>
-        <ul className="grid divide-y divide-sand-200 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
-          {items.map(({ Icon, title, copy }, index) => (
-            <li
-              key={title}
-              className={cx(
-                "flex items-start gap-3.5 py-6 sm:py-7",
-                index > 0 && "sm:border-l sm:border-sand-200 sm:pl-6",
-              )}
-            >
-              <span className="grid size-10 shrink-0 place-items-center rounded-full bg-forest-800 text-gold-300">
-                <Icon className="size-[1.1rem]" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[0.85rem] font-semibold text-forest-900">{title}</p>
-                <p className="mt-0.5 text-[0.78rem] leading-snug text-ink-500">{copy}</p>
+        <h2 className="text-center text-3xl sm:text-5xl">Shop by department</h2>
+        <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:gap-6">
+          {data.departments.map((dept) => (
+            <li key={dept.slug}>
+              <Link
+                href={`/collections/${dept.slug}`}
+                className="group flex h-full flex-col-reverse justify-end gap-4 rounded-[1.5rem] bg-coal-900 p-4 text-sand-50 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 active:scale-[0.98] sm:p-6 lg:flex-row lg:items-center lg:justify-start lg:gap-8 lg:rounded-[2rem] lg:p-8"
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-xl leading-tight font-[750] tracking-tight text-gold-500 sm:text-3xl lg:text-4xl lg:leading-none">
+                    {dept.name}
+                  </span>
+                  <span className="mt-1 block text-sm text-coal-300 tabular-nums lg:mt-3">{dept.count} products</span>
+                  <span className="mt-2 line-clamp-2 text-sm leading-relaxed text-coal-300 max-lg:hidden">
+                    {dept.children.slice(0, 4).map((child) => child.name).join(", ")}
+                  </span>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold max-lg:hidden">
+                    Shop {dept.name.toLowerCase()}
+                    <ArrowRightIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </span>
+                <span className="relative size-16 shrink-0 overflow-hidden rounded-full sm:size-24 lg:size-40">
+                  <Photo
+                    src={dept.image}
+                    sizes="(min-width: 1024px) 10rem, 6rem"
+                    className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                  />
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
+  );
+}
+
+/**
+ * The Qur'an card: mushafs as overlapping discs on cream, and the button that
+ * opens the shelf. Three on phones and tablets; laptops have the room for a
+ * fourth and larger discs, so the card does not sit half empty.
+ */
+function Quran({ products }: { products: CardProduct[] }) {
+  if (products.length === 0) return null;
+  return (
+    <section aria-label="The Qur'an shelf" className="bg-sand-50 py-10 sm:py-20">
+      <Container>
+        <div className="flex flex-col items-center gap-6 rounded-[1.5rem] bg-sand-200 p-6 sm:gap-8 sm:p-10 lg:rounded-[2rem] lg:p-14">
+          <ul className="flex w-full max-w-lg items-center justify-center lg:max-w-3xl">
+            {products.map((pick, index) => (
+              <li
+                key={pick.slug}
+                className={cx("w-[38%] shrink-0 lg:w-[29%]", index > 0 && "-ml-[7%] lg:-ml-[5.300%]", index === 3 && "max-lg:hidden")}
+              >
+                <Link
+                  href={`/products/${pick.slug}`}
+                  aria-label={pick.name}
+                  className="relative block aspect-square overflow-hidden rounded-full border-[6px] border-sand-200 bg-gold-500 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 sm:border-[8px]"
+                >
+                  <Photo src={pick.image} sizes="(min-width: 1024px) 14rem, (min-width: 640px) 12rem, 36vw" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link href="/collections/books/the-holy-quran" className={cx(btnInk, "max-sm:w-full")}>
+            Browse the Qur&apos;an shelf
+            <ArrowRightIcon className="size-4" />
+          </Link>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/** The store's three promises: a black band, one line each on a phone, three columns on wide screens. */
+function Promises() {
+  const items = [
+    { Icon: TruckIcon, title: `Free delivery from ${formatPrice(site.freeDeliveryThreshold)}`, copy: "To anywhere in Nigeria." },
+    { Icon: ClockIcon, title: `Dispatched within ${site.delivery.dispatchHours} hours`, copy: `Interstate parcels leave on ${site.delivery.interstateDays}.` },
+    { Icon: ShieldIcon, title: "Secure payments", copy: "Your transactions are safeguarded at checkout." },
+  ];
+  return (
+    <section className="bg-coal-900 text-sand-50">
+      <Container>
+        <ul className="grid divide-y divide-white/10 py-3 md:grid-cols-3 md:divide-x md:divide-y-0 md:py-0">
+          {items.map(({ Icon, title, copy }) => (
+            <li key={title} className="flex gap-4 py-5 md:block md:px-8 md:py-12 md:first:pl-0 md:last:pr-0">
+              <Icon className="mt-0.5 size-6 shrink-0 text-gold-500" />
+              <div>
+                <p className="font-display text-lg leading-tight font-[750] tracking-tight text-gold-500 md:mt-4 md:text-2xl">{title}</p>
+                <p className="mt-1 text-sm text-coal-300 md:mt-2">{copy}</p>
               </div>
             </li>
           ))}
@@ -234,231 +243,33 @@ function TrustStrip() {
   );
 }
 
-function ShopByAge({ ageGroups }: { ageGroups: Catalog["ageGroups"] }) {
+/** A line of the logo's white script, the question, and two ways to reach the store. */
+function Help() {
   return (
-    <Container className="py-16 sm:py-20">
-      <SectionHeading
-        eyebrow="Find the right fit"
-        title="Shop by age"
-        description="From cloth books for tiny hands to tafsir for the whole family — start where your child is."
-        align="center"
-      />
-
-      <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
-        {ageGroups.map((age, index) => (
-          <Link
-            key={age.slug}
-            href={`/age/${age.slug}`}
-            className={cx(
-              "group relative flex flex-col justify-between overflow-hidden rounded-lg border border-sand-200 bg-white p-5 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-forest-200 hover:shadow-[var(--shadow-lift)]",
-              index === 4 && "col-span-2 lg:col-span-1",
-            )}
+    <section className="bg-gold-500 py-14 text-center sm:py-28">
+      <Container className="max-w-3xl">
+        <p className="font-script text-5xl leading-none text-white sm:text-6xl" aria-hidden>
+          Gifts, made easy
+        </p>
+        <h2 className="mt-3 text-[2rem] leading-none font-[750] tracking-[-0.035em] sm:text-5xl lg:text-6xl">Not sure what to choose?</h2>
+        <p className="mx-auto mt-4 max-w-lg text-lg leading-relaxed text-ink-900/85 sm:mt-5">
+          Tell us the age, the budget and the occasion. We will put a bundle together and send you photos before you pay.
+        </p>
+        <div className="mt-7 flex flex-wrap justify-center gap-3 sm:mt-8">
+          <a
+            href={whatsappLink(`As-salamu alaykum ${site.name}, please help me choose a gift. Age: __ , Budget: __`)}
+            target="_blank"
+            rel="noreferrer"
+            className={cx(btnInk, "max-sm:w-full")}
           >
-            <span
-              className="pattern-girih absolute -top-6 -right-6 size-24 opacity-[0.12] transition duration-500 group-hover:opacity-25"
-              aria-hidden
-            />
-            <span className="font-display text-2xl leading-none font-semibold text-forest-900 sm:text-[1.7rem]">
-              {age.name}
-            </span>
-            <span className="mt-2 text-[0.75rem] leading-snug text-ink-500">{age.blurb}</span>
-            <span className="mt-5 inline-flex items-center gap-1 text-[0.72rem] font-semibold tracking-wide text-gold-600 uppercase">
-              {age.count} items
-              <ChevronRightIcon className="size-3 transition group-hover:translate-x-0.5" />
-            </span>
+            <WhatsappIcon className="size-4" />
+            Ask on WhatsApp
+          </a>
+          <Link href="/contact" className={cx(btnLine, "max-sm:w-full")}>
+            Contact the store
           </Link>
-        ))}
-      </div>
-    </Container>
-  );
-}
-
-function Departments({ departments }: { departments: Catalog["departments"] }) {
-  const [lead, ...rest] = departments;
-  if (!lead) return null;
-
-  return (
-    <section className="bg-sand-100 py-16 sm:py-20">
-      <Container>
-        <SectionHeading
-          eyebrow="Browse the gallery"
-          title="Everything under one roof"
-          description="Four departments, carefully stocked — from board books to prayer mats."
-        />
-
-        <div className="mt-10 grid gap-4 lg:grid-cols-2 lg:grid-rows-3">
-          <CategoryTile department={lead} className="lg:row-span-3" tall />
-          {rest.map((dept) => (
-            <CategoryTile key={dept.slug} department={dept} />
-          ))}
         </div>
       </Container>
     </section>
-  );
-}
-
-function CategoryTile({
-  department,
-  className,
-  tall = false,
-}: {
-  department: Catalog["departments"][number];
-  className?: string;
-  tall?: boolean;
-}) {
-  return (
-    <Link
-      href={`/collections/${department.slug}`}
-      className={cx(
-        "group relative overflow-hidden rounded-xl bg-forest-900",
-        tall ? "aspect-[4/5] sm:aspect-[16/10] lg:aspect-auto lg:min-h-[34rem]" : "aspect-[16/9] sm:aspect-[2.4/1] lg:aspect-auto lg:min-h-[10.5rem]",
-        className,
-      )}
-    >
-      {department.image ? (
-        <Image
-          src={department.image}
-          alt={department.name}
-          fill
-          sizes="(min-width: 1024px) 40rem, 100vw"
-          className="object-cover opacity-60 transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:opacity-70"
-        />
-      ) : (
-        <span className="pattern-girih-light absolute inset-0" aria-hidden />
-      )}
-      <span className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/55 to-transparent" aria-hidden />
-
-      <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-        <h3 className={cx("font-display font-semibold text-sand-50", tall ? "text-3xl sm:text-4xl" : "text-2xl")}>
-          {department.name}
-        </h3>
-        <p className="mt-1.5 text-[0.78rem] text-sand-200/85">{department.count} products</p>
-
-        {tall && department.children.length > 0 ? (
-          <ul className="mt-4 flex flex-wrap gap-1.5">
-            {department.children.slice(0, 5).map((child) => (
-              <li
-                key={child.slug}
-                className="rounded-full border border-sand-100/25 px-2.5 py-1 text-[0.7rem] text-sand-100/90"
-              >
-                {child.name}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
-        <span className="mt-5 inline-flex items-center gap-1.5 text-[0.75rem] font-semibold tracking-[0.1em] text-gold-300 uppercase">
-          Shop now
-          <ArrowRightIcon className="size-3.5 transition group-hover:translate-x-1" />
-        </span>
-      </div>
-    </Link>
-  );
-}
-
-function QuranFeature({ picks }: { picks: Array<{ slug: string; name: string; images: string[] }> }) {
-  if (picks.length === 0) return null;
-
-  return (
-    <section className="relative overflow-hidden bg-forest-900 py-16 text-sand-100 sm:py-20">
-      <div className="pattern-girih-light absolute inset-0 opacity-20" aria-hidden />
-      <Container className="relative">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <Eyebrow className="text-gold-300">The heart of the home</Eyebrow>
-            <h2 className="mt-4 font-display text-4xl leading-tight font-semibold text-sand-50 sm:text-5xl">
-              Mushafs chosen with care
-            </h2>
-            <p className="mt-5 max-w-lg text-[0.95rem] leading-relaxed text-sand-200/90">
-              Madinah print, colour-coded tajweed, pocket sizes and beautifully bound gift editions — each
-              copy checked for print quality and clarity before it leaves our shelf.
-            </p>
-            <Divider className="mt-8 max-w-xs opacity-40" />
-            <ButtonLink href="/collections/books/the-holy-quran" variant="gold" size="lg" className="mt-8">
-              Browse the Qur&apos;an collection
-              <ArrowRightIcon className="size-4" />
-            </ButtonLink>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 sm:gap-4">
-            {picks.map((pick, index) => (
-              <Link
-                key={pick.slug}
-                href={`/products/${pick.slug}`}
-                className={cx(
-                  "group relative overflow-hidden rounded-lg border border-sand-100/15",
-                  index === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square",
-                )}
-              >
-                <Image
-                  src={pick.images[0]}
-                  alt={pick.name}
-                  fill
-                  sizes="(min-width: 1024px) 18rem, 33vw"
-                  className="object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function Deals({ products }: { products: CardProduct[] }) {
-  return (
-    <section className="bg-sand-100 py-16 sm:py-20">
-      <Container>
-        <SectionHeading
-          eyebrow="Reduced this week"
-          title="Save on our current offers"
-          description="Genuine markdowns on selected books, toys and essentials."
-          action={
-            <ButtonLink href="/shop?sale=1" variant="outline" size="sm">
-              All offers
-              <ArrowRightIcon className="size-4" />
-            </ButtonLink>
-          }
-        />
-        <ProductRail products={products} className="mt-9" />
-      </Container>
-    </section>
-  );
-}
-
-function ContactCta() {
-  return (
-    <Container className="pb-4">
-      <div className="relative overflow-hidden rounded-xl bg-forest-800 px-6 py-14 text-center sm:px-12 sm:py-16">
-        <div className="pattern-girih-light absolute inset-0 opacity-25" aria-hidden />
-        <div className="relative mx-auto max-w-2xl">
-          <StarKhatimIcon className="mx-auto size-7 text-gold-300" />
-          <h2 className="mt-5 font-display text-3xl font-semibold text-sand-50 sm:text-4xl">
-            Not sure what to choose?
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-[0.93rem] leading-relaxed text-sand-200/90">
-            Tell us the age, the budget and the occasion — we will put together a gift bundle and send you
-            photos before you pay. Elevate your knowledge, embrace timeless content.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a
-              href={whatsappLink(
-                `As-salamu alaykum ${site.name}, please help me choose a gift. Age: __ , Budget: __`,
-              )}
-              target="_blank"
-              rel="noreferrer"
-              className={buttonClass({ variant: "whatsapp", size: "lg" })}
-            >
-              <WhatsappIcon className="size-4" />
-              Ask on WhatsApp
-            </a>
-            <ButtonLink href="/contact" variant="light" size="lg">
-              Contact the store
-            </ButtonLink>
-          </div>
-        </div>
-      </div>
-    </Container>
   );
 }

@@ -95,9 +95,9 @@ export default async function InventoryPage({ searchParams }: { searchParams: Pr
         <StatTile label="Running low" value={formatNumber(counts.low)} hint="5 or fewer left" href="/admin/inventory?view=low" />
       </div>
       <p className="text-[0.78rem] text-ink-500">
-        Last 30 days: <strong className="text-forest-700">+{formatNumber(unitsIn)}</strong> units in ·{" "}
+        Last 30 days: <strong className="text-coal-700">+{formatNumber(unitsIn)}</strong> units in ·{" "}
         <strong className="text-berry-600">{unitsOut ? `−${formatNumber(unitsOut)}` : "0"}</strong> units out ·{" "}
-        <Link href="/admin/inventory/log" className="font-semibold text-forest-700 hover:underline">
+        <Link href="/admin/inventory/log" className="font-semibold text-coal-700 hover:underline">
           {recent.length} movements
         </Link>
       </p>
@@ -114,11 +114,11 @@ export default async function InventoryPage({ searchParams }: { searchParams: Pr
                 aria-selected={active}
                 className={cx(
                   "-mb-px flex items-center gap-1.5 border-b-2 px-3 py-2.5 text-[0.8rem] font-semibold whitespace-nowrap transition",
-                  active ? "border-forest-700 text-forest-800" : "border-transparent text-ink-500 hover:text-ink-800",
+                  active ? "border-coal-700 text-coal-800" : "border-transparent text-ink-500 hover:text-ink-800",
                 )}
               >
                 {v.label}
-                <span className={cx("rounded-full px-1.5 text-[0.68rem] tabular-nums", active ? "bg-forest-100 text-forest-800" : "bg-sand-200 text-ink-600")}>
+                <span className={cx("rounded-full px-1.5 text-[0.68rem] tabular-nums", active ? "bg-coal-100 text-coal-800" : "bg-sand-200 text-ink-600")}>
                   {counts[v.key]}
                 </span>
               </Link>
@@ -166,7 +166,7 @@ export default async function InventoryPage({ searchParams }: { searchParams: Pr
                         <div className="flex items-center gap-3">
                           <Thumb src={item.image} alt="" size={40} />
                           <div className="min-w-0">
-                            <Link href={`/admin/products/${item.productId}`} className="line-clamp-1 max-w-[24rem] font-semibold text-ink-900 hover:text-forest-700">
+                            <Link href={`/admin/products/${item.productId}`} className="line-clamp-1 max-w-[24rem] font-semibold text-ink-900 hover:text-coal-700">
                               {item.name}
                             </Link>
                             <p className="mt-0.5 flex flex-wrap items-center gap-1.5 text-[0.72rem] text-ink-500">

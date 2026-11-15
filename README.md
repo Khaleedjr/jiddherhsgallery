@@ -93,16 +93,31 @@ Everything store-specific (WhatsApp number, phone, email, Kaduna pickup hours, d
 
 ## Catalogue source
 
-The first time the site runs, the store is seeded from `src/data/products.json`, which
-`scripts/build-catalog.py` generated from the WooCommerce export. After that **the dashboard is the
-source of truth**; re-running the import script does not overwrite dashboard edits.
+The store is seeded from `src/data/products.json`. After that **the dashboard is the source of
+truth**, and re-importing never overwrites anything edited there.
+
+To bring the catalogue up to date with the live WooCommerce store:
+
+```bash
+npm run catalog:live   # reads jiddersgallery.com.ng's public Store API → src/data/*.json
+```
+
+It reads every published product, option, price, stock count, photo and category from the live
+store, writes them to `data/catalog-live.csv` in WooCommerce's export format, and runs
+`scripts/build-catalog.py` on that file, so the same category, age and price rules apply. Existing
+products keep their web address; new ones get a fresh one. Then bump `SEED_VERSION` in
+`src/lib/store/products.ts`: on its next request each store adds new products, refreshes those
+never edited in the dashboard, leaves edited ones alone, and moves imported products that are gone
+from the live store to Drafts. (`npm run catalog` still builds from a manual CSV export.)
 
 ## Product images
 
 Imported photos are still served from the WordPress media library at
-`jiddersgallery.com.ng/wp-content/uploads/...` (allow-listed in `next.config.ts`). Photos uploaded in
-the dashboard are stored in the site's own storage and served from `/media/…`. If the WordPress
-host is ever retired, re-upload those photos through the product editor.
+`jiddersgallery.com.ng/wp-content/uploads/...` (allow-listed in `next.config.ts`). The live sync
+links the largest copy WordPress keeps up to 1600px wide rather than the multi-megabyte original,
+so the image optimiser never times out fetching it. Photos uploaded in the dashboard are stored in
+the site's own storage and served from `/media/…`. If the WordPress host is ever retired,
+re-upload those photos through the product editor.
 
 ## Project layout
 
@@ -114,7 +129,8 @@ src/components/admin/     dashboard UI — tables, editor, charts, forms
 src/lib/store/            storage: drivers (Redis / files), products, orders, inventory, analytics
 src/lib/admin/            sessions, server actions, formatting, CSV/HTML safety
 src/lib/site.ts           store details
-scripts/build-catalog.py  WooCommerce CSV → src/data/*.json (initial seed)
+scripts/build-catalog.py  WooCommerce CSV → src/data/*.json
+scripts/sync-from-live.py live store → data/catalog-live.csv → build-catalog.py
 ```
 
 ## Deploying

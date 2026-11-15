@@ -39,7 +39,7 @@ export function AdminPage({
       {back ? (
         <Link
           href={back.href}
-          className="mb-3 inline-flex items-center gap-1.5 text-[0.78rem] font-medium text-ink-500 transition hover:text-forest-800"
+          className="mb-3 inline-flex items-center gap-1.5 text-[0.78rem] font-medium text-ink-500 transition hover:text-coal-800"
         >
           <ArrowLeftIcon className="size-3.5" />
           {back.label}
@@ -137,7 +137,7 @@ export function Delta({ change, invert = false }: { change: number | null; inver
   const good = invert ? !up : up;
   const Icon = up ? ArrowUpIcon : ArrowDownIcon;
   return (
-    <span className={cx("inline-flex items-center gap-0.5 font-semibold", good ? "text-forest-600" : "text-berry-600")}>
+    <span className={cx("inline-flex items-center gap-0.5 font-semibold", good ? "text-coal-600" : "text-berry-600")}>
       <Icon className="size-3" strokeWidth={2.4} />
       {formatPercent(Math.abs(change), Math.abs(change) < 0.1 ? 1 : 0)}
       <span className="sr-only">{up ? "up" : "down"} on the previous period</span>
@@ -151,7 +151,7 @@ const STATUS_STYLE: Record<OrderStatus, { className: string; Icon: typeof ClockI
   pending: { className: "bg-gold-100 text-gold-700 ring-gold-300/70", Icon: ClockIcon },
   confirmed: { className: "bg-sky-50 text-sky-800 ring-sky-200", Icon: CircleCheckIcon },
   dispatched: { className: "bg-violet-50 text-violet-800 ring-violet-200", Icon: TruckIcon },
-  delivered: { className: "bg-forest-50 text-forest-700 ring-forest-200", Icon: PackageCheckIcon },
+  delivered: { className: "bg-coal-50 text-coal-700 ring-coal-200", Icon: PackageCheckIcon },
   cancelled: { className: "bg-sand-100 text-ink-500 ring-sand-300", Icon: XCircleIcon },
 };
 
@@ -182,11 +182,11 @@ export function Pill({
 }) {
   const tones = {
     neutral: "bg-sand-100 text-ink-600 ring-sand-300",
-    good: "bg-forest-50 text-forest-700 ring-forest-200",
+    good: "bg-coal-50 text-coal-700 ring-coal-200",
     warn: "bg-gold-100 text-gold-700 ring-gold-300/70",
     bad: "bg-berry-500/8 text-berry-600 ring-berry-500/25",
     info: "bg-sky-50 text-sky-800 ring-sky-200",
-    gold: "bg-gold-400 text-forest-950 ring-gold-500/40",
+    gold: "bg-gold-400 text-coal-950 ring-gold-500/40",
   } as const;
   return (
     <span
@@ -230,7 +230,7 @@ export function Thumb({ src, alt, size = 40, className }: { src: string | null |
 /* ---------------------------------------------------------------- forms */
 
 export const inputClass =
-  "block w-full rounded-lg border border-sand-300 bg-white px-3 py-2 text-[0.85rem] text-ink-900 outline-none transition placeholder:text-ink-400 focus:border-forest-500 focus:ring-2 focus:ring-forest-500/15 disabled:bg-sand-100 disabled:text-ink-500";
+  "block w-full rounded-lg border border-sand-300 bg-white px-3 py-2 text-[0.85rem] text-ink-900 outline-none transition placeholder:text-ink-400 focus:border-coal-500 focus:ring-2 focus:ring-coal-500/15 disabled:bg-sand-100 disabled:text-ink-500";
 
 export const selectClass = cx(inputClass, "appearance-none bg-[url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237a7064' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E\")] bg-[length:1rem] bg-[right_0.6rem_center] bg-no-repeat pr-8");
 
@@ -265,12 +265,12 @@ export function Field({
 }
 
 const adminButtonVariants = {
-  primary: "bg-forest-800 text-sand-50 hover:bg-forest-700 active:bg-forest-900 shadow-[0_1px_2px_rgb(10_43_33/0.3)]",
+  primary: "bg-coal-900 text-gold-500 hover:bg-black active:bg-black shadow-[0_1px_2px_rgb(20_17_10/0.3)]",
   secondary: "border border-sand-300 bg-white text-ink-800 hover:border-sand-400 hover:bg-sand-50",
   ghost: "text-ink-600 hover:bg-sand-100 hover:text-ink-900",
   danger: "bg-berry-500 text-white hover:bg-berry-600",
   "danger-outline": "border border-berry-500/30 bg-white text-berry-600 hover:bg-berry-500/5",
-  gold: "bg-gold-400 text-forest-950 hover:bg-gold-300",
+  gold: "bg-gold-400 text-coal-950 hover:bg-gold-300",
 } as const;
 
 export const adminButton = ({

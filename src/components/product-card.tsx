@@ -6,19 +6,18 @@ import { useCart } from "@/components/cart-provider";
 import { ProductImage } from "@/components/product-image";
 import { BagIcon, CheckIcon, ChevronRightIcon } from "@/components/icons";
 import { Badge, cx } from "@/components/ui";
-import {
-  discountPercent,
-  formatPrice,
-  formatPriceRange,
-  isLowStock,
-  lowStockLabel,
-} from "@/lib/format";
+import { discountPercent, formatPrice, formatPriceRange, isLowStock, lowStockLabel } from "@/lib/format";
 import type { CardProduct } from "@/lib/types";
 
+/**
+ * Design 4's product card: a rounded photo tile on cream, a round black
+ * button in its corner to add to the bag (or to choose an option), then the
+ * name and price. The whole card opens the product; the button sits above that link.
+ */
 export function ProductCard({
   product,
   priority = false,
-  sizes = "(min-width: 1280px) 20rem, (min-width: 768px) 30vw, 45vw",
+  sizes = "(min-width: 1280px) 18rem, (min-width: 1024px) 23vw, (min-width: 640px) 30vw, 46vw",
   className,
 }: {
   product: CardProduct;
@@ -29,7 +28,6 @@ export function ProductCard({
   const { add } = useCart();
   const [justAdded, setJustAdded] = useState(false);
 
-  const hasOptions = product.hasOptions;
   const discount = discountPercent(product.price, product.compareAtPrice);
   const href = `/products/${product.slug}`;
 
@@ -47,91 +45,55 @@ export function ProductCard({
     window.setTimeout(() => setJustAdded(false), 1600);
   };
 
+  const action = "relative z-10 grid size-11 place-items-center rounded-full bg-coal-900 text-gold-500 shadow-[0_8px_18px_-10px_rgba(20,17,10,0.8)] transition duration-200 hover:bg-black active:scale-90";
+
   return (
-    <article
-      className={cx(
-        "group relative flex flex-col overflow-hidden rounded-lg border border-sand-200 bg-white transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-sand-300 hover:shadow-[var(--shadow-lift)]",
-        className,
-      )}
-    >
-      <div className="relative aspect-square overflow-hidden bg-sand-100">
-        <div className="absolute inset-0 transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]">
+    <article className={cx("group relative flex flex-col", className)}>
+      <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-sand-200">
+        <div className="absolute inset-0 transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105">
           <ProductImage src={product.image ?? undefined} alt={product.name} sizes={sizes} priority={priority} />
         </div>
 
-        <div className="pointer-events-none absolute inset-x-3 top-3 flex flex-wrap items-start gap-1.5">
+        <div className="pointer-events-none absolute inset-x-2.5 top-2.5 flex flex-wrap items-start gap-1.5">
           {!product.inStock ? <Badge tone="sold-out">Sold out</Badge> : null}
           {/* A percentage is only meaningful against a single price, not a range. */}
-          {product.inStock && !product.priceMax && discount >= 15 ? (
-            <Badge tone="sale">-{discount}%</Badge>
-          ) : null}
-          {product.inStock && product.collections.includes("new-arrivals") ? (
-            <Badge tone="new">New</Badge>
-          ) : null}
-          {product.inStock && product.collections.includes("best-seller") ? (
-            <Badge tone="gold">Best seller</Badge>
-          ) : null}
+          {product.inStock && !product.priceMax && discount >= 15 ? <Badge tone="sale">-{discount}%</Badge> : null}
+          {product.inStock && product.collections.includes("new-arrivals") ? <Badge tone="new">New</Badge> : null}
+          {product.inStock && product.collections.includes("best-seller") ? <Badge tone="gold">Best seller</Badge> : null}
         </div>
 
-        {/* Quick action rail — visible on touch, revealed on hover for pointers. */}
         {product.inStock ? (
-          <div className="absolute inset-x-3 bottom-3 translate-y-2 opacity-100 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
-            {hasOptions ? (
-              <Link
-                href={href}
-                className="flex h-10 w-full items-center justify-center gap-1.5 rounded-full bg-forest-900/95 text-xs font-semibold text-sand-50 backdrop-blur transition hover:bg-forest-800"
-              >
-                Choose option
-                <ChevronRightIcon className="size-3.5" />
+          <div className="absolute right-2.5 bottom-2.5">
+            {product.hasOptions ? (
+              <Link href={href} className={action} aria-label={`Choose an option for ${product.name}`}>
+                <ChevronRightIcon className="size-4" />
               </Link>
             ) : (
-              <button
-                type="button"
-                onClick={handleAdd}
-                className="flex h-10 w-full items-center justify-center gap-1.5 rounded-full bg-forest-900/95 text-xs font-semibold text-sand-50 backdrop-blur transition hover:bg-forest-800"
-              >
-                {justAdded ? (
-                  <>
-                    <CheckIcon className="size-3.5" /> Added
-                  </>
-                ) : (
-                  <>
-                    <BagIcon className="size-3.5" /> Add to bag
-                  </>
-                )}
+              <button type="button" onClick={handleAdd} className={action} aria-label={justAdded ? `${product.name} added to bag` : `Add ${product.name} to bag`}>
+                {justAdded ? <CheckIcon className="size-4" /> : <BagIcon className="size-4" />}
               </button>
             )}
           </div>
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <h3 className="font-sans text-[0.9rem] leading-snug font-semibold text-ink-900">
-          <Link href={href} className="after:absolute after:inset-0 after:content-['']">
-            {product.name}
-          </Link>
-        </h3>
-        {product.summary ? (
-          <p className="line-clamp-2 text-[0.78rem] leading-relaxed text-ink-500">{product.summary}</p>
+      <h3 className="mt-3 line-clamp-2 font-sans text-[0.95rem] leading-snug font-semibold tracking-normal text-ink-900 sm:text-base">
+        <Link href={href} className="after:absolute after:inset-0 after:content-['']">
+          {product.name}
+        </Link>
+      </h3>
+      <p className="mt-1 flex flex-wrap items-baseline gap-x-2 tabular-nums">
+        <span className="font-bold text-ink-900">{formatPriceRange(product.price, product.priceMax)}</span>
+        {product.compareAtPrice && !product.priceMax ? (
+          <span className="text-[0.82rem] text-ink-500 line-through">
+            <span className="sr-only">was </span>
+            {formatPrice(product.compareAtPrice)}
+          </span>
         ) : null}
-        <div className="mt-auto pt-1">
-          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-            <span className="text-[0.95rem] font-semibold text-forest-800">
-              {formatPriceRange(product.price, product.priceMax)}
-            </span>
-            {product.compareAtPrice && !product.priceMax ? (
-              <span className="text-[0.78rem] text-ink-400 line-through">
-                {formatPrice(product.compareAtPrice)}
-              </span>
-            ) : null}
-          </div>
-          {isLowStock(product.stock, product.inStock) ? (
-            <p className="mt-1 text-[0.72rem] font-medium text-berry-500">
-              {lowStockLabel(product.stock as number)}
-            </p>
-          ) : null}
-        </div>
-      </div>
+      </p>
+      {isLowStock(product.stock, product.inStock) ? (
+        <p className="mt-1 text-[0.75rem] font-semibold text-gold-700">{lowStockLabel(product.stock as number)}</p>
+      ) : null}
     </article>
   );
 }
@@ -146,12 +108,7 @@ export function ProductGrid({
   className?: string;
 }) {
   return (
-    <div
-      className={cx(
-        "grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6",
-        className,
-      )}
-    >
+    <div className={cx("grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10", className)}>
       {products.map((product, index) => (
         <ProductCard key={product.slug} product={product} priority={index < priorityCount} />
       ))}

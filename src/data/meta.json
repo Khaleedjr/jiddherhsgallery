@@ -1,6 +1,6 @@
 {
- "productCount": 304,
- "inStockCount": 279,
+ "productCount": 351,
+ "inStockCount": 284,
  "categoryCount": 27,
- "source": "catalog.csv"
+ "source": "catalog-live.csv"
 }

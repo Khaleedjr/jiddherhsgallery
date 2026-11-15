@@ -51,7 +51,7 @@ function NavLinks({ counts, onNavigate }: { counts: Counts; onNavigate?: () => v
             <span className="flex-1">{label}</span>
             {count > 0 ? (
               <span
-                className="min-w-5 rounded-full bg-gold-400 px-1.5 py-px text-center text-[0.66rem] font-bold text-forest-950 tabular-nums"
+                className="min-w-5 rounded-full bg-gold-400 px-1.5 py-px text-center text-[0.66rem] font-bold text-coal-950 tabular-nums"
                 aria-label={`${count} pending orders`}
               >
                 {count}
@@ -114,7 +114,7 @@ export function AdminSidebar({ counts }: { counts: Counts }) {
   return (
     <>
       {/* Desktop rail */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col bg-forest-950 px-3 py-5 lg:flex">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col bg-coal-950 px-3 py-5 lg:flex">
         <div className="pattern-girih-light pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden />
         <div className="relative flex h-full flex-col">
           <Brand />
@@ -126,7 +126,7 @@ export function AdminSidebar({ counts }: { counts: Counts }) {
       </aside>
 
       {/* Mobile top bar */}
-      <header className="sticky top-0 z-30 flex h-14 items-center justify-between bg-forest-950 px-4 lg:hidden">
+      <header className="sticky top-0 z-30 flex h-14 items-center justify-between bg-coal-950 px-4 lg:hidden">
         <Brand />
         <button
           type="button"
@@ -141,8 +141,8 @@ export function AdminSidebar({ counts }: { counts: Counts }) {
 
       {open ? (
         <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Dashboard menu">
-          <button type="button" className="absolute inset-0 bg-forest-950/60" onClick={() => setOpen(false)} aria-label="Close menu" />
-          <div className="absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col bg-forest-950 px-3 py-4 shadow-2xl">
+          <button type="button" className="absolute inset-0 bg-coal-950/60" onClick={() => setOpen(false)} aria-label="Close menu" />
+          <div className="absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col bg-coal-950 px-3 py-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <Brand />
               <button

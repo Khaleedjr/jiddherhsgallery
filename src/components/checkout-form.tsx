@@ -172,7 +172,7 @@ export function CheckoutForm() {
   if (placed) {
     return (
       <div className="mx-auto max-w-xl rounded-2xl border border-sand-200 bg-white p-7 text-center shadow-card sm:p-10">
-        <CircleCheckIcon className="mx-auto size-12 text-forest-600" />
+        <CircleCheckIcon className="mx-auto size-12 text-coal-600" />
         <h2 className="mt-4 text-3xl">{placed.ref ? `Order ${placed.ref} is ready` : "Your order is ready"}</h2>
         <p className="mx-auto mt-3 max-w-md text-[0.9rem] leading-relaxed text-ink-600">
           We have opened WhatsApp with your order filled in. <strong>Press send</strong> so it reaches us — we will confirm
@@ -197,7 +197,7 @@ export function CheckoutForm() {
             {copied ? "Copied" : "Copy order details"}
           </button>
         </div>
-        <Link href="/shop" className="mt-6 inline-block text-[0.8rem] font-medium text-forest-700 hover:text-forest-900">
+        <Link href="/shop" className="mt-6 inline-block text-[0.8rem] font-medium text-coal-700 hover:text-coal-900">
           Continue shopping →
         </Link>
       </div>
@@ -283,7 +283,7 @@ export function CheckoutForm() {
                 className={cx(
                   "cursor-pointer rounded-lg border p-4 transition",
                   fields.fulfilment === option.value
-                    ? "border-forest-700 bg-forest-50"
+                    ? "border-coal-700 bg-coal-50"
                     : "border-sand-300 bg-white hover:border-sand-400",
                 )}
               >
@@ -295,13 +295,13 @@ export function CheckoutForm() {
                   onChange={() => set("fulfilment", option.value)}
                   className="sr-only"
                 />
-                <span className="flex items-center gap-2 text-[0.88rem] font-semibold text-forest-900">
+                <span className="flex items-center gap-2 text-[0.88rem] font-semibold text-coal-900">
                   <span
                     aria-hidden
                     className={cx(
                       "grid size-4 place-items-center rounded-full border transition",
                       fields.fulfilment === option.value
-                        ? "border-forest-700 bg-forest-700 text-sand-50"
+                        ? "border-coal-700 bg-coal-700 text-sand-50"
                         : "border-sand-400",
                     )}
                   >
@@ -354,7 +354,7 @@ export function CheckoutForm() {
         </section>
 
         <section className="rounded-lg border border-sand-200 bg-sand-100 p-5">
-          <h3 className="flex items-center gap-2 text-[0.9rem] font-semibold text-forest-900">
+          <h3 className="flex items-center gap-2 text-[0.9rem] font-semibold text-coal-900">
             <ShieldIcon className="size-4" />
             How checkout works
           </h3>
@@ -365,7 +365,7 @@ export function CheckoutForm() {
               "You pay by transfer, and we dispatch within 24 hours.",
             ].map((step, index) => (
               <li key={step} className="flex gap-2.5">
-                <span className="grid size-5 shrink-0 place-items-center rounded-full bg-forest-800 text-[0.65rem] font-bold text-sand-50">
+                <span className="grid size-5 shrink-0 place-items-center rounded-full bg-coal-800 text-[0.65rem] font-bold text-sand-50">
                   {index + 1}
                 </span>
                 {step}
@@ -409,7 +409,7 @@ export function CheckoutForm() {
         </div>
       </form>
 
-      <aside className="lg:sticky lg:top-28 lg:self-start">
+      <aside className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
         <div className="rounded-xl border border-sand-200 bg-white p-6">
           <h2 className="text-xl">Your order</h2>
 
@@ -427,7 +427,7 @@ export function CheckoutForm() {
                       <span className="pattern-girih-light block size-full" />
                     )}
                   </Link>
-                  <span className="absolute -top-1.5 -right-1.5 grid size-5 place-items-center rounded-full bg-forest-800 text-[0.62rem] font-bold text-sand-50">
+                  <span className="absolute -top-1.5 -right-1.5 grid size-5 place-items-center rounded-full bg-coal-800 text-[0.62rem] font-bold text-sand-50">
                     {item.quantity}
                   </span>
                 </div>
@@ -439,7 +439,7 @@ export function CheckoutForm() {
                     <p className="mt-0.5 text-[0.7rem] text-ink-500">{item.variantLabel}</p>
                   ) : null}
                 </div>
-                <span className="shrink-0 text-[0.8rem] font-semibold text-forest-800">
+                <span className="shrink-0 text-[0.8rem] font-semibold text-coal-800">
                   {formatPrice(item.price * item.quantity)}
                 </span>
               </li>
@@ -457,7 +457,7 @@ export function CheckoutForm() {
             </div>
             <div className="flex items-baseline justify-between pt-2">
               <span className="font-semibold text-ink-900">Total</span>
-              <span className="font-display text-2xl font-semibold text-forest-900">
+              <span className="font-display text-2xl font-semibold text-coal-900">
                 {formatPrice(subtotal)}
               </span>
             </div>
@@ -465,7 +465,7 @@ export function CheckoutForm() {
 
           <Link
             href="/cart"
-            className="mt-4 block text-center text-[0.78rem] font-medium text-ink-500 transition hover:text-forest-800"
+            className="mt-4 block text-center text-[0.78rem] font-medium text-ink-500 transition hover:text-coal-800"
           >
             Edit bag
           </Link>
@@ -500,7 +500,7 @@ function Field({
 }) {
   const inputClass = cx(
     "w-full rounded-md border bg-white px-3.5 py-2.5 text-[0.88rem] text-ink-900 outline-none transition placeholder:text-ink-400",
-    error ? "border-berry-500" : "border-sand-300 focus:border-forest-500",
+    error ? "border-berry-500" : "border-sand-300 focus:border-coal-500",
   );
 
   return (
@@ -556,7 +556,7 @@ function SelectField({
         onChange={(event) => onChange(event.target.value)}
         className={cx(
           "w-full rounded-md border bg-white px-3 py-2.5 text-[0.88rem] text-ink-900 outline-none transition",
-          error ? "border-berry-500" : "border-sand-300 focus:border-forest-500",
+          error ? "border-berry-500" : "border-sand-300 focus:border-coal-500",
           !value && "text-ink-400",
         )}
       >

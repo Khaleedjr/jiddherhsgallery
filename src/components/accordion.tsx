@@ -18,7 +18,7 @@ export function Accordion({ items }: { items: Array<{ question: string; answer: 
                 type="button"
                 onClick={() => setOpen(expanded ? null : index)}
                 aria-expanded={expanded}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-[0.92rem] font-semibold text-forest-900 transition hover:bg-sand-50 sm:px-6"
+                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-[0.92rem] font-semibold text-coal-900 transition hover:bg-sand-50 sm:px-6"
               >
                 {item.question}
                 <ChevronDownIcon

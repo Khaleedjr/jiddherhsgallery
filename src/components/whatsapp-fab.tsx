@@ -23,7 +23,7 @@ export function WhatsappFab() {
       rel="noreferrer"
       aria-label="Chat with us on WhatsApp"
       className={cx(
-        "fixed right-4 bottom-4 z-30 grid size-13 place-items-center rounded-full bg-[#25D366] text-[#05321a] shadow-[0_12px_28px_-10px_rgba(5,50,26,0.6)] transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 sm:right-6 sm:bottom-6",
+        "fixed right-4 bottom-4 z-30 grid size-14 place-items-center rounded-full bg-coal-900 text-gold-500 shadow-[0_14px_30px_-12px_rgba(20,17,10,0.7)] ring-2 ring-gold-500 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 active:scale-95 sm:right-6 sm:bottom-6",
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0",
       )}
     >

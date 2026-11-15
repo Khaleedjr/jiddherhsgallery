@@ -82,7 +82,7 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
             rows={a.topProducts.map((row) => ({
               key: row.key,
               label: (
-                <Link href={`/admin/products/${row.key}`} className="hover:text-forest-700 hover:underline">
+                <Link href={`/admin/products/${row.key}`} className="hover:text-coal-700 hover:underline">
                   {row.label}
                 </Link>
               ),

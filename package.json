@@ -5,6 +5,7 @@
   "description": "Jidderh's Gallery — Islamic books, toys and ibadah essentials",
   "scripts": {
     "catalog": "python3 scripts/build-catalog.py data/catalog.csv",
+    "catalog:live": "python3 scripts/sync-from-live.py",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
