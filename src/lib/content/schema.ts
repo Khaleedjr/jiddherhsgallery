@@ -218,57 +218,108 @@ export const SECTIONS = {
         items: list(
           "Questions and answers",
           "question",
-          { question: text("Question", ""), answer: rich("Answer", "", { hint: RICH_HINT }) },
+          { topic: text("Topic", "", { hint: "Questions with the same topic are shown together, in this order." }), question: text("Question", ""), answer: rich("Answer", "", { hint: RICH_HINT }) },
           "question",
           [
             {
+              topic: "Ordering & payment",
               question: "How do I place an order?",
-              answer:
-                "Add what you want to your bag and go to checkout. Fill in your details, choose how you want it delivered (or pick it up in Kaduna), and pay with Paystack. Your order is confirmed the moment payment goes through, and a receipt is emailed to you.",
+              answer: "Add what you want to your bag and go to checkout. Fill in your details, choose how you want it delivered (or pick it up in Kaduna), and pay with Paystack. Your order is confirmed the moment payment goes through, and a receipt is emailed to you.",
             },
             {
+              topic: "Ordering & payment",
               question: "How do I pay?",
-              answer:
-                "Securely with Paystack at checkout: by card, bank transfer or USSD. You pay on Paystack's own page, so we never see or store your card details. If a payment fails, nothing is taken and your bag stays saved so you can try again.",
+              answer: "Securely with Paystack at checkout: by card, bank transfer or USSD. You pay on Paystack's own page, so we never see or store your card details. If a payment fails, nothing is taken and your bag stays saved so you can try again.",
             },
             {
+              topic: "Ordering & payment",
+              question: "Can I pay in instalments?",
+              answer: "No. Our website **does not** accept part-payment. Kindly pay exactly the amount shown for your order.",
+            },
+            {
+              topic: "Ordering & payment",
+              question: "I don't feel safe using my ATM card. Is there another way to pay?",
+              answer: "Be rest assured that your details are safe with us: you pay on Paystack's secure page, and your card details never reach us.\n\nUsing an ATM card is not a must. Paystack also lets you pay by bank transfer, USSD or your bank's app.",
+            },
+            {
+              topic: "Ordering & payment",
+              question: "Can I pay into your personal account number?",
+              answer: "No. Our website takes payment through **Paystack**. Make your payment only to the account Paystack gives you at checkout. If you pay into another account, your order won't go through, and we won't be responsible for that.",
+            },
+            {
+              topic: "Ordering & payment",
+              question: "Can I order more items after paying, and get them together?",
+              answer: "Yes, but it has to be done before our delivery day.\n\nSince you might be asked to pay for delivery again, choose pickup for the new order instead. Then send us a message on WhatsApp or Instagram to tell us about the paired package.",
+            },
+            {
+              topic: "Delivery & pickup",
               question: "How much is delivery?",
-              answer:
-                "Within Kaduna metropolis and Zaria it is {kadunaFee} to your door. Other states are sent by bus to a park in your state for a waybill fee shown at checkout as soon as you choose your state (from ₦1,500). Orders from {freeDeliveryFrom} ship free, and pickup in Kaduna is always free.",
+              answer: "Within Kaduna metropolis and Zaria it is {kadunaFee} to your door. Other states are sent by bus to a park in your state for a waybill fee shown at checkout as soon as you choose your state (from ₦1,500). Orders from {freeDeliveryFrom} ship free, and pickup in Kaduna is always free.",
             },
             {
+              topic: "Delivery & pickup",
               question: "How quickly do you dispatch?",
-              answer:
-                "Kaduna orders are dispatched within {dispatchHours} hours of payment. Interstate park dispatches run on {interstateDays}. If dispatch happens on any other day, we let you know.",
+              answer: "Kaduna orders are dispatched within {dispatchHours} hours of payment. Interstate park dispatches run on {interstateDays}. If dispatch happens on any other day, we let you know.",
             },
             {
+              topic: "Delivery & pickup",
               question: "Which states do you deliver to?",
-              answer:
-                "All of them. We dispatch through interstate parks with a listed bus stop for each state — Abuja, Adamawa, Bauchi, Borno, Gombe, Jigawa, Kano, Katsina, Kebbi, Kwara, Lagos, Nasarawa, Niger, Oyo, Plateau, Rivers, Sokoto, Taraba and Zamfara. The full list is on our delivery page.",
+              answer: "Almost all of them. We dispatch through interstate parks with a listed bus stop for each state, such as Abuja, Kano, Lagos, Plateau and Rivers. The full list is on our pickup and delivery page, and checkout shows the options for your state.",
             },
             {
+              topic: "Delivery & pickup",
+              question: "What is the difference between pickup and delivery?",
+              answer: "**Pickup** means you will come, or send someone, to collect your items from us in Kaduna. It's free.\n\nA **delivery option** (delivery in Kaduna, the waybill to your state, or a named park) is the fee for sending your order to you. Once you choose it, it's included in your total.",
+            },
+            {
+              topic: "Delivery & pickup",
+              question: "Can I skip paying the waybill?",
+              answer: "Not paying for delivery means you have chosen pickup, so your order won't be dispatched. Kindly follow our pickup policy, and send us a message if you need more details.",
+            },
+            {
+              topic: "Delivery & pickup",
               question: "Can I collect my order instead?",
-              answer:
-                "Yes. Pickups run at weekends only — {pickupDays}, {pickupTime}. The full address is shared privately once your order is confirmed. Kindly call at least an hour before coming and have your order reference ready.",
+              answer: "Yes. Pickups run at weekends only: {pickupDays}, {pickupTime}. The full address is shared privately once your order is confirmed. Kindly call at least an hour before coming and have your order reference ready.",
             },
             {
-              question: "Can I return something?",
-              answer:
-                "Items delivered in perfect and acceptable condition are final sales — this keeps every product new and untampered for the next family. If the wrong item arrives, or something is damaged in transit, message us within 48 hours with photographs and we will replace it or refund you in full.",
+              topic: "Delivery & pickup",
+              question: "Can I send my order to a different address?",
+              answer: "Yes. Enter the recipient's address in your delivery details, and kindly use **the recipient's phone number** so the rider or driver can reach them.",
             },
             {
+              topic: "Delivery & pickup",
+              question: "Can we pair a waybill?",
+              answer: "Yes, but you need a pairing partner first. Then place your orders together and use one set of delivery details.\n\nAdd a note at checkout so we know how to package the order well.",
+            },
+            {
+              topic: "Delivery & pickup",
               question: "What if my parcel sits at the park?",
-              answer:
-                "Parks typically charge ₦300 to ₦1,000 storage if an item is not collected directly from the driver, and it rises the longer it stays. Those charges are not ours. Please collect park deliveries within 3 days of dispatch.",
+              answer: "Parks typically charge ₦300 to ₦1,000 storage if an item is not collected directly from the driver, and it rises the longer it stays. Those charges are not ours. Please collect park deliveries within 3 days of dispatch.",
             },
             {
+              topic: "Products & returns",
+              question: "I can't find an item you posted. Where is it?",
+              answer: "It is very likely that the item is **out of stock** at the moment. We regularly take items that are not available off the website.\n\nSend us a screenshot of it on WhatsApp and we'll check for you.",
+            },
+            {
+              topic: "Products & returns",
               question: "Are the books suitable for my child's age?",
-              answer:
-                "Every product is filed under one or more age brackets, and you can browse by age from the main menu. If you are still unsure, message us with your child's age and we will recommend something honestly — including telling you when something is not worth it.",
+              answer: "Every product is filed under one or more age brackets, and you can browse by age from the main menu. If you are still unsure, message us with your child's age and we will recommend something honestly — including telling you when something is not worth it.",
             },
             {
+              topic: "Products & returns",
+              question: "Can I return something?",
+              answer: "Items delivered in perfect and acceptable condition are final sales — this keeps every product new and untampered for the next family. If the wrong item arrives, or something is damaged in transit, message us within 48 hours with photographs and we will replace it or refund you in full. Our exchange and return policy page has the details.",
+            },
+            {
+              topic: "Products & returns",
               question: "Do you supply schools and madaaris?",
               answer: "Yes. Email {email} or message us on WhatsApp with your list and we will quote bulk pricing.",
+            },
+            {
+              topic: "Using the website",
+              question: "How do I get back to the home page?",
+              answer: "Simply tap the **Jidderh's Gallery logo** at the top of any page, and the home page will open.",
             },
           ],
           { max: 60 },
@@ -335,17 +386,20 @@ export const SECTIONS = {
   },
 
   delivery: {
-    title: "Delivery & returns",
-    description: "The delivery and returns policy, and the bus stops by state.",
-    href: "/delivery-returns",
+    title: "Pickup & delivery",
+    description: "The pickup and delivery policies from the old website, and the bus stops by state.",
+    href: "/pickup-delivery",
     fields: {
       ...group("Top of the page", {
-        title: text("Title", "Delivery & returns"),
-        intro: long("Introduction", "Assalamu alaikum. These guidelines help us keep deliveries smooth, timely and stress-free for everyone, in shaa Allah."),
-        updated: text("Last updated", "September 2026"),
+        title: text("Title", "Pickup and delivery policies"),
+        intro: long(
+          "Introduction",
+          "Assalamu alaikum dear customers. Thank you for choosing {storeName}. Kindly take a moment to read through our delivery guidelines. These steps help us ensure smooth, timely and stress-free deliveries for everyone, in shaa Allah.",
+        ),
+        updated: text("Last updated", "November 2026"),
         seoDescription: long(
           "Description for Google and link previews",
-          "How {storeName} dispatches orders from {state} across Nigeria, park bus stops by state, pickup times, and the exchange and return policy.",
+          "How {storeName} delivers from {state} across Nigeria: Kaduna deliveries, interstate parks, bus stops by state and weekend pickup.",
         ),
       }),
       ...group("Policy", {
@@ -353,67 +407,48 @@ export const SECTIONS = {
           {
             heading: "Kaduna deliveries",
             body: [
-              "- Dispatch: within {dispatchHours} hours of payment. If it will take longer, we tell you.",
-              "- Delivery fee: {kadunaFee} flat for website orders within {kadunaNote}",
-              "- Waybill: please add your waybill fee at checkout. If you skip it, riders or drivers may charge their own fee, and that is not from us.",
-              "- Receiving on your behalf: use the recipient's full shipping address and phone number, and tell them straight after payment.",
-              "- We kindly do not accept rush orders, so that every order is packaged with care.",
-            ].join("\n"),
+              "**Dispatch time.** We dispatch within {dispatchHours} hours after payment. If for any reason dispatch will take longer, we will inform you.",
+              "**Delivery fee.** Delivery is {kadunaFee} only for all website orders within Kaduna metropolis and Zaria, for all small-sized items. However, if the package is big, particularly for Zaria orders, you'll be contacted about extra fees that will be charged at the park.",
+              "**Waybill fee.** Please make sure your waybill fee is included at checkout. If it is missing, riders or drivers may charge their own fee, and this will not be from us.",
+              "**If someone will receive on your behalf.** Use their full details (shipping address and phone number) and inform them immediately after payment.",
+              "**No rush orders.** We kindly do not accept rush orders, so we can package every order with care.",
+            ].join("\n\n"),
           },
           {
             heading: "Interstate park deliveries",
             body: [
-              "- Regular dispatch days are {interstateDays}. If we dispatch on another day, you will be notified.",
-              "- All interstate park orders must include the waybill fee at checkout.",
-              "- Choosing Local Pickup means you are collecting personally or sending someone — no delivery is made on that option.",
-              "- Want the driver to drop your item before the park? State it clearly in your checkout note.",
-              "- Southern states: drivers' numbers are not always provided. If nobody contacts you within 48 hours of dispatch, tell us so we can follow up.",
-              "- If someone else collects for you, use their active phone number in the delivery details and tell them ahead of time.",
-              "- Parks typically charge ₦300 to ₦1,000 storage if items are not collected from the driver. These charges are not ours and we cannot control them.",
-              "- Collect park deliveries within 3 days of dispatch. Items left beyond that are no longer our responsibility.",
-            ].join("\n"),
+              "**Dispatch days.** Our regular dispatch days are {interstateDays}. If dispatch happens on any other day, you will be notified.",
+              "**Waybill requirement.** All orders going through interstate parks must include the waybill fee at checkout.",
+              "**Local pickup option.** If you choose pickup at checkout, we will assume you are coming personally or sending someone to collect. No delivery will be made under this option.",
+              "**Roadside collection.** If you want the driver to drop your item before reaching the park, kindly state it clearly in the checkout note.",
+              "**Southern states.** For many southern states, drivers' numbers are not always provided. If you are not contacted within 48 hours after dispatch, kindly inform us so we can follow up.",
+              "**Using someone else's contact for pickup.** If another person will pick up your parcel from the park:",
+              "- Use their active phone number in your delivery details.\n- Inform them ahead of time so communication with the driver is smooth.",
+              "**Storage fees at parks.** Parks typically charge ₦300 to ₦1,000 if items are not collected directly from the driver. This fee may increase depending on how long the item stays with them. These charges are not from us, and we have no control over them.",
+              "**Pickup deadline for park deliveries.**",
+              "- Items should be collected within 3 days of dispatch.\n- Delays increase the risk of misplacement or mix-ups.\n- Items left beyond this period are no longer our responsibility.",
+            ].join("\n\n"),
           },
           {
             heading: "Free delivery",
             body: "Orders from {freeDeliveryFrom} and above are delivered free to any location within Nigeria.",
           },
           {
-            heading: "Pickup",
+            heading: "Pickup policy",
             body: [
-              "Pickups are strictly at weekends — {pickupDays}, {pickupTime}, in {state}. {addressNote}",
-              "",
-              "- Kindly call at least 1 hour before coming.",
-              "- Have your order details or order reference ID ready.",
-              "- All pickups must be done at the designated location only.",
-            ].join("\n"),
-          },
-          {
-            heading: "Items delivered in good condition are final sales",
-            body: [
-              "Once a product has been delivered in perfect and acceptable condition, it cannot be exchanged, returned or refunded.",
-              "",
-              "- It keeps every item original and safe.",
-              "- It prevents the circulation of products that have been opened, handled or exposed.",
-              "- It ensures every customer receives completely new, untampered items.",
-            ].join("\n"),
-          },
-          {
-            heading: "Wrong or damaged item on delivery",
-            body: [
-              "If your order arrives with the wrong item, or a product damaged in transit, tell us within 48 hours of receiving it so we can follow up quickly with the driver or logistics partner.",
-              "Once we confirm the issue, a replacement is arranged immediately. If the item is no longer available, a full refund is issued. Please open and inspect your package as soon as it arrives.",
+              "Pickups are strictly at weekends only ({pickupDays}).",
+              "**Location:** {state}, Nigeria. The full address will be sent to you privately.\n**Phone:** {phone}\n**Time:** {pickupTime}",
+              "**Important notes:**",
+              "- Kindly call at least 1 hour before coming.\n- Have your order details or order reference ID ready.\n- All pickups must be done at the designated location only.",
             ].join("\n\n"),
           },
           {
-            heading: "Confirm the details before ordering",
-            body: [
-              "Every listing carries a clear description, live photographs of the actual item, and its features, sizes, colours and contents.",
-              "If that is not enough, message us before you order and we will gladly guide you. Where a product matches its description and arrives in good condition, the no-return rule applies.",
-            ].join("\n\n"),
+            heading: "Need more information?",
+            body: "If you need clarity on anything, simply send us a message on WhatsApp at {phone} or email {email}. We are always happy to guide and assist you.",
           },
           {
-            heading: "Need help?",
-            body: "Unsure about features, suitability for your child, colour differences, packaging or contents? Message us on WhatsApp at {phone} or email {email} before placing your order. We are always willing to help you make the right choice.",
+            heading: "Thanks for trusting us",
+            body: "**{storeName}**\nNurturing towards Jannah",
           },
         ], { hint: RICH_HINT, max: 40 }),
       }),
@@ -448,6 +483,71 @@ export const SECTIONS = {
           ].map(([state, stop]) => ({ state, stop })),
           { max: 40 },
         ),
+      }),
+    },
+  },
+
+  returns: {
+    title: "Exchange & returns",
+    description: "The exchange and return policy from the old website.",
+    href: "/returns",
+    fields: {
+      ...group("Top of the page", {
+        title: text("Title", "Exchange and return policies"),
+        intro: long("Introduction", "When an item can be exchanged, returned or refunded, and how to tell us if something is wrong with your order."),
+        updated: text("Last updated", "November 2026"),
+        seoDescription: long("Description for Google and link previews", "The exchange and return policy at {storeName}: final sales, wrong or damaged items, and checking details before you order."),
+      }),
+      ...group("Policy", {
+        sections: list("Sections", "section", legalSection, "heading", [
+          {
+            heading: "1. Items delivered in good condition are final sales",
+            body: [
+              "Once a product has been delivered in perfect and acceptable condition, it cannot be exchanged, returned or refunded.",
+              "This policy is in place to:",
+              "- Maintain the safety and originality of all items\n- Prevent the circulation of products that have been opened, handled or exposed\n- Ensure every customer receives completely new, untampered items",
+              "Your understanding helps us preserve the quality standard of {storeName}.",
+            ].join("\n\n"),
+          },
+          {
+            heading: "2. Wrong item or damaged item upon delivery",
+            body: [
+              "If your order arrives with a wrong item, or you receive a product that was damaged during transit, please notify us within 48 hours of receiving it. This allows us to follow up quickly with drivers and logistics partners.",
+              "Once we confirm the issue:",
+              "- A replacement will be arranged immediately\n- If the item is no longer available, a full refund will be issued",
+              "We kindly advise customers to open and inspect their packages as soon as they receive them.",
+            ].join("\n\n"),
+          },
+          {
+            heading: "3. Confirm product details before ordering",
+            body: [
+              "To help you make informed decisions, we provide:",
+              "- Clear product descriptions\n- Live and real pictures of each item\n- Highlighted features, sizes, colours and contents",
+              "If the information provided is not enough, you are welcome to contact us for further clarification before placing your order. We are always happy to guide you.",
+              "Please note that if the product matches the description and is delivered in good condition, the no-return, no-refund rule will apply.",
+            ].join("\n\n"),
+          },
+          {
+            heading: "4. Why this policy matters",
+            body: [
+              "This guideline helps us:",
+              "- Ensure fairness to every customer\n- Maintain the purity and safety of Islamic educational materials\n- Avoid the risk of reselling products that are no longer in their original condition\n- Protect customers from receiving previously opened or handled items",
+              "We want every family to receive their items fresh, intact and exactly as described.",
+            ].join("\n\n"),
+          },
+          {
+            heading: "5. Need help or more clarification?",
+            body: "If there is any detail you are unsure about (features, suitability for your child, colour differences, packaging style, content breakdown), please message us on WhatsApp at {phone} or email {email} before placing your order. We are always willing to help you make the right choice.",
+          },
+          {
+            heading: "Thank you for choosing us",
+            body: [
+              "We sincerely appreciate your trust, your support and your cooperation.",
+              "**Jazakumullahu bi khair.** May Allah put barakah in every item you purchase from us.",
+              "**{storeName}**\nNurturing towards Jannah",
+            ].join("\n\n"),
+          },
+        ], { hint: RICH_HINT, max: 40 }),
       }),
     },
   },
@@ -648,7 +748,8 @@ export const SECTIONS = {
         linkStory: text("Our story link", "Our story"),
         linkContact: text("Contact link", "Contact us"),
         linkFaq: text("FAQ link", "FAQ"),
-        linkDelivery: text("Delivery link", "Delivery & returns"),
+        linkDelivery: text("Pickup & delivery link", "Pickup & delivery"),
+        linkReturns: text("Exchange & returns link", "Exchange & returns"),
         linkPrivacy: text("Privacy link", "Privacy policy"),
         linkTerms: text("Terms link", "Terms of service"),
         callLabel: text("Phone label", "Call or WhatsApp"),

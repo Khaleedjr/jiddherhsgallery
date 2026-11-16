@@ -4,10 +4,10 @@ import { getSiteText } from "@/lib/content/text";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { delivery } = await getSiteText();
-  return { title: delivery.title, description: delivery.seoDescription, alternates: { canonical: "/delivery-returns" } };
+  return { title: delivery.title, description: delivery.seoDescription, alternates: { canonical: "/pickup-delivery" } };
 }
 
-export default async function DeliveryReturnsPage() {
+export default async function PickupDeliveryPage() {
   const { delivery: t } = await getSiteText();
   return (
     <>

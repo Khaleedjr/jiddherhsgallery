@@ -70,7 +70,8 @@ export async function SiteFooter({
                 { href: "/about", label: t.linkStory },
                 { href: "/contact", label: t.linkContact },
                 { href: "/faq", label: t.linkFaq },
-                { href: "/delivery-returns", label: t.linkDelivery },
+                { href: "/pickup-delivery", label: t.linkDelivery },
+                { href: "/returns", label: t.linkReturns },
                 { href: "/privacy", label: t.linkPrivacy },
                 { href: "/terms", label: t.linkTerms },
               ]}

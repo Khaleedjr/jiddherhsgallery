@@ -32,7 +32,9 @@ const FIXED_PAGES: Record<string, string> = {
   "/about": "Our story",
   "/contact": "Contact & delivery",
   "/faq": "FAQ",
-  "/delivery-returns": "Delivery & returns",
+  "/pickup-delivery": "Pickup & delivery",
+  "/delivery-returns": "Pickup & delivery",
+  "/returns": "Exchange & returns",
   "/privacy": "Privacy policy",
   "/terms": "Terms of service",
 };

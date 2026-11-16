@@ -5,8 +5,8 @@ import { ChevronDownIcon } from "@/components/icons";
 import { RichText } from "@/components/rich-text";
 import { cx } from "@/components/ui";
 
-export function Accordion({ items }: { items: Array<{ question: string; answer: string }> }) {
-  const [open, setOpen] = useState<number | null>(0);
+export function Accordion({ items, defaultOpen = 0 }: { items: Array<{ question: string; answer: string }>; defaultOpen?: number | null }) {
+  const [open, setOpen] = useState<number | null>(defaultOpen);
 
   return (
     <div className="divide-y divide-sand-200 overflow-hidden rounded-xl border border-sand-200 bg-white">
