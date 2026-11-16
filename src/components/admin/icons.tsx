@@ -12,6 +12,23 @@ const base = {
   "aria-hidden": true,
 };
 
+export const EyeIcon = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+export const TypeIcon = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M5 7V5h14v2M12 5v14M9 19h6" />
+  </svg>
+);
+export const UndoIcon = (p: IconProps) => (
+  <svg {...base} {...p}>
+    <path d="M9 14 4 9l5-5" />
+    <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" />
+  </svg>
+);
 export const GridIcon = (p: IconProps) => (
   <svg {...base} {...p}>
     <rect x="4" y="4" width="7" height="7" rx="1.5" />

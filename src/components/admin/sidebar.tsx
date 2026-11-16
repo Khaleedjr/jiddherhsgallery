@@ -8,10 +8,12 @@ import {
   BoxIcon,
   ChartIcon,
   ExternalIcon,
+  EyeIcon,
   GridIcon,
   LayersIcon,
   LogoutIcon,
   ReceiptIcon,
+  TypeIcon,
   UsersIcon,
 } from "@/components/admin/icons";
 import { CloseIcon, MenuIcon } from "@/components/icons";
@@ -25,6 +27,8 @@ const NAV = [
   { href: "/admin/inventory", label: "Inventory", Icon: LayersIcon },
   { href: "/admin/customers", label: "Customers", Icon: UsersIcon },
   { href: "/admin/analytics", label: "Analytics", Icon: ChartIcon },
+  { href: "/admin/visitors", label: "Visitors", Icon: EyeIcon },
+  { href: "/admin/content", label: "Website text", Icon: TypeIcon },
 ];
 
 type Counts = { pending: number };

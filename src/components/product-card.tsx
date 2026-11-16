@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/components/cart-provider";
 import { ProductImage } from "@/components/product-image";
+import { useSiteText } from "@/components/site-text-provider";
 import { BagIcon, CheckIcon, ChevronRightIcon } from "@/components/icons";
 import { Badge, cx } from "@/components/ui";
 import { discountPercent, formatPrice, formatPriceRange, isLowStock, lowStockLabel } from "@/lib/format";
@@ -26,6 +27,7 @@ export function ProductCard({
   className?: string;
 }) {
   const { add } = useCart();
+  const t = useSiteText().shopping;
   const [justAdded, setJustAdded] = useState(false);
 
   const discount = discountPercent(product.price, product.compareAtPrice);
@@ -55,11 +57,11 @@ export function ProductCard({
         </div>
 
         <div className="pointer-events-none absolute inset-x-2.5 top-2.5 flex flex-wrap items-start gap-1.5">
-          {!product.inStock ? <Badge tone="sold-out">Sold out</Badge> : null}
+          {!product.inStock ? <Badge tone="sold-out">{t.soldOut}</Badge> : null}
           {/* A percentage is only meaningful against a single price, not a range. */}
           {product.inStock && !product.priceMax && discount >= 15 ? <Badge tone="sale">-{discount}%</Badge> : null}
-          {product.inStock && product.collections.includes("new-arrivals") ? <Badge tone="new">New</Badge> : null}
-          {product.inStock && product.collections.includes("best-seller") ? <Badge tone="gold">Best seller</Badge> : null}
+          {product.inStock && product.collections.includes("new-arrivals") ? <Badge tone="new">{t.newBadge}</Badge> : null}
+          {product.inStock && product.collections.includes("best-seller") ? <Badge tone="gold">{t.bestSeller}</Badge> : null}
         </div>
 
         {product.inStock ? (

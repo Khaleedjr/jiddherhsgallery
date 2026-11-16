@@ -6,18 +6,20 @@ import { PageHeader } from "@/components/page-header";
 import { ShopBrowser } from "@/components/shop-browser";
 import { Container } from "@/components/ui";
 import { getCatalog, toShopItem } from "@/lib/catalog";
+import { fill } from "@/lib/content/format";
+import { getSiteText } from "@/lib/content/text";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { catalogMeta } = await getCatalog();
+  const [{ catalogMeta }, { pages }] = await Promise.all([getCatalog(), getSiteText()]);
   return {
-  title: "Shop all products",
+  title: pages.shopTitle,
   description: `Browse all ${catalogMeta.productCount} Islamic books, toys, ibadah essentials and modest wear at Jidderh's Gallery. Filter by age, category and price.`,
   alternates: { canonical: "/shop" },
   };
 }
 
 export default async function ShopPage() {
-  const { ageGroups, catalogMeta, collections, departments, products } = await getCatalog();
+  const [{ ageGroups, catalogMeta, collections, departments, products }, { pages: t }] = await Promise.all([getCatalog(), getSiteText()]);
   /* The four departments, then the two shelves people come looking for by name. */
   const shelves: Shelf[] = [
     ...departments.map(({ slug, name, image, count }) => ({ slug, name, image, count })),
@@ -31,9 +33,9 @@ export default async function ShopPage() {
   return (
     <>
       <PageHeader
-        eyebrow="The full shelf"
-        title="Shop all products"
-        description={`Every title, toy and essential in the gallery — ${catalogMeta.productCount} products in total. Pick a department, or use the filters below to narrow by age, topic or price.`}
+        eyebrow={t.shopEyebrow}
+        title={t.shopTitle}
+        description={fill(t.shopIntro, { productCount: catalogMeta.productCount })}
         trail={[{ label: "Home", href: "/" }, { label: "Shop" }]}
       >
         <ShelfTiles shelves={shelves} />

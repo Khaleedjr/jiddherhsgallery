@@ -444,12 +444,13 @@
 }
 
 /* ------------------------------------------------------------------------
-   Light mode
-   The store's normal look is gold, black and white. Light mode (the sun
-   button in the header sets <html data-theme="light">) swaps the black for
-   white. Each coloured area of the storefront names its role with a tone
-   class, and light mode re-points the colour tokens inside it, so every
-   bg-, text-, border- and fill- class beneath follows without being edited:
+   Light and dark mode
+   The colour classes across the storefront describe the dark look: gold,
+   black and white. Light mode, the default (<html data-theme="light">; the
+   sun/moon button in the header switches), swaps the black for white. Each
+   coloured area names its role with a tone class, and light mode re-points
+   the colour tokens inside it, so every bg-, text-, border- and fill- class
+   beneath follows without being edited:
      .tone-gold   a gold band. Black text, lines and shapes on it turn white.
      .tone-ink    a black surface (card, button, arch, drawer, badge). It turns
                   white, and the light text and drawings on it turn dark and
@@ -457,10 +458,10 @@
      .tone-band   a full-width black band (promises, footer, dark page headers).
                   As tone-ink, but cream, so it still reads as a band.
      .tone-paper  a white panel inside a gold band (menus, search): normal colours.
-   In the normal look these classes do nothing. The admin uses none of them.
-   The hero arches (.arch-tone) are the one swap: white in the normal look
-   and black in light mode, so they always stand apart from the black or
-   white buttons and text around them.
+   In dark mode these classes do nothing. The admin uses none of them.
+   The hero arches (.arch-tone) are the one swap: black in light mode and
+   white in dark mode, so they always stand apart from the white or black
+   buttons and text around them.
    ------------------------------------------------------------------------ */
 
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));

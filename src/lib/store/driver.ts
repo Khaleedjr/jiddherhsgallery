@@ -22,7 +22,16 @@ export interface Driver {
   incr(counter: string, by?: number): Promise<number>;
   getValue<T>(key: string): Promise<T | null>;
   setValue<T>(key: string, value: T): Promise<void>;
+  /** Visitor stats: adds to one day's counters, notes the visitor for that day's unique count, and keeps a short list of recent visits. */
+  recordHit(hit: StatsHit): Promise<void>;
+  /** Each day's counters and unique visitors, plus the unique visitors across all of them. */
+  readStatsDays(days: string[]): Promise<{ days: StatsDay[]; visitors: number }>;
+  /** The most recent visits, newest first, as recorded. */
+  recentHits(limit: number): Promise<string[]>;
 }
+
+export type StatsHit = { day: string; counts: Record<string, number>; visitor: string; recent: string; keepRecent: number };
+export type StatsDay = { counts: Record<string, number>; visitors: number };
 
 /* ------------------------------------------------------------------ files */
 
@@ -114,6 +123,32 @@ class FileDriver implements Driver {
       data[key] = value;
     });
   }
+
+  /* Stats live in their own file: { "d:<day>": counters, "u:<day>": visitor ids, recent: [...] }. */
+  async recordHit({ day, counts, visitor, recent, keepRecent }: StatsHit) {
+    await this.write("stats", (data) => {
+      const totals = ((data[`d:${day}`] as Record<string, number> | undefined) ??= {});
+      for (const [field, by] of Object.entries(counts)) totals[field] = (totals[field] ?? 0) + by;
+      const visitors = ((data[`u:${day}`] as string[] | undefined) ??= []);
+      if (!visitors.includes(visitor)) visitors.push(visitor);
+      data.recent = [recent, ...((data.recent as string[] | undefined) ?? [])].slice(0, keepRecent);
+    });
+  }
+
+  async readStatsDays(days: string[]) {
+    const data = await this.load("stats");
+    const all = new Set<string>();
+    const out = days.map((day) => {
+      const visitors = (data[`u:${day}`] as string[] | undefined) ?? [];
+      for (const v of visitors) all.add(v);
+      return { counts: { ...((data[`d:${day}`] as Record<string, number> | undefined) ?? {}) }, visitors: visitors.length };
+    });
+    return { days: out, visitors: all.size };
+  }
+
+  async recentHits(limit: number) {
+    return (((await this.load("stats")).recent as string[] | undefined) ?? []).slice(0, limit);
+  }
 }
 
 /* ------------------------------------------------------------------ redis */
@@ -150,10 +185,15 @@ class RedisDriver implements Driver {
   }
 
   private async pipeline(commands: Command[]) {
-    if (!commands.length) return;
-    const results = await this.send<Array<{ error?: string }>>("/pipeline", commands);
+    await this.pipelineResults(commands);
+  }
+
+  private async pipelineResults<T = unknown>(commands: Command[]): Promise<T[]> {
+    if (!commands.length) return [];
+    const results = await this.send<Array<{ result?: T; error?: string }>>("/pipeline", commands);
     const failed = results.find((entry) => entry.error);
     if (failed) throw new Error(`Redis error: ${failed.error}`);
+    return results.map((entry) => entry.result as T);
   }
 
   async all<T>(collection: string) {
@@ -202,6 +242,42 @@ class RedisDriver implements Driver {
 
   async setValue<T>(key: string, value: T) {
     await this.run(["SET", PREFIX + key, JSON.stringify(value)]);
+  }
+
+  /* Stats keys: a hash of counters per day, a HyperLogLog of visitors per day (12 KB at most, however
+     many visit), and one capped list of recent visits. A visit costs one request of a few commands. */
+  async recordHit({ day, counts, visitor, recent, keepRecent }: StatsHit) {
+    const hash = `${PREFIX}stats:d:${day}`;
+    await this.pipeline([
+      ...Object.entries(counts).map(([field, by]): Command => ["HINCRBY", hash, field, by]),
+      ["PFADD", `${PREFIX}stats:u:${day}`, visitor],
+      ["LPUSH", `${PREFIX}stats:recent`, recent],
+      ["LTRIM", `${PREFIX}stats:recent`, 0, keepRecent - 1],
+    ]);
+  }
+
+  async readStatsDays(days: string[]) {
+    const out: StatsDay[] = [];
+    // A month of days per request keeps each reply well under Upstash's size limits.
+    for (let i = 0; i < days.length; i += 31) {
+      const chunk = days.slice(i, i + 31);
+      const results = await this.pipelineResults<string[] | number | null>([
+        ...chunk.map((day): Command => ["HGETALL", `${PREFIX}stats:d:${day}`]),
+        ...chunk.map((day): Command => ["PFCOUNT", `${PREFIX}stats:u:${day}`]),
+      ]);
+      chunk.forEach((_, index) => {
+        const flat = (results[index] as string[] | null) ?? [];
+        const counts: Record<string, number> = {};
+        for (let j = 0; j < flat.length; j += 2) counts[flat[j]] = Number(flat[j + 1]) || 0;
+        out.push({ counts, visitors: Number(results[chunk.length + index]) || 0 });
+      });
+    }
+    const visitors = days.length ? Number(await this.run<number>(["PFCOUNT", ...days.map((day) => `${PREFIX}stats:u:${day}`)])) || 0 : 0;
+    return { days: out, visitors };
+  }
+
+  async recentHits(limit: number) {
+    return (await this.run<string[] | null>(["LRANGE", `${PREFIX}stats:recent`, 0, limit - 1])) ?? [];
   }
 }
 

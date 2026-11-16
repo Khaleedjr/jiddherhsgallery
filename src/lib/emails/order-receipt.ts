@@ -1,5 +1,7 @@
 import { formatPrice } from "@/lib/format";
-import { site, whatsappLink } from "@/lib/site";
+import { whatsappHref } from "@/lib/content/format";
+import type { SiteText } from "@/lib/content/schema";
+import { site } from "@/lib/site";
 import type { Order } from "@/lib/store/types";
 
 /**
@@ -42,7 +44,8 @@ const paidWith = (order: Order) => {
   return channel ? `Paystack (${channel})` : "Paystack";
 };
 
-export function renderOrderReceipt(order: Order) {
+/** `store` is the dashboard's store details (phone, pickup times), so the email matches the site. */
+export function renderOrderReceipt(order: Order, store: SiteText["store"]) {
   const base = baseUrl();
   const firstName = order.customer.name.trim().split(/\s+/)[0] || order.customer.name;
   const pickup = order.fulfilment === "pickup";
@@ -50,14 +53,14 @@ export function renderOrderReceipt(order: Order) {
   const deliveryLabel = order.shipping.method ?? (pickup ? "Pickup in Kaduna" : "Delivery");
   const deliveryAmount = order.deliveryFee ? formatPrice(order.deliveryFee) : "Free";
   const nextStep = pickup
-    ? `Pick up in ${site.address.city} (${site.pickup.days}, ${site.pickup.time}). Please call ${site.phoneDisplay} at least an hour before coming, and have ${order.ref} ready.`
+    ? `Pick up in ${site.address.city} (${store.pickupDays}, ${store.pickupTime}). Please call ${store.phoneDisplay} at least an hour before coming, and have ${order.ref} ready.`
     : order.shipping.state === site.address.city
-      ? `We dispatch within ${site.delivery.dispatchHours} hours and will call ${order.customer.phone} before we deliver.`
-      : `We dispatch within ${site.delivery.dispatchHours} hours. Interstate parcels leave on ${site.delivery.interstateDays}, and we will message ${order.customer.phone} with the driver's details.`;
+      ? `We dispatch within ${store.dispatchHours} hours and will call ${order.customer.phone} before we deliver.`
+      : `We dispatch within ${store.dispatchHours} hours. Interstate parcels leave on ${store.interstateDays}, and we will message ${order.customer.phone} with the driver's details.`;
   const address = pickup
     ? []
     : [order.shipping.address, [order.shipping.city, order.shipping.state].filter(Boolean).join(", ")].filter(Boolean) as string[];
-  const help = whatsappLink(`As-salamu alaykum ${site.name}, a question about my order ${order.ref}.`);
+  const help = whatsappHref(store.whatsapp, `As-salamu alaykum ${site.name}, a question about my order ${order.ref}.`);
 
   const method = paidWith(order);
   const reference = order.payment?.status === "paid" ? order.payment.reference : "";
@@ -134,7 +137,7 @@ export function renderOrderReceipt(order: Order) {
       <tr><td style="padding:24px 28px 0;">
         <p style="margin:0;font:600 12px/1 ${FONT};letter-spacing:2px;text-transform:uppercase;color:${INK};">${pickup ? "Pickup" : "Delivering to"}</p>
         <p style="margin:8px 0 0;font:15px/1.6 ${FONT};color:${INK};">${escape(order.customer.name)}<br>${
-          pickup ? `${escape(site.address.city)}, ${escape(site.address.state)}<br>` : address.map((line) => `${escape(line)}<br>`).join("")
+          pickup ? `${escape(site.address.city)}, ${escape(store.state)}<br>` : address.map((line) => `${escape(line)}<br>`).join("")
         }${escape(order.customer.phone)}</p>
         <p style="margin:12px 0 0;font:15px/1.6 ${FONT};color:${MUTED};">${escape(nextStep)}</p>
         ${order.customerNote ? `<p style="margin:12px 0 0;font:14px/1.6 ${FONT};color:${MUTED};"><strong style="color:${INK};">Your note:</strong> ${escape(order.customerNote)}</p>` : ""}
@@ -142,7 +145,7 @@ export function renderOrderReceipt(order: Order) {
       <tr><td style="padding:28px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid ${CREAM};">
           <tr><td style="padding-top:20px;font:14px/1.6 ${FONT};color:${MUTED};">
-            Questions about your order? Reply to this email, message us on <a href="${help}" style="color:${INK};font-weight:600;">WhatsApp</a> or call ${site.phoneDisplay}.
+            Questions about your order? Reply to this email, message us on <a href="${help}" style="color:${INK};font-weight:600;">WhatsApp</a> or call ${store.phoneDisplay}.
           </td></tr>
           <tr><td style="padding-top:16px;">
             <a href="${base}/shop" style="display:inline-block;background:${INK};color:${GOLD};font:600 14px/1 ${FONT};text-decoration:none;padding:14px 22px;border-radius:999px;">Continue shopping</a>
@@ -150,7 +153,7 @@ export function renderOrderReceipt(order: Order) {
         </table>
       </td></tr>
     </table>
-    <p style="margin:16px 0 0;font:12px/1.6 ${FONT};color:${MUTED};">${escape(site.name)} · ${escape(site.tagline)} · ${escape(site.address.state)}, ${escape(site.address.country)}</p>
+    <p style="margin:16px 0 0;font:12px/1.6 ${FONT};color:${MUTED};">${escape(site.name)} · ${escape(store.tagline)} · ${escape(store.state)}, ${escape(store.country)}</p>
   </td></tr>
 </table>
 </body>
@@ -175,13 +178,13 @@ export function renderOrderReceipt(order: Order) {
     "",
     pickup ? "Pickup:" : "Delivering to:",
     order.customer.name,
-    ...(pickup ? [`${site.address.city}, ${site.address.state}`] : address),
+    ...(pickup ? [`${site.address.city}, ${store.state}`] : address),
     order.customer.phone,
     "",
     nextStep,
     ...(order.customerNote ? ["", `Your note: ${order.customerNote}`] : []),
     "",
-    `Questions? Reply to this email, or WhatsApp or call us on ${site.phoneDisplay}.`,
+    `Questions? Reply to this email, or WhatsApp or call us on ${store.phoneDisplay}.`,
     `${site.name} · ${base}`,
   ].join("\n");
 

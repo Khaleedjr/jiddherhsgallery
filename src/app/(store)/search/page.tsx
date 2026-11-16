@@ -4,14 +4,14 @@ import { PageHeader } from "@/components/page-header";
 import { ProductGrid } from "@/components/product-card";
 import { ButtonLink, Container, EmptyState } from "@/components/ui";
 import { getCatalog, toCards } from "@/lib/catalog";
+import { fill } from "@/lib/content/format";
+import { getSiteText } from "@/lib/content/text";
 
 export const metadata: Metadata = {
   title: "Search",
   description: "Search the Jidderh's Gallery catalogue for books, toys and ibadah essentials.",
   robots: { index: false, follow: true },
 };
-
-const SUGGESTIONS = ["Qur'an", "seerah", "prayer mat", "flash cards", "activity book", "tasbeeh", "posters"];
 
 export default async function SearchPage({
   searchParams,
@@ -20,23 +20,20 @@ export default async function SearchPage({
 }) {
   const { q } = await searchParams;
   const query = (q ?? "").trim();
-  const { departments, searchProducts } = await getCatalog();
+  const [{ departments, searchProducts }, { pages: t }] = await Promise.all([getCatalog(), getSiteText()]);
   const results = query ? toCards(searchProducts(query)) : [];
+  const suggestions = t.suggestions.split(",").map((word) => word.trim()).filter(Boolean);
 
   return (
     <>
       <PageHeader
-        eyebrow="Search"
-        title={query ? `Results for “${query}”` : "Search the gallery"}
-        description={
-          query
-            ? `${results.length} ${results.length === 1 ? "product matches" : "products match"} your search.`
-            : "Type in the search bar above, or start from one of these popular searches."
-        }
+        eyebrow={t.searchEyebrow}
+        title={query ? fill(t.searchResultsTitle, { query }) : t.searchTitle}
+        description={query ? (results.length === 1 ? t.searchCountOne : fill(t.searchCount, { count: results.length })) : t.searchIntro}
         trail={[{ label: "Home", href: "/" }, { label: "Search" }]}
       >
         <div className="mt-6 flex flex-wrap gap-2">
-          {SUGGESTIONS.map((suggestion) => (
+          {suggestions.map((suggestion) => (
             <Link
               key={suggestion}
               href={`/search?q=${encodeURIComponent(suggestion)}`}
@@ -51,8 +48,8 @@ export default async function SearchPage({
       <Container className="py-10 sm:py-12">
         {query && results.length === 0 ? (
           <EmptyState
-            title="No matches for that search"
-            description="Try a shorter word, check the spelling, or browse a department instead — we may still have what you need."
+            title={t.noMatchTitle}
+            description={t.noMatchText}
             action={
               <div className="flex flex-wrap justify-center gap-2">
                 {departments.map((dept) => (
@@ -74,11 +71,11 @@ export default async function SearchPage({
 
         {!query ? (
           <EmptyState
-            title="What are you looking for?"
-            description="Search by title, topic or age — for example “bedtime stories”, “tajweed” or “prayer mat”."
+            title={t.searchEmptyTitle}
+            description={t.searchEmptyText}
             action={
               <ButtonLink href="/shop" size="lg">
-                Browse everything
+                {t.searchEmptyButton}
               </ButtonLink>
             }
           />

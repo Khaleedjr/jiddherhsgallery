@@ -1,5 +1,6 @@
 import { isEmailConfigured, sendMail } from "@/lib/email";
 import { renderOrderReceipt } from "@/lib/emails/order-receipt";
+import { getSiteText } from "@/lib/content/text";
 import { getOrder, recordReceipt } from "@/lib/store/orders";
 
 /**
@@ -22,7 +23,8 @@ export async function sendOrderReceipt(ref: string, { force = false } = {}) {
   }
 
   try {
-    await sendMail({ to: order.customer.email, ...renderOrderReceipt(order) });
+    const { store } = await getSiteText();
+    await sendMail({ to: order.customer.email, ...renderOrderReceipt(order, store) });
     await recordReceipt(order.ref, { sentTo: order.customer.email });
     return { ok: true, message: `Receipt emailed to ${order.customer.email}.` };
   } catch (error) {

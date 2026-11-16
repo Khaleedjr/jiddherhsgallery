@@ -4,21 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/components/cart-provider";
 import { ArrowRightIcon, MinusIcon, PlusIcon, TrashIcon, TruckIcon } from "@/components/icons";
+import { useSiteText } from "@/components/site-text-provider";
 import { ButtonLink, EmptyState, buttonClass, cx } from "@/components/ui";
+import { fill } from "@/lib/content/format";
 import { formatPrice } from "@/lib/format";
 import { site } from "@/lib/site";
 
 export function CartPageBody() {
   const { items, setQuantity, remove, subtotal, clear, count } = useCart();
+  const t = useSiteText().shopping;
 
   if (items.length === 0) {
     return (
       <EmptyState
-        title="Your bag is empty"
-        description="Nothing here yet. Browse the shelves and add something beneficial, in shaa Allah."
+        title={t.bagEmptyTitle}
+        description={t.bagEmptyText}
         action={
           <ButtonLink href="/shop" size="lg">
-            Start shopping
+            {t.startShopping}
             <ArrowRightIcon className="size-4" />
           </ButtonLink>
         }
@@ -40,7 +43,7 @@ export function CartPageBody() {
             onClick={clear}
             className="text-[0.78rem] font-medium text-ink-500 transition hover:text-berry-500"
           >
-            Empty bag
+            {t.emptyBag}
           </button>
         </div>
 
@@ -105,7 +108,7 @@ export function CartPageBody() {
                     className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-[0.76rem] text-ink-500 transition hover:text-berry-500"
                   >
                     <TrashIcon className="size-3.5" />
-                    Remove
+                    {t.removeItem}
                   </button>
                 </div>
               </div>
@@ -114,13 +117,13 @@ export function CartPageBody() {
         </ul>
 
         <ButtonLink href="/shop" variant="ghost" size="sm" className="mt-6">
-          Continue shopping
+          {t.continueShopping}
         </ButtonLink>
       </div>
 
       <aside className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
         <div className="rounded-xl border border-sand-200 bg-white p-6">
-          <h2 className="text-xl">Order summary</h2>
+          <h2 className="text-xl">{t.summaryTitle}</h2>
 
           <dl className="mt-5 space-y-3 text-[0.85rem]">
             <div className="flex justify-between">
@@ -141,7 +144,7 @@ export function CartPageBody() {
           </div>
 
           <ButtonLink href="/checkout" size="lg" className="mt-5 w-full">
-            Proceed to checkout
+            {t.proceed}
           </ButtonLink>
 
           <p
@@ -152,17 +155,15 @@ export function CartPageBody() {
           >
             <TruckIcon className="mt-0.5 size-4 shrink-0" />
             {remaining > 0 ? (
-              <span>
-                Spend {formatPrice(remaining)} more to qualify for free nationwide delivery.
-              </span>
+              <span>{fill(t.spendMore, { amount: formatPrice(remaining) })}</span>
             ) : (
-              <span>Your order qualifies for free nationwide delivery.</span>
+              <span>{t.qualifies}</span>
             )}
           </p>
         </div>
 
         <p className="mt-4 px-1 text-[0.74rem] leading-relaxed text-ink-500">
-          We confirm every order personally before payment — no surprises, no hidden charges.
+          {t.bagFootnote}
         </p>
       </aside>
     </div>

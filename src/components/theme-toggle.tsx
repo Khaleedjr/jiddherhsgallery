@@ -5,17 +5,16 @@ import { cx } from "@/components/ui";
 import { THEME_STORAGE_KEY } from "@/lib/theme";
 
 /**
- * Switches between the normal look (black on gold) and light mode (white on
- * gold). The icons and label follow <html data-theme> through CSS, so the
- * button renders the same on the server and needs no state of its own.
+ * Switches between light mode (white on gold, the default) and dark mode
+ * (black on gold). The icons and label follow <html data-theme> through CSS,
+ * so the button renders the same on the server and needs no state of its own.
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const toggle = () => {
     const root = document.documentElement;
     const next = root.dataset.theme === "light" ? "dark" : "light";
     const apply = () => {
-      if (next === "light") root.dataset.theme = "light";
-      else delete root.dataset.theme;
+      root.dataset.theme = next;
     };
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!calm && typeof document.startViewTransition === "function") document.startViewTransition(apply);

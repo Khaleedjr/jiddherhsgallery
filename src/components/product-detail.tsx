@@ -21,11 +21,14 @@ import {
   isLowStock,
   lowStockLabel,
 } from "@/lib/format";
-import { site, whatsappLink } from "@/lib/site";
+import { useSiteText } from "@/components/site-text-provider";
+import { fill, whatsappHref } from "@/lib/content/format";
+import { site } from "@/lib/site";
 import type { Product } from "@/lib/types";
 
 export function ProductDetail({ product }: { product: Product }) {
   const { add } = useCart();
+  const { shopping: t, store } = useSiteText();
   const hasVariants = product.variants.length > 0;
 
   const [variantId, setVariantId] = useState<string | null>(
@@ -77,8 +80,9 @@ export function ProductDetail({ product }: { product: Product }) {
   };
 
   /* Orders go through checkout and Paystack; WhatsApp is for questions about the product. */
-  const enquiry = whatsappLink(
-    `As-salamu alaykum ${site.name}, I have a question about ${product.name}${variant ? ` (${variant.label})` : ""}:\n\n${site.url}/products/${product.slug}`,
+  const enquiry = whatsappHref(
+    store.whatsapp,
+    `${fill(t.productMessage, { product: `${product.name}${variant ? ` (${variant.label})` : ""}` })}\n\n${site.url}/products/${product.slug}`,
   );
 
   return (
@@ -103,9 +107,9 @@ export function ProductDetail({ product }: { product: Product }) {
           )}
 
           <div className="pointer-events-none absolute inset-x-4 top-4 flex flex-wrap gap-1.5">
-            {!product.inStock ? <Badge tone="sold-out">Sold out</Badge> : null}
+            {!product.inStock ? <Badge tone="sold-out">{t.soldOut}</Badge> : null}
             {product.inStock && discount >= 10 ? <Badge tone="sale">-{discount}%</Badge> : null}
-            {product.collections.includes("best-seller") ? <Badge tone="gold">Best seller</Badge> : null}
+            {product.collections.includes("best-seller") ? <Badge tone="gold">{t.bestSeller}</Badge> : null}
           </div>
         </div>
 
@@ -170,8 +174,8 @@ export function ProductDetail({ product }: { product: Product }) {
           {purchasable
             ? lowStock
               ? `${lowStockLabel(stock as number)} — order soon`
-              : "In stock — ready to dispatch"
-            : "Currently out of stock"}
+              : t.inStock
+            : t.stockOut}
         </p>
 
         {hasVariants ? (
@@ -226,11 +230,11 @@ export function ProductDetail({ product }: { product: Product }) {
           <Button size="lg" onClick={handleAdd} disabled={!purchasable} className="min-w-44 flex-1 sm:flex-none">
             {added ? (
               <>
-                <CheckIcon className="size-4" /> Added to bag
+                <CheckIcon className="size-4" /> {t.addedToBag}
               </>
             ) : (
               <>
-                <BagIcon className="size-4" /> {purchasable ? "Add to bag" : "Out of stock"}
+                <BagIcon className="size-4" /> {purchasable ? t.addToBag : t.outOfStock}
               </>
             )}
           </Button>
@@ -243,13 +247,13 @@ export function ProductDetail({ product }: { product: Product }) {
           className={cx(buttonClass({ variant: "outline", size: "lg" }), "mt-3 w-full sm:w-auto sm:min-w-64")}
         >
           <WhatsappIcon className="size-4" />
-          {purchasable ? "Ask about this on WhatsApp" : "Ask when it is back"}
+          {purchasable ? t.askWhatsapp : t.askWhenBack}
         </a>
 
         <ul className="mt-8 grid gap-3 border-y border-sand-200 py-5 sm:grid-cols-2">
           {[
-            { Icon: TruckIcon, text: `Free delivery over ${formatPrice(site.freeDeliveryThreshold)}` },
-            { Icon: ShieldIcon, text: "Content vetted before we stock it" },
+            { Icon: TruckIcon, text: t.freeDeliveryLine },
+            { Icon: ShieldIcon, text: t.vettedLine },
           ].map(({ Icon, text }) => (
             <li key={text} className="flex items-center gap-2.5 text-[0.8rem] text-ink-600">
               <Icon className="size-4 shrink-0 text-coal-600" />

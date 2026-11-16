@@ -6,16 +6,19 @@ import type { ReactNode } from "react";
 import { PlayScene, ReadScene, WorshipScene } from "@/components/home/hero-art";
 import { ArrowRightIcon, ClockIcon, SearchIcon, ShieldIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
 import { Container, cx } from "@/components/ui";
-import { formatPrice } from "@/lib/format";
+import { fill, whatsappHref } from "@/lib/content/format";
+import type { SiteText } from "@/lib/content/schema";
+import { getSiteText } from "@/lib/content/text";
 import { ageFigure, getHomeData, type HomeData } from "@/lib/home";
-import { site, whatsappLink } from "@/lib/site";
+import { site } from "@/lib/site";
 import type { CardProduct } from "@/lib/types";
 
-export const metadata: Metadata = {
-  title: `${site.name} — ${site.tagline}`,
-  description: site.description,
-  alternates: { canonical: "/" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { store } = await getSiteText();
+  return { title: { absolute: `${site.name} — ${store.tagline}` }, description: store.description, alternates: { canonical: "/" } };
+}
+
+type HomeText = SiteText["home"];
 
 /**
  * The homepage, design 4 ("Arches"). Phone first: every row fits on screen
@@ -24,15 +27,16 @@ export const metadata: Metadata = {
  * store's promises, and the offer to help choose.
  */
 export default async function HomePage() {
-  const data = await getHomeData();
+  const [data, text] = await Promise.all([getHomeData(), getSiteText()]);
+  const t = text.home;
   return (
     <div data-flush-footer>
-      <Hero data={data} />
-      <Ages data={data} />
-      <Departments data={data} />
-      <Quran products={data.quran} />
-      <Promises />
-      <Help />
+      <Hero data={data} t={t} />
+      <Ages data={data} t={t} />
+      <Departments data={data} t={t} />
+      <Quran products={data.quran} t={t} />
+      <Promises t={t} />
+      <Help t={t} whatsapp={text.store.whatsapp} />
     </div>
   );
 }
@@ -49,7 +53,7 @@ function Photo({ src, alt = "", sizes, className }: { src: string | null | undef
   return <Image src={src} alt={alt} fill sizes={sizes} className={cx("object-cover", className)} />;
 }
 
-function Hero({ data }: { data: HomeData }) {
+function Hero({ data, t }: { data: HomeData; t: HomeText }) {
   const [books, toys, ibadah] = data.departments;
   /* Three black windows on the gold wall, each showing one thing the store is for. */
   const arch = (dept: HomeData["departments"][number] | undefined, word: string, scene: ReactNode, className: string) =>
@@ -70,29 +74,33 @@ function Hero({ data }: { data: HomeData }) {
       <div className="rosette absolute inset-0 opacity-[0.07]" aria-hidden />
       <Container className="relative grid items-center pt-6 pb-12 text-center sm:pt-12 sm:pb-20 lg:grid-cols-2 lg:gap-12 lg:py-16 lg:text-left xl:gap-20">
         <div>
-          <p className="font-arabic text-3xl" dir="rtl" lang="ar">
-            أهلاً وسهلاً
+          <p className="font-arabic text-3xl" dir="auto">
+            {t.greeting}
           </p>
           <h1 className="mx-auto mt-4 max-w-4xl text-[clamp(2.7rem,6.200vw,5.250rem)] leading-[0.98] font-[750] tracking-[-0.035em] text-balance lg:mx-0 lg:text-[clamp(3rem,4.600vw,4.600rem)] text-white">
-            Nurturing towards Jannah
+            {t.headline}
           </h1>
           <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-ink-900/85 lg:mx-0 lg:max-w-md">
-            <span className="block">Welcome to {site.name}.</span>{" "}
-            A reliable spot to nurture every home towards Jannah with Islamic resources chosen with purpose.
+            <span className="block">{t.welcomeLine}</span> {t.welcomeText}
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:mx-auto sm:max-w-xl sm:flex-row lg:mx-0 lg:max-w-none">
-            <HeroSearch />
-            <Link href="/shop" className={cx(btnLine, "shrink-0")}>
-              Shop all products
+            <HeroSearch t={t} />
+            <Link href="/shop" className={cx(btnLine, "shrink-0 lg:hidden")}>
+              {t.shopButton}
+            </Link>
+            {/* Laptops search from the header, so here the hero leads with one solid button. */}
+            <Link href="/shop" className={cx(btnInk, "max-lg:hidden")}>
+              {t.shopButton}
+              <ArrowRightIcon className="size-4" />
             </Link>
           </div>
         </div>
 
         {/* A triptych: the centre arch stands a step taller than its neighbours. */}
         <div className="mx-auto mt-10 grid w-full max-w-3xl grid-cols-[1fr_1.200fr_1fr] items-end gap-3 sm:mt-14 sm:gap-7 lg:mt-0 lg:max-w-xl lg:gap-5 xl:gap-6">
-          {arch(toys, "Play", <PlayScene className={scene} />, "aspect-[3/4.300]")}
-          {arch(books, "Read", <ReadScene className={scene} />, "aspect-[3/4.700]")}
-          {arch(ibadah, "Worship", <WorshipScene className={scene} />, "aspect-[3/4.300]")}
+          {arch(toys, t.archPlay, <PlayScene className={scene} />, "aspect-[3/4.300]")}
+          {arch(books, t.archRead, <ReadScene className={scene} />, "aspect-[3/4.700]")}
+          {arch(ibadah, t.archWorship, <WorshipScene className={scene} />, "aspect-[3/4.300]")}
         </div>
       </Container>
     </section>
@@ -100,16 +108,17 @@ function Hero({ data }: { data: HomeData }) {
 }
 
 /**
- * The hero's search: a black pill like the buttons, with the field inside it.
- * A plain GET form to /search (next/form adds client-side navigation), so it
- * works before any JavaScript has loaded.
+ * The hero's search on phones and tablets (laptops have it in the header): a
+ * black pill like the buttons, with the field inside it. A plain GET form to
+ * /search (next/form adds client-side navigation), so it works before any
+ * JavaScript has loaded.
  */
-function HeroSearch() {
+function HeroSearch({ t }: { t: HomeText }) {
   return (
     <Form
       action="/search"
       role="search"
-      className="tone-ink flex h-13 min-w-0 items-center gap-2 rounded-full bg-coal-900 py-1.5 pr-1.5 pl-5 text-sand-50 transition-shadow focus-within:ring-2 focus-within:ring-sand-50/70 sm:flex-1"
+      className="tone-ink flex h-13 min-w-0 items-center gap-2 rounded-full bg-coal-900 py-1.5 pr-1.5 pl-5 text-sand-50 transition-shadow focus-within:ring-2 focus-within:ring-sand-50/70 sm:flex-1 lg:hidden"
     >
       <SearchIcon className="size-5 shrink-0 text-gold-500" />
       <label htmlFor="hero-search" className="sr-only">
@@ -122,14 +131,14 @@ function HeroSearch() {
         required
         enterKeyHint="search"
         autoComplete="off"
-        placeholder="Search Qur'an, books, toys…"
+        placeholder={t.searchPlaceholder}
         className="h-full min-w-0 flex-1 bg-transparent text-[0.95rem] text-sand-50 outline-none placeholder:text-sand-50/55 focus-visible:shadow-none focus-visible:outline-none"
       />
       <button
         type="submit"
         className="h-full shrink-0 rounded-full bg-gold-500 px-5 text-sm font-semibold text-coal-900 transition hover:bg-gold-400 active:scale-[0.97]"
       >
-        Search
+        {t.searchButton}
       </button>
     </Form>
   );
@@ -139,12 +148,12 @@ function HeroSearch() {
  * Ages strung on one thread, like beads on a tasbih. All five sit in one row
  * at every width, so there is nothing to swipe: tap a bead.
  */
-function Ages({ data }: { data: HomeData }) {
+function Ages({ data, t }: { data: HomeData; t: HomeText }) {
   return (
     <section className="bg-sand-50 py-12 sm:py-24">
       <Container className="text-center">
-        <h2 className="text-3xl sm:text-5xl">Begin where your child is</h2>
-        <p className="mx-auto mt-3 max-w-md text-ink-600 sm:mt-4">Tap an age to see what suits it.</p>
+        <h2 className="text-3xl sm:text-5xl">{t.agesTitle}</h2>
+        <p className="mx-auto mt-3 max-w-md text-ink-600 sm:mt-4">{t.agesText}</p>
       </Container>
       {/* Held to a narrower measure on wide screens so the beads stay close on their thread. */}
       <Container className="relative mt-8 sm:mt-12 lg:max-w-5xl">
@@ -158,7 +167,7 @@ function Ages({ data }: { data: HomeData }) {
                     {ageFigure(age.name)}
                   </span>
                 </span>
-                <span className={cx(caps, "mt-3 block max-sm:text-[0.600rem] max-sm:tracking-[0.160em] sm:mt-5")}>years</span>
+                <span className={cx(caps, "mt-3 block max-sm:text-[0.600rem] max-sm:tracking-[0.160em] sm:mt-5")}>{t.agesUnit}</span>
                 <span className="mt-2 block text-sm leading-relaxed text-ink-600 max-lg:hidden">{age.blurb}</span>
               </Link>
             </li>
@@ -174,11 +183,11 @@ function Ages({ data }: { data: HomeData }) {
  * screen. On laptops the grid is held narrower than the page, so the cards stay
  * compact instead of stretching into wide, near-empty slabs.
  */
-function Departments({ data }: { data: HomeData }) {
+function Departments({ data, t }: { data: HomeData; t: HomeText }) {
   return (
     <section className="tone-gold bg-gold-500 py-12 sm:py-24 lg:py-20">
       <Container>
-        <h2 className="text-center text-3xl sm:text-5xl">Shop by department</h2>
+        <h2 className="text-center text-3xl sm:text-5xl">{t.departmentsTitle}</h2>
         <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:mx-auto lg:mt-10 lg:max-w-5xl lg:gap-5">
           {data.departments.map((dept) => (
             <li key={dept.slug}>
@@ -190,12 +199,12 @@ function Departments({ data }: { data: HomeData }) {
                   <span className="block font-display text-xl leading-tight font-[750] tracking-tight text-gold-500 sm:text-3xl lg:text-[1.75rem] lg:leading-none">
                     {dept.name}
                   </span>
-                  <span className="mt-1 block text-sm text-coal-300 tabular-nums lg:mt-2">{dept.count} products</span>
+                  <span className="mt-1 block text-sm text-coal-300 tabular-nums lg:mt-2">{fill(t.departmentCount, { count: dept.count })}</span>
                   <span className="mt-2 line-clamp-2 text-sm leading-relaxed text-coal-300 max-lg:hidden">
                     {dept.children.slice(0, 4).map((child) => child.name).join(", ")}
                   </span>
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold max-lg:hidden">
-                    Shop {dept.name.toLowerCase()}
+                    {fill(t.departmentLink, { department: dept.name.toLowerCase() })}
                     <ArrowRightIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 </span>
@@ -220,7 +229,7 @@ function Departments({ data }: { data: HomeData }) {
  * opens the shelf. Three on phones and tablets; laptops have the room for a
  * fourth and larger discs, so the card does not sit half empty.
  */
-function Quran({ products }: { products: CardProduct[] }) {
+function Quran({ products, t }: { products: CardProduct[]; t: HomeText }) {
   if (products.length === 0) return null;
   return (
     <section aria-label="The Qur'an shelf" className="bg-sand-50 py-10 sm:py-20">
@@ -243,7 +252,7 @@ function Quran({ products }: { products: CardProduct[] }) {
             ))}
           </ul>
           <Link href="/collections/books/the-holy-quran" className={cx(btnInk, "max-sm:w-full")}>
-            Browse the Qur&apos;an shelf
+            {t.quranButton}
             <ArrowRightIcon className="size-4" />
           </Link>
         </div>
@@ -253,18 +262,18 @@ function Quran({ products }: { products: CardProduct[] }) {
 }
 
 /** The store's three promises: a black band, one line each on a phone, three columns on wide screens. */
-function Promises() {
+function Promises({ t }: { t: HomeText }) {
   const items = [
-    { Icon: TruckIcon, title: `Free delivery from ${formatPrice(site.freeDeliveryThreshold)}`, copy: "To anywhere in Nigeria." },
-    { Icon: ClockIcon, title: `Dispatched within ${site.delivery.dispatchHours} hours`, copy: `Interstate parcels leave on ${site.delivery.interstateDays}.` },
-    { Icon: ShieldIcon, title: "Secure payments", copy: "Your transactions are safeguarded at checkout." },
+    { Icon: TruckIcon, title: t.promise1Title, copy: t.promise1Text },
+    { Icon: ClockIcon, title: t.promise2Title, copy: t.promise2Text },
+    { Icon: ShieldIcon, title: t.promise3Title, copy: t.promise3Text },
   ];
   return (
     <section className="tone-band bg-coal-900 text-sand-50">
       <Container>
         <ul className="grid divide-y divide-white/10 py-3 md:grid-cols-3 md:divide-x md:divide-y-0 md:py-0">
-          {items.map(({ Icon, title, copy }) => (
-            <li key={title} className="flex gap-4 py-5 md:block md:px-8 md:py-10 md:first:pl-0 md:last:pr-0">
+          {items.map(({ Icon, title, copy }, index) => (
+            <li key={index} className="flex gap-4 py-5 md:block md:px-8 md:py-10 md:first:pl-0 md:last:pr-0">
               <Icon className="mt-0.5 size-6 shrink-0 text-gold-500 md:size-5" />
               <div>
                 <p className="font-display text-lg leading-tight font-[750] tracking-tight text-gold-500 md:mt-3 md:text-xl">{title}</p>
@@ -279,29 +288,27 @@ function Promises() {
 }
 
 /** A line of the logo's white script, the question, and two ways to reach the store. */
-function Help() {
+function Help({ t, whatsapp }: { t: HomeText; whatsapp: string }) {
   return (
     <section className="tone-gold bg-gold-500 py-14 text-center sm:py-28">
       <Container className="max-w-3xl">
         <p className="font-script text-5xl leading-none text-white sm:text-6xl" aria-hidden>
-          Gifts, made easy
+          {t.helpScript}
         </p>
-        <h2 className="mt-3 text-[2rem] leading-none font-[750] tracking-[-0.035em] sm:text-5xl lg:text-6xl">Not sure what to choose?</h2>
-        <p className="mx-auto mt-4 max-w-lg text-lg leading-relaxed text-ink-900/85 sm:mt-5">
-          Tell us the age, the budget and the occasion. We will put a bundle together and send you photos before you pay.
-        </p>
+        <h2 className="mt-3 text-[2rem] leading-none font-[750] tracking-[-0.035em] sm:text-5xl lg:text-6xl">{t.helpTitle}</h2>
+        <p className="mx-auto mt-4 max-w-lg text-lg leading-relaxed text-ink-900/85 sm:mt-5">{t.helpText}</p>
         <div className="mt-7 flex flex-wrap justify-center gap-3 sm:mt-8">
           <a
-            href={whatsappLink(`As-salamu alaykum ${site.name}, please help me choose a gift. Age: __ , Budget: __`)}
+            href={whatsappHref(whatsapp, t.helpWhatsappMessage)}
             target="_blank"
             rel="noreferrer"
             className={cx(btnInk, "max-sm:w-full")}
           >
             <WhatsappIcon className="size-4" />
-            Ask on WhatsApp
+            {t.helpWhatsapp}
           </a>
           <Link href="/contact" className={cx(btnLine, "max-sm:w-full")}>
-            Contact the store
+            {t.helpContact}
           </Link>
         </div>
       </Container>

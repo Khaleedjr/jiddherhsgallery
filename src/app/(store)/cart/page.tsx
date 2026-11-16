@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CartPageBody } from "@/components/cart-page";
 import { PageHeader } from "@/components/page-header";
 import { Container } from "@/components/ui";
+import { getSiteText } from "@/lib/content/text";
 
 export const metadata: Metadata = {
   title: "Your bag",
@@ -9,13 +10,14 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export default function CartPage() {
+export default async function CartPage() {
+  const { shopping: t } = await getSiteText();
   return (
     <>
       <PageHeader
-        eyebrow="Almost there"
-        title="Your bag"
-        trail={[{ label: "Home", href: "/" }, { label: "Bag" }]}
+        eyebrow={t.bagEyebrow}
+        title={t.bagTitle}
+        trail={[{ label: "Home", href: "/" }, { label: t.bagTitle }]}
       />
       <Container className="py-10 sm:py-12">
         <CartPageBody />

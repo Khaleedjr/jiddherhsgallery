@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { WhatsappIcon } from "@/components/icons";
 import { cx } from "@/components/ui";
-import { site, whatsappLink } from "@/lib/site";
+import { useSiteText } from "@/components/site-text-provider";
+import { whatsappHref } from "@/lib/content/format";
 
 /** Floating WhatsApp button — the primary way customers reach the store. */
 export function WhatsappFab() {
+  const { layout, store } = useSiteText();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -18,7 +20,7 @@ export function WhatsappFab() {
 
   return (
     <a
-      href={whatsappLink(`As-salamu alaykum ${site.name}, I would like to ask about a product.`)}
+      href={whatsappHref(store.whatsapp, layout.fabMessage)}
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with us on WhatsApp"

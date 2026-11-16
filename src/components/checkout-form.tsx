@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useCart } from "@/components/cart-provider";
 import { ArrowRightIcon, CheckIcon, LockIcon, ShieldIcon, WhatsappIcon } from "@/components/icons";
+import { useSiteText } from "@/components/site-text-provider";
 import { ButtonLink, EmptyState, buttonClass, cx } from "@/components/ui";
+import { fill, whatsappHref } from "@/lib/content/format";
 import { formatPrice } from "@/lib/format";
 import { NIGERIAN_STATES } from "@/lib/nigeria";
 import { PICKUP_OPTION, deliveryOptions } from "@/lib/shipping";
-import { site, whatsappLink } from "@/lib/site";
+import { site } from "@/lib/site";
 
 type Fields = {
   name: string;
@@ -43,6 +45,7 @@ const EMPTY: Fields = {
  */
 export function CheckoutForm() {
   const { items, subtotal } = useCart();
+  const { shopping: t, store } = useSiteText();
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [touched, setTouched] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -115,11 +118,11 @@ export function CheckoutForm() {
   if (items.length === 0) {
     return (
       <EmptyState
-        title="There is nothing to check out"
-        description="Add a few items to your bag and come back — we will be here, in shaa Allah."
+        title={t.nothingTitle}
+        description={t.nothingText}
         action={
           <ButtonLink href="/shop" size="lg">
-            Browse the shop
+            {t.nothingButton}
             <ArrowRightIcon className="size-4" />
           </ButtonLink>
         }
@@ -138,8 +141,8 @@ export function CheckoutForm() {
         }}
       >
         <section>
-          <h2 className="text-2xl">Your details</h2>
-          <p className="mt-1.5 text-[0.85rem] text-ink-500">We use these only to confirm, deliver and send your receipt.</p>
+          <h2 className="text-2xl">{t.detailsTitle}</h2>
+          <p className="mt-1.5 text-[0.85rem] text-ink-500">{t.detailsText}</p>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <Field label="Full name" value={fields.name} onChange={(v) => set("name", v)} error={touched ? errors.name : undefined} autoComplete="name" required />
             <Field
@@ -167,12 +170,12 @@ export function CheckoutForm() {
         </section>
 
         <section>
-          <h2 className="text-2xl">Delivery</h2>
+          <h2 className="text-2xl">{t.deliveryTitle}</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {(
               [
-                { value: "delivery", title: "Deliver to me", copy: "Doorstep in Kaduna, or a park in your state" },
-                { value: "pickup", title: PICKUP_OPTION.name, copy: `Free · ${PICKUP_OPTION.note}` },
+                { value: "delivery", title: t.deliverToMe, copy: t.deliverToMeText },
+                { value: "pickup", title: PICKUP_OPTION.name, copy: t.pickupText },
               ] as const
             ).map((option) => (
               <Choice
@@ -224,7 +227,7 @@ export function CheckoutForm() {
                   </button>{" "}
                   instead, or{" "}
                   <a
-                    href={whatsappLink(`As-salamu alaykum ${site.name}, can you deliver to ${fields.state}?`)}
+                    href={whatsappHref(store.whatsapp, `As-salamu alaykum ${site.name}, can you deliver to ${fields.state}?`)}
                     target="_blank"
                     rel="noreferrer"
                     className="font-semibold text-ink-900 underline underline-offset-4"
@@ -248,27 +251,23 @@ export function CheckoutForm() {
           ) : null}
 
           <Field
-            label="Anything else we should know? (optional)"
+            label={t.notesLabel}
             value={fields.notes}
             onChange={(v) => set("notes", v)}
             className="mt-4"
             multiline
-            placeholder="Preferred park or bus stop, landmark, gift wrapping…"
+            placeholder={t.notesPlaceholder}
           />
         </section>
 
         <section className="rounded-[1.25rem] bg-sand-200 p-5">
           <h3 className="flex items-center gap-2 font-sans text-[0.95rem] font-semibold tracking-normal text-ink-900">
             <ShieldIcon className="size-4" />
-            How payment works
+            {t.paymentTitle}
           </h3>
           <ol className="mt-3 space-y-2 text-[0.85rem] leading-relaxed text-ink-700">
-            {[
-              "You pay on Paystack's secure page: card, bank transfer or USSD.",
-              "Your order is confirmed the moment payment goes through, and your receipt is emailed.",
-              `We dispatch within ${site.delivery.dispatchHours} hours; interstate parcels leave on ${site.delivery.interstateDays}.`,
-            ].map((step, index) => (
-              <li key={step} className="flex gap-2.5">
+            {[t.paymentStep1, t.paymentStep2, t.paymentStep3].map((step, index) => (
+              <li key={index} className="flex gap-2.5">
                 <span className="grid size-5 shrink-0 place-items-center rounded-full bg-coal-900 text-[0.65rem] font-bold text-gold-500">{index + 1}</span>
                 {step}
               </li>
@@ -279,9 +278,9 @@ export function CheckoutForm() {
         <div className="space-y-3">
           <button type="submit" disabled={submitting} className={cx(buttonClass({ size: "lg" }), "w-full")}>
             <LockIcon className="size-4" />
-            {submitting ? "Opening Paystack…" : `Pay ${formatPrice(total)} with Paystack`}
+            {submitting ? "Opening Paystack…" : fill(t.payButton, { total: formatPrice(total) })}
           </button>
-          <p className="text-center text-[0.78rem] text-ink-500">You&apos;ll be taken to Paystack to pay. We never see or store your card details.</p>
+          <p className="text-center text-[0.78rem] text-ink-500">{t.payNote}</p>
           {serverError ? (
             <p role="alert" className="rounded-xl bg-berry-500/8 px-3 py-2.5 text-center text-[0.82rem] font-medium text-berry-600">
               {serverError}
@@ -293,7 +292,7 @@ export function CheckoutForm() {
 
       <aside className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
         <div className="rounded-[1.5rem] bg-sand-50 p-6 ring-1 ring-ink-900/10">
-          <h2 className="text-2xl">Your order</h2>
+          <h2 className="text-2xl">{t.orderTitle}</h2>
           <ul className="mt-5 space-y-4">
             {items.map((item) => (
               <li key={item.key} className="flex gap-3">
@@ -335,7 +334,7 @@ export function CheckoutForm() {
           </div>
 
           <Link href="/cart" className="mt-4 block text-center text-[0.8rem] font-medium text-ink-500 transition hover:text-ink-900">
-            Edit bag
+            {t.editBag}
           </Link>
         </div>
       </aside>

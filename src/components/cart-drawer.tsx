@@ -4,12 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/components/cart-provider";
 import { BagIcon, CloseIcon, MinusIcon, PlusIcon, StarKhatimIcon, TrashIcon, TruckIcon } from "@/components/icons";
+import { Inline } from "@/components/rich-text";
+import { useSiteText } from "@/components/site-text-provider";
 import { buttonClass, cx } from "@/components/ui";
+import { fill } from "@/lib/content/format";
 import { formatPrice } from "@/lib/format";
 import { site } from "@/lib/site";
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, setQuantity, remove, subtotal, count } = useCart();
+  const t = useSiteText().shopping;
 
   if (!isOpen) return null;
 
@@ -29,7 +33,7 @@ export function CartDrawer() {
         <header className="flex h-16 shrink-0 items-center justify-between border-b border-sand-200 px-5">
           <h2 className="flex items-center gap-2 font-display text-lg font-semibold text-coal-900">
             <BagIcon className="size-5" />
-            Your bag
+            {t.bagTitle}
             {count > 0 ? <span className="text-sm font-normal text-ink-500">({count})</span> : null}
           </h2>
           <button
@@ -46,13 +50,11 @@ export function CartDrawer() {
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center">
             <StarKhatimIcon className="size-8 text-gold-300" />
             <div>
-              <p className="font-display text-xl text-coal-900">Your bag is empty</p>
-              <p className="mt-1.5 text-sm text-ink-500">
-                Browse the shelves and add something beneficial, in shaa Allah.
-              </p>
+              <p className="font-display text-xl text-coal-900">{t.bagEmptyTitle}</p>
+              <p className="mt-1.5 text-sm text-ink-500">{t.bagEmptyText}</p>
             </div>
             <Link href="/shop" onClick={closeCart} className={buttonClass()}>
-              Start shopping
+              {t.startShopping}
             </Link>
           </div>
         ) : (
@@ -62,8 +64,7 @@ export function CartDrawer() {
                 <p className="flex items-center gap-2 text-[0.78rem] text-ink-700">
                   <TruckIcon className="size-4 shrink-0 text-coal-600" />
                   <span>
-                    Add <strong className="font-semibold text-coal-800">{formatPrice(remaining)}</strong> more
-                    for free delivery
+                    <Inline text={fill(t.addMore, { amount: formatPrice(remaining) })} strongClassName="font-semibold text-coal-800" />
                   </span>
                 </p>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sand-300">
@@ -76,7 +77,7 @@ export function CartDrawer() {
             ) : (
               <p className="flex shrink-0 items-center gap-2 border-b border-sand-200 bg-coal-50 px-5 py-3 text-[0.78rem] font-medium text-coal-800">
                 <TruckIcon className="size-4 shrink-0" />
-                You have earned free delivery
+                {t.earnedFree}
               </p>
             )}
 
@@ -153,22 +154,20 @@ export function CartDrawer() {
                   {formatPrice(subtotal)}
                 </span>
               </div>
-              <p className="mt-1 text-[0.72rem] text-ink-500">
-                Delivery is added at checkout once you choose your state.
-              </p>
+              <p className="mt-1 text-[0.72rem] text-ink-500">{t.bagDeliveryNote}</p>
               <Link
                 href="/checkout"
                 onClick={closeCart}
                 className={cx(buttonClass({ size: "lg" }), "mt-4 w-full")}
               >
-                Checkout
+                {t.checkoutButton}
               </Link>
               <button
                 type="button"
                 onClick={closeCart}
                 className="mt-2 w-full py-2 text-[0.8rem] font-medium text-ink-600 transition hover:text-coal-800"
               >
-                Continue shopping
+                {t.continueShopping}
               </button>
             </footer>
           </>

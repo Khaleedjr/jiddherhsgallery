@@ -2,11 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { InstagramIcon, MailIcon, PhoneIcon, PinIcon, StarKhatimIcon, WhatsappIcon } from "@/components/icons";
 import { Container } from "@/components/ui";
-import { site, whatsappLink } from "@/lib/site";
+import { fill, whatsappHref } from "@/lib/content/format";
+import { getSiteText } from "@/lib/content/text";
+import { site } from "@/lib/site";
 import type { AgeGroup, Department } from "@/lib/types";
 
 /** Design 4's footer: the black band that closes every page, with gold headings. */
-export function SiteFooter({
+export async function SiteFooter({
   departments,
   ageGroups,
 }: {
@@ -14,6 +16,7 @@ export function SiteFooter({
   ageGroups: AgeGroup[];
 }) {
   const year = new Date().getFullYear();
+  const { layout: t, store } = await getSiteText();
 
   return (
     <footer className="tone-band bg-coal-900 text-coal-300">
@@ -24,22 +27,18 @@ export function SiteFooter({
               <Image src="/logo.png" alt="" width={72} height={72} className="size-[4.5rem] rounded-full" />
             </Link>
 
-            <p className="mt-5 max-w-xs text-sm leading-relaxed">
-              An online Islamic store for books, toys and ibadah essentials for every age, sent from Kaduna to all of Nigeria.
-            </p>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed">{t.footerBlurb}</p>
 
             <p className="mt-5 font-arabic text-lg text-gold-500">
-              <span dir="rtl" lang="ar">
-                بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-              </span>
+              <span dir="auto">{t.footerArabic}</span>
             </p>
 
             <ul className="mt-6 flex gap-2">
               {[
-                { href: site.socials.instagram, label: "Instagram", Icon: InstagramIcon },
-                { href: whatsappLink(`As-salamu alaykum ${site.name}.`), label: "WhatsApp", Icon: WhatsappIcon },
-                { href: `mailto:${site.email}`, label: "Email", Icon: MailIcon },
-                { href: `tel:+${site.whatsapp}`, label: "Call", Icon: PhoneIcon },
+                { href: store.instagram, label: "Instagram", Icon: InstagramIcon },
+                { href: whatsappHref(store.whatsapp, t.footerWhatsappMessage), label: "WhatsApp", Icon: WhatsappIcon },
+                { href: `mailto:${store.email}`, label: "Email", Icon: MailIcon },
+                { href: `tel:+${store.whatsapp}`, label: "Call", Icon: PhoneIcon },
               ].map(({ href, label, Icon }) => (
                 <li key={label}>
                   <a
@@ -58,43 +57,41 @@ export function SiteFooter({
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8">
             <FooterColumn
-              title="Shop"
+              title={t.shopHeading}
               links={[
-                { href: "/shop", label: "All products" },
+                { href: "/shop", label: t.allProducts },
                 ...departments.map((dept) => ({ href: `/collections/${dept.slug}`, label: dept.name })),
               ]}
             />
-            <FooterColumn title="By age" links={ageGroups.map((age) => ({ href: `/age/${age.slug}`, label: age.name }))} />
+            <FooterColumn title={t.ageHeading} links={ageGroups.map((age) => ({ href: `/age/${age.slug}`, label: age.name }))} />
             <FooterColumn
-              title="Help"
+              title={t.helpHeading}
               links={[
-                { href: "/about", label: "Our story" },
-                { href: "/contact", label: "Contact us" },
-                { href: "/faq", label: "FAQ" },
-                { href: "/delivery-returns", label: "Delivery & returns" },
-                { href: "/privacy", label: "Privacy policy" },
-                { href: "/terms", label: "Terms of service" },
+                { href: "/about", label: t.linkStory },
+                { href: "/contact", label: t.linkContact },
+                { href: "/faq", label: t.linkFaq },
+                { href: "/delivery-returns", label: t.linkDelivery },
+                { href: "/privacy", label: t.linkPrivacy },
+                { href: "/terms", label: t.linkTerms },
               ]}
             />
           </div>
         </div>
 
         <div className="mt-12 grid gap-4 border-t border-white/10 pt-8 sm:grid-cols-3">
-          <FooterDetail Icon={PhoneIcon} label="Call or WhatsApp" value={site.phoneDisplay} href={`tel:+${site.whatsapp}`} />
-          <FooterDetail Icon={MailIcon} label="Email" value={site.email} href={`mailto:${site.email}`} />
-          <FooterDetail Icon={PinIcon} label="Based in" value={`${site.address.state}, ${site.address.country}`} />
+          <FooterDetail Icon={PhoneIcon} label={t.callLabel} value={store.phoneDisplay} href={`tel:+${store.whatsapp}`} />
+          <FooterDetail Icon={MailIcon} label={t.emailLabel} value={store.email} href={`mailto:${store.email}`} />
+          <FooterDetail Icon={PinIcon} label={t.basedLabel} value={`${store.state}, ${store.country}`} />
         </div>
       </Container>
 
       {/* Extra room at the bottom on phones so the floating WhatsApp button never covers the last line. */}
       <div className="border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-3 pt-5 pb-24 text-xs text-coal-400 sm:flex-row sm:pb-5">
-          <p>
-            © {year} {site.name}. All rights reserved.
-          </p>
+          <p>{fill(t.copyright, { year })}</p>
           <p className="flex items-center gap-2">
             <StarKhatimIcon className="size-3 text-gold-500" />
-            {site.tagline}
+            {store.tagline}
           </p>
         </Container>
       </div>

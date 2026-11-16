@@ -5,8 +5,11 @@ import { ClearBagOnce, RetryPayment } from "@/components/checkout-complete";
 import { CheckIcon, ClockIcon, StarKhatimIcon, WhatsappIcon } from "@/components/icons";
 import { PageHeader } from "@/components/page-header";
 import { ButtonLink, Container, buttonClass, cx } from "@/components/ui";
+import { Inline } from "@/components/rich-text";
+import { fill, whatsappHref } from "@/lib/content/format";
+import { getSiteText } from "@/lib/content/text";
 import { formatPrice } from "@/lib/format";
-import { site, whatsappLink } from "@/lib/site";
+import { site } from "@/lib/site";
 import { getOrder } from "@/lib/store/orders";
 
 export const metadata: Metadata = {
@@ -26,6 +29,7 @@ export default async function CheckoutCompletePage({
   searchParams: Promise<{ order?: string; reference?: string; status?: string }>;
 }) {
   const { order: orderRef = "", reference = "", status = "" } = await searchParams;
+  const { shopping: t, store } = await getSiteText();
   const order = orderRef ? await getOrder(orderRef.slice(0, 20)) : null;
   const paid = order?.payment?.status === "paid";
   // Order refs run in sequence, so a ref alone proves nothing. Only the customer's own return link
@@ -44,7 +48,7 @@ export default async function CheckoutCompletePage({
               If you paid and this page looks wrong, message us with your Paystack receipt and we will sort it out quickly.
             </p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href={whatsappLink(`As-salamu alaykum ${site.name}, I need help with my order${orderRef ? ` ${orderRef}` : ""}.`)} target="_blank" rel="noreferrer" className={buttonClass({ size: "lg" })}>
+              <a href={whatsappHref(store.whatsapp, `As-salamu alaykum ${site.name}, I need help with my order${orderRef ? ` ${orderRef}` : ""}.`)} target="_blank" rel="noreferrer" className={buttonClass({ size: "lg" })}>
                 <WhatsappIcon className="size-4" />
                 Message us
               </a>
@@ -98,28 +102,28 @@ export default async function CheckoutCompletePage({
     return (
       <>
         <ClearBagOnce />
-        <PageHeader eyebrow="Thank you" title="Payment received" trail={[{ label: "Home", href: "/" }, { label: "Order confirmed" }]} />
+        <PageHeader eyebrow={t.paidEyebrow} title={t.paidTitle} trail={[{ label: "Home", href: "/" }, { label: "Order confirmed" }]} />
         <Container className="py-12">
           <Panel>
             <span className="mx-auto grid size-14 place-items-center rounded-full bg-coal-900 text-gold-500">
               <CheckIcon className="size-7" strokeWidth={2.4} />
             </span>
-            <h2 className="mt-5 text-3xl">Order {order.ref} is confirmed</h2>
+            <h2 className="mt-5 text-3xl">{fill(t.paidHeading, { ref: order.ref })}</h2>
             <p className="mx-auto mt-3 max-w-md leading-relaxed text-ink-600">
-              Jazakum Allahu khayran, {order.customer.name.split(" ")[0]}. Your payment went through and a receipt is on its way to{" "}
-              <strong className="text-ink-900">{order.customer.email}</strong>.{" "}
-              {pickup
-                ? `Pick up in Kaduna on ${site.pickup.days.toLowerCase()}, ${site.pickup.time}; please call before coming and have ${order.ref} ready.`
-                : `We dispatch within ${site.delivery.dispatchHours} hours; interstate parcels leave on ${site.delivery.interstateDays}. We will message ${order.customer.phone} with the details.`}
+              <Inline
+                text={fill(t.paidThanks, { name: order.customer.name.split(" ")[0], customerEmail: order.customer.email })}
+                strongClassName="text-ink-900"
+              />{" "}
+              {pickup ? fill(t.paidPickup, { ref: order.ref }) : fill(t.paidDelivery, { customerPhone: order.customer.phone })}
             </p>
             {summary}
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <ButtonLink href="/shop" size="lg">
-                Continue shopping
+                {t.paidContinue}
               </ButtonLink>
-              <a href={whatsappLink(`As-salamu alaykum ${site.name}, a question about my order ${order.ref}.`)} target="_blank" rel="noreferrer" className={buttonClass({ variant: "outline", size: "lg" })}>
+              <a href={whatsappHref(store.whatsapp, `As-salamu alaykum ${site.name}, a question about my order ${order.ref}.`)} target="_blank" rel="noreferrer" className={buttonClass({ variant: "outline", size: "lg" })}>
                 <WhatsappIcon className="size-4" />
-                Questions? Message us
+                {t.paidQuestions}
               </a>
             </div>
           </Panel>
@@ -163,7 +167,7 @@ export default async function CheckoutCompletePage({
             )}
             {mismatch ? (
               <a
-                href={whatsappLink(`As-salamu alaykum ${site.name}, about the payment for order ${order.ref}.`)}
+                href={whatsappHref(store.whatsapp, `As-salamu alaykum ${site.name}, about the payment for order ${order.ref}.`)}
                 target="_blank"
                 rel="noreferrer"
                 className={cx(buttonClass({ size: "lg" }), "w-full sm:w-auto")}

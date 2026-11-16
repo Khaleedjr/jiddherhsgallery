@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDownIcon } from "@/components/icons";
+import { RichText } from "@/components/rich-text";
 import { cx } from "@/components/ui";
 
 export function Accordion({ items }: { items: Array<{ question: string; answer: string }> }) {
@@ -12,7 +13,7 @@ export function Accordion({ items }: { items: Array<{ question: string; answer: 
       {items.map((item, index) => {
         const expanded = open === index;
         return (
-          <div key={item.question}>
+          <div key={index}>
             <h3>
               <button
                 type="button"
@@ -27,8 +28,8 @@ export function Accordion({ items }: { items: Array<{ question: string; answer: 
               </button>
             </h3>
             {expanded ? (
-              <div className="animate-fade px-5 pb-5 text-[0.86rem] leading-relaxed text-ink-600 sm:px-6">
-                {item.answer}
+              <div className="animate-fade space-y-3 px-5 pb-5 text-[0.86rem] leading-relaxed text-ink-600 sm:px-6">
+                <RichText text={item.answer} listClassName="list-disc space-y-1 pl-5" />
               </div>
             ) : null}
           </div>

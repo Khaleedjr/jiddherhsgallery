@@ -1,11 +1,13 @@
 "use client";
 
+import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { useCart } from "@/components/cart-provider";
 import {
+  ArrowRightIcon,
   BagIcon,
   ChevronDownIcon,
   ChevronRightIcon,
@@ -17,7 +19,9 @@ import {
 } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cx } from "@/components/ui";
-import { site, whatsappLink } from "@/lib/site";
+import { useSiteText } from "@/components/site-text-provider";
+import { whatsappHref } from "@/lib/content/format";
+import { site } from "@/lib/site";
 import type { AgeGroup, Department } from "@/lib/types";
 
 type Nav = {
@@ -32,14 +36,16 @@ const caps = "text-[0.72rem] font-semibold tracking-[0.18em] uppercase";
 
 /**
  * Design 4's header: a gold band with the logo set in the middle as a
- * medallion, links on either side of it, and a rule broken by an eight-point
- * star underneath. It stays at the top while you scroll, so the bag and
- * search are always one tap away.
+ * medallion and a rule broken by an eight-point star underneath. On laptops a
+ * search field sits left of the logo, the switch and bag right of it, and the
+ * departments run along the rule either side of the star. On phones the menu,
+ * search and bag are buttons. It stays at the top while you scroll.
  */
 export function SiteHeader({ departments, ageGroups }: Nav) {
   const pathname = usePathname();
   const router = useRouter();
   const { count, openCart } = useCart();
+  const t = useSiteText().layout;
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
@@ -148,7 +154,7 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
   return (
     <>
       <header className={cx("tone-gold sticky top-0 z-40 bg-gold-500 text-ink-900 transition-shadow duration-300", scrolled && "shadow-[0_12px_28px_-20px_rgba(20,17,10,0.75)]")}>
-        <div className="mx-auto grid h-16 w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 sm:h-20 sm:px-6 lg:gap-6 lg:px-8">
+        <div className="mx-auto grid h-16 w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 sm:h-20 sm:px-6 lg:h-[4.75rem] lg:gap-6 lg:px-8">
           <div className="flex items-center">
             <button
               type="button"
@@ -159,9 +165,7 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
               <MenuIcon className="size-5" />
             </button>
             <ThemeToggle className="lg:hidden" />
-            <nav className="hidden items-center gap-5 lg:flex xl:gap-8" aria-label="Departments">
-              {left.map((dept) => department(dept, "left"))}
-            </nav>
+            <HeaderSearch className="max-lg:hidden" />
           </div>
 
           {/* On gold the logo's own disc disappears; a black ring turns it into a medallion. */}
@@ -174,40 +178,12 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
           </Link>
 
           <div className="flex items-center justify-end">
-            <nav className="mr-4 hidden items-center gap-5 lg:flex xl:mr-6 xl:gap-8" aria-label="More">
-              {right.map((dept) => department(dept, "right"))}
-
-              <div className="relative" onMouseEnter={() => hoverOpen("age")} onMouseLeave={hoverClose}>
-                <button type="button" onFocus={() => hoverOpen("age")} className={linkClass(isActive("/age"))} aria-expanded={openMenu === "age"}>
-                  By age
-                  <ChevronDownIcon className={cx("size-3 transition", openMenu === "age" && "rotate-180")} />
-                </button>
-                {openMenu === "age" ? (
-                  <Dropdown align="right" wide>
-                    {ageGroups.map((age) => (
-                      <Link key={age.slug} href={`/age/${age.slug}`} className="block rounded-xl px-3 py-2.5 transition hover:bg-sand-200">
-                        <span className="flex items-center justify-between text-[0.85rem] font-semibold text-ink-900">
-                          {age.name}
-                          <span className="text-[0.72rem] font-normal text-ink-500 tabular-nums">{age.count}</span>
-                        </span>
-                        <span className="mt-0.5 block text-[0.75rem] text-ink-500">{age.blurb}</span>
-                      </Link>
-                    ))}
-                  </Dropdown>
-                ) : null}
-              </div>
-
-              <Link href="/shop" className={linkClass(isActive("/shop"))}>
-                Shop all
-              </Link>
-            </nav>
-
             <ThemeToggle className="max-lg:hidden" />
 
             <button
               type="button"
               onClick={() => setSearchOpen((open) => !open)}
-              className="grid size-11 place-items-center rounded-full transition hover:bg-coal-900/10"
+              className="grid size-11 place-items-center rounded-full transition hover:bg-coal-900/10 lg:hidden"
               aria-label="Search products"
               aria-expanded={searchOpen}
             >
@@ -230,11 +206,41 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
           </div>
         </div>
 
-        {/* A rule broken by an eight-point star. */}
-        <div className="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 pb-2 sm:px-6 lg:px-8" aria-hidden>
-          <span className="h-px flex-1 bg-linear-to-r from-transparent to-coal-900" />
-          <StarKhatimIcon className="size-3.5" />
-          <span className="h-px flex-1 bg-linear-to-l from-transparent to-coal-900" />
+        {/* A rule broken by an eight-point star. On laptops the departments run along it, either side of the star. */}
+        <div className="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 pb-2 sm:px-6 lg:gap-6 lg:px-8 lg:pb-1.5">
+          <span className="h-px min-w-6 flex-1 bg-linear-to-r from-transparent to-coal-900" aria-hidden />
+          <nav className="hidden items-center gap-5 lg:flex xl:gap-8" aria-label="Departments">
+            {left.map((dept) => department(dept, "left"))}
+          </nav>
+          <StarKhatimIcon className="size-3.5 shrink-0" aria-hidden />
+          <nav className="hidden items-center gap-5 lg:flex xl:gap-8" aria-label="More">
+            {right.map((dept) => department(dept, "right"))}
+
+            <div className="relative" onMouseEnter={() => hoverOpen("age")} onMouseLeave={hoverClose}>
+              <button type="button" onFocus={() => hoverOpen("age")} className={linkClass(isActive("/age"))} aria-expanded={openMenu === "age"}>
+                {t.byAge}
+                <ChevronDownIcon className={cx("size-3 transition", openMenu === "age" && "rotate-180")} />
+              </button>
+              {openMenu === "age" ? (
+                <Dropdown align="right" wide>
+                  {ageGroups.map((age) => (
+                    <Link key={age.slug} href={`/age/${age.slug}`} className="block rounded-xl px-3 py-2.5 transition hover:bg-sand-200">
+                      <span className="flex items-center justify-between text-[0.85rem] font-semibold text-ink-900">
+                        {age.name}
+                        <span className="text-[0.72rem] font-normal text-ink-500 tabular-nums">{age.count}</span>
+                      </span>
+                      <span className="mt-0.5 block text-[0.75rem] text-ink-500">{age.blurb}</span>
+                    </Link>
+                  ))}
+                </Dropdown>
+              ) : null}
+            </div>
+
+            <Link href="/shop" className={linkClass(isActive("/shop"))}>
+              {t.shopAll}
+            </Link>
+          </nav>
+          <span className="h-px min-w-6 flex-1 bg-linear-to-l from-transparent to-coal-900" aria-hidden />
         </div>
 
         {searchOpen ? (
@@ -246,7 +252,7 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search for Qur'an, seerah books, prayer mats, toys…"
+                placeholder={t.searchPanelPlaceholder}
                 aria-label="Search the store"
                 className="h-11 min-w-0 flex-1 bg-transparent text-base text-ink-900 outline-none placeholder:text-ink-400"
               />
@@ -254,7 +260,7 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
                 type="submit"
                 className="h-10 shrink-0 rounded-full bg-coal-900 px-5 text-sm font-semibold text-gold-500 transition hover:bg-black active:scale-[0.97]"
               >
-                Search
+                {t.searchButton}
               </button>
               <button
                 type="button"
@@ -279,6 +285,40 @@ export function SiteHeader({ departments, ageGroups }: Nav) {
         />
       ) : null}
     </>
+  );
+}
+
+/** The laptop header's search: a slim pill left of the logo, black like the buttons (white in light mode). */
+function HeaderSearch({ className }: { className?: string }) {
+  const t = useSiteText().layout;
+  return (
+    <Form
+      action="/search"
+      role="search"
+      className={cx(
+        "tone-ink flex h-11 w-full max-w-[19rem] items-center gap-2 rounded-full bg-coal-900 py-1 pr-1 pl-4 text-sand-50 transition-shadow focus-within:ring-2 focus-within:ring-sand-50/70 xl:max-w-xs",
+        className,
+      )}
+    >
+      <SearchIcon className="size-[1.1rem] shrink-0 text-gold-500" />
+      <input
+        name="q"
+        type="search"
+        required
+        enterKeyHint="search"
+        autoComplete="off"
+        aria-label="Search the store"
+        placeholder={t.searchPlaceholder}
+        className="h-full min-w-0 flex-1 bg-transparent text-sm text-sand-50 outline-none placeholder:text-sand-50/55 focus-visible:shadow-none focus-visible:outline-none"
+      />
+      <button
+        type="submit"
+        aria-label="Search"
+        className="grid size-9 shrink-0 place-items-center rounded-full bg-gold-500 text-coal-900 transition hover:bg-gold-400 active:scale-95"
+      >
+        <ArrowRightIcon className="size-4" />
+      </button>
+    </Form>
   );
 }
 
@@ -309,6 +349,7 @@ function MobileNav({
   onToggleSection: (slug: string) => void;
   onClose: () => void;
 }) {
+  const { layout: t, store } = useSiteText();
   return (
     <div className="fixed inset-0 z-50 lg:hidden">
       <button type="button" onClick={onClose} className="absolute inset-0 bg-coal-950/55 backdrop-blur-[2px]" aria-label="Close menu" />
@@ -366,10 +407,10 @@ function MobileNav({
 
           <div className="mt-4 space-y-1 px-2">
             {[
-              { href: "/shop", label: "All products" },
-              { href: "/about", label: "Our story" },
-              { href: "/contact", label: "Contact & delivery" },
-              { href: "/faq", label: "FAQ" },
+              { href: "/shop", label: t.menuAllProducts },
+              { href: "/about", label: t.menuStory },
+              { href: "/contact", label: t.menuContact },
+              { href: "/faq", label: t.menuFaq },
             ].map((link) => (
               <Link key={link.href} href={link.href} className="block py-2.5 text-[0.95rem] font-medium text-coal-100">
                 {link.label}
@@ -380,13 +421,13 @@ function MobileNav({
 
         <div className="shrink-0 border-t border-white/10 p-4">
           <a
-            href={whatsappLink(`As-salamu alaykum ${site.name}, I have a question.`)}
+            href={whatsappHref(store.whatsapp, t.menuWhatsappMessage)}
             target="_blank"
             rel="noreferrer"
             className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-gold-500 text-sm font-semibold text-coal-900 transition active:scale-[0.97]"
           >
             <WhatsappIcon className="size-4" />
-            Chat with us on WhatsApp
+            {t.menuWhatsapp}
           </a>
         </div>
       </div>
