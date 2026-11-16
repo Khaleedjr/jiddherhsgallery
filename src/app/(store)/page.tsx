@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { AgeStacks } from "@/components/home/age-stacks";
-import { PlayScene, ReadScene, WorshipScene } from "@/components/home/hero-art";
+import { ArchWindow, PlayScene, ReadScene, WorshipScene } from "@/components/home/hero-art";
 import { ArrowRightIcon, ClockIcon, SearchIcon, ShieldIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
 import { Container, cx } from "@/components/ui";
 import { fill, whatsappHref } from "@/lib/content/format";
@@ -56,17 +56,18 @@ function Photo({ src, alt = "", sizes, className }: { src: string | null | undef
 
 function Hero({ data, t }: { data: HomeData; t: HomeText }) {
   const [books, toys, ibadah] = data.departments;
-  /* Three black windows on the gold wall, each showing one thing the store is for. */
-  const arch = (dept: HomeData["departments"][number] | undefined, word: string, scene: ReactNode, className: string) =>
+  /* Three arched windows on the gold wall, each showing one thing the store is for (see ArchWindow). */
+  const arch = (dept: HomeData["departments"][number] | undefined, id: string, word: string, scene: ReactNode, tall = false) =>
     dept ? (
       <Link href={`/collections/${dept.slug}`} className="group block" aria-label={`${word}: shop ${dept.name}`}>
-        <span className={cx("arch-tone arch block bg-coal-900 p-2 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5", className)}>
-          <span className="arch relative block h-full border border-sand-50/35">{scene}</span>
+        <span className="arch-tone block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5">
+          <ArchWindow id={id} tall={tall}>
+            {scene}
+          </ArchWindow>
         </span>
         <span className={cx(caps, "mt-4 block pb-1 text-center")}>{word}</span>
       </Link>
     ) : null;
-  const scene = "absolute top-[16%] left-[8%] h-[82%] w-[84%]";
   /* The live count of products on sale, so the button also says how big the shelf is. */
   const shopLabel = fill(t.shopButton, { productCount: data.productCount.toLocaleString("en-NG") });
 
@@ -101,9 +102,9 @@ function Hero({ data, t }: { data: HomeData; t: HomeText }) {
 
         {/* A triptych: the centre arch stands a step taller than its neighbours. */}
         <div className="mx-auto mt-10 grid w-full max-w-3xl grid-cols-[1fr_1.200fr_1fr] items-end gap-3 sm:mt-14 sm:gap-7 lg:mt-0 lg:max-w-xl lg:gap-5 xl:gap-6">
-          {arch(toys, t.archPlay, <PlayScene className={scene} />, "aspect-[3/4.300]")}
-          {arch(books, t.archRead, <ReadScene className={scene} />, "aspect-[3/4.700]")}
-          {arch(ibadah, t.archWorship, <WorshipScene className={scene} />, "aspect-[3/4.300]")}
+          {arch(toys, "play", t.archPlay, <PlayScene />)}
+          {arch(books, "read", t.archRead, <ReadScene />, true)}
+          {arch(ibadah, "worship", t.archWorship, <WorshipScene />)}
         </div>
       </Container>
     </section>
