@@ -35,7 +35,14 @@ export type Product = {
   tags: string[];
   variants: Variant[];
   position: number;
+  /** The "Featured together" box: picked automatically (the default), chosen in the dashboard, or not shown. */
+  pairing?: ProductPairing;
 };
+
+export const PAIRING_MODES = ["auto", "manual", "off"] as const;
+export type ProductPairing = { mode: (typeof PAIRING_MODES)[number]; ids: string[] };
+/** How many products can be hand-picked for one product's "Featured together" box. */
+export const MAX_PAIRED = 4;
 
 export type CategoryNode = {
   slug: string;

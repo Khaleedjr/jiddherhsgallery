@@ -17,7 +17,7 @@ import {
   uniqueSlug,
 } from "@/lib/store/products";
 import type { StockMovement, StoredProduct } from "@/lib/store/types";
-import type { Variant } from "@/lib/types";
+import { MAX_PAIRED, PAIRING_MODES, type ProductPairing, type Variant } from "@/lib/types";
 
 const validCategories = new Set(
   taxonomy.departments.flatMap((dept) => [dept.slug, ...dept.children.map((child) => child.slug)]),
@@ -96,6 +96,19 @@ export async function saveProductAction(input: ProductInput): Promise<SaveResult
 
   const id = existing?.id ?? (await nextProductId());
   const slug = await uniqueSlug(input.slug.trim() || name, id);
+
+  /* "Featured together": only real, other products, each once. */
+  let pairing: ProductPairing | undefined;
+  const mode = PAIRING_MODES.find((m) => m === input.pairing?.mode) ?? "auto";
+  if (mode !== "auto") {
+    const known = new Set((await listProducts()).map((p) => p.id));
+    const ids = [...new Set(Array.isArray(input.pairing?.ids) ? input.pairing.ids : [])].filter(
+      (pid): pid is string => typeof pid === "string" && pid !== id && known.has(pid),
+    );
+    if (mode === "manual" && !ids.length) return { ok: false, error: "Choose at least one product for “Featured together”, or set it to Automatic." };
+    if (ids.length > MAX_PAIRED) return { ok: false, error: `“Featured together” can show at most ${MAX_PAIRED} products.` };
+    pairing = { mode, ids: mode === "manual" ? ids : [] };
+  }
   const now = new Date().toISOString();
   const price = hasVariants ? 0 : money(input.price)!;
   const was = money(input.wasPrice);
@@ -129,6 +142,7 @@ export async function saveProductAction(input: ProductInput): Promise<SaveResult
     tags: [...new Set(input.tags.map((t) => t.trim().toLowerCase()).filter(Boolean))].slice(0, 30),
     variants,
     position,
+    pairing,
     status: input.status === "draft" ? "draft" : "published",
     createdAt: existing?.createdAt ?? now,
     updatedAt: now,

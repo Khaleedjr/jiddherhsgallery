@@ -6,6 +6,7 @@ import { AdminPage, Card, OrderStatusBadge, Pill, td, th, cx } from "@/component
 import { REASON_LABEL, formatDate, formatDateTime, formatNumber } from "@/lib/admin/format";
 import { editorOptions } from "@/lib/admin/editor-data";
 import { formatPrice } from "@/lib/format";
+import { automaticPairings } from "@/lib/pairs";
 import { listMovements } from "@/lib/store/inventory";
 import { PAID_STATUSES, listOrders } from "@/lib/store/orders";
 import { getStoredProduct } from "@/lib/store/products";
@@ -29,7 +30,7 @@ export default async function EditProductPage({
   const product = await getStoredProduct(id);
   if (!product) notFound();
 
-  const [options, orders, movements] = await Promise.all([editorOptions(), listOrders(), listMovements()]);
+  const [options, orders, movements, automatic] = await Promise.all([editorOptions(), listOrders(), listMovements(), automaticPairings(product)]);
   const withProduct = orders.filter((order) => order.items.some((item) => item.productId === id));
   const paid = withProduct.filter((order) => PAID_STATUSES.includes(order.status));
   const units = paid.reduce((n, o) => n + o.items.filter((i) => i.productId === id).reduce((s, i) => s + i.quantity, 0), 0);
@@ -55,7 +56,7 @@ export default async function EditProductPage({
         </p>
       ) : null}
 
-      <ProductEditor product={product} {...options}>
+      <ProductEditor product={product} {...options} automaticPairs={automatic.map(({ product: p }) => p.name)}>
         <div className="grid gap-6 xl:grid-cols-2">
           <Card title="Sales" description="From confirmed, dispatched and delivered orders">
             <dl className="grid grid-cols-3 gap-3 text-center">

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { PaystackError, initializePayment, isPaystackConfigured, paymentReference } from "@/lib/paystack";
+import { getSiteText } from "@/lib/content/text";
+import { deliveryVars, getDeliverySettings } from "@/lib/delivery";
 import { resolveShipping } from "@/lib/shipping";
 import { OrderError, createOrder, deleteOrder, priceLines, setPaymentReference, type LineInput } from "@/lib/store/orders";
 import { listProducts } from "@/lib/store/products";
@@ -76,9 +78,11 @@ export async function POST(request: Request) {
   try {
     const subtotal = priceLines(lines, products, false).reduce((sum, item) => sum + item.price * item.quantity, 0);
     const state = text(shipping.state, 60);
-    const option = resolveShipping(fulfilment, state, text(shipping.option, 40), subtotal);
+    const [delivery, { store }] = await Promise.all([getDeliverySettings(), getSiteText()]);
+    const option = resolveShipping(delivery, fulfilment, state, text(shipping.option, 40), subtotal, deliveryVars(store));
     if (!option) {
-      return NextResponse.json({ error: "Please choose a delivery option for your state." }, { status: 400 });
+      const error = fulfilment === "pickup" ? "Pickup isn't available at the moment. Please choose delivery." : "Please choose a delivery option for your state.";
+      return NextResponse.json({ error }, { status: 400 });
     }
     order = await createOrder({
       channel: "website",

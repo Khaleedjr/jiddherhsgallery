@@ -3,13 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { AgeStacks } from "@/components/home/age-stacks";
 import { PlayScene, ReadScene, WorshipScene } from "@/components/home/hero-art";
 import { ArrowRightIcon, ClockIcon, SearchIcon, ShieldIcon, TruckIcon, WhatsappIcon } from "@/components/icons";
 import { Container, cx } from "@/components/ui";
 import { fill, whatsappHref } from "@/lib/content/format";
 import type { SiteText } from "@/lib/content/schema";
 import { getSiteText } from "@/lib/content/text";
-import { ageFigure, getHomeData, type HomeData } from "@/lib/home";
+import { getHomeData, type HomeData } from "@/lib/home";
 import { site } from "@/lib/site";
 import type { CardProduct } from "@/lib/types";
 
@@ -66,6 +67,8 @@ function Hero({ data, t }: { data: HomeData; t: HomeText }) {
       </Link>
     ) : null;
   const scene = "absolute top-[16%] left-[8%] h-[82%] w-[84%]";
+  /* The live count of products on sale, so the button also says how big the shelf is. */
+  const shopLabel = fill(t.shopButton, { productCount: data.productCount.toLocaleString("en-NG") });
 
   /* Phones and tablets stack everything on the centre line. From laptops up the
      words and the arches sit side by side, so the whole hero fits in the first screen. */
@@ -86,11 +89,11 @@ function Hero({ data, t }: { data: HomeData; t: HomeText }) {
           <div className="mt-9 flex flex-col gap-3 sm:mx-auto sm:max-w-xl sm:flex-row lg:mx-0 lg:max-w-none">
             <HeroSearch t={t} />
             <Link href="/shop" className={cx(btnLine, "shrink-0 lg:hidden")}>
-              {t.shopButton}
+              {shopLabel}
             </Link>
             {/* Laptops search from the header, so here the hero leads with one solid button. */}
             <Link href="/shop" className={cx(btnInk, "max-lg:hidden")}>
-              {t.shopButton}
+              {shopLabel}
               <ArrowRightIcon className="size-4" />
             </Link>
           </div>
@@ -145,8 +148,9 @@ function HeroSearch({ t }: { t: HomeText }) {
 }
 
 /**
- * Ages strung on one thread, like beads on a tasbih. All five sit in one row
- * at every width, so there is nothing to swipe: tap a bead.
+ * The ages as stacks of books climbing like steps, one book more for each age
+ * (see AgeStacks). All five sit in one row at every width, so there is nothing
+ * to swipe: tap a stack.
  */
 function Ages({ data, t }: { data: HomeData; t: HomeText }) {
   return (
@@ -155,24 +159,8 @@ function Ages({ data, t }: { data: HomeData; t: HomeText }) {
         <h2 className="text-3xl sm:text-5xl">{t.agesTitle}</h2>
         <p className="mx-auto mt-3 max-w-md text-ink-600 sm:mt-4">{t.agesText}</p>
       </Container>
-      {/* Held to a narrower measure on wide screens so the beads stay close on their thread. */}
-      <Container className="relative mt-8 sm:mt-12 lg:max-w-5xl">
-        <span className="absolute top-7 right-[12%] left-[12%] h-px bg-coal-900 sm:top-10 lg:top-12" aria-hidden />
-        <ul className="relative grid grid-cols-5 gap-1 sm:gap-4 lg:gap-6">
-          {data.ageGroups.map((age) => (
-            <li key={age.slug}>
-              <Link href={`/age/${age.slug}`} aria-label={`${age.name}, ${age.count} items`} className="group block text-center">
-                <span className="mx-auto grid size-14 place-items-center rounded-full bg-gold-500 ring-4 ring-sand-50 transition-colors duration-300 group-hover:bg-coal-900 group-hover:text-gold-500 group-active:bg-coal-900 group-active:text-gold-500 sm:size-20 sm:ring-[6px] lg:size-24">
-                  <span className="font-display text-[1.050rem] leading-none font-[750] tracking-tight tabular-nums sm:text-2xl lg:text-[1.700rem]">
-                    {ageFigure(age.name)}
-                  </span>
-                </span>
-                <span className={cx(caps, "mt-3 block max-sm:text-[0.600rem] max-sm:tracking-[0.160em] sm:mt-5")}>{t.agesUnit}</span>
-                <span className="mt-2 block text-sm leading-relaxed text-ink-600 max-lg:hidden">{age.blurb}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <Container>
+        <AgeStacks ages={data.ageGroups} unit={t.agesUnit} />
       </Container>
     </section>
   );
@@ -188,7 +176,14 @@ function Departments({ data, t }: { data: HomeData; t: HomeText }) {
     <section className="tone-gold bg-gold-500 py-12 sm:py-24 lg:py-20">
       <Container>
         <h2 className="text-center text-3xl sm:text-5xl">{t.departmentsTitle}</h2>
-        <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:mx-auto lg:mt-10 lg:max-w-5xl lg:gap-5">
+        {/* The size of the whole shelf, under the heading of the section that opens it. */}
+        <p className="mt-3 text-center text-[0.72rem] font-semibold tracking-[0.2em] text-ink-900/75 uppercase sm:mt-4 sm:text-[0.8rem]">
+          {fill(t.departmentsCount, {
+            productCount: data.productCount.toLocaleString("en-NG"),
+            departmentCount: data.departments.length,
+          })}
+        </p>
+        <ul className="mt-7 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:mx-auto lg:mt-10 lg:max-w-5xl lg:gap-5">
           {data.departments.map((dept) => (
             <li key={dept.slug}>
               <Link

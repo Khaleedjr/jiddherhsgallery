@@ -1,7 +1,9 @@
 import { cache } from "react";
 import { fill } from "@/lib/content/format";
 import { SECTIONS, SECTION_KEYS, type Field, type SectionKey, type SiteText, type TextOverrides } from "@/lib/content/schema";
+import { getDeliverySettings } from "@/lib/delivery";
 import { formatPrice } from "@/lib/format";
+import { DEFAULT_DELIVERY, freeDeliveryFrom, localFee, type DeliverySettings } from "@/lib/shipping";
 import { site } from "@/lib/site";
 import { getDriver } from "@/lib/store/driver";
 
@@ -26,8 +28,8 @@ function fits(field: Field, value: unknown): value is Value {
   );
 }
 
-/** The placeholders every field may use. */
-export function globalVars(store: SiteText["store"]) {
+/** The placeholders every field may use. Fees come from the dashboard's Delivery settings. */
+export function globalVars(store: SiteText["store"], delivery: DeliverySettings = DEFAULT_DELIVERY) {
   return {
     storeName: site.name,
     phone: store.phoneDisplay,
@@ -37,8 +39,8 @@ export function globalVars(store: SiteText["store"]) {
     pickupTime: store.pickupTime,
     interstateDays: store.interstateDays,
     dispatchHours: store.dispatchHours,
-    kadunaFee: formatPrice(site.delivery.kadunaFee),
-    freeDeliveryFrom: formatPrice(site.freeDeliveryThreshold),
+    kadunaFee: formatPrice(localFee(delivery) ?? site.delivery.kadunaFee),
+    freeDeliveryFrom: formatPrice(freeDeliveryFrom(delivery) ?? site.freeDeliveryThreshold),
     kadunaNote: store.kadunaNote,
     addressNote: store.addressNote,
     instagramHandle: store.instagramHandle,
@@ -52,11 +54,11 @@ export function sectionValues(section: SectionKey, overrides: TextOverrides): Re
   return Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, fits(field, saved[key]) ? saved[key] : field.default]));
 }
 
-export function buildSiteText(overrides: TextOverrides): SiteText {
+export function buildSiteText(overrides: TextOverrides, delivery: DeliverySettings = DEFAULT_DELIVERY): SiteText {
   const merged: Record<string, Record<string, Value>> = {};
   for (const section of SECTION_KEYS) merged[section] = sectionValues(section, overrides);
 
-  const vars = globalVars(merged.store as SiteText["store"]);
+  const vars = globalVars(merged.store as SiteText["store"], delivery);
   for (const section of SECTION_KEYS) {
     if (section === "store") continue;
     for (const [key, value] of Object.entries(merged[section])) {
@@ -76,7 +78,8 @@ export function buildSiteText(overrides: TextOverrides): SiteText {
  */
 export const getSiteText = cache(async (): Promise<SiteText> => {
   try {
-    return buildSiteText(await getTextOverrides());
+    const [overrides, delivery] = await Promise.all([getTextOverrides(), getDeliverySettings()]);
+    return buildSiteText(overrides, delivery);
   } catch (error) {
     console.error("Couldn't read the site text; showing the defaults.", error);
     return buildSiteText({});

@@ -10,7 +10,7 @@ import { ButtonLink, EmptyState, buttonClass, cx } from "@/components/ui";
 import { fill, whatsappHref } from "@/lib/content/format";
 import { formatPrice } from "@/lib/format";
 import { NIGERIAN_STATES } from "@/lib/nigeria";
-import { PICKUP_OPTION, deliveryOptions } from "@/lib/shipping";
+import { deliveryOptions, freeDeliveryFrom, pickupOption } from "@/lib/shipping";
 import { site } from "@/lib/site";
 
 type Fields = {
@@ -45,7 +45,11 @@ const EMPTY: Fields = {
  */
 export function CheckoutForm() {
   const { items, subtotal } = useCart();
-  const { shopping: t, store } = useSiteText();
+  const { shopping: t, store, delivery } = useSiteText();
+  /* Wording the delivery options may use, from the store details. */
+  const vars = useMemo(() => ({ kadunaNote: store.kadunaNote, pickupDays: store.pickupDays, pickupTime: store.pickupTime }), [store]);
+  const pickup = useMemo(() => pickupOption(delivery, vars), [delivery, vars]);
+  const freeFrom = freeDeliveryFrom(delivery);
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [touched, setTouched] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -54,8 +58,8 @@ export function CheckoutForm() {
   const set = <K extends keyof Fields>(key: K, value: Fields[K]) => setFields((current) => ({ ...current, [key]: value }));
 
   const options = useMemo(
-    () => (fields.fulfilment === "delivery" && fields.state ? deliveryOptions(fields.state, subtotal) : []),
-    [fields.fulfilment, fields.state, subtotal],
+    () => (fields.fulfilment === "delivery" && fields.state ? deliveryOptions(delivery, fields.state, subtotal, vars) : []),
+    [fields.fulfilment, fields.state, subtotal, delivery, vars],
   );
   const noDelivery = fields.fulfilment === "delivery" && Boolean(fields.state) && options.length === 0;
 
@@ -66,7 +70,7 @@ export function CheckoutForm() {
     }
   }, [options, fields.option]);
 
-  const chosen = fields.fulfilment === "pickup" ? PICKUP_OPTION : (options.find((option) => option.id === fields.option) ?? null);
+  const chosen = fields.fulfilment === "pickup" ? pickup : (options.find((option) => option.id === fields.option) ?? null);
   const total = subtotal + (chosen?.cost ?? 0);
 
   const errors = useMemo(() => {
@@ -175,7 +179,7 @@ export function CheckoutForm() {
             {(
               [
                 { value: "delivery", title: t.deliverToMe, copy: t.deliverToMeText },
-                { value: "pickup", title: PICKUP_OPTION.name, copy: t.pickupText },
+                ...(pickup ? [{ value: "pickup" as const, title: pickup.name, copy: t.pickupText }] : []),
               ] as const
             ).map((option) => (
               <Choice
@@ -222,10 +226,14 @@ export function CheckoutForm() {
               {noDelivery ? (
                 <div className="rounded-[1.25rem] bg-sand-200 p-4 text-[0.88rem] leading-relaxed text-ink-700 sm:col-span-2" role="status">
                   We don&apos;t deliver to {fields.state} yet. You can{" "}
-                  <button type="button" onClick={() => set("fulfilment", "pickup")} className="font-semibold text-ink-900 underline underline-offset-4">
-                    pick up in Kaduna
-                  </button>{" "}
-                  instead, or{" "}
+                  {pickup ? (
+                    <>
+                      <button type="button" onClick={() => set("fulfilment", "pickup")} className="font-semibold text-ink-900 underline underline-offset-4">
+                        {pickup.name.charAt(0).toLowerCase() + pickup.name.slice(1)}
+                      </button>{" "}
+                      instead, or{" "}
+                    </>
+                  ) : null}
                   <a
                     href={whatsappHref(store.whatsapp, `As-salamu alaykum ${site.name}, can you deliver to ${fields.state}?`)}
                     target="_blank"
@@ -328,8 +336,8 @@ export function CheckoutForm() {
               <span className="font-semibold text-ink-900">Total</span>
               <span className="font-display text-2xl font-bold text-ink-900 tabular-nums">{formatPrice(total)}</span>
             </div>
-            {subtotal < site.freeDeliveryThreshold ? (
-              <p className="pt-1 text-[0.75rem] text-ink-500">Free delivery from {formatPrice(site.freeDeliveryThreshold)}.</p>
+            {freeFrom !== null && subtotal < freeFrom ? (
+              <p className="pt-1 text-[0.75rem] text-ink-500">Free delivery from {formatPrice(freeFrom)}.</p>
             ) : null}
           </div>
 

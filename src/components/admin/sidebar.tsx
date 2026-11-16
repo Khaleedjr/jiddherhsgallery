@@ -13,6 +13,7 @@ import {
   LayersIcon,
   LogoutIcon,
   ReceiptIcon,
+  TruckIcon,
   TypeIcon,
   UsersIcon,
 } from "@/components/admin/icons";
@@ -25,6 +26,7 @@ const NAV = [
   { href: "/admin/orders", label: "Orders", Icon: ReceiptIcon, badge: "pending" as const },
   { href: "/admin/products", label: "Products", Icon: BoxIcon },
   { href: "/admin/inventory", label: "Inventory", Icon: LayersIcon },
+  { href: "/admin/delivery", label: "Delivery", Icon: TruckIcon },
   { href: "/admin/customers", label: "Customers", Icon: UsersIcon },
   { href: "/admin/analytics", label: "Analytics", Icon: ChartIcon },
   { href: "/admin/visitors", label: "Visitors", Icon: EyeIcon },

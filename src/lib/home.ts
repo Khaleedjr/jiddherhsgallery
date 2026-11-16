@@ -20,6 +20,7 @@ export async function getHomeData() {
     .slice(0, QURAN_PICKS);
 
   return {
+    productCount: catalog.catalogMeta.productCount,
     departments: catalog.departments,
     ageGroups: catalog.ageGroups,
     quran: toCards(quran),

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { BagPairs } from "@/components/bag-pairs";
 import { useCart } from "@/components/cart-provider";
 import { BagIcon, CloseIcon, MinusIcon, PlusIcon, StarKhatimIcon, TrashIcon, TruckIcon } from "@/components/icons";
 import { Inline } from "@/components/rich-text";
@@ -9,16 +10,17 @@ import { useSiteText } from "@/components/site-text-provider";
 import { buttonClass, cx } from "@/components/ui";
 import { fill } from "@/lib/content/format";
 import { formatPrice } from "@/lib/format";
-import { site } from "@/lib/site";
+import { freeDeliveryFrom } from "@/lib/shipping";
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, setQuantity, remove, subtotal, count } = useCart();
-  const t = useSiteText().shopping;
+  const { shopping: t, delivery } = useSiteText();
+  const freeFrom = freeDeliveryFrom(delivery);
 
   if (!isOpen) return null;
 
-  const remaining = site.freeDeliveryThreshold - subtotal;
-  const progress = Math.min(100, Math.round((subtotal / site.freeDeliveryThreshold) * 100));
+  const remaining = freeFrom === null ? 0 : freeFrom - subtotal;
+  const progress = freeFrom ? Math.min(100, Math.round((subtotal / freeFrom) * 100)) : 100;
 
   return (
     <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Shopping bag">
@@ -59,7 +61,7 @@ export function CartDrawer() {
           </div>
         ) : (
           <>
-            {remaining > 0 ? (
+            {freeFrom === null ? null : remaining > 0 ? (
               <div className="shrink-0 border-b border-sand-200 bg-sand-100 px-5 py-3">
                 <p className="flex items-center gap-2 text-[0.78rem] text-ink-700">
                   <TruckIcon className="size-4 shrink-0 text-coal-600" />
@@ -81,7 +83,8 @@ export function CartDrawer() {
               </p>
             )}
 
-            <ul className="flex-1 divide-y divide-sand-200 overflow-y-auto px-5">
+            <div className="flex-1 overflow-y-auto">
+            <ul className="divide-y divide-sand-200 px-5">
               {items.map((item) => (
                 <li key={item.key} className="flex gap-3.5 py-4">
                   <Link
@@ -146,6 +149,8 @@ export function CartDrawer() {
                 </li>
               ))}
             </ul>
+            <BagPairs onNavigate={closeCart} />
+            </div>
 
             <footer className="shrink-0 border-t border-sand-200 bg-white px-5 py-4">
               <div className="flex items-baseline justify-between">

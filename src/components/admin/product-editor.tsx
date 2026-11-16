@@ -8,13 +8,14 @@ import { AlertIcon, CopyIcon, ExternalIcon, ImageIcon, UploadIcon } from "@/comp
 import { uploadImage } from "@/components/admin/image-upload";
 import { Field, adminButton, cx, inputClass, selectClass } from "@/components/admin/ui";
 import { ChevronLeftFallback } from "@/components/admin/editor-bits";
+import { PairingPicker, type PickerProduct } from "@/components/admin/pairing-picker";
 import { CloseIcon, PlusIcon, TrashIcon } from "@/components/icons";
 import { deleteProductAction, duplicateProductAction, saveProductAction } from "@/lib/admin/actions/products";
 import { isAllowedImage, type ProductInput } from "@/lib/admin/product-input";
 import { sanitizeHtml } from "@/lib/admin/sanitize";
 import { slugify } from "@/lib/admin/slugify";
 import type { StoredProduct } from "@/lib/store/types";
-import type { AgeGroup, Collection, Department } from "@/lib/types";
+import type { AgeGroup, Collection, Department, ProductPairing } from "@/lib/types";
 
 type VariantDraft = {
   key: string;
@@ -51,6 +52,7 @@ type Draft = {
   option2Name: string;
   hasOptions: boolean;
   variants: VariantDraft[];
+  pairing: ProductPairing;
 };
 
 let keySeed = 0;
@@ -88,10 +90,12 @@ function toDraft(product: StoredProduct | null): Draft {
       option2Name: "",
       hasOptions: false,
       variants: [],
+      pairing: { mode: "auto", ids: [] },
     };
   }
   const first = product.variants[0];
   return {
+    pairing: product.pairing ? { mode: product.pairing.mode, ids: [...product.pairing.ids] } : { mode: "auto", ids: [] },
     name: product.name,
     slug: product.slug,
     slugTouched: true,
@@ -130,6 +134,7 @@ function toDraft(product: StoredProduct | null): Draft {
 function toInput(id: string | null, d: Draft): ProductInput {
   return {
     id,
+    pairing: d.pairing,
     name: d.name,
     slug: d.slug,
     sku: d.sku,
@@ -170,6 +175,8 @@ export function ProductEditor({
   ageGroups,
   collections,
   languages,
+  catalogue,
+  automaticPairs = null,
   children,
 }: {
   product: StoredProduct | null;
@@ -177,6 +184,10 @@ export function ProductEditor({
   ageGroups: AgeGroup[];
   collections: Collection[];
   languages: string[];
+  /** Every product, for the "Featured together" picker. */
+  catalogue: PickerProduct[];
+  /** What the box picks automatically for this product now, by name; null for a new product. */
+  automaticPairs?: string[] | null;
   /** Server-rendered panels (sales, stock history) shown under the form. */
   children?: ReactNode;
 }) {
@@ -417,6 +428,19 @@ export function ProductEditor({
                 </div>
               </div>
             )}
+          </Panel>
+
+          <Panel
+            title="Featured together"
+            description="The “Make it a set” box under Add to bag on this product's page, and the suggestions in the bag."
+          >
+            <PairingPicker
+              value={draft.pairing}
+              onChange={(pairing) => set("pairing", pairing)}
+              catalogue={catalogue}
+              selfId={product?.id ?? null}
+              automatic={product ? automaticPairs : null}
+            />
           </Panel>
 
           {children}

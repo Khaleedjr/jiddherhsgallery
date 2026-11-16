@@ -1,4 +1,5 @@
 import type { ProductStatus } from "@/lib/store/types";
+import type { ProductPairing } from "@/lib/types";
 
 /** What the product editor sends to the server. Prices are whole naira. */
 export type VariantInput = {
@@ -36,6 +37,7 @@ export type ProductInput = {
   optionName: string | null;
   option2Name: string | null;
   variants: VariantInput[];
+  pairing: ProductPairing;
 };
 
 export type SaveResult = { ok: true; id: string; slug: string } | { ok: false; error: string };

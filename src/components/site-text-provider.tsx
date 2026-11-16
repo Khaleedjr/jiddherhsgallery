@@ -2,9 +2,10 @@
 
 import { createContext, useContext, type ReactNode } from "react";
 import type { SiteText } from "@/lib/content/schema";
+import type { DeliverySettings } from "@/lib/shipping";
 
-/** The part of the site text that browser-side components need: the header, footer, bag and checkout words. */
-export type ClientText = Pick<SiteText, "layout" | "shopping" | "store">;
+/** What browser-side components need from the dashboard: the header, footer, bag and checkout words, and the delivery settings. */
+export type ClientText = Pick<SiteText, "layout" | "shopping" | "store"> & { delivery: DeliverySettings };
 
 const SiteTextContext = createContext<ClientText | null>(null);
 

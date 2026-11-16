@@ -4,6 +4,8 @@ import { ProductDetail } from "@/components/product-detail";
 import { ProductRail } from "@/components/product-rail";
 import { Breadcrumbs, Container, SectionHeading } from "@/components/ui";
 import { getCatalog, toCards } from "@/lib/catalog";
+import { getSiteText } from "@/lib/content/text";
+import { getPairings } from "@/lib/pairs";
 import { site } from "@/lib/site";
 
 type Params = { slug: string };
@@ -41,7 +43,24 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   const product = getProduct(slug);
   if (!product) notFound();
 
-  const related = toCards(relatedProducts(product, 8));
+  const [pairings, { shopping: t }] = await Promise.all([getPairings(product, 2), getSiteText()]);
+  const companions = pairings.map(({ product: p, together }) => {
+    const options = p.variants
+      .filter((variant) => variant.inStock)
+      .map((variant) => ({ id: variant.id, label: variant.label, price: variant.price ?? p.price, image: variant.image }));
+    return {
+      id: p.id,
+      slug: p.slug,
+      name: p.name,
+      price: options[0]?.price ?? p.price,
+      image: p.images[0] ?? null,
+      together,
+      ...(options.length ? { optionName: p.variants[0].optionName, options } : {}),
+    };
+  });
+  /* The rail below shows similar things; anything already offered in the set stays out of it. */
+  const paired = new Set(companions.map((c) => c.id));
+  const related = toCards(relatedProducts(product, 10).filter((p) => !paired.has(p.id)).slice(0, 8));
   const department = departments.find((dept) => product.categories.includes(dept.slug));
   const subCategory = department?.children.find((child) => product.categories.includes(child.slug));
 
@@ -85,16 +104,16 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       </Container>
 
       <Container className="pb-16">
-        <ProductDetail product={product} />
+        <ProductDetail product={product} companions={companions} />
       </Container>
 
       {related.length > 0 ? (
         <section className="border-t border-sand-200 bg-sand-100 py-16">
           <Container>
             <SectionHeading
-              eyebrow="You may also like"
-              title="Goes well with this"
-              description="Chosen from the same shelf and age range."
+              eyebrow={t.relatedEyebrow}
+              title={t.relatedTitle}
+              description={t.relatedText}
             />
             <ProductRail products={related} className="mt-9" />
           </Container>

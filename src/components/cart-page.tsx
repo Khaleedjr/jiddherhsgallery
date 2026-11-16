@@ -8,11 +8,12 @@ import { useSiteText } from "@/components/site-text-provider";
 import { ButtonLink, EmptyState, buttonClass, cx } from "@/components/ui";
 import { fill } from "@/lib/content/format";
 import { formatPrice } from "@/lib/format";
-import { site } from "@/lib/site";
+import { freeDeliveryFrom } from "@/lib/shipping";
 
 export function CartPageBody() {
   const { items, setQuantity, remove, subtotal, clear, count } = useCart();
-  const t = useSiteText().shopping;
+  const { shopping: t, delivery } = useSiteText();
+  const freeFrom = freeDeliveryFrom(delivery);
 
   if (items.length === 0) {
     return (
@@ -29,7 +30,7 @@ export function CartPageBody() {
     );
   }
 
-  const remaining = site.freeDeliveryThreshold - subtotal;
+  const remaining = freeFrom === null ? 0 : freeFrom - subtotal;
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_22rem] lg:gap-12">
@@ -147,7 +148,7 @@ export function CartPageBody() {
             {t.proceed}
           </ButtonLink>
 
-          <p
+          {freeFrom === null ? null : <p
             className={cx(
               "mt-4 flex items-start gap-2 rounded-md p-3 text-[0.76rem] leading-relaxed",
               remaining > 0 ? "bg-sand-100 text-ink-600" : "bg-coal-50 text-coal-800",
@@ -159,7 +160,7 @@ export function CartPageBody() {
             ) : (
               <span>{t.qualifies}</span>
             )}
-          </p>
+          </p>}
         </div>
 
         <p className="mt-4 px-1 text-[0.74rem] leading-relaxed text-ink-500">

@@ -9,6 +9,7 @@ import { WhatsappFab } from "@/components/whatsapp-fab";
 import { taxonomy } from "@/lib/catalog";
 import type { SiteText } from "@/lib/content/schema";
 import { getSiteText } from "@/lib/content/text";
+import { getDeliverySettings } from "@/lib/delivery";
 import { site } from "@/lib/site";
 
 const organisationJsonLd = (store: SiteText["store"]) => ({
@@ -38,9 +39,9 @@ const organisationJsonLd = (store: SiteText["store"]) => ({
 /** Header, footer, cart and WhatsApp button around every storefront page, with the dashboard's text for them. */
 export async function StoreShell({ children }: { children: ReactNode }) {
   const { departments, ageGroups } = taxonomy;
-  const text = await getSiteText();
+  const [text, delivery] = await Promise.all([getSiteText(), getDeliverySettings()]);
   return (
-    <SiteTextProvider value={{ layout: text.layout, shopping: text.shopping, store: text.store }}>
+    <SiteTextProvider value={{ layout: text.layout, shopping: text.shopping, store: text.store, delivery }}>
     <CartProvider>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationJsonLd(text.store)) }} />
       <a

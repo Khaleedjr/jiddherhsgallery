@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { BoughtTogether, type Companion } from "@/components/bought-together";
 import { useCart } from "@/components/cart-provider";
 import {
   BagIcon,
@@ -11,7 +12,6 @@ import {
   ShieldIcon,
   StarKhatimIcon,
   TruckIcon,
-  WhatsappIcon,
 } from "@/components/icons";
 import { Badge, Button, buttonClass, cx } from "@/components/ui";
 import {
@@ -22,13 +22,11 @@ import {
   lowStockLabel,
 } from "@/lib/format";
 import { useSiteText } from "@/components/site-text-provider";
-import { fill, whatsappHref } from "@/lib/content/format";
-import { site } from "@/lib/site";
 import type { Product } from "@/lib/types";
 
-export function ProductDetail({ product }: { product: Product }) {
+export function ProductDetail({ product, companions = [] }: { product: Product; companions?: Companion[] }) {
   const { add } = useCart();
-  const { shopping: t, store } = useSiteText();
+  const { shopping: t } = useSiteText();
   const hasVariants = product.variants.length > 0;
 
   const [variantId, setVariantId] = useState<string | null>(
@@ -62,7 +60,7 @@ export function ProductDetail({ product }: { product: Product }) {
     }
   };
 
-  const handleAdd = () => {
+  const addSelf = (count: number) =>
     add(
       {
         productId: product.id,
@@ -73,17 +71,14 @@ export function ProductDetail({ product }: { product: Product }) {
         price,
         image: variant?.image ?? images[0] ?? null,
       },
-      quantity,
+      count,
     );
+
+  const handleAdd = () => {
+    addSelf(quantity);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1800);
   };
-
-  /* Orders go through checkout and Paystack; WhatsApp is for questions about the product. */
-  const enquiry = whatsappHref(
-    store.whatsapp,
-    `${fill(t.productMessage, { product: `${product.name}${variant ? ` (${variant.label})` : ""}` })}\n\n${site.url}/products/${product.slug}`,
-  );
 
   return (
     <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
@@ -240,15 +235,14 @@ export function ProductDetail({ product }: { product: Product }) {
           </Button>
         </div>
 
-        <a
-          href={enquiry}
-          target="_blank"
-          rel="noreferrer"
-          className={cx(buttonClass({ variant: "outline", size: "lg" }), "mt-3 w-full sm:w-auto sm:min-w-64")}
-        >
-          <WhatsappIcon className="size-4" />
-          {purchasable ? t.askWhatsapp : t.askWhenBack}
-        </a>
+        {product.inStock && companions.length ? (
+          <BoughtTogether
+            self={{ name: variant ? `${product.name} (${variant.label})` : product.name, price, image: variant?.image ?? images[0] ?? null }}
+            companions={companions}
+            canAddSelf={purchasable}
+            onAddSelf={() => addSelf(1)}
+          />
+        ) : null}
 
         <ul className="mt-8 grid gap-3 border-y border-sand-200 py-5 sm:grid-cols-2">
           {[

@@ -8,6 +8,7 @@ import { formatDate, formatNumber, formatPercent } from "@/lib/admin/format";
 import { taxonomy } from "@/lib/catalog";
 import { formatPrice } from "@/lib/format";
 import { buildAnalytics, delta, isRangeKey } from "@/lib/store/analytics";
+import { topPairs } from "@/lib/pairs";
 import { listOrders } from "@/lib/store/orders";
 import { listProducts } from "@/lib/store/products";
 
@@ -18,6 +19,7 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
   const rangeKey = isRangeKey(rangeParam) ? rangeParam : "30d";
   const [orders, products] = await Promise.all([listOrders(), listProducts()]);
   const a = buildAnalytics(orders, products, taxonomy.departments, rangeKey);
+  const pairs = await topPairs(8);
   const { current: c, previous: p } = a;
   const bucketWord = a.range.bucket === "month" ? "month" : a.range.bucket === "week" ? "week" : "day";
   const hasSample = orders.some((o) => o.demo);
@@ -137,6 +139,37 @@ export default async function AnalyticsPage({ searchParams }: { searchParams: Pr
           </Card>
         </div>
       </div>
+
+      <Card
+        title="Frequently bought together"
+        description="Products that customers put in the same paid order, across all time. These feed the “Frequently bought together” box on product pages."
+      >
+        {pairs.length ? (
+          <ol className="divide-y divide-sand-200">
+            {pairs.map(({ a: first, b: second, count }) => (
+              <li key={`${first.id}-${second.id}`} className="flex items-center justify-between gap-4 py-2.5 text-[0.82rem]">
+                <span className="min-w-0 text-ink-800">
+                  <Link href={`/products/${first.slug}`} target="_blank" className="hover:underline">
+                    {first.name}
+                  </Link>
+                  <span className="mx-2 text-gold-600">+</span>
+                  <Link href={`/products/${second.slug}`} target="_blank" className="hover:underline">
+                    {second.name}
+                  </Link>
+                </span>
+                <span className="shrink-0 font-semibold text-ink-900 tabular-nums">
+                  {formatNumber(count)} {count === 1 ? "order" : "orders"}
+                </span>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className="py-4 text-[0.8rem] leading-relaxed text-ink-500">
+            No product has been bought together with another yet. Until real pairs build up, product pages suggest items from shelves
+            that go together, like a prayer mat with a tasbeeh, or a children&apos;s book with flash cards for the same age.
+          </p>
+        )}
+      </Card>
 
       <p className={cx("text-[0.72rem] text-ink-500")}>
         Revenue counts orders once they&apos;re confirmed (paid), including the delivery fee. Pending orders are unconfirmed WhatsApp
